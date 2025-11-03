@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bn/hero-header",
+  "title": "Hero Header",
+  "category": "design",
+  "icon": "cover-image",
+  "description": "Full-width hero with post featured image, title, excerpt, and author",
+  "keywords": ["hero", "header", "featured"],
+  "supports": {
+    "align": ["full"],
+    "anchor": true,
+    "html": false
+  },
+  "attributes": {
+    "postId": {
+      "type": "number",
+      "default": 0
+    },
+    "contentPosition": {
+      "type": "string",
+      "enum": ["left", "center", "right"],
+      "default": "center"
+    },
+    "mobileHeight": {
+      "type": "string",
+      "default": "60vh"
+    },
+    "desktopHeight": {
+      "type": "string",
+      "default": "80vh"
+    },
+    "showExcerpt": {
+      "type": "boolean",
+      "default": true
+    },
+    "showAuthor": {
+      "type": "boolean",
+      "default": true
+    },
+    "overlay": {
+      "type": "string",
+      "default": "linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%)"
+    },
+    "taxonomy": {
+      "type": "string",
+      "default": "category"
+    }
+  },
+  "textdomain": "bn-newspack-child",
+  "editorScript": "file:./edit.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}
+

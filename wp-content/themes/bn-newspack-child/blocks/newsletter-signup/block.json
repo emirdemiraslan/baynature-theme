@@ -1,0 +1,11 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bn/newsletter-signup",
+  "title": "Newsletter Signup",
+  "category": "widgets",
+  "icon": "email",
+  "description": "Newsletter subscription form",
+  "textdomain": "bn-newspack-child"
+}
+

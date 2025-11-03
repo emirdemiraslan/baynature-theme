@@ -1,0 +1,11 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bn/featured-trail",
+  "title": "Featured Trail",
+  "category": "widgets",
+  "icon": "location-alt",
+  "description": "Highlight a featured trail or hike",
+  "textdomain": "bn-newspack-child"
+}
+

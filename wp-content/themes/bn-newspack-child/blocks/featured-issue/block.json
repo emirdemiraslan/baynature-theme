@@ -1,0 +1,11 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bn/featured-issue",
+  "title": "Featured Issue",
+  "category": "widgets",
+  "icon": "book",
+  "description": "Display the current magazine issue",
+  "textdomain": "bn-newspack-child"
+}
+

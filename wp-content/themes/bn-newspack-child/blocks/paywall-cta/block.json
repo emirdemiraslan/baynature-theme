@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bn/paywall-cta",
+  "title": "Paywall CTA",
+  "category": "widgets",
+  "icon": "lock",
+  "description": "Call-to-action prompting users to become members",
+  "supports": {
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Become a member to continue reading"
+    },
+    "message": {
+      "type": "string",
+      "default": "Support independent environmental journalism in the Bay Area."
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Join Now"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "/join"
+    }
+  },
+  "textdomain": "bn-newspack-child",
+  "editorScript": "file:./edit.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}
+

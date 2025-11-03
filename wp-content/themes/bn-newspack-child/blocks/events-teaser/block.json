@@ -1,0 +1,11 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bn/events-teaser",
+  "title": "Events Teaser",
+  "category": "widgets",
+  "icon": "calendar-alt",
+  "description": "Display upcoming events",
+  "textdomain": "bn-newspack-child"
+}
+

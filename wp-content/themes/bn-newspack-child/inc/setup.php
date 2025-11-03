@@ -1,0 +1,41 @@
+<?php
+/**
+ * Theme setup and supports.
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+add_action( 'after_setup_theme', function () {
+    // Text domain for translations.
+    load_child_theme_textdomain( 'bn-newspack-child', get_stylesheet_directory() . '/languages' );
+
+    add_theme_support( 'editor-styles' );
+    add_theme_support( 'responsive-embeds' );
+    add_theme_support( 'align-wide' );
+    add_theme_support( 'post-thumbnails' );
+
+    // Custom image sizes for mobile-first performance.
+    add_image_size( 'bn-hero', 1920, 1080, true );
+    add_image_size( 'bn-card', 800, 600, true );
+    add_image_size( 'bn-thumb', 400, 300, true );
+} );
+
+// Enqueue theme assets.
+add_action( 'wp_enqueue_scripts', function () {
+    wp_enqueue_style( 'bn-navigation', get_stylesheet_directory_uri() . '/assets/css/navigation.css', array(), '0.1.0' );
+    wp_enqueue_script( 'bn-overlay', get_stylesheet_directory_uri() . '/assets/js/overlay.js', array(), '0.1.0', true );
+}, 30 );
+
+// Load navigation components.
+require_once __DIR__ . '/navigation/menus.php';
+
+// Load block registration.
+require_once __DIR__ . '/blocks.php';
+
+// Load paywall components.
+require_once __DIR__ . '/paywall/gate.php';
+
+
+

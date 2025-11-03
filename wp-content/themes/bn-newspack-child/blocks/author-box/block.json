@@ -1,0 +1,11 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bn/author-box",
+  "title": "Author Box",
+  "category": "widgets",
+  "icon": "admin-users",
+  "description": "Display author bio and info",
+  "textdomain": "bn-newspack-child"
+}
+

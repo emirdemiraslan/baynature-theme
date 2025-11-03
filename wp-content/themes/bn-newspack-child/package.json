@@ -1,0 +1,13 @@
+{
+  "name": "bn-newspack-child",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "start": "wp-scripts start",
+    "build": "wp-scripts build"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.0.0"
+  }
+}
+

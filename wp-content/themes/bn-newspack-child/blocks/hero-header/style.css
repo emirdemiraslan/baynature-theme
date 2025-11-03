@@ -1,0 +1,123 @@
+/**
+ * Hero Header block styles (mobile-first)
+ */
+
+.bn-hero-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: var(--bn-hero-mobile-height, 60vh);
+    overflow: hidden;
+}
+
+.bn-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bn-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bn-hero-overlay, linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)));
+}
+
+.bn-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    padding: var(--wp--preset--spacing--md);
+    color: var(--wp--preset--color--contrast);
+    text-align: center;
+}
+
+.bn-hero-topic {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background-color: var(--wp--preset--color--primary);
+    border-radius: 0.25rem;
+}
+
+.bn-hero-title {
+    margin: 0 0 1rem;
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.bn-hero-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.bn-hero-title a:hover,
+.bn-hero-title a:focus {
+    text-decoration: underline;
+}
+
+.bn-hero-excerpt {
+    margin-bottom: 1rem;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.5;
+}
+
+.bn-hero-meta {
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+.bn-hero-author {
+    font-weight: 500;
+}
+
+/* Desktop enhancements */
+@media (min-width: 768px) {
+    .bn-hero-header {
+        height: var(--bn-hero-desktop-height, 80vh);
+    }
+
+    .bn-hero-content {
+        max-width: 960px;
+        padding: var(--wp--preset--spacing--lg);
+    }
+
+    .bn-hero-position-left .bn-hero-content {
+        margin-right: auto;
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .bn-hero-position-right .bn-hero-content {
+        margin-right: 0;
+        margin-left: auto;
+        text-align: right;
+    }
+
+    .bn-hero-topic {
+        font-size: 1rem;
+    }
+
+    .bn-hero-excerpt {
+        font-size: 1.25rem;
+    }
+
+    .bn-hero-meta {
+        font-size: 1rem;
+    }
+}
+

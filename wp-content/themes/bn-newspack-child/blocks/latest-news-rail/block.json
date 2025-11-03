@@ -1,0 +1,11 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bn/latest-news-rail",
+  "title": "Latest News Rail",
+  "category": "widgets",
+  "icon": "list-view",
+  "description": "Display latest news in a rail/sidebar layout",
+  "textdomain": "bn-newspack-child"
+}
+
