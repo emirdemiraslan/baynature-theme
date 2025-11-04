@@ -1,9 +1,11 @@
 /**
- * Paywall CTA block styles
+ * Paywall CTA styles (block + inline injection)
  */
 
-.bn-paywall-cta-block {
+.bn-paywall-cta-block,
+.bn-inline-paywall-cta {
     padding: var(--wp--preset--spacing--lg);
+    margin: var(--wp--preset--spacing--lg) 0;
     background-color: var(--wp--preset--color--gray-50);
     border: 2px solid var(--wp--preset--color--primary);
     border-radius: 0.5rem;
@@ -19,16 +21,20 @@
     margin: 0 0 1rem;
     font-size: var(--wp--preset--font-size--2-xl);
     font-weight: 700;
+    color: var(--wp--preset--color--base);
 }
 
 .bn-paywall-cta-message {
     margin: 0 0 1.5rem;
     font-size: var(--wp--preset--font-size--lg);
+    line-height: 1.5;
+    color: var(--wp--preset--color--gray-700);
 }
 
 .bn-paywall-cta-button {
     display: inline-block;
     padding: 0.875rem 2rem;
+    min-height: 44px;
     font-size: var(--wp--preset--font-size--base);
     font-weight: 600;
     text-decoration: none;
@@ -42,5 +48,27 @@
 .bn-paywall-cta-button:focus {
     background-color: #d06719;
     transform: translateY(-2px);
+}
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+    .bn-paywall-cta-block,
+    .bn-inline-paywall-cta {
+        padding: var(--wp--preset--spacing--md);
+        margin: var(--wp--preset--spacing--md) 0;
+    }
+
+    .bn-paywall-cta-heading {
+        font-size: var(--wp--preset--font-size--xl);
+    }
+
+    .bn-paywall-cta-message {
+        font-size: var(--wp--preset--font-size--base);
+    }
+
+    .bn-paywall-cta-button {
+        display: block;
+        width: 100%;
+    }
 }
 

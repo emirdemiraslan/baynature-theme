@@ -1,0 +1,932 @@
+<style>
+	@viewport{
+	    zoom: 1.0;
+	    width: extend-to-zoom;
+	}
+	@-ms-viewport{
+	    width: extend-to-zoom;
+	    zoom: 1.0;
+	}
+	body {
+		padding-bottom: 25px;
+	}
+	article {
+		margin-bottom: 50px;
+	}
+	.row {
+		margin: 0;
+	}
+	header {
+		min-height: 50px;
+		position: inherit;
+	}
+	#logo {
+		height: 50px;
+		text-align: left;
+	}
+	#logo img {
+		width: 150px;
+   		padding-top: 10px;	
+   	}
+	#logo {
+		padding-top: 0;
+	}
+	#logopng {
+		background: url('bnlogo.png') 100% 100%;
+	}
+	h1, h2, h3, h4 {
+		font-family: "Open Sans", sans-serif;
+	}
+	h1 {
+		text-transform: uppercase;
+		clear: both;
+	    color: black;
+	    font-size: 50px;
+	    font-weight: 700;
+	    line-height: 55px;
+	    /*color:black;
+	    font-weight:100;*/
+	    margin: 0 auto 30px auto;
+	    text-align: center;
+	}
+	h2 {
+		font-size: 30px;
+	}
+	h2 a {
+		text-decoration: none;
+	}
+	h2 a:hover {
+		text-decoration: none;
+	}
+	h2.epilogue, h2.credits {
+		text-transform: uppercase;
+		margin: 15px auto;
+		text-align: center;
+		font-weight: bold;
+    	font-size: 25px;
+    	cursor: pointer;
+	}
+	.epilogue:hover {
+		opacity: 0.6;
+	}
+	.introduction {
+		margin-bottom: 30px;
+	}
+	p {
+		font-family: "Libre Baskerville", serif;
+		font-style: normal;
+		font-weight: 400;
+		font-size: 16px;
+	}
+
+	/*SHARE BUTTONS*/
+	.bn-sharebuttons {
+		margin: 0 auto 10px;
+		float: none;
+		text-align: center;
+	}
+	.bn-sharebuttons a {
+		color: black;
+	}
+	.bn-sharebuttons-nav {
+	    position: relative;
+	    float: right;
+	    padding: 9px 10px;
+	    margin-top: 8px;
+	    margin-right: 15px;
+	    margin-bottom: 8px;		
+	}
+	a .nav-share {
+		color: black;
+	}
+	.nav-share .fa-twitter {
+		color: #00aced;
+	}
+	.nav-share .fa-facebook {
+		color: #3B5998
+	}
+	.nav-share .fa-envelope {
+		color: #333;
+	}
+	.bn-sharebuttons .fa-twitter {
+		color: #00aced;
+	}
+	.bn-sharebuttons .fa-facebook {
+		color: #3B5998
+	}
+	.bn-sharebuttons .fa-envelope {
+		color: #333;
+	}
+
+
+
+
+
+
+	.intro-text {
+		text-align: center;
+	}
+	.subhead {
+		margin-bottom: 30px;
+		font-weight: 100;
+		text-align: center;
+		font-family: "Libre Baskerville", serif;
+	}
+	.subhead p {
+		padding-bottom: 5px;
+	}
+	.story-container {
+		margin-top: 35px;
+	}
+	.species-box {
+		width: 50%;
+		float: left;
+	    border: 1px #ccc solid;
+	    position:relative;
+	    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+	    overflow:hidden;
+	}
+	.species-name:hover , .species-box:hover {
+		cursor:pointer;
+	}
+	.story-info {
+		width: 50%;
+		float: left;		
+	}
+	.story-container a {
+		color: black;
+	}
+	.story-container a:hover{
+		opacity: .7;
+	}
+
+	.species-box img {
+		position: relative;
+		width: 100%;
+		z-index:-100;
+	}
+	.species-data {
+		margin-left: 15px;
+	}
+	.species-data p {
+		font-family: "Open Sans", sans-serif;
+		color: #666;
+		padding: 5px 0;
+	}
+	.species-name {
+	    position: absolute;
+	    text-align: right;
+	    width:95%;
+	    bottom: 10px;
+	    right: 15px;
+	    left:0;
+	}
+	.species-name h3 {
+		font-size: 25px;
+		line-height: 25px;
+		/*text-transform: lowercase;*/
+		font-family: 'JaneAusten';
+		color: black;
+	}
+	.highlight {
+		padding: 4px;
+		background-color: #ff5555;
+		color: white;
+	}
+	.coming-soon {
+	    position: absolute;
+	    text-align: center;
+	    top: 0;
+	    right: 0;
+	    left: 0;
+	    bottom: 0;
+	    margin: auto;
+	    height: 25px;
+	}
+	.coming-soon p {
+		font-size: 16px;
+		font-family: serif;
+		text-transform: lowercase;
+		line-height: 21px;
+
+		border: 1px solid #d3d3d3;
+		background-color: #ebebeb;
+		width: 50%;
+		margin: 0 auto;
+	}
+	.story-info {
+		vertical-align: middle;
+		padding-left: 25px;
+	}
+	.clear {
+		clear:both;
+	}
+
+	.about, .subscribe {
+		margin-top: 15px;
+	}
+	.about p, .subscribe p{
+		margin-top: 15px;
+		font-size: 16px;
+		line-height: 28px;
+		padding-bottom: 5px;
+	}
+
+	/**************************
+	
+	   NAV CSS
+
+	***************************/
+
+	.navbar-header {
+		/*float: left;*/
+	}
+	.nav-head {
+		font-size: 16px;
+		color: black;
+		padding-top: 10px;
+		/*float: left;*/
+	}
+	.nav-head a {
+		color:black;
+		text-decoration: none;
+	}
+	.nav-item {
+		margin-top: 10px;
+		overflow: hidden;
+		width: 22%;
+		margin-left: 5px;
+		display:inline-block;
+		vertical-align: top;
+	}
+	.nav-item .thumbnail {
+		margin-bottom: 5px;
+	}
+	.nav-item li {
+
+	}
+	.nav-item img {
+		width: 99%;
+		margin: 0 auto;
+	}
+	.navbar-header.navbar-left {
+		float: left;
+	}
+	/*boostrap breakpoint override */
+	.navbar-header {
+	  float: none;
+	}
+	.navbar-toggle {
+	  display: block;
+	}
+	.navbar-collapse {
+	  border-top: 1px solid transparent;
+	  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+	}
+	.navbar-collapse.collapse {
+	  display: none!important;
+	}
+	.navbar-nav {
+	  float: none!important;
+	  margin: 7.5px -15px;
+	}
+	.navbar-nav>li {
+	  float: none;
+	}
+	.navbar-nav>li>a {
+	  padding-top: 10px;
+	  padding-bottom: 10px;
+	}
+	.navbar-collapse.collapse.in {display: block !important; } 
+
+	.navbar-header {
+			font-family: 'Open Sans', sans-serif;
+		}
+		.nav-head {
+			float: left;
+		}
+		#fishFader {position:relative;}
+		#fishFader img{position:absolute;z-index:1; width:100%}
+		#second {display:none; z-index: -1;}
+		#fishFader figcaption {position: absolute; bottom: -5;}
+		#map-marsh {
+			height: 400px;
+		}
+
+		/*navigation modal css*/
+		.modal-header {
+		border-bottom: 0px;
+		}
+		.modal-body {
+			padding: 0 15px 15px 15px;
+		}
+		.modal-dialog {   
+			width: 95%;
+			margin: 0 auto;
+		}
+		h4.modal-title {
+			font-family: "Open Sans", sans-serif;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+		#overlay ul {
+			list-style: none;
+			padding: 0;
+		}
+		#overlay .thumbnail {
+			width: calc(24% - 10px);
+			display: inline-block;
+			margin: 5px;
+		}
+		#overlay .ovl-item {
+			position: relative;
+		}
+		#overlay .ovl-item li { 
+		   position: absolute; 
+		   bottom: 5px; 
+		   left: 0; 
+		   width: 100%; 
+		}
+		#overlay a li {
+			font-family: "Open Sans", sans-serif;
+			font-weight: bold;
+			text-transform: uppercase;
+			color: black;
+			font-size: 1.5em;
+			line-height: 1.1em;
+			text-align: center;
+			background-color: rgba(255,255,255, .5);
+			padding-top: 5px;
+		}
+
+		.more-text {
+			float: right;
+			position: static;
+			bottom: 0;
+			cursor: pointer;
+		}
+		.more-text span {
+			font-size: 3em;
+			color: #333;
+			text-transform: uppercase;
+		}
+
+	/**************************
+	
+	    ARTICLE PAGE CSS
+
+	***************************/
+
+	header {
+		margin-top: 35px;
+	}
+	.bn-sharebuttons-article {
+		margin: 5px 0;
+		padding: 0;
+		float: left;
+		text-align: left;
+	}
+	.headline-info {
+	    width: 83.33333333%;
+		margin-left: 8.33333333%;
+	}
+	.headline-info h1 {
+		text-align: left;
+	}
+
+	.art-box {
+		/*width: 50%;*/
+		/*float: left;*/
+	    border: 1px #ccc outset;
+	    position:relative;
+	    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+	    overflow: hidden;
+	}
+	.art-box img {
+		width: 100%;
+	}
+	.museum-card h1 {
+		font-size: 44px;
+		line-height: 48px;
+	}
+	.museum-card h2 {
+		font-family: "Open Sans", sans-serif;
+		color: black;
+		font-size: 22px;
+		font-weight: 100;
+		text-transform: uppercase;
+		text-align: center;
+		position: relative;
+		max-width: 80%;
+    	margin-right: auto;
+    	margin-left: auto;	
+	}
+	.museum-card hr {
+	    border-top: 1px solid #666;
+	    max-width: 60%;
+	    margin-top: 5px;
+	    margin-bottom: 10px;
+	}
+	.card-info {
+	    max-width: 60%;
+	    margin-right: auto;
+	    margin-left: auto;
+	}
+	.card-info p {
+		font-family: "Open Sans", sans-serif;
+    	color: #666;
+		font-weight: bold;
+	}
+	.card-info span {
+		font-weight: normal;
+	}
+	.spacer {
+		padding-top: calc(100% - 31px);
+	}
+	.story h2 {
+		font-family: "Libre Baskerville", serif;
+	    font-size: 26px;
+	    font-weight: bold;
+	    line-height: 32px;
+	    /*color: #8c8c8c;*/
+	    margin: 35px 0 15px;
+	    width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+		}
+	p {
+		font-family: "Libre Baskerville", serif;
+	}
+	.story p {
+		width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+		font-size: 16px;
+		line-height: 28px;
+		padding-bottom: 5px;
+	}
+	blockquote {
+	    font-family: 'Open Sans';
+	    font-style: italic;
+	    color: #666666;
+	}
+	.story blockquote {
+		width: 70%;
+		max-width: 500px;
+		margin-left: auto;
+		margin-right: auto;
+		font-size: 18px;
+		line-height: 24px;
+		padding-bottom: 5px;		
+	}
+	form.newsletter {
+		border: 1px solid #ccc;
+		padding: 20px 5px 30px 5px;
+		text-align: center;
+	}
+	form.newsletter h2 {
+		max-width: 100%;
+		margin: 5px auto;
+	}
+	form.newsletter input, form.newsletter p {
+		font-family: "Libre Baskerville", serif;
+		font-size: 16px;
+		line-height: 28px;
+	}
+	form.newsletter p {	
+	    margin: 5px auto;
+	    max-width: 80%;
+	}
+	.conversation {
+		margin: 35px auto 15px;
+    	max-width: 600px;
+	}
+	.conversation p {
+		text-align: center;
+    	font-size: 26px;
+		line-height: 32px;
+		color: #666;
+    }
+	hr.divider {
+		width: 10%;
+	    height: 15px;
+	    background-color: red;
+	    border: none;
+	    margin: 25px auto;
+	}
+	.dropcap {
+		font-family: "Libre Baskerville", serif;
+		color: black;
+	    font-size: 124px;
+	    font-weight: 800;
+	    float: left;
+	    line-height: .75;
+	    margin: 10px 0px 0;
+	    padding: 0 5px 0;
+	}
+	.pull-quote {
+	    margin: 25px auto;
+	    width: 100%;
+	    text-align: center;
+	}
+	p.quote {
+	    font-size: 42px;
+	    line-height: 48px;
+	    margin: 0;		
+	}
+	p.quote-credit {
+		font-size: 14px;
+		font-family: "Open Sans", sans-serif;
+		margin-left: 20px;
+	}
+	p.quote-credit:before {
+		content: "--";
+	}
+	.big {
+		width: 100%;
+		margin: 15px 0 15px 0;
+	}
+	.big img {
+		width: 100%;
+	}
+	.right {
+		float:right;
+	}
+	.left {
+		float: left;
+	}
+	figure {
+		margin: 15px auto;
+	}
+	.map-container {
+		margin-top: 15px;
+    	margin-bottom: 35px;
+	}
+	figure.right {
+		max-width: 700px;
+	}
+	figcaption {
+		font-size: 14px;
+		font-family: "Open Sans", sans-serif;
+	    line-height: 19px;
+	    padding: 0 4px 5px;
+	    margin: 0;
+	}
+	.subscribe-story {
+		margin: 15px 25px 15px 15px;
+	}
+	.cartoon {
+		margin: 25px 0;
+	}
+	.video {
+		max-width: 800px;
+	}
+	.sound {
+		position: relative;
+		margin: 15px auto;
+		padding-bottom: 15px;
+    	max-width: 600px;
+    	text-align: center;
+    	border-top: 2px #666666 solid;
+    	border-bottom: 2px #666666 solid;
+	}
+	.sound i {
+		color: #666666;
+		font-size: 100px;	
+	}
+	.sound i:hover {
+		opacity: 0.6;
+		cursor: pointer;
+	}
+	.audio-controller {
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	.sound figcaption {
+		text-align: center;
+		width: 60%;
+		margin-right: auto;
+   		margin-left: auto;
+	}
+	footer {
+		background-color: black;
+		overflow: scroll;
+	}
+	.more {
+		float: right;
+		position: static;
+		bottom: 0;
+		cursor: pointer;
+	}
+	.more span {
+		font-size: 3em;
+		color: #333;
+		text-transform: uppercase;
+	}
+	#more-drawer {
+		background-color: black;
+	}
+	#more-drawer i.fa-times {
+		float: right;
+	    color: #d3d3d3;
+	    padding: 10px;
+	    display: none;
+	    cursor: pointer;
+	    z-index: 100;
+	    position: relative;	
+	}
+	#more-drawer #more-stories {
+		background-color: black;
+		display:none;
+		padding-top: 15px;
+
+	}
+	#more-drawer a:hover {
+		opacity: 0.6;
+	}
+	#more-drawer a img:hover {
+		opacity: 0.6;
+	}
+	#more-stories h3 {
+		font-weight: normal;
+		margin-bottom: 30px;
+		margin-top: 5px;
+		width: 90%;
+		clear:right;
+	}
+	#more-stories h3 a {
+		color: white;
+		text-decoration: none;
+	}
+	#more-stories div {
+		margin-right: 5px;
+	    display: inline-block;
+	    vertical-align: top;
+	    width: 22%;
+	}
+	#more-stories div h4 {
+	    color: black;
+	    font-weight: normal;
+	}
+	#more-stories div h4 a {
+		color: black;
+	}
+	#more-stories div a:hover {
+		text-decoration: none;
+		opacity: 0.6;
+	}
+	#more-stories div a h4:hover {
+		opacity: 0.6;
+	}
+	#more-stories div.current_story {
+		border: 5px solid #dbdbdb;
+		opacity: 0.6;
+	}
+	#more-drawer #more-stories img {
+		width: 100%;
+    	margin-bottom: 10px;
+		float: left;
+	}
+	/**************************
+		RESPONSIVE EMBEDS
+	*************************/
+	.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }
+	.embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+
+	/**************************
+	MEDIA QUERIES
+	*************************/
+	.hide-desktop{ display:none;}
+
+	@media (min-width: 1200px){
+		.species-box {
+			/*min-height: 383.3px;*/
+			/*padding-top: 33%;*/
+		}
+		.story p {
+			width: 600px;
+			margin-left: auto;
+			margin-right: auto;		}
+		}
+	@media (max-width: 1150px){
+		.story p {
+			width: 600px;
+			margin-left: auto;
+			margin-right: auto;		
+		}
+	}
+
+
+	@media (max-width: 940px){
+		.species-box {
+			/*max-height: 470px;*/
+		}
+		.story p {
+			width: 600px;
+		}
+	}
+
+	@media (max-width: 768px){
+		#overlay .thumbnail {
+			width: calc(24% - 10px);
+			display: inline-block;
+			margin: 5px;
+		}
+		#overlay a li {
+			font-size: 1.1em;
+		}
+		.species-box {
+			width: 100%;
+		}
+		.art-box {
+			width: 100%;
+		}
+		.story-info {
+			width: 100%;
+			padding-top: 10px;
+		}
+		.museum-card {
+			padding-top: 0;
+		}
+		.spacer {
+			padding-top: 0;
+		}
+		.story h2 {
+			margin-left: 0;
+		}
+		.story p {
+			width: 100%;
+		}
+		figure.right, .right, figure.left, .left {
+			max-width: 100%;
+			padding: 0;
+			float: none;
+		}
+		figure p {
+			height:5px;
+		}
+		.big {
+			padding: 0;
+		}
+		.big img {
+			max-width: 100%;
+		}
+		form.newsletter {
+			padding: 20px 30px 30px 30px;
+		}
+
+	}
+
+	@media (max-width: 629px){
+		.nav-head {
+			padding-left: 15px;
+		}
+
+		.headline-info {
+	    	width: 100%;
+		}
+		.article {
+			width: 100%;
+			margin: 0;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		.species-box {
+			width: 100%;
+		}
+		.story-info {
+			width: 100%;
+		}
+		.art-box {
+			width: 100%;
+		}
+		.museum-card {
+			width: 100%;
+			margin-left: 0;
+			margin-top: 15px;	
+		}
+		.story-info {
+			width: 100%;
+			padding: 0;
+			margin-bottom: 25px;
+		}
+		.species-data h3{
+			font-size: 20px;
+		}
+		.species-data p {
+			font-size: 18px;
+		}
+		.spacer {
+			padding-top: 10%;
+		}
+		.story h2 {
+			width: 100%;
+			margin-top: 25px;
+		}
+		.story p {
+			width: 100%;
+			margin: 0;
+		}
+		.big {
+			padding: 0;
+		}
+		.big img{
+			max-width: 100%;
+		}
+		.right {
+			padding: 0;
+		}
+
+		.hide-small {
+			display: none;
+		}
+	}
+	@media (max-width: 425px){
+		#overlay .thumbnail {
+			width: calc(49% - 10px);
+			display: inline-block;
+			margin: 5px;
+		}
+		#overlay a li {
+			font-size: 1.2em;
+		}
+	}
+
+	@media (max-width: 400px){
+		body { overflow-x: hidden;}
+		.headline-info {
+	    	width: 100%;
+		}		
+		h1 {
+			font-size: 36px;
+			line-height: 40px;
+		}
+
+		.species-name h3  {
+			font-size: 14px;
+		}
+		.story-info {
+			width: 100%;
+			padding: 0;
+			margin-bottom: 25px;
+		}
+		.species-box {
+			width: 100%;
+			/*min-height: 400px;*/
+		}
+		.museum-card {
+			width: 100%;
+			margin-left: 0;
+			margin-top: 15px;
+		}
+		.museum-card p {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+		.story {
+			width: 100%;
+			margin: 0;
+		}
+		.story h2, .story p {
+		}
+		.story blockquote {
+    		width: 90%;
+    	}
+		.spacer {
+			padding-top: 25%;
+		}
+		.big {
+			padding: 0;
+		}
+		.big img{
+			max-width: 100%;
+		}
+		.right {
+			padding: 0;
+		}
+		.subscribe-story {
+			margin: 5px 0 15px 0;
+		}
+		p.continues-below {
+			font-size: 12px;
+			font-family: "Open Sans", sans-serif;
+			font-weight: 100;
+			color: #666;
+		    margin-bottom: -5px;
+		    text-transform: uppercase;
+		}
+		.hide-desktop {
+			display: block;
+		}
+		.hide-small {
+			display: none;
+		}
+		@media (max-width: 320px){
+			#overlay a li {
+				font-size: 1em;
+			}
+		}	
+	}
+
+</style>

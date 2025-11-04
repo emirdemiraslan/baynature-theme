@@ -1,0 +1,622 @@
+<html>
+<head>
+	<title>The Clapper Rail Calls at Dawn</title>
+	
+	<meta charset="utf-8"> 
+	<meta name="viewport" content="initial-scale=1">
+	<meta property="og:title" content="The Weird, the Rare and the Ugly"/>
+	<meta property="og:description" content="Connect to the natural world of the SF Bay Area! We bring you trail and park reviews and photos, local nature journalism, and local nature event listings."/>
+	<meta property="og:url" content="http://baynature.org/"/>
+	<meta property="og:site_name" content="Bay Nature"/>
+	<meta property="fb:admins" content="1403244759"/>
+	<meta property="og:image" content="https://baynature.org/wp-content/uploads/2012/08/baynature-Orange-logo-150px.jpg"/>
+	<link rel="shortcut icon" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/images/favicon.ico"/>
+
+
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/css/baynature.scss" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/style.css?1435006863" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/style-print.css" type="text/css" media="print"/>
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/jquery.c2selectbox.css" type="text/css" media="screen"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+	<!--
+	<link href="/bn-biodiversity/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/bn-biodiversity/js/jquery.min.js"></script>
+    <script src="/bn-biodiversity/js/bootstrap.min.js"></script>
+
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+	-->
+
+
+
+    <!-- bootstrap css -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<!--leaflet-->
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <!--open sans headline font -->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<!--libre baskerville font-->
+	<link href='https://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
+	<!-- PROJECT CSS FILE -->
+		<!--local-->
+	<link rel="stylesheet" href="/css/biodiversity-stylesheet.css">
+		<!--web-->
+	<link rel="stylesheet" href="/bn-biodiversity/css/biodiversity-stylesheet.css">
+    <script src="/bn-biodiversity/js/jquery.lazyload.js"></script>
+
+
+	<style>
+
+	#map-marsh {
+		height: 400px;
+	}
+
+	</style>
+
+	<!-- jquery cdn -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<!-- boostrap cdn -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<!--maps js -->
+	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+
+	<!-- howler js for audio -->
+	<script src="http://seangreene.github.io/bn-biodiversity/js/howler.min.js"></script>
+	<script src="/js/wavesurfer.js"></script>
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+	<div class="container-fluid">
+		
+		<div class="navbar-header navbar-left">
+	    	<a id="logo" class="navbar-brand navbar-left hide-small" href="http://baynature.org" >
+	        	<img alt="Bay Nature" src="/bn-biodiversity/css/bnlogo.png">
+	    	</a>
+
+	    	<div class="nav-head navbar-link navbar-left">
+	    		<a href="/bn-biodiversity">Weird, Ugly, Rare</a>
+	    	</div>
+
+    	</div>
+
+    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<i class="fa fa-bars fa-lg"></i>
+    	</button>
+
+		<button type="button" onclick="tweetBtn()" class="navbar-toggle nav-share" data-toggle="collapse" data-target=".share-collapse">
+			<i class="fa fa-twitter fa-lg"></i>
+		</button>
+
+		<!-- <a href="http://www.facebook.com/sharer.php?u=https://seangreene.github.io/bn-biodiversity" target="_blank" > -->
+			<button onclick="fbBtn()" type="button" class="navbar-toggle nav-share" data-toggle="collapse" data-target=".share-collapse">
+				<i class="fa fa-facebook fa-lg"></i>
+			</button>
+		<!-- </a> -->
+
+		<a 	href="mailto:?Subject=The Weird, the Rare and the Ugly&amp;Body=Check%20out%20these%20Bay%20Nature%20stories http://seangreene.github.io/bn-biodiversity">
+			<button type="button" class="navbar-toggle nav-share hide-small" data-toggle="collapse" data-target=".share-collapse">
+				<i class="fa fa-envelope fa-lg"></i>
+			</button>
+		</a>
+
+    	<div class="clear"></div>
+
+ 		<div class="navbar-collapse collapse">
+      		<ul class="nav navbar-nav">
+
+				<div class="nav-item nav1">
+					<li>Livermore tarplant</li>
+					<a href="/bn-biodiversity/stories/livermore-tarweed" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav5">
+					<li>Mission Blue butterfly</li>
+					<a href="/bn-biodiversity/stories/mission-blue" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav4">
+					<li>Greater sage grouse</li>
+					<a href="/bn-biodiversity/stories/sage-grouse" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav3">
+					<li>Clapper rail</li>
+					<a href="/bn-biodiversity/stories/clapper-rail" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav2">
+					<li>Galapagos damselfish</li>
+					<a href="/bn-biodiversity/stories/galapagos-damselfish" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav6">
+					<li>Plant tk</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav7">
+					<li>California sea blite</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav8">
+					<li>Ant tk</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav9">
+					<li>insect / herp / invertebrate</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav10">
+					<li>San Francisco garter snake</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<header>
+	<div class="row">
+
+		<div class="col-sm-10 col-sm-offset-1 col-xs-12">
+
+			<div class="museum-card col-sm-6">
+
+				<h1>The Clapper Rail Calls at Dawn</h1>
+
+				<h2>Clapper rail</h2>
+
+				<hr></hr>
+
+				<div class="card-info">
+					<p>Habitat: <span>wetlands, San Francisco Bay</span></p>
+					<p>Population: <span>1,160</span></p>
+					<p>Protection status: <span>Federally endangered</span></p>
+				</div>
+			</div>
+
+			<div class="art-box col-sm-6">
+				<figure>
+					<img src="media/illos/clapper-rail.jpg" />
+				</figure>
+
+			</div>
+
+		</div>
+	</div>
+</header>
+
+<article>
+<div class="container">
+	<div class="row">
+
+		<div class="story">
+			<h2>A story about weird birds, supersensory perception, existential math, and the quest to make sense of nature</h2>
+			<p class="byline">by <a href="http://baynature.org/author/ericsimons/">Eric Simons</a></p>
+
+
+			<p><span class="dropcap">O</span>ne hour before sunrise on the fog-shrouded Petaluma River, Julian Wood guides a small Zodiac gently toward a river bank he can’t make out, in scientific pursuit of a rare and elusive bird he doesn’t plan to see. Inky water laps at the side of the boat. Wood peers into the gloom, fighting the dark through bleary eyes. “I figure we’ll just go until we hit the bank,” he says. “Then we’ll be there.”</p>
+
+			<figure class="col-sm-8 col-xs-12 right">
+				<img src="https://dh1rvgpokacch.cloudfront.net/atavist/9410/image/derivative/scale~500x5000x0x0~marshdarknes-1403305240-28.jpg">
+				<figcaption>The pickleweed-lined channels of the Petaluma River.</figcaption>
+			</figure>
+
+			<p>A green-and-red navigation light perched on the bow cuts through wreaths of mist rising off the water’s surface. A black line of pickleweed emerges from the fog as the Zodiac closes in on land. Wood lets the boat glide to the marsh edge and then cuts the engine.</p>
+			<p>At the front of the boat, Wood’s colleague Megan Elrod grabs a clipboard and stands up. “Everybody ready?” she says. “I’m gonna start.”</p>
+			<p>Wood turns off his headlight, folds his hands on his knee, and closes his eyes. Elrod slips her beanie off of her ears, the better to hear, and then, facing the marsh, she listens for the distinctive call of the endangered California clapper rail.</p>
+			<p>One minute passes. A truck rumbles over the river bridge on nearby State Route 37. A song sparrow tunes up. A rooster crows, faintly, and then again a little louder.</p>
+			<p>Five minutes pass. Stillness settles in around the boat as the bridge traffic subsides. There is just the gentle rocking, the murky fog, and the slurp of the water. Then the rooster goes off again.</p>
+			<p>Ten minutes pass. A stopwatch alarm beeps, unnaturally harshly, dee-dee-dee-dee-dee. Wood reanimates as he leans forward into a hand-held GPS unit.</p>
+			<p>“I think one of the roosters is dying over there,” Elrod says, sitting down.</p>
+			<p>She turns to Wood, in the back of the Zodiac: “Watcha got?”</p>
+			<p>“Forty-two degrees.”</p>
+			<p>She notes the temperature and the location on the clipboard. Next to them, she scribbles in the most important number, the number behind dozens of pre-dawn trips to the marsh this spring, the number that explains why we’re all out breathing fog wreaths at 5:30 a.m. on a 42-degree March morning on the Petaluma River: zero. Zero clapper rails heard.</p>
+			<p>Wood pulls the engine cord and guides the boat back out into the darkness of the river. One data point down, seven more to go. The hunt for the clapper rail is on.</p>
+
+			<div class="col-sm-8 col-sm-offset-2 col-xs-12 map-container">
+				<div id="map-marsh">
+
+
+				</div>
+
+				<ficaption><strong>A Marsh on the Petaluma River</strong> | The 18-mile winding path of the Petaluma River supports the largest ancient tidal marsh in the San Francisco Bay Area, as well as thousands of acres of restored wetlands.</figcaption>
+			</div>
+			<script>
+			
+				// replace "toner" here with "terrain" or "watercolor"
+				var layer = new L.StamenTileLayer("terrain");
+				var map = new L.Map("map-marsh", {
+				    center: new L.LatLng(38.118097, -122.507525),
+				    zoom: 12
+				});
+				map.addLayer(layer);
+
+				var marker = L.marker([38.118097, -122.507525]).addTo(map);
+			    marker.bindPopup("<strong>A Marsh on the Petaluma River</strong><br>The 18-mile winding path of the Petaluma River supports the largest ancient tidal marsh in the San Francisco Bay Area, as well as thousands of acres of restored wetlands.").openPopup();
+
+			    map.scrollWheelZoom.disable();
+
+			</script>
+
+
+			<h2>The Bird. The Legend. The Rock Star.</h2>
+
+			<figure class="big">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~1600x1600xcanscaleup~clra-1403905603-84.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~1600x1600xcanscaleup~clra-1403905603-84.jpg" class="lazy" />
+				<figcaption>The California clapper rail. |&nbsp;Photo by&nbsp;<a href="https://www.flickr.com/photos/jerryting/" target="_blank">Jerry Ting</a></figcaption>
+			</figure>
+
+			<p>The California clapper rail is a largish, brownish endangered marsh bird with carrot-stick legs and a long, glowing-orange bill. It is a subspecies of the common clapper rail, Rallus longirostris, and to keep it sorted the famed 19th-century Smithsonian ornithologist Robert Ridgway appended the subspecies name obsoletus: the long-nosed, obsolete rail.</p>
+			<p>"Obsolete" makes the clapper rail sound pathetic, or fragile, or obstructionist: an endangered marsh relic from a bygone era forcing us by the nuisance of its continued existence into treading lightly around the edges of the Bay. It is not. The California clapper rail is bold, gregarious, and beloved. When a breeding clapper rail was found at the Heron’s Head Marsh in San Francisco in August 2011, it occasioned news reports. "It was mind blowing,” one birder told the San Francisco Chronicle’s Peter Fimrite. “It was like running into your favorite rock star in a cafe and they are willing to talk to you. I was giddy for days. I'm still giddy."</p>
+
+		<p class="hide-desktop continues-below"><em>Story continues below</em></p>
+		<div class="subscribe-story col-sm-5 left col-xs-12">
+
+			 <form class="form-inline newsletter" action="https://tinyletter.com/weirduglyrare" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/weirduglyrare', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+			 	<h2>Sign up</h2>
+			 	<p>Receive an email when we publish the next story in 'Weird, Ugly, Rare.'</p>
+			 	<div class="input-group col-sm-8 col-sm-offset-2">
+			 		<input type="text" class="form-control" name="email" id="tlemail" placeholder="Email address" />
+					<span class="input-group-btn">
+			 			<input type="hidden" value="1" name="embed"/>
+			 			<button class="btn btn-default" type="submit">Subscribe</button>
+					</span>
+			 	</div>
+			 </form>
+		</div>
+		
+			<p>The clapper rail is generally described by those who know it best as a marsh chicken. Its great tragedy, like the chicken’s, is tastiness: predators, humans in the Gold Rush era included, find the clapper rail delectable. It is also, like the chicken, high in character.</p>
+			<p>“They have a kind of gait that has some, I don’t know, seductiveness — some kind of weird avian seductiveness,” says Erik Grijalva, who spent 10 years working amongst the rails as a field biologist with the Invasive Spartina Project. “They’re furtive. They look like they’re curious on the edge of propriety.”</p>
+			<p>Julian Wood, who leads a clapper rail monitoring program at Point Blue Conservation Science, described also a certain fearlessness in their nature: on one recent trip, he said, he played a recorded rail noise to try and incite them to speak up from their hiding spots, and instead of yelling back at him, two rails suddenly emerged from the marsh, surrounded him and began to advance toward the boat in what, presumably, they found to be a menacing fashion. Wood motored slowly away. “No doubt they felt pretty good about themselves,” he told me.</p>
+			<p>“I love the little things, I love hearing them call,” says Grijalva, now a PhD student in ecosystem sciences at UC Davis. “It’s really gratifying in the morning, they’re so loud. You don’t understand how loud they are. And when you’re listening to them, to not really know where they are. They could be standing right next to you.”</p>
+
+			<figure class="col-sm-8 col-xs-12 right">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~500x5000~clra3wendy-1403048474-17.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~500x5000~clra3wendy-1403048474-17.jpg" class="lazy">
+				<figcaption>The gregarious Clapper Rail | Photo by Wendy Naruo, courtesy USGS</figcaption>
+			</figure>
+
+			<p>The California clapper rail is not just secretive; it is quite rare. While the rail once ranged from Humboldt Bay to Morro Bay, Point Blue’s latest estimate puts the global population at around 1,200, all in the San Francisco Bay. Marsh destruction, early-20th-century hunting, and predators like cats, rats and foxes led to the rail’s near-extinction, and in 1970 an official listing as endangered under the federal Endangered Species Act. At the time, there were an estimated 4,000 clapper rails around the Bay; by the early 1990s some estimates put the number at 300. Despite a moderate rebound to its current population, the predators aren’t going away and in the future sea level rise threatens most of the Bay Area’s tidal marshes.</p>
+			<p>The clapper rail is not the only endangered species that lives in the Bay wetlands (although you could argue that it is the most charismatic). It is not the only secretive marsh bird, or even the only secretive rail (its cousin the black rail, although it’s much more numerous, is far more difficult to spot). It is not the only reason to pursue the oft-mentioned target of 100,000 acres of marsh ringing the estuary (although it would be disspiriting to restore so much of the clapper rail’s habitat and lose the rail).</p>
+			<p>“This clapper rail program is really a relatively small part of what we’re trying to accomplish for San Francisco Bay,” Wood says. “But in general there’s agreement that as a society we don’t let species just go because it’s inconvenient to deal with them. And more than that, we do see the clapper rail and other marsh species as being good indicators of the tidal marsh ecosystem.”</p>
+			<p>Manage the rails right, Wood says, and “we’re going to be better off — as a society.”</p>
+			
+			<h2>Counting Nature</h2>
+			<p>So this is what it comes down to. If you believe the California clapper rail is an endangered and important bird, and a flagship species for conservation in the Bay Area — as many do and as the federal government has formally declared — you understand that it would be good to have an idea of how many of the birds there are.</p>
+			<p>If you believe it would be good to know how many there are, you understand that someone, somehow, must count them.</p>
+			<p>And if you know that California clapper rails are secretive, elusive marsh chickens that spend their lives hiding in the reeds (clapper rails can both fly and swim, but according to the US Fish & Wildlife Service endangered species listing, “prefer to walk”), you understand that someone must do what Julian Wood and Megan Elrod are doing in the Petaluma Marsh. Someone has to listen.</p>
+
+			<figure class="col-sm-8 col-xs-12 col-sm-offset-2">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~1023x5000~julianwood-1399070419-28.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~1023x5000~julianwood-1399070419-28.jpg" class="lazy">
+				<figcaption>Julian Wood, the leader of the San Francisco Bay Program at Point Blue Conservation Science, navigates his research Zodiac though heavy fog on the Petaluma River.</figcaption>
+			</figure>
+
+			<p>Point Blue is one of a half-dozen groups that count clapper rails. Wood is 41, lean, serious, and ruggedly bearded, in a field-biologist-not-hipster sort of way. A midwesterner who moved to California to study marsh birds, he describes himself as a birder but “not even a particularly fanatical one.” On one recent vacation he did get up early in the morning to look for a different subspecies of clapper rail, but only, he says, because they were there and he couldn’t pass up the opportunity. “I’m not one of those birders,” he says, “but I was in the spot where one of those would hang out at the time they would hang out.”</p>
+			<p>Wood likes his job and plans to keep hanging around in marshes in the twilight until his hearing goes. We will probably still be counting clapper rails then, because you cannot conserve what you cannot count. Assigning numbers to nature is our most basic way of understanding the universe; without the number that Wood’s group has produced, without any population estimate for any species, we are deaf to our own footfalls.</p>
+			<p>It’s just that counting the clapper rail is really, really hard. And the immense difficulty of going out and listening for them is just the beginning of the story.</p>
+
+			<h2>Interlude: Stillness</h2>
+			<p>A gray, bleary dawn breaks over the Petaluma Marsh as Wood motors the Zodiac into one of the small, muddy channels that shoot off from the west side of the river. Gray-brown pickleweed banks, dotted with cordgrass, close in rapidly.</p>
+
+			<figure class="col-sm-8 col-xs-12 right">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~500x5000~dsc0025-1403047707-31.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~500x5000~dsc0025-1403047707-31.jpg" class="lazy">
+				<figcaption>A Zodiac in the Slough</figcaption>
+			</figure>
+
+			<p>The boat carves into the flat, dull water, and Wood slows until he finds the right spot on the map. When he shuts off the outboard Elrod, sitting up front, chucks an anchor into the pickleweed and grabs her clipboard.</p>
+			<p>“I’m going to blow my nose,” Wood declares. He turns to me. “Eric,” he says, “I forgot to mention this, but try not to make any movements.” He eyes my pen and notepad. “The sounds we’re listening for can be even quieter than your arm moving.”</p>
+			<p>I put the pen and notepad down.</p>
+			<p>“Ready,” Elrod says.</p>
+
+			<h2>The Clapper Rail Protocol</h2>
+			<p>One does not, of course, just show up and start counting endangered clapper rails, just as one does not just show up and start mashing buttons at a nuclear reactor. You have to know what you are listening for. You have to know where to listen for it. You have to know why you are listening for it. There are permits to be obtained and a protocol to follow.</p>
+			<p>In the early 1980s, naturalist Jules Evens got a contract job with his colleague Gary Page to study a marsh in Corte Madera. There was an office development planned for the wetland south of the Greenbrae Boardwalk, and Marin Audubon was concerned about the clapper rails. The problem was, no one knew how many there were. So they hired Evens and Page to figure it out.</p>
+			<p>The best method Evens and Page knew of to identify and count clapper rails was to hear them at dawn and at dusk, when the rails were most active, so that’s what they proposed: a year, in the marsh, listening, pointing, and recording.</p>
+
+			<figure class="col-sm-8 col-xs-12 col-sm-offset-2">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~1023x5000~meganelrod-1402099105-14.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~1023x5000~meganelrod-1402099105-14.jpg" class="lazy" >
+				<figcaption>Megan Elrod and Julian Wood stand at the ready in the Petaluma Marsh. They follow a well-honed technique developed over the last few decades specifically for counting secretive marsh birds.</figcaption>
+			</figure>
+
+			<p>A marsh is a freeway of noises, trucks downshifting and Priuses gliding and motorcycles blatting, and it takes attention and awareness to sort the noises and describe what’s going on. Your average listener can maybe tell you they heard the roar of a diesel engine traveling through space and time. Your certified rail-counter can correctly identify the distressed warbling as an ‘06 Hyundai Sonata with timing belt trouble struggling northward at 63 — make it 66 — miles per hour.</p>
+			<p>“I’m not sure if it’s genetic or what, but some people are more attuned to variations in sounds than others are,” Evens says. “You develop a skill to recognize the sounds clapper rails make. They’re not like songbirds, they’re pretty guttural and have about five noises they make. If you listen to classical music, it all sounds the same at first, then you get familiar with it and can tell Beethoven from Bach. Or AC/DC from the Beatles.”</p>
+			<p>Sometimes the music is easy.</p>
+			<p>“Some places are wonderfully silent — at the edge of the Bay, miles out on a levee, it’s just a quiet marsh,” says Jennifer McBroom, who runs a large rail-surveying operation at the Invasive Spartina Project. “The clapper rails are the first to start calling. And they’re loud. They’re really loud. That’s great.”</p>
+			<p>Sometimes it is not.</p>
+			<p>“One of our sites is at SFO,” she continues. “That’s really hard to compete with jets taking off or landing behind you. Detecting those birds can be pretty tricky. Some sites are right on a highway, so we only survey them on the weekend. Lots of traffic noise interfering. So much of it is just tuning everything out until you hear that clapper rail. If they’re not calling you want to call everything a clapper rail. Like, ‘What’s that sound!?’ ‘Oh, it’s just a mallard flapping.’”</p>
+			<p>Through conditioning, these listeners have developed discerning ears. Like sommeliers or really great auto mechanics, they have the ability to exist in a fine-tuned sensory state beyond the reach of mere mortals. It becomes a lifestyle, Evens says.</p>
+			<p>“People who are into birds and birding and natural history in general are aware of the sounds around them,” he says. “You hear birds singing before you see them. Once you get tuned into nature’s symphony, it becomes self-perpetuating.”</p>
+			<p>As Page and Evens tuned into the rails, they then had to learn to estimate where the rails were, based on the sound. So they practiced. “One of us would take a tape deck or cassette deck, hide it out in the marsh, so one of us would know where it was and one of us would be at a station having to estimate the distance,” Evens says. “We sort of refined our skills that way.”</p>
+			<p>The two biologists spent a year listening for clapper rails, honing their technique, and at the end, felt like they had a pretty good handle on the marsh population. Then US Fish & Wildlife came calling. There were other projects in other places. Other people wanted to know how to count clapper rails, too. From this came the now widely used standard protocol.</p>
+			<p>Modern clapper-rail counts must take into account tide heights (rails are quieter at high tide), wind speeds (wind above 10 miles per hour interferes with hearing), and time of day (rails are most active in the twilight). They require repeat visits: each marsh three times on three separate occasions, to lay down a baseline. Also considered: time of season, number of visits, location of visit, when and how to play inciting sounds, and of course, weather. Rain makes rails and researchers grumpy.</p>
+			<p>The fraternity of clapper-rail counters is close enough that once you get the permit, you’re allowed to teach others, and the main barrier to entry is that you have to hear a rail, in the company of your permitter, on at least 10 trips.</p>
+			<p>Scheduling 10 trips is not easy, logistically. That’s 10 trips into the marsh on the margins of the day: sunrises, sunsets, early morning wakeups, late nights at work, plenty of fumbling for equipment in the darkness. That’s also 10 trips where wind, tide, daylight, season, and observers have to align. It takes a certain steely, heroic dedication to be a clapper rail counter, is what I’m saying, a determination that while Life will probably not shower you with fame or riches for waking up at 4 a.m. a few dozen times a year to ride around in a zodiac listening for rare weird marsh birds, a wondrous human thirst for knowledge demands that someone do it, and so someone does.</p>
+			<p>Actually, someone does a lot. In a 2012 technical paper, Wood and his colleagues reported that in six years the various Bay Area clapper rail counters had tallied 5,897 detections in a jaw-dropping 17,585 marsh visits.</p>
+			<p>Seventeen thousand, five hundred and eighty-five. Wood, Elrod, McBroom, Evens, and all of the other counters: they have been rising at 4 a.m. and standing quietly in the dark for a very long time.</p>
+
+			<h2>Interlude: Call of the Clapper Rail</h2>
+
+			<figure class="big">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~1600x1600xcanscaleup~clracalling-1403039667-81.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~1600x1600xcanscaleup~clracalling-1403039667-81.jpg" class="lazy" />
+				<figcaption>A rail expresses itself. |&nbsp;Photo by&nbsp;<a href="https://www.flickr.com/photos/jerryting/" target="_blank">Jerry Ting</a></figcaption>
+			</figure>
+
+			<p>The boat rocks gently. I am sitting still, not writing. Wood is sitting with his hands on his knees. Now that we are surrounded by marsh, Elrod turns in a kind of slow circle, listening intently for a few seconds at each point on the compass. And then, suddenly, from somewhere just behind Wood’s ear, there is a noise: a distinctive, obvious, non-songbird-like noise that causes Elrod to whip around and face that direction, clipboard held aloft.</p>
+			<p>In all the pre-trip excitement about sunrise and fog and mud boots, I discover, I have forgotten to really wonder what a clapper rail sounds like.</p>
+			<p>It is very hard to reproduce phonetically, but it sounds something like this:</p>
+			<p>Ackackack brtthththththtththtth.</p>
+			<p>It sounds a little like the dashboard rattle in Wood’s beloved 22-year-old Toyota pickup.</p>
+			<p>“Yeah, we call that the kek-burr call,” Wood tells me later, rolling the R into a Roy-Orbison-esque growl. “It’s kind of an ackackack-rrrrrrr, a little purr at the end.”</p>
+			<p>In the moment, his head rises sharply. Elrod stands stock still in the direction the noise came from, estimating the distance. Just a few meters, she thinks.</p>
+			<p>Wood swivels noiselessly in my direction, makes eye contact with me, and nods. Female, he whispers.</p>
+			<p>“Ackackack brtthththththtththtth,” says the clapper rail.</p>
+			<p>Elrod marks a “1” on the clipboard.</p>
+
+			<div class="sound">
+				
+				<h3><strong>Listen:</strong> The Call of the Clapper Rail									
+				<div class="audio-controller">
+					<i class="fa fa-play"></i>
+				</div>
+
+				<div id="wave"></div>
+
+				<figcaption>The kek-burr call of the California clapper rail, recorded by Jules Evens in Napa County.</figcaption>
+			</div>
+
+			<div class="clear"></div>
+
+			<h2>Existence, Defined: A Math Problem</h2>
+
+			<blockquote>
+				I once found myself seated on an airplane next to a charming woman whose interests revolved primarily around the activities of her very energetic family. At one point in the conversation came the inevitable question: “What sort of work do you do?” I confess that I rather hate that question … I replied to the woman: “Well, I work with fish populations. The trouble with fish is that you never get to see the whole population. They’re not like trees, whose numbers could perhaps be estimated by flying over the forest. Mostly, you see fish only when they’re caught … So, you see, if you study fish populations, you tend to get little pieces of information here and there. These bits of information are like the tip of the iceberg; they’re part of a much larger story. My job is to try to put the story together. I’m a detective, really, who assembles clues into a coherent picture.
+			</blockquote>
+			<p class="blockquote-id"><strong>&mdash;Jon Schnute, “Data, uncertainty, model ambiguity, and model identification.” Natural Resource Modeling, 1987</strong></p>
+
+			<p>The field biology that Julian Wood and Megan Elrod conduct is a comforting cultural ritual. We wake up before dawn, the biologist drives us around in a beat-up old pickup truck, the biologists demonstrate extreme competence in trailer hitches, outboard motors and observation. We sit in the cold mist, hypersensitive to the presence of every named bit of nature around us, we bring back new knowledge and insect bites. It has, if not the substance, the essence of the great explorations; it is not hard to imagine this is what Charles Darwin must have felt as he chased his own weird birds across Patagonia.</p>
+			<p>But Wood and Elrod are just the beginning: the boots on the ground in a process that now shifts to the computer processors and quantitative ecologists of the 21st century.</p>
+			<p>After the adventure, the handwritten notes are used to address questions that the great field biologists rarely if ever asked, and certainly never answered. Charles Darwin never would have wondered how many of his weird birds lived in the entire world; the man who publicized the idea that species weren’t eternally fixed nonetheless existed in an era when human effects didn’t seem global and California clapper rail still made the brunch menu in San Francisco. If a species was disappearing, it certainly had little to do with us.</p>
+			<p>More to the point, how could you even begin? In the late 1880s William Hornaday, the young superintendent of the Bronx Zoo, faced the challenge of calculating how far bison populations had declined. Somehow, he had to find both a starting number and a modern number. He summed up the difficulty in his 1889 book, The Extermination of the American Bison: “It would have been as easy to count or to estimate the number of leaves in a forest as to calculate the number of buffaloes.”</p>
+			<p>“I’m assuming people might think, ‘We need to know how many clapper rails or yellow warblers or coho salmon or whatever, so oh, just give me that number,’” says Nadav Nur, who for decades has led the statistical part of Point Blue’s efforts to more accurately catalog the natural world. “That’s what the U.S. Census is doing every 10 years. But you realize for humans even, that’s really hard work, just to go and count. We’re not assuming — because we know it would be incorrect — that we’re really able to count every single clapper rail. So what we’re doing is going out taking the counts that we have and trying to turn it into what we want to determine.”</p>
+			<p>There are some things you cannot count directly. But it’s worth taking a stab at it — if you have some reason to do so, something you want to determine, as Nur says. Religious scholars may have got there first (and created the field of biogeography) in their attempts to calculate the biodiversity of animals saved by Noah. But the conservation movement that bloomed in the mid-to-late 19th century added the significant imperative to determining wildlife populations and how they were changing.</p>
+			<p>Hornaday, outraged at the “disgrace to the American people” of the bison slaughter, conducted one of the first indirect censuses of a species. The method he used was the best method available in 1889. To estimate pre-1870 population, he used a description from an Army colonel to estimate number of bison per acre in a herd, and then multiplied that by the total acreage of the herd to get a conservative estimate of 4 million animals in the herd. Later, he would push a global population estimate of 15 million.</p>
+			<p>In a chapter called “The Completeness of the Extermination,” Hornaday then turned his attention to generating a modern number. This was more straightforward, and he collected direct counts or estimates from reliable observers around the continent and added them together to conclude that on May 1, 1889, there were 635 bison left in the wild in North America.</p>
+			
+			<figure class="col-sm-12 col-xs-12 right">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~500x5000~naturesnumbe-1403553277-49.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~500x5000~naturesnumbe-1403553277-49.jpg" class="lazy">
+			</figure>
+
+			<p>Until about 10 years ago, the underlying method used by Hornaday of establishing a density and multiplying by total habitat didn’t change much. It has changed now. Just as Jules Evens and his colleagues were able to refine the sophistication of how to count a clapper rail, Nadav Nur and his colleagues have been able to refine the sophistication of the census by zeroing in on two central problems in estimating the population of secretive marsh birds: 1. Was it there? 2. Why?</p>
+			
+			<h2>Was it There?</h2>
+			<p>A bison is either there or it is not, and it is hard to mistake “present” for “absent.” If there is a bison in your living room, you will be a reliable reporter on the matter. That is not true for the California clapper rail.</p>
+			<p>In the case of the clapper rail, counting — the process at the bottom of everything we know about the world — can lie to us. The binary nature of a count slides over a quantum wobble: What happens if you are there, listening for 10 minutes, and you don’t hear anything? If a clapper rail calls in the marsh only when no one is around to hear it, does it even exist?</p>
+			<p>There are four explanations for a clipboard zero. One of them is what you’d call a “true” zero: A clapper rail might not be present in the marsh. Three of them are what you’d call a “false” zero: A clapper rail might be present in the marsh, but pursuing bliss in some quiet corner of the marsh where the counter is not. A clapper rail might be present in the vicinity of the counter, but not make itself known. A clapper rail might be present in the vicinity and make itself known, but not be heard.</p>
+			<p>All these possibilities are veils on reality, says Point Blue quantitative ecologist Leo Salas. It is the job of Salas, Nur, and high-powered statistics to lift those veils.</p>
+			<p>Here’s where the protocol comes in. Three carefully controlled visits to each site means context and confidence for a statistician. Say a marsh you’re interested in has 10 different listening stations, and at every single one of those points the clipboard says 0, 0, 0. In that case, it’s acceptable to assume there aren’t any clapper rails in the marsh. But let’s say you know from previous visits that there are clapper rails in the marsh (like, for example, just a month ago one was yelling ackackack-burr at you from five feet behind your head). Say your count is 1, 0, 2. Then what do you make of a zero?</p>
+			<p>You make it — or rather, Nur and Salas make it — into something slightly more than zero. They use the zeroes and the non-zeroes to turn each point into a probability, to determine which of the zeroes are true and which are false. Those repeat observations inform a universe in which a zero becomes Schrodinger’s clapper rail.</p>
+			<p>For that matter, what do you make of the 1? The math doesn’t just apply to the zeroes, it applies to every observation that Wood and Elrod report. Say there are four rails in reality, well, every time you go out there’s some probability that you’ll count zero, one, two, three, or four.</p>
+			<p>“Historically, when people went and saw a 1-0-2, they said, ‘Well, there must be at least 2,’” Nur says. “What we’re saying is, if you missed both of them on the middle visit, you might have missed a third one. There’s a probability that you did, and that’s what we’re trying to estimate.”</p>
+			<p>What’s that probability based on? The year of the survey, the habitat around the counting station, the time of the survey relative to sunrise or sunset, the day of the year. There’s a process in statistics called logistic regression — itself only fully developed in the 1970s — that will take all these variables and consider the relationship of each in turn to the probability of detection, and then take each of those individual relationships to consider all of them at once.</p>
+			<p>Elrod stood there and strained her ears for the sound of a clapper rail that never called, and then returned that zero to a computer that says, well, based on the time of day and who you are and where you were and previous sightings this year and beep beep beep crunch crunch crunch … let’s call it a 72 percent chance of zero rails, a 24 percent chance of one rail, a 4 percent chance of two rails, and a 0.04 percent chance of three rails. Over tens of thousands of observations, and thousands of zeroes, those calculations give us the power to lift the veil on the secretive California clapper rail.</p>
+			
+			<h2>Why?</h2>
+			<p>Even the probability calculation, which represents a monumental amount of work and processing, only gets us to a more accurate estimate for a single survey point on a single day. That’s fascinating, but we’re here to save the clapper rail, and we need to know not just how many but why they were there.</p>
+			<p>“We do these analyses, which are relatively complex, because we’re trying to do things like not just go out and count birds and things,” Nur says. “We’re trying to discriminate the true change, the change in the biological numbers from these counts.”</p>
+			<p>To do all this in one formula would be impossible. So the big-picture population estimate that Nur and Salas developed to show change relative to environment is a little Russian doll set of three models that nest together. The smallest doll in the set is the one we’ve been talking about that sorts out whether the clapper rail exists or not, the starting point in obtaining the big picture. It’s the next two dolls, though, where things get real.</p>
+			<p>The middle child in the nesting doll set is a “site” model, which looks at density in the surveyed marshes. This model combines the detection model with a new set of math to estimate abundance, based on detection probability and a new set of variables about the marsh itself. There is art to the selection of those factors, because you could leave a critical one out and screw up the entire relationship. Salas compared it to trying to stand on the highest hill around, and maybe you find one where you’re standing there, looking out and you can’t see any other hills that are any higher, so you’ve got the right place! Except, he says, what if your view only encompasses 270 degrees and you forgot to look behind you? How do you know, in other words, that the computer remembered to turn its head?</p>
+			<p>This is where Nur’s expertise comes in. Nur has been at Point Blue for 25 years, and colleagues tend to describe him in somewhat awed terms. He has a PhD in ecology and a master’s in statistics, and has combined the two on a variety of projects that seem to have granted him extraordinary insight into the relationships between Bay and birds. “One thing I’ll tell you about Nadav,” says Salas, “he has a good nose. He knows where to smell.”</p>
+			<p>Even at what might seem like the most technical moment of this process, then, there is the artistic touch of Nur’s knowledge of marsh ecology. (Nur says that as a graduate student working in the marshes near Oxford, he sometimes grew jealous of the people studying trees. Trees! So immobile! So obvious! So easy to just … count!) Years ago, as they started to really tease out the secretive marsh bird story, Salas and Nur worked to find those appropriate explanatory variables. With refinement, much consideration, and eventually, some back-and-forth comparison with what biologists see in real life, they arrived at a model capable of offering up an accurate estimate of clapper rails in a particular marsh.</p>
+			<p>Now we’ve assigned our birds a probability, and accounted for all the various marsh characteristics. That leaves the outer shell to uncover: All the data, all the probabilities, all the estuary.</p>
+			<p>The various clapper rail surveyors manage to cover quite a bit of Bay Area marshland. But not all of it. So the task is to create a probability that a clapper rail is living in a marsh that the field biologists didn’t even visit. Once again, we need those relationships. Fortunately, there’s a data set of 15 different physical characteristics that’s available for every single bit of marshland in the entire Bay Area. Salinity, channel density, distance to levees, distance to channels, percent of marsh vegetation cover, all that stuff gets packed into this model.</p>
+			<p>The first step is to divide the entire Bay Area into 50-meter by 50-meter cells to create a pixelated 8-bit-Nintendo-screen-style map of the estuary.</p>
+			<p>Each of those cells that has marsh in it could, theoretically, have clapper rails. So they look at the 15 variables for each cell, and what combination of the 15 makes it most probable that there’s a clapper rail present, based on the data from the already-run site model (the middle doll). From that you get a multiplier, a rough idea for each cell of how much or how little you should add to your observed numbers, and even a way to estimate how many rails there were in the areas no one visited. You can individualize it, Nur says, down to the fine-grained level of a single cell. Run all those models together and you get your total: 1,167 clapper rails.</p>
+			<p>You also get those relationships. Channel density in a marsh, they’ve found, is the most important predictor of the density of clapper rails. Tidal range matters, too, as does salinity. If you’re restoring a marsh, you can use this stuff to know exactly what will optimize it for endangered clapper rail habitat.</p>
+			<p>The Point Blue team uses math that hadn’t been invented when William Hornaday first thought to try and count the bison. They take advantage of marsh knowledge that took decades to compile. They use computers that analyze thousands of relationships in minutes.</p>
+			<p>That final, landscape-level clapper rail number, 1,167, represents classical field observation and high-powered computing combined into as fine-grained an understanding of what lives where — and how even the most miniscule of changes might affect it — as the modern world is capable of delivering.</p>
+
+			<h2>Sunrise in a Marsh</h2>
+			<p>An hour after sunrise, two hours into one of the 90 marsh visits he’ll make in the first four months of 2014, Julian Wood runs the Zodiac slowly into an exposed marsh bank on the west side of the Petaluma River. A chilling wind rolls a long, steady line of swells under the boat. Fog still hangs heavy over the river; there’s been no sunrise to speak of, just a slow fade from black to gray. The fog has kept the temperature down, and Elrod and Wood ride from point to point with watering eyes and faces tucked low into their jackets.</p>
+			<p>Hours later, as we drive over the river and look back at the survey area, it seems tiny. The marsh sprawls out, the river winds into the distance, and Wood, from the driver’s seat, says the little inlet that we explored — an expanse of low vegetation that felt to me, in the low light of morning, like some unexplored reach of the Amazon — is too small to even have a name.</p>
+			
+			<figure class="col-sm-12 col-xs-12 right">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~1023x5000~dsc0023-1403047455-25.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~1023x5000~dsc0023-1403047455-25.jpg" class="lazy">
+				<figcaption>At the Edge of the Marsh</figcaption>
+			</figure>
+
+			<p>These smelly, muddy, pickleweed-dominated edges of the Bay can look uninviting. They are not accessible, not photogenic, not as easy to love as the rolling oak savannas and redwood forests that surround them. Yet they have their own sublime ways of rewarding our attention and protection: they filter our water, they slow the rising seas, they harbor weird birds. Like the clapper rails, the marshes need our help. Like the clapper rails, it is largely our fault that they do. Like the clapper rails, it will be largely to our credit if they make a comeback.</p>
+			<p>The story of the clapper rails nests in the story of the marshes. The surveys, turned into data, turned into analysis, have shown that after an average of 15-17 years (to let the plants grow high), clapper rails enthusiastically move back into restored tidal wetlands. The restoration work we’ve done around the Bay in the last few decades, Wood says, could save the clapper rail.</p>
+			<p>“They’re critically low,” he says. “They’re in danger of extinction, no question about that. With only 1,000 birds, it wouldn’t take much to really push them over to the edge. The good news is, there’s so much restoration that’s been happening, and continues to occur.”</p>
+			<p>The final survey spot, directly on the river bank, seems an unlikely one to my amateur eye. The marsh is low, wreathed still in ghostly mists. Cold, tired routine has set in, and Elrod stands up and grabs the clipboard quietly. She and Wood know, and I learn later, that detections tend to decrease both toward the end of the season and toward the end of the time in the marsh.</p>
+			<p>The ten minutes pass quietly. The waves roll by, bobbing the boat, rippling on the muddy shoreline. The pattern becomes hypnotic. Wood sits in the back of the boat, head bowed. The sparrows sing, the traffic rumbles, the river sighs against the pickleweed.</p>
+			<p>The timer beeps. Dee-dee-dee.</p>
+			<p>Elrod holds the clipboard aloft. She enters the zero.</p>
+
+			<figure class="col-sm-8 col-xs-12 col-sm-offset-2">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/derivative/scale~1023x5000~jkwclra2013-1403048083-17.jpg">
+				<figcaption>At the Edge of the Marsh</figcaption>
+			</figure>
+			
+	</div>
+
+	</div>
+			
+	<div class="row" >
+		<div class="more">
+			<span>More    </span> <i class="fa fa-bars fa-3x"></i> 
+		</div>
+
+	</div>
+</div>
+</article>
+
+
+<footer>
+	<div class="row" id="more-drawer">
+			<i class="fa fa-times fa-3x"></i>
+
+		<div class="col-sm-12" id="more-stories">
+			
+			<h3><a href="/bn-biodiversity">Weird, Rare, Ugly</a></h3>
+
+			<div class="more1 thumbnail">
+				<a href="" >
+				<img src="media/illos/tarweed.jpg" class="img-thumbnail">
+				<h4>Livermore tarweed</h4>
+				</a>
+			</div>
+			<div class="more2 thumbnail">
+				<a href="/bn-biodiversity/stories/galapagos-damselfish" >
+				<img src="media/illos/azurina.jpg" class="img-thumbnail">
+				<h4>Galapagos damselfish</h4>
+				</a>
+			</div>
+			<div class="more3 thumbnail">
+				<a href="/bn-biodiversity/stories/clapper-rail" >
+				<img src="media/illos/clapper-rail.jpg" class="img-thumbnail">
+				<h4>Clapper rail</h4>
+				</a>
+			</div>
+			<div class="more4 thumbnail">
+				<a href="/bn-biodiversity/stories/sage-grouse" >
+				<img src="media/illos/grouse.jpg" class="img-thumbnail">
+				<h4>Greater sage grouse</h4>
+				</a>
+			</div>
+			<div class="more5 thumbnail">
+				<a href="/bn-biodiversity/stories/mission-blue" ><img src="media/illos/missionblue.jpg" class="img-thumbnail">
+				<h4>Mission blue butterfly</h4>
+				</a>
+			</div>
+			<div class="more6 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>Plant TK</h4>
+				</a>
+			</div>
+			<div class="more7 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>California sea blite</h4>
+				</a>
+			</div>
+			<div class="more8 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>Ant tk</h4>
+				</a>
+			</div>
+			<div class="more9 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>Insect / Herp</h4>
+				</a>
+			</div>
+			<div class="more10 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>San Francisco garter snake</h4>
+				</a>
+			</div>
+		</div>
+	</div>
+
+</footer>
+
+<!--IMPORTANT: Project scripts: -->
+<script src="/js/biodiversity-scripts.js"></script>
+<script src="/bn-biodiversity/js/biodiversity-scripts.js"></script>
+
+
+<script>
+	$("img.lazy").lazyload({
+		threshold: 900,
+		effect : "fadeIn"
+	});
+
+	//nav and more drawer active states
+	$('.nav3').addClass('active');
+	$('.more3').addClass('current_story');
+
+	//balancing lead box and museum card widths and heights
+	var cw = $('.lead-box figure').width();
+	$('.lead-box').css({'height':cw+'px'});
+	$('.museum-card').css({'height':cw+'px'});
+
+	//sound player
+	$(document).ready(function(){
+		var wavesurfer = WaveSurfer.create({
+		    container: '#wave',
+		    waveColor: '#fdaaaa',
+		    progressColor: '#ff0000'
+		});
+
+		var sound = new Howl({
+
+			//note to self: can declare .ogg file here using comma
+			urls: ['https://dh1rvgpokacch.cloudfront.net/atavist/9410/audio/raw/kekburcut-1403296688-31.mp3'],
+			volume: 0.5,
+		 //    onend: function() {
+			//     $('i').replaceWith('<i class="fa fa-play"></i>');
+			//     $('.audio-controller').removeClass('playing');
+			//   },
+		 //    onplay: function() {
+			//     $('i').replaceWith('<i class="fa fa-pause"></i>');
+			//     $('.audio-controller').addClass('playing');
+			//   },
+			// onpause: function(){
+			//     $('i').replaceWith('<i class="fa fa-play"></i>');
+			//     $('.audio-controller').removeClass('playing');					 
+			// },
+			// onloaderror: function(){
+			//     $('i').replaceWith('<p style="font-family:Arial, sans-serif;">Sorry! This sound failed to load.</p>');
+			// }
+		});
+
+		wavesurfer.load(sound['_src']);
+		//wavesurfer.setVolume(0.5);
+
+		wavesurfer.on('play', function(){
+			    $('i').replaceWith('<i class="fa fa-pause"></i>');
+			    $('.audio-controller').addClass('playing');
+		});
+		wavesurfer.on('pause', function(){
+			    $('i').replaceWith('<i class="fa fa-play"></i>');
+			    $('.audio-controller').removeClass('playing');	
+		});
+		wavesurfer.on('error', function(){
+			    $('i').replaceWith('<p style="font-family:Arial, sans-serif;">Sorry! This sound failed to load.</p>');
+		});
+		wavesurfer.on('finish', function(){
+			    $('i').replaceWith('<i class="fa fa-play"></i>');
+			    $('.audio-controller').removeClass('playing');
+		});		
+		$('.audio-controller').on('click', function(){
+		    if ( $(this).hasClass("playing") ) {
+		    	//sound.pause();
+		    	wavesurfer.pause();
+		    } else {
+				// sound.stop().play();
+				wavesurfer.play();
+		    }
+		});
+		
+	})
+
+</script>
+
+</body>
+
+</html>

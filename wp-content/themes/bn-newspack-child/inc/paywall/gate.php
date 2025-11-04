@@ -54,14 +54,33 @@ add_filter( 'the_content', function ( $content ) {
     if ( is_admin() || is_feed() ) {
         return $content;
     }
+
+    // Bots get full content for SEO.
+    if ( bn_is_bot() ) {
+        return $content;
+    }
+
     global $post;
     if ( ! $post || ! bn_should_paywall_post( $post ) ) {
         return $content;
     }
+
+    // Track this view for anonymous users BEFORE checking access.
+    // This ensures the counter increments on every gated content access attempt.
+    // Note: bn_has_free_views_remaining() uses <= comparison to allow exactly N free views.
+    // Example with free_views=3: views are incremented to 1,2,3 and all pass (N <= 3),
+    // then view 4 increments to 4 and fails (4 <= 3 is false).
+    $should_track = ! is_user_logged_in();
+    if ( $should_track ) {
+        bn_track_paywall_view();
+    }
+
+    // If user has access, show full content.
     if ( bn_is_subscriber() ) {
         return $content;
     }
 
+    // User doesn't have access; show preview + CTA.
     $opts = bn_paywall_options();
     $preview_paragraphs = max( 0, intval( $opts['preview_paragraphs'] ) );
 
@@ -84,7 +103,21 @@ add_filter( 'the_content', function ( $content ) {
         $out .= $chunk . $closing;
     }
 
-    $cta = '<div class="bn-paywall-cta"><p>' . esc_html__( 'Become a member to continue reading.', 'bn-newspack-child' ) . '</p></div>';
+    // Build CTA with context.
+    $join_url = '/join'; // Default
+    if ( function_exists( 'bn_get_utility_urls' ) ) {
+        $urls = bn_get_utility_urls();
+        $join_url = isset( $urls['join_url'] ) ? $urls['join_url'] : '/join';
+    }
+    
+    $cta = '<div class="bn-paywall-cta bn-inline-paywall-cta">';
+    $cta .= '<div class="bn-paywall-cta-inner">';
+    $cta .= '<h3 class="bn-paywall-cta-heading">' . esc_html__( 'Become a member to continue reading', 'bn-newspack-child' ) . '</h3>';
+    $cta .= '<p class="bn-paywall-cta-message">' . esc_html__( 'Support independent environmental journalism in the San Francisco Bay Area.', 'bn-newspack-child' ) . '</p>';
+    $cta .= '<a href="' . esc_url( $join_url ) . '" class="bn-paywall-cta-button">' . esc_html__( 'Join Now', 'bn-newspack-child' ) . '</a>';
+    $cta .= '</div>';
+    $cta .= '</div>';
+
     return $out . $cta;
 }, 20 );
 

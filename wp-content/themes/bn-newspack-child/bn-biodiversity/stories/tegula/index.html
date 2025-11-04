@@ -1,0 +1,551 @@
+<html>
+<head>
+	<title>Tegula</title>
+	
+	<meta charset="utf-8"> 
+	<meta name="viewport" content="initial-scale=1">
+	<meta property="og:title" content="The Weird, the Rare and the Ugly"/>
+	<meta property="og:description" content="Connect to the natural world of the SF Bay Area! We bring you trail and park reviews and photos, local nature journalism, and local nature event listings."/>
+	<meta property="og:url" content="http://baynature.org/"/>
+	<meta property="og:site_name" content="Bay Nature"/>
+	<meta property="fb:admins" content="1403244759"/>
+	<meta property="og:image" content="https://baynature.org/wp-content/uploads/2012/08/baynature-Orange-logo-150px.jpg"/>
+	<link rel="shortcut icon" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/images/favicon.ico"/>
+
+
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/css/baynature.scss" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/style.css?1435006863" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/style-print.css" type="text/css" media="print"/>
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/jquery.c2selectbox.css" type="text/css" media="screen"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- bootstrap css -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+
+    <!--open sans headline font -->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<!--libre baskerville font-->
+	<link href='https://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
+	<!-- PROJECT CSS FILE -->
+		<!--local-->
+	<link rel="stylesheet" href="/css/biodiversity-stylesheet.css">
+		<!--web-->
+	<link rel="stylesheet" href="/bn-biodiversity/css/biodiversity-stylesheet.css">
+
+	<!-- jquery cdn -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<!-- boostrap cdn -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/deb.addIndicators.min.js"></script>
+<script type="text/javascript" src="js/gsap.js"></script>
+	<script>
+	    // start scroll magic
+	    var controller = new ScrollMagic.Controller();
+	</script>
+
+</head>
+<body>
+<style>
+.snail-section figure.shell, figure.snailgif {
+	max-width: 300px;
+	margin: 35px auto;
+	position: relative;
+	height: 300px;
+}
+.snail-section figure.shell img, .snailgif img {
+	width: 100%;
+	position: absolute;
+}
+img.bwshell { opacity: 0.1; }
+
+span.kicker { text-transform: uppercase; }
+
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-static-top" role="navigation">
+	<div class="container-fluid">
+		
+		<div class="navbar-header navbar-left">
+	    	<a id="logo" class="navbar-brand navbar-left hide-small" href="http://baynature.org" >
+	        	<img alt="Bay Nature" src="/bn-biodiversity/css/bnlogo.png">
+	    	</a>
+
+	    	<div class="nav-head navbar-link navbar-left">
+	    		<a href="/bn-biodiversity">Weird, Ugly, Rare</a>
+	    	</div>
+
+    	</div>
+
+    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<i class="fa fa-bars fa-lg"></i>
+    	</button>
+
+		<button type="button" onclick="tweetBtn()" class="navbar-toggle nav-share" data-toggle="collapse" data-target=".share-collapse">
+			<i class="fa fa-twitter fa-lg"></i>
+		</button>
+
+		<!-- <a href="http://www.facebook.com/sharer.php?u=https://seangreene.github.io/bn-biodiversity" target="_blank" > -->
+			<button onclick="fbBtn()" type="button" class="navbar-toggle nav-share" data-toggle="collapse" data-target=".share-collapse">
+				<i class="fa fa-facebook fa-lg"></i>
+			</button>
+		<!-- </a> -->
+
+		<a 	href="mailto:?Subject=The Weird, the Rare and the Ugly&amp;Body=Check%20out%20these%20Bay%20Nature%20stories http://seangreene.github.io/bn-biodiversity">
+			<button type="button" class="navbar-toggle nav-share hide-small" data-toggle="collapse" data-target=".share-collapse">
+				<i class="fa fa-envelope fa-lg"></i>
+			</button>
+		</a>
+
+    	<div class="clear"></div>
+
+  		<div class="navbar-collapse collapse">
+      		<ul class="nav navbar-nav">
+
+				<div class="nav-item nav1">
+					<li>Livermore tarplant</li>
+					<a href="/bn-biodiversity/stories/livermore-tarweed" class="thumbnail"><img src="media/illos/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav5">
+					<li>Mission Blue butterfly</li>
+					<a href="/bn-biodiversity/stories/mission-blue" class="thumbnail"><img src="media/illos/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav4">
+					<li>Greater sage grouse</li>
+					<a href="/bn-biodiversity/stories/sage-grouse" class="thumbnail"><img src="media/illos/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav3">
+					<li>Clapper rail</li>
+					<a href="/bn-biodiversity/stories/clapper-rail" class="thumbnail"><img src="media/illos/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav2">
+					<li>Galapagos damselfish</li>
+					<a href="/bn-biodiversity/stories/galapagos-damselfish" class="thumbnail"><img src="media/illos/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav7">
+					<li>California sea blite</li>
+					<a href="" class="thumbnail"><img src="media/illos/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav8">
+					<li>Tegula sea snail</li>
+					<a href="" class="thumbnail"><img src="media/illos/filler.jpg"></a>
+				</div>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<header>
+	<div class="row">
+
+		<div class="col-sm-10 col-sm-offset-1 col-xs-12">
+
+			<div class="museum-card col-sm-6">
+
+				<h1>Snail pun headline here</h1>
+
+				<h2>Tegula sea snail</h2>
+
+				<hr></hr>
+
+				<div class="card-info">
+					<p>Habitat: <span>tk</span></p>
+					<p>Population: <span>tk</span></p>
+					<p>Protection status: <span>tk</span></p>
+				</div>
+			</div>
+
+			<div class="art-box col-sm-6">
+				<figure>
+					<img src="media/illos/sea-snails.jpg" />
+				</figure>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+<article>
+<div class="container">
+	<div class="row">
+
+		<div class="story">
+			<h2>Snail dek tk tk tk.</h2>
+			<p class="byline">by <a href="http://baynature.org/author/ericsimons/">Eric Simons</a></p>
+
+			<p><span class="dropcap">I</span><span class="kicker">t is easy to find a Tegula sea snail</span>. Tegula snails cobble the tidepools of the Pacific coast. In some places there are literally millions of them in a few hundred feet of rock. You might not have noticed this before; I certainly hadn&rsquo;t until a few months ago.</p>
+
+			<p>Recently I took my four-year-old daughter tidepooling at Fitzgerald Marine Reserve, on the San Mateo coast. I wondered what would catch her interest, since like most preschoolers Eleanor has no particular awareness that there is such a thing as nature separate from anything else. Grandeur and greenery do not inevitably impress her. She is capable of awe, but not predictably so. (I remember hauling her in a baby carrier for her first visit to the swirling cloud of technicolor butterflies and birds in the tropical rainforest exhibit at the California Academy of Sciences, which she ignored entirely so as to drool in wide-eyed wonder over a spiraling metal handrail.) Her worldview is determined by stories, by what she can imagine about the world she sees and by what she can tell me about what she imagines.</p>
+
+			<p>She called the first Tegula she found a &ldquo;rainbow shell.&rdquo; Viewed top-down it was about the diameter of a quarter. Its widest spiral was a rusty orange, which faded into more caramel brown middle spiral, and then a top spiral that you would call purple if you were four years old and really loved purple. The shell rested on a smooth stone, crusted over with red coralline algae. A small white cap seemed to be dripping down from its top spiral. Eleanor made me take a picture with my phone, and show it to her to make sure it matched her narrative vision.</p>
+
+			<figure class="snailgif">
+				<img src="media/illos/rainbow_tegula2.gif" />
+			</figure>
+
+			<p>It had been my intention to walk over the snails to reach the interesting tide pools, as grownups do. Now we paused to consider. I knew the snail we had found was a <em>Tegula brunnea</em>, or &ldquo;brown Tegula,&rdquo; and that it was surrounded by what looked like a gravel roadbed of <em>Tegula funebralis</em>, or &ldquo;black Tegula.&rdquo; I realized I did not know where else the snails lived, or for how long, or what they ate, or what ate them, or even who would answer any of these questions. An uncomfortable memory from long ago stirred in the depths of my brain. As an undergraduate, I&rsquo;d left a marine lab internship and an impacted marine biology major to follow my increasing interest in journalism. I remember telling people at the time that it seemed like every marine biologist&rsquo;s destiny was to spend six years as a graduate student looking at snails in the tidepool, the kind of righteous tedium I knew curriculum committees designed to weed out people with an interest in charisma.</p>
+
+			<figure class="col-sm-8 col-sm-offset-2 col-xs-12">
+				<img src="media/images/001_tegula_abbot.jpg" />
+				<figcaption>A tidepool at Fitzgerald Marine Reserve | Photo by <a href="https://www.flickr.com/photos/wbaiv/" target="_blank">Bill Abbott</a></figcaption>
+			</figure>
+
+			<p>Belatedly by 20 years, I found myself ankle-deep in a tidepool wondering about sea snails. Tegula snails are perhaps the most ignorable animals in the West Coast&rsquo;s intertidal life riot. But once you start to pluck at that seemingly pedestrian thread it leads you up and out and away until suddenly you&rsquo;ve unraveled a whole damned sweater. &ldquo;Go down to the shore and poke around,&rdquo; urges the preface to the 704-page <em>Encyclopedia of Tidepools &amp; Rocky Shores</em>. &ldquo;Undoubtedly, questions will rapidly spring to mind. At first they may be specific and small-scale. What species is that snail? &hellip; But small questions lead to larger ones.&rdquo;</p>
+
+			<p>Part of being four years old is that you can invent and confidently assert your own answers to life&rsquo;s mysteries. (And conveniently just about everything is a mystery.) Then the question troubles you no more. As Eleanor and I walked back along the beach on our way to the car, we passed a vacationing family from Minnesota. Eleanor called cheerfully after them, &ldquo;I hope you find a rainbow shell!&rdquo; By the time I dropped her at preschool later that morning, her attention had wandered back to the park, her friends, and the waffles awaiting her at snacktime.</p>
+
+			<p>To wonder might be childlike but to follow the threads to bigger questions, to fit the parts together and construct a universe, is a game for grownups. It is a game that I played for several months after that tidepool trip. &ldquo;When you collect marine animals,&rdquo; John Steinbeck wrote in the first chapter of <em>Cannery Row</em>, &ldquo;there are certain flat worms so delicate that they are almost impossible to capture whole, for they break and tatter under the touch. You must let them ooze and crawl of their own will onto a knife blade and then lift them gently into your bottle of sea water. And perhaps that might be the way to write this book &mdash; to open the page and let the stories crawl in by themselves.&rdquo;</p>
+
+			<p>Sea snails don&rsquo;t scream a story at you. But you can piece one together. Here then is a spiraling story about Tegula snails, which crawled into my imagination, and lodged there.</p>
+			
+			<section class="snail-section">
+
+				<div id="trigger1"></div>
+		        <figure class="shell">
+		        	<img class="bwshell" id="animate0" style="opacity: 1;" src="media/illos/snail1.png" />
+		        	<!-- <img class="bwshell" id="animate1" style="clip-path: polygon(100% 100%, 100% 100%)"  src="media/illos/snail1.png" /> -->
+		        </figure>
+		        <script>
+		        	var scene1 = new ScrollMagic.Scene({triggerElement: "#trigger1", ease: Circ.easeIn
+		        	//var scene1 = new ScrollMagic.Scene({triggerElement: "#trigger1", duration: 500, ease: Circ.easeIn
+		    			})
+		                .setTween("#animate0", 1.5, { opacity: "0.1" })
+		                //.setTween("#animate1", 1.5, { 'clip-path': "none" } )
+		                .addTo(controller);
+		        </script>
+	           	<!-- 1 -->
+				<!-- <h2>***</h2> -->
+
+				<p><span class="kicker">Our story starts in a tidepool</span>. Next time you&rsquo;re at the coast look closely into one and ask yourself a question: how is this tidepool organized? Why is the stuff in there where it is? As it turns out, there is a method to the arrangement, and the pattern in many ways resembles the terrestrial world. The bottom &mdash; the ground &mdash; is made of rock. On the rock grows a meadow, in this case of carpet-like encrusting algae. There is a shrubland of branching coralline algae, and a forest of swaying, leafy brown algae. There are herbivores, like snails, grazing. There are predators that stalk, ambush, chase, and prey on the grazers.</p>
+
+				<p>Since it is easier to sit and stare at all the little life forms in a tidepool than it is to sit and stare at all the much larger life forms on, like, a mountain range, tidepools have long been a way for scientists to observe the ways everything in the universe is hitched to everything else. &ldquo;There&rsquo;s organization,&rdquo; says UC Santa Cruz intertidal ecologist Pete Raimondi. &ldquo;That&rsquo;s one reason people are drawn to the intertidal, you can see it. Not <em>what</em> the rules are, but that they are there.&rdquo;</p>
+
+				<div class="pull-quote">
+					<p class="quote">&ldquo;There&rsquo;s organization. That&rsquo;s one reason people are drawn to the intertidal, you can see it. Not <em>what</em> the rules are, but that they are there.&rdquo;</p>
+				</div>
+				<div class="clear"></div>
+
+				<figure class="col-sm-10 col-sm-offset-1 col-xs-12">
+					<img src="media/images/002_tegula_organization.jpg" />
+					<figcaption>Photo by Eric Simons</figcaption>					
+				</figure>
+
+				<p>In the tidepools and nearshore water of the Pacific Coast live four common varieties of Tegula snail: black, brown, dusky, and Monterey. They look a lot alike, they&rsquo;re built nearly the same, they behave a lot alike, they eat the same sort of stuff, but our observation of the tidepool&rsquo;s arrangement leaves us with a mystery: they don&rsquo;t live in the same places. Black Tegula live in the shallows, then as you wade deeper they&rsquo;re replaced by brown Tegula, then as you don SCUBA gear those are replaced by dusky Tegula and Monterey Tegula. This is perhaps more remarkable than it sounds. <em>Some invisible force somehow prevents each of these types of snails from living in places perfectly suitable for them to live.</em></p>
+
+				<p>It&rsquo;s like an intertidal version of dark energy, the theoretical negative force pushing the universe apart that physicists know must exist but can&rsquo;t find. It turns out that the question a child might ask, why is this thing here?, is actually a really great scientific question when it comes to Tegula sea snails. There&rsquo;s definitely a rule here. You can see it. But can you define it?</p>
+
+				<p>&ldquo;Some things you can get pretty nice answers to,&rdquo; says Jim Watanabe, a lecturer at the Stanford Hopkins Marine Station who studied Tegula patterns for his dissertation at UC Berkeley in the 1980s. &ldquo;But then others, it&rsquo;s just like, why the hell does that happen? And you just have no idea.&rdquo;</p>
+			</section>
+
+			<section class="snail-section">
+				<!-- 2 -->
+			
+				<div id="trigger2">
+		        <figure class="shell">	        	
+					<img id="animate1" style="opacity: 0.1;" src="media/illos/snail1.png" />	        	
+		        	<img id="animate2" style="opacity: 0;" src="media/illos/snail2.png" />
+		        </figure>
+		        <script>
+        			var scene2 = new ScrollMagic.Scene({triggerElement: "#trigger2", ease: Circ.easeIn
+    					})
+                        .setTween("#animate1", 1.5, {opacity: "0.1"})
+                        .setTween("#animate2", 1.5, {opacity: "1"})
+                        //.addIndicators({name: "2 (duration: 200)"}) // add indicators (requires plugin)
+                        .addTo(controller);
+		        </script>
+				
+				<!-- <h2>***</h2> -->
+
+				<p><span class="kicker">The idea that animals and plants lived</span> in decipherable patterns, rather than scattered randomly as a deity or deities had placed them, exhilarated Victorian-era naturalists. Alexander von Humboldt&rsquo;s 1807 book <em>Essay on the Geography</em> <em>of Plants</em> was an international bestseller that cemented its author as the world&rsquo;s most famous scientist. Humboldt&rsquo;s observations about global zonation and the interconnectedness of life inspired the modern Western concept of nature, historian Andrea Wulf contends in the 2016 book <em>The Invention of Nature</em>. His insights fired the imagination of a generation of scientists: Charles Darwin, John Muir, Henry David Thoreau, and Ernst Haeckel, who in 1866 coined the term &ldquo;ecology&rdquo; for this new study of why things live where they live. &ldquo;I thought,&rdquo; Humboldt wrote in the preface to <em>Essay on the Geography of Plants</em>, &ldquo;that before talking about myself and the obstacles that I had to overcome during my work, I should draw the physicists&rsquo; attention to the broader phenomena exhibited by nature in the regions through which I have traveled.&rdquo;</p>
+
+				<p>Following Humboldt scientists began to look for patterns based on geography. Obviously, they soon realized, things lived where they lived not just because of global climate zones but because of the local physical environment &mdash; in the case of the tidepool, for example, waves and tides.</p>
+
+				<p>One of those pioneering scientists was an English university lecturer named Sarah Martha Baker. Like many tidepoolers, Baker had noticed that different kinds of seaweed lived in different places. &ldquo;The conditions which determine the zonal growth of Algae between the tidal limits appear likely to be very simple,&rdquo; she wrote, &ldquo;and thus afford a very promising field for experimental study.&rdquo;</p>
+
+				<p>In two papers, published in the journal <em>New Phytologist</em> in 1909 and 1910, Baker sets down the physical conditions that determine where brown algae can live and reproduce. Hers is one of the first field experiments to attempt to predict and then test a cause for the pattern of nature that we observe. Baker took a first step in what would become a century of field experiments aimed at illuminating the pattern of life on Earth.</p>
+
+				<p>If you were just visiting the coast for the first time and wanted to guess at why the sea snails live where they live, you might conclude, like Humboldt and like Baker, that they live where physical climate and environment <em>allow</em> them to live. Sea snails breathe through gills so they do not live, obviously, where there is no water. That seems to be an adequate explanation why you don&rsquo;t find them climbing mountains. They are herbivores, and so they live where there is algae to eat. We know that algae need light, so that means you wouldn&rsquo;t expect to find sea snails down in the abyss, and we don&rsquo;t.</p>
+
+				<figure class="col-sm-10 col-sm-offset-1 col-xs-12">
+					<img src="media/images/003_tegula_balousek.jpg" />
+					<figcaption>Tidepools at Fitzgerald Marine Reserve | Photo by <a href="https://www.flickr.com/photos/rougewisp/" target="_blank">Matthew R.F. Balousek</a></figcaption>
+				</figure>
+
+				<p>But this is where our mystery deepens. If climate and environment were the only rules, you&rsquo;d expect to find all the different kinds of Tegula snails everywhere that they could possibly be. We know that&rsquo;s not the case. We know, in fact, that they live in segregated bands and seem to <em>replace</em> each other at different depths.</p>
+
+				<p>Baker feels to me in some ways like the person who laid the first stone on of one of those old European cathedrals. Architects and laborers, kings and queens and bishops come and go, and yet over a century or more they share a pattern, an image that continues to rise and become real. In our story ecologists construct, observation by observation, experiment by experiment, an idea. The question of why things live where they live has persisted through generations, cultures, and geographies. It has outlived politics, fashion, and technology. My daughter and I found only a commonplace sea snail, but we stumbled into a transcendent investigation.</p>
+
+				<p>&ldquo;Ecologists are often accused of having physics envy, because physicists model things and come out with simple models that have strong explanatory power,&rdquo; says Karina Nielsen, director of the Romberg Tiburon Center at San Francisco State University. &ldquo;Biology is more challenging than physical systems. But that doesn&rsquo;t mean there aren&rsquo;t underlying principles that drive the patterns that we see, and that they can&rsquo;t be understood.&rdquo;</p>
+
+				<figure class="col-sm-10 col-sm-offset-1 col-xs-12">
+					<img src="media/images/009_tegula_baker.jpg" />
+					<figcaption>Sarah Martha Baker | Photo courtesy of University College of London</figcaption>
+				</figure>		
+
+				<p>Today Sarah Baker is almost entirely forgotten. She died in 1917 at age 29, and her obituary in <em>The Times </em>mourns the loss of an &ldquo;energetic, imaginative, and thoughtful&rdquo; scientist. She had a gift for science communication and lectured both for the public and at University College London, where her obituary says a lectureship was to be established specifically for her. Her scientific work was celebrated for its range and rigor; &ldquo;The investigations which she completed in a relatively short period of activity tend to emphasise the loss which science has sustained,&rdquo; the obituary states. Yet there is almost nothing about her on the web, and even her death is mysterious. <em>Wikipedia</em> ascribes it to &ldquo;overwork,&rdquo; with a reference to her obituary &mdash; which doesn&rsquo;t give a cause of death.</p>
+			</section>
+
+			<section class="snail-section">
+				<!-- 3 -->
+
+				<div id="trigger3"></div>
+		        <figure class="shell">
+		        	<img class="bwshell" src="media/illos/snail1.png" />		        	
+		        	<img id="animate3" style="opacity: 1;" src="media/illos/snail2.png" />		        	
+		        	<img id="animate4" style="opacity: 0;" src="media/illos/snail3.png" />
+		        </figure>
+		        <script>
+        			var scene3 = new ScrollMagic.Scene({triggerElement: "#trigger3", ease: Circ.easeIn
+    					})
+                        .setTween("#animate3", 1.5, {opacity: "0"})
+                        .setTween("#animate4", 1.5, {opacity: "1"})
+                        //.addIndicators({name: "3 (duration: 200)"}) // add indicators (requires plugin)
+                        .addTo(controller);
+		        </script>
+
+				<!-- <h2>***</h2> -->
+
+				<p><span class="kicker">If you snorkeled over the reef</span> at Fitzgerald at a particularly high tide, it would look completely different than it did on the minus tide when my daughter and I went tidepooling there. All those snails bunched up and huddled together, cobbling the rock, would be out &ldquo;walking around,&rdquo; Jim Watanabe says, as if you&rsquo;d suddenly unfrozen a city. But if the unfreezing allows movement within the city limits, it doesn&rsquo;t un-segregate the neighborhoods. Freed as they are by the tide, the black Tegula stay in the shallows, the brown Tegula in the middle area, and the dusky Tegula in the subtidal.</p>
+
+				<p>This is another way of thinking about our story, Watanabe says, because when a black Tegula closes up into its shell to wait out a low tide it can&rsquo;t do any of the other stuff that a snail likes to do. It can&rsquo;t eat, it can&rsquo;t reproduce &mdash; it just has to sit there and wait. &ldquo;It seems like a hard place to make a living as a snail,&rdquo; Watanabe says. &ldquo;Why would you want to live there as your habitat if something wasn&rsquo;t keeping you from moving lower on the shore? But it&rsquo;s a fairly distinct boundary.&rdquo;</p>
+
+				<p>In the late 1950s a UC Santa Barbara ecologist named Joseph Connell ran a series of pioneering ecological field experiments on Scottish barnacles. (&ldquo;Having worked with difficult-to-trap wild rabbits for his master&rsquo;s thesis at the University of California at Berkeley, Connell was impressed with the immense potential of the barnacles he encountered on Scottish shores,&rdquo; reads one textbook.)</p>
+
+				<p>Connell saw that there were two species of barnacles living along the rocky shore, Poli&rsquo;s stellate barnacle, <em>Chthamalus stellatus</em>, and the common rock barnacle, <em>Balanus balanoides</em>. Theoretically both barnacles could overlap, but in reality they didn&rsquo;t. Chthamalus lived almost exclusively in the shallows and Balanus lived in the deeper water. Connell noticed, too, that it wasn&rsquo;t for lack of trying &mdash; free-swimming Chthamalus babies swam into the deeper water and tried to settle there, and for some reason they didn&rsquo;t survive. So he asked a simple variation of our question about why things live where they live: what was killing the Chthamalus in deeper water?</p>
+
+				<p>Connell would go out with a glass plate, lay it over a tidepool, and then mark the position of each barnacle on the glass. Since barnacles don&rsquo;t move much once they&rsquo;re fixed to a rock, the next time he went to the tidepool he was able to match his plate marks to the life that remained. After observing carefully for a year, it was quite clear to him what was killing the Chthamalus &mdash; it was murderous other barnacles. Fast-spreading Balanus grew over the Chthamalus, crushing or suffocating them, or wedged underneath the Chthamalus, upending them. After one year, the mortality rate for young Chthamalus in deeper water plots where Connell hadn&rsquo;t removed the Balanus was 100 percent. In a paper published in 1961 in the journal <em>Ecology</em> he identified competition between the two species as &ldquo;the principal factor determining the local distribution of Chthamalus.&rdquo;</p>
+
+				<p>His choice of journal itself reveals a major shift in the metaphorical value of tidepools. Connell was one of the first tidepool researchers to publish experimental results in mainstream journals instead of marine-specific ones. From this point on tidepool experiments would become less about specific species than about generalities: &ldquo;herbivores&rdquo; or &ldquo;grazers&rdquo; rather than snails. Although Sarah Baker had done this too, by publishing in botanical journals, the tidepool didn&rsquo;t stick in the imagination of early 20<sup>th</sup> century experimental naturalists. And the idea of moving things around in a tidepool to better test theories, the idea of other life influencing why things lived where they lived, simply &ldquo;wasn&rsquo;t part of the paradigm,&rdquo; says David Raffaeli, a professor at the University of York and author of the 2012 textbook <em>Intertidal Ecology</em>.</p>
+
+				<figure class="col-sm-10 col-sm-offset-1 col-xs-12">
+					<img src="media/images/004_tegula_hmbyoung.jpg" />
+					<figcaption>Black tegula (<em>Tegula funebralis</em>) | Photo by Eric Simons</figcaption>
+				</figure>
+
+				<p>With Connell, the new paradigm started to stick. The tidepool was becoming the mirror of the universe. You could see it all here, not just a static diorama of the physical world but a microcosm of living, breathing relationships. Better yet, it all happened at a pace suited to the expiration dates of a research grant.</p>
+
+				<p>Competition would seem a natural explanation for the segregation of Tegula snails, too. There are millions of them, after all, and they all eat the same stuff. In some tidepools, researchers have reported densities of Tegula snails up to 1,400 per square meter. There are dozens of other grazers in the tidepool. And maybe you see some signs of competition in one particular pattern within black Tegula: smaller young black Tegula stay in the shallows while bigger black Tegula move deeper, presumably to look for food where it&rsquo;s less crowded. But the line between species &mdash; between black and brown Tegula, and the next line between brown and dusky Tegula, seems not to have anything to do with competition. Black and brown Tegula prefer different food, anyway. Brown Tegula do not grow over, or crush, or suffocate black Tegula. In his dissertation, excerpted in <em>Ecology</em> in 1984, Watanabe found that &ldquo;competition is weak and contributes little to the maintenance of the distributions.&rdquo;</p>
+
+				<p>In other words: competition is often an answer. But in the case of why Tegula snails live where they live it isn&rsquo;t. Something is killing the black Tegula that wander into the subtidal realm of the brown Tegula, for example. If not other sea snails, then what?</p>
+
+				<div class="pull-quote">
+					<p class="quote">The tidepool was becoming the mirror of the universe. You could see it all here, not just a static diorama of the physical world but a microcosm of living, breathing relationships.</p>
+				</div>				
+
+				<p>A few years after Connell&rsquo;s barnacle experiment, University of Washington ecologist Robert Paine published his answer in what is now the most-cited paper in the history of the journal <em>The</em> <em>American Naturalist</em>, about his experiments on sea stars in the tidepools of the Pacific Northwest. The predatory sea stars ate mussels and reduced competition between mussels and other grazers, allowing more diversity, Paine declared; when he removed the predators (by prying them off rocks and throwing them as far as he could into the ocean) the mussels rapidly monopolized the rock surface. Paine coined the term &ldquo;keystone predator&rdquo; in a subsequent paper to describe the ochre sea star <em>Pisaster ochraceus</em>, whose appetite seemed to be the rule determining the organization of any tidepool where it lived.</p>
+
+				<p>Following the publication of his &ldquo;keystone&rdquo; paper, Paine turned his attention to Tegula distribution. Instead of looking at the four species, though, he wanted to try and explain the pattern in just black Tegula. If ochre sea stars determine the arrangement of the tidepool, it should mean they determine where we find snails, right?</p>
+
+				<p>Paine noticed the pattern within the <em>Tegula funebralis</em> population: young, small snails lived in the shallows, old, larger snails moved deeper down. At some point not too far into the zone of overlap with ochre sea stars black Tegula all but cease to exist, and it was Paine&rsquo;s idea that this was because the sea stars were eating them. Predation by <em>Pisaster ochraceus</em> must explain not just for the line separating young and old black Tegula, but the lower limit of where any such snails might be found.</p>
+
+				<figure class="col-sm-8 col-sm-offset-2 col-xs-12">
+					<img src="media/images/005_tegula_black.jpg" />
+					<figcaption>Black tegula (<em>Tegula funebralis</em>) | Photo by Eric Simons</figcaption>
+				</figure>
+
+				<p>Ochre sea stars, Paine wanted to make it clear, do not <em>enjoy</em> eating Tegula snails. Given a choice the sea stars would eat mussels all day long, and in the absence of those, they seem to prefer to switch to barnacles. Sometimes, he reported, he had even seen Pisaster spitting out sea snails. And yet according to some reports Pisaster ate a quarter of the entire black Tegula population in the area where they overlapped. In Paine&rsquo;s estimation Tegula snails are something like the Doritos of the intertidal: not particularly appealing, not particularly filling, and yet somehow when there&rsquo;s nothing better on the shelf you accidentally just eat a whole population of them anyway.</p>
+
+				<p>Paine watched with his own eyes for five years as Pisaster mowed through subtidal Tegula populations. The sea stars were consuming about 100 snails per square meter in his study plot, Paine wrote in a subsequent paper, &ldquo;typical,&rdquo; he wrote, of the interaction between &ldquo;a major predator and one of its less preferred prey.&rdquo; He concluded that predation was determining not just where the Tegula snails were found but what size and even sex of snails were to be found where.</p>
+
+				<p>If Connell had drawn wider attention to the potential of the tidepool in experimental ecology, Paine, who died in 2016, exploded it. Paine is celebrated for establishing the critical importance of predators in all kinds of ecosystems, which has led to more effective conservation efforts for wolves in Yellowstone, sharks in coral reefs, and otters in kelp forests. Graduate students he mentored have gone on to their own influence, and include the former NOAA administrator Jane Lubchenco. Our story might have ended here, in other words, with the dean of West Coast intertidal ecology finally placing the keystone on the cathedral.</p>
+
+				<p>But it doesn&rsquo;t. Because when it came to the pattern of Tegula snails, Paine missed quite a bit.</p>
+
+				<p>&ldquo;Predation and competition are intuitive and they&rsquo;re easier to document,&rdquo; Watanabe told me. &ldquo;And they are important. But there&rsquo;s been this building appreciation for the complexity of the interaction. As you grab one of those little threads and follow it back it gets more and more complicated and more and more connected.&rdquo;</p>
+			</section>
+
+			<section class="snail-section">
+				<!-- 4 -->
+
+				<div id="trigger4"></div>
+		        <figure class="shell">
+		        	<img class="bwshell" src="media/illos/snail1.png" />
+		        	<img src="media/illos/snail2.png" />
+		        	<img id="animate5" style="opacity: 1;" src="media/illos/snail3.png" />		        	
+		        	<img id="animate6" style="opacity: 0;" src="media/illos/snail4.png" />
+		        </figure>
+		        <script>
+        			var scene4 = new ScrollMagic.Scene({triggerElement: "#trigger4", ease: Circ.easeIn
+    					})
+                        .setTween("#animate5", 1.5, {opacity: "0"})
+                        .setTween("#animate6", 1.5, {opacity: "1"})
+                        //.addIndicators({name: "4 (duration: 200)"}) // add indicators (requires plugin)
+                        .addTo(controller);
+		        </script>
+
+				<!-- <h2>***</h2> -->
+
+				<p><span class="kicker">The next chapter in our story starts</span> in the summer of 1994, on the rocky ledge of Boiler Bay, Oregon. A graduate student named Karina Nielsen is standing there, looking out at the ocean, getting ready to do marine science. For a tool she has lugged along a gas-powered jackhammer. Her mission: make new tidepools. Lots of them.</p>
+
+				<p>Nielsen had studied salt marshes as an undergraduate at Brooklyn College in New York. She liked the marine environment but, she says, &ldquo;I didn&rsquo;t like getting stuck in the mud.&rdquo; As she considered graduate school, she happened across a biography of Jane Lubchenco. At the urging of an advisor, Nielsen applied to the Oregon State ecology program run by Lubchenco and Bruce Menge &mdash; who had met in Paine&rsquo;s lab at Washington. Nielsen remembers flying out for a visit, and touring the lab, and then because she&rsquo;d never really seen much of the West Coast heading down to the nearby shoreline. &ldquo;I looked in the tidepools at low tide and I was so taken with the cacophony of life,&rdquo; she says. &ldquo;I was like, &lsquo;There&rsquo;s no way I&rsquo;m not coming back here. This is where I want to work. What creates this amazing diversity of life? The patterns on the shore?&rsquo;&rdquo;</p>
+
+				<p>Nielsen needed a project to work on, and she and Menge had talked often about something he&rsquo;d observed. At the time the ideas of Connell and Paine were widely influential as an explanation for the patterns of life, and yet competition and predation didn&rsquo;t fully explain the patterns Menge was seeing in his own West Coast tidepool exploration. Paine, after all, had mainly studied a single tidepool area in a single spot off the coast of Washington. Menge&rsquo;s idea was that it was probably different from place to place, and that the shape of things wasn&rsquo;t all coming from the top of the food chain down. Basic oceanography meant that some tidepools had more food available than others, for example. What if the variability of food was also affecting what was living in the tidepool, perhaps even more than predators or competitors?</p>
+
+				<p>Nielsen thought about it, then wondered how you&rsquo;d go about testing something like that. Researchers liked testing the influence of predators because it was easy to find and remove them. To really be scientific about the bottom of the food chain you&rsquo;d have to vary the nutrients, and how do you vary nutrients in the ocean? Maybe, she remembers Menge saying, you could make your own tidepools. Control the flow of nutrients yourself. Nielsen knew of one other researcher who had chiseled tidepools by hand in order to test an idea. She called him, and he confirmed that it was a lot of work to chisel a tidepool to order. Her experimental design proposed 84 of them. Nielsen decided on the jackhammer.</p>
+
+				<p>Over a week of hard labor Nielsen constructed her tidepools. Then for the next two years she meddled with the distribution of nutrients &mdash; in this case, fertilizer granules &mdash; in each of the pools to see what would happen. She expected that adding fertilizer would increase the amount of algae, and then you&rsquo;d find a forked path &mdash; if you removed the Tegula and other grazers you&rsquo;d expect more algae, if you allowed the snails to stay you&rsquo;d expect the snail numbers to increase.</p>
+
+				<p>By now, you can probably guess the answer: it was more complicated than it appeared. Increasing the nutrients in the tidepool did lead the algae to bloom, and leaving the snails around did then limit the extent of that bloom. The effect was particularly pronounced in wave-protected pools where the grazers could eat more freely. But in protected and unprotected pools, more algae didn&rsquo;t lead to more snails! Perhaps, Nielsen wrote in the journal <em>Ecological Monographs</em> in 2000, algae are better than they appear at defending against being eaten by snails. Or perhaps the snails wandered in and out of the experimental tidepools so that their population was never limited by the amount of food available in the first place.</p>
+
+				<p>The way Nielsen puts it, the history of field ecology has been a search for ways to control just one part of the environment so you can test its influence. Sarah Baker figured out a way to do it with the physical environment, then Joseph Connell and Robert Paine pioneered new ways of manipulating relationships between life forms, and then here she was building new tidepools to control something previously uncontrollable, adding one more layer to the story, one more brick to the cathedral. &ldquo;This has been the maturation of ecology in general,&rdquo; Nielsen says. &ldquo;To take these different approaches, use them as different lines of evidence, and put them all together. If you kind of start getting the same answer from different approaches, you start to have strong confidence that you understand what&rsquo;s going on.&rdquo;</p>
+			</section>
+
+			<section class="snail-section">
+				<!-- 5 -->
+
+				<div id="trigger5"></div>				
+		        <figure class="shell">
+		        	<img class="bwshell" src="media/illos/snail1.png" />
+		        	<img src="media/illos/snail2.png" />
+		        	<img src="media/illos/snail3.png" />	        	
+		        	<img id="animate6" style="opacity: 1;" src="media/illos/snail4.png" />		        	
+		        	<img id="animate7" style="opacity: 0;" src="media/illos/snail5.png" />
+		        </figure>
+		        <script>
+        			var scene5 = new ScrollMagic.Scene({triggerElement: "#trigger5", ease: Circ.easeIn
+    					})
+                        .setTween("#animate6", 1.5, {opacity: "0"})
+                        .setTween("#animate7", 1.5, {opacity: "1"})
+                        //.addIndicators({name: "5 (duration: 200)"}) // add indicators (requires plugin)
+                        .addTo(controller);
+		        </script>
+
+				<!-- <h2>***</h2> -->
+
+				<p><span class="kicker">Why do we even bother with ecology</span> in the first place? What&rsquo;s the point of knowing why things live where they live? One way to answer is simply to say that we are a curious species and like to know about the world. Tidepools run deep in our psychology; we have been drawn to them since our first ancestors walked out of the Olduvai Gorge and encountered the shores of the Indian Ocean. There, in a Garden of Eden, the tide rolled in with food and rolled out to let people collect it. There early humans survived global food shortages caused by climate change. Some of our first art, our first symbolism, can be found in cave walls on the coast. To be near the ocean, to love it and want to describe it, might be foundational in our species&rsquo; understanding of ourselves.</p>
+
+				<p>A less romantic way to answer the question is to say that it is useful to us to know where things are and why. For a demonstration, we turn to a story that begins with sea snail free will.</p>
+
+				<p>Snails, it turns out, have personality. Individual Tegula snails behave differently, and they persist in being different, says UC Santa Barbara ecologist Jonathan Pruitt. Some snails are active and some are passive. Some are bold and some are cowardly. Some are explorers and some are homebodies. Well, some explorers find treasure, and some explorers get eaten by monsters. And unfortunately for sea snails the monsters in this case are real, meaning sea snail personalities and choices have life or death consequences. In a paper in <em>The American Naturalist</em> in 2012, for example, Pruitt and UC Davis ecologists Jay Stachowicz and Andrew Sih showed that adventurous Tegula tend to meet up with passive sea stars, while passive Tegula tend to meet up with adventurous sea stars. In other words: the personalities of snails and sea stars matter in determining what&rsquo;s where in a tidepool. Pruitt elaborated on this in a second paper in <em>The American Naturalist </em>in March 2017, in which he laid out the worst-case scenario for a Tegula community: a diverse group of sea stars moves in like a dragnet, and the snails can&rsquo;t escape no matter what course of action they choose.</p>
+
+
+				<figure class="col-sm-10 col-sm-offset-1 col-xs-12">
+					<img src="media/images/006_tegula_group.jpg" />
+					<figcaption>A group of black Tegula | Photo by <a href="https://www.flickr.com/photos/jenly/" target="_blank">Flickr user jenly</a></figcaption>
+				</figure>
+
+
+				<p>How does a snail make a choice, anyway? The same way we do: it weighs what it knows about the world with what it wants from the world, and then chooses to act or not act on its desires. Naturally, much of the decision comes down to what a snail perceives. To navigate its limited world a Tegula snail has near-useless eyes suitable only for indicating day or night. Its senses instead fire with a barrage of smells: predators, competitors, food, friends. &ldquo;We have to put our smell-vision on, and that&rsquo;s the way you understand the snails,&rdquo; says Sarah Gravem, a postdoctoral researcher in Bruce Menge&rsquo;s lab at Oregon State.</p>
+
+				<p>A snail can smell the chemical signature of everything out there that wants to eat them, for example, and act on that smell by running away. Because they sit still for so long it&rsquo;s tempting to think of snails as the cows in our terrestrial analogy, but really they are more like antelope or deer: grazers whose instinct is to flee at a whiff of danger. A Tegula snail can as much as double its rate of speed in pursuit of shallower areas where predators won&rsquo;t go. If it finds itself on a slope, it will just unclamp its foot and roll to the bottom. Escape strategies even help explain the pattern we see: one reason the dusky Tegula survives in deeper water while the brown and black Tegula do not, Jim Watanabe says, is that only the dusky snails can climb and hide in kelp leaves where sea stars won&rsquo;t go.</p>
+
+				<p>A few years ago, as a graduate student at UC Davis, Gravem decided to try and parse tidepool smells and what the snails would choose to do in response to them, and how cumulative individual decisions might alter the composition of a community. Like Baker, or Connell, or Paine, or Nielsen, she wanted to try and look for the ripple effects of those differences in the real world. So she set up a study plot in Horseshoe Cove, within sight of the Bodega Marine Lab on the rocky outer coast of Bodega Head. She hunkered down to watch <em>Tegula funebralis</em> make choices. And she found something pretty interesting: predators definitely didn&rsquo;t need to eat the snails to change the structure of the tidepool. Just scaring them away was enough. In pools where snails had been scared but not eaten, Gravem saw algae growth increase. And mood seemed to play a role. Sated, medium-size snails fled quickly when sea stars showed up. Hungry, medium-size snails kept eating even when they smelled sea stars. Individual differences, then, &mdash; whether a snail was fearful or brave &ndash; were part of the rule of what was found where.</p>
+
+				<p>It seemed like it was all going quite well, with an experimental approach &ldquo;likely to be a productive avenue of further investigation,&rdquo; as Gravem and Bodega Marine Lab biologist Steven Morgan wrote in the journal <em>Functional Ecology</em> in 2016.</p>
+
+				<p>Then nature knocked down the scaffolding.</p>
+
+				<figure class="col-sm-10 col-sm-offset-1 col-xs-12">
+					<img src="media/images/007_tegula_seastar.jpg" />
+					<figcaption>Sea star | Photo by Alison Young</figcaption>
+				</figure>
+
+				<p>Although Paine had labeled the ochre sea star the &ldquo;primary predator&rdquo; of black Tegula snails, Gravem had been instead employing a small, shy, nocturnal predator called Leptasterias, the six-armed sea star, to scare her snails. Leptasterias were much more common than Pisaster, &ldquo;a feature of the low intertidal fauna throughout its range,&rdquo; as Monterey marine scientist Edward Ricketts wrote in the classic tidepool guidebook <em>Between Pacific Tides</em>. Gravem reasoned that since Leptasterias were everywhere, they must exert an influence in the screaming chemical world that snails smell. Gravem would have a chance to test that influence, because while she was sitting and watching her snails make choices all the six-armed sea stars suddenly vanished. &ldquo;They just up and died,&rdquo; Gravem says. &ldquo;One hundred percent.&rdquo;</p>
+
+				<p>It wasn&rsquo;t meant to be part of her research on snail decisions, but Gravem couldn&rsquo;t help but notice that shortly thereafter the Tegula populations in her study area boomed. The snails were spreading welcome mats for each other, multiplying, and moving into formerly dangerous waters once policed by Leptasterias. It looked to her as if, when it came to predators, Leptasterias mattered quite a bit to this universe.</p>
+
+				<p>Then, barely a year later, all the Pisaster died. A marine epidemic the likes of which humans have never seen before, probably exacerbated by some of the warmest ocean conditions ever recorded, ripped through the ocean from Alaska to Baja, decimating the populations of more than 20 species of sea star. Nature was running its own predator-removal experiment, and Gravem, who just happened to be one of the people watching, noticed that the Tegula didn&rsquo;t respond to the Pisaster die-off. Amidst the catastrophe, it felt like a revelation. &ldquo;Everyone considers Pisaster this keystone predator, and we&rsquo;ve got this pipsqueaky little species that no one studies that&rsquo;s the one seemingly controlling the Tegula behavior and population,&rdquo; Gravem told me.</p>
+				<p>Some scientists have labeled the loss of the sea stars an extinction-level event. Although a handful of Pisaster have returned in many places, Leptasterias and Pycnopodia stars remain absent in 2017. There&rsquo;s perhaps a terrestrial analog in the mass die-off of hundreds of millions of mountain trees in California&rsquo;s ruthless recent drought: we&rsquo;re watching a landscape-level ecological shift. It seems unlikely in either case that whatever emerges will closely resemble what was once there.</p>
+
+				<p>In an article last year in <em>PLOS One</em>, Menge, Gravem and several collaborators compared the sea star die-off to other marine epidemics, to the disease that has annihilated global amphibian populations, and to humans&rsquo; near-eradication of sea otters. From an individual sea snail making a choice, you pull the thread and it winds and winds into a continent-scale study of an ocean&rsquo;s uncertain future. &ldquo;Based on prior research,&rdquo; Menge and Gravem wrote, &ldquo;the longer-term ecological consequences of this sea star wasting disease event could include wholesale elimination of many low zone species and a complete change in the zonation patterns of rocky intertidal communities along the west coast of North America.&rdquo;</p>
+
+				<div class="pull-quote">
+					<p class="quote">I started to think about the continuity of nature from generation to generation, and the way our children inherit a vastly diminished natural world, yet grow up finding it normal.</p>
+				</div>
+
+				<p>Why do people work for centuries to build these ideas about the world in the first place? So that we can predict what&rsquo;s coming, make better decisions, be better people. Policymakers developing marine protected areas can set the boundaries where science tells them they&rsquo;ll get the healthiest community structure. Matching what we know about where things live with what we know about how the ocean is changing may allow us to conserve life for longer. Citizen scientists can be deployed to generate tens of thousands of new observations, to turn into patterns, to generate questions.</p>
+
+				<p>Why were my daughter and I visiting the tidepools on a school day to begin with? We&rsquo;d joined a citizen science bioblitz to look for wasting (or recovering) sea stars. We&rsquo;d volunteered our eyes as part of an urgent modern endeavor to find out where things lived.</p>
+
+				<p>Before we left the tidepool that day, I watched Eleanor walk up to another tidepooler and ask, &ldquo;Did you know that all the starfish <em>died</em>?&rdquo; It didn&rsquo;t bother her to say it, but her casual curiosity about extinction really weirded me out. I started to think about the continuity of nature from generation to generation, and the way our children inherit a vastly diminished natural world, yet grow up finding it normal. As scientists say, the baseline shifts. And maybe this is the moral of the snails: baselines shift, but questions unite generations and cultures. Questions persevere. &ldquo;The pervasiveness of these questions over time is not because they are unanswerable,&rdquo; Gravem wrote to me in an email, &ldquo;but because they have so many good answers.&rdquo;</p>
+
+			</section>
+
+			<section class="snail-section">
+				<!-- 5 -->
+
+				<div id="trigger6"></div>				
+		        <figure class="shell">
+		        	<img class="bwshell" src="media/illos/snail1.png" />
+		        	<img src="media/illos/snail2.png" />
+		        	<img src="media/illos/snail3.png" />
+		        	<img src="media/illos/snail4.png" />
+		        	<img id="animate8" style="opacity: 1;" src="media/illos/snail5.png" />		        	
+		        	<img id="animate9" style="opacity: 0;" src="media/illos/snail6.png" />
+		        </figure>
+		        <script>
+        			var scene6 = new ScrollMagic.Scene({triggerElement: "#trigger6", ease: Circ.easeIn
+    					})
+                        .setTween("#animate8", 1.5, {opacity: "0"})
+                        .setTween("#animate9", 1.5, {opacity: "1"})
+                        //.addIndicators({name: "5 (duration: 200)"}) // add indicators (requires plugin)
+                        .addTo(controller);
+		        </script>
+
+			<!-- <h2>***</h2> -->
+
+			<p><span class="kicker">How does an idea take shape?</span> It&rsquo;s not in a straight line. It spirals. It builds its shell over centuries, or maybe even millennia.</p>
+
+			<p>Meanwhile the world changes, and we change, too. Our idea of who a scientist is and what they ask about changes, and will change. But as long as there is life on Earth, as long as there are unwritten rules that govern that life, the questions are there for anyone to ask, and the cathedral keeps rising.</p>
+
+			<p>Why do these things live where they live? Why are there so many of these things here and not there? Why is there life at all? Questions like these are why we have religion, Sarah Gravem says, or why we have creation stories. For the last 200 years we&rsquo;ve had people asking in their own way and in their own time. Alexander von Humboldt asked it of plants as armies marched and political revolutions gripped the world. Sarah Martha Baker asked it of brown algae near her family home two decades before women could vote in the UK, as all of Europe geared up for war, at a time when her voice as a scientist would have been dismissed outright by most of the scientific world. Doc Ricketts and John Steinbeck asked it of invertebrates in the Sea of Cortez in 1941, even as, they wrote in <em>Log from the Sea of Cortez</em>, &ldquo;thousands of miles away the great bombs are falling.&rdquo; Robert Paine asked it of the starfish and mussels and snails in the tidepools of a small Indian reservation off the coast of Washington, while the United States waged war in Vietnam. Graduate students in marine science ask it now of the tidepool even as the ocean boils with human-caused change, even as they march in rallies to try and preserve science-based political decisions. My four-year-old, happily ignorant of tradition, asked it of a &ldquo;rainbow shell&rdquo; because she spotted it and wanted a story to tell.</p>
+
+			<figure class="col-sm-8 col-sm-offset-2 col-xs-12">
+				<img src="media/images/008_tegula_rainbow.jpg" />
+				<figcaption>The rainbow shell | Photo by Eric Simons</figcaption>
+			</figure>
+
+			<p>There is material privilege in our ability to ask questions of nature. But there is also power: we humans, no matter our circumstances, ages, political systems, and backgrounds, have found common purpose in the tidepool. We move the world forward because each new person who asks the question adds a little bit to the answer we have built over the centuries. And each person who asks the question reminds themselves a tiny bit to find joy and wonder in nature. We can&rsquo;t preserve the world itself, but as much as we can it is our mission &mdash; as parents or conservationists &mdash; to try to protect a future in which the same questions occur to anyone who wants to ask them.</p>
+
+			<p>There is this famous paragraph of Steinbeck&rsquo;s from the <em>Log from the Sea of Cortez</em>:</p>
+
+			<blockquote>
+				<p>And it is a strange thing that most of the feeling we call religious, most of the mystical outcrying which is one of the most prized and used and desired reactions of our species, is really the understanding and the attempt to say that man is related to the whole thing, related inextricably to all reality, known and unknowable. This is a simple thing to say, but the profound feeling of it made a Jesus, a St. Augustine, a St. Francis, a Roger Bacon, a Charles Darwin, and an Einstein. Each of them in his own tempo and with his own voice discovered and reaffirmed with astonishment the knowledge that all things are one thing and that one thing is all things &mdash; plankton, a shimmering phosphorescence on the sea and the spinning planets and an expanding universe, all bound together by the elastic string of time. It is advisable to look from the tide pool to the stars and then back to the tide pool again.</p>
+			</blockquote>
+
+			<p>Our brains want us to see important things and filter out the rest, and so the commonplace Tegula snails generally get filtered. But if you stop to ask one a question the sea snail tells the story of the tidepool, and the tidepool tells the story of the universe.</p>
+
+		</div><!-- story -->
+	</div><!-- row -->
+</div><!-- container -->
+</article>
+
+<!--IMPORTANT: Project scripts: -->
+<script src="/js/biodiversity-scripts.js"></script>
+<script src="/bn-biodiversity/js/biodiversity-scripts.js"></script>
+
+
+<script>
+//page specific scripts
+
+	//active status for nav and more drawers
+	$('.nav8').addClass('active');	
+	$('.more8').addClass('current_story');
+
+</script>
+
+
+
+</body>
+</html>

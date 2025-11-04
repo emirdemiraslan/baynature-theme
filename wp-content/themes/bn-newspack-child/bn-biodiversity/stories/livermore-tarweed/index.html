@@ -1,0 +1,491 @@
+<html>
+<head>
+	<title>Livermore Tarweed</title>
+	<meta charset="utf-8"> 
+	<meta name="viewport" content="initial-scale=1">
+	<meta property="og:title" content="The Weird, the Rare and the Ugly"/>
+	<meta property="og:description" content="Connect to the natural world of the SF Bay Area! We bring you trail and park reviews and photos, local nature journalism, and local nature event listings."/>
+	<meta property="og:url" content="http://baynature.org/"/>
+	<meta property="og:site_name" content="Bay Nature"/>
+	<meta property="fb:admins" content="1403244759"/>
+	<meta property="og:image" content="https://baynature.org/wp-content/uploads/2012/08/baynature-Orange-logo-150px.jpg"/>
+	<link rel="shortcut icon" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/images/favicon.ico"/>
+
+
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/css/baynature.scss" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/style.css?1435006863" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/style-print.css" type="text/css" media="print"/>
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/jquery.c2selectbox.css" type="text/css" media="screen"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+	<!--
+	<link href="/bn-biodiversity/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/bn-biodiversity/js/jquery.min.js"></script>
+    <script src="/bn-biodiversity/js/bootstrap.min.js"></script>
+
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+	-->
+
+
+
+    <!-- bootstrap css -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<!--leaflet-->
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <!--open sans headline font -->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<!--libre baskerville font-->
+	<link href='https://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
+	<!-- PROJECT CSS FILE -->
+		<!--local-->
+	<link rel="stylesheet" href="/css/biodiversity-stylesheet.css">
+		<!--web-->
+	<link rel="stylesheet" href="/bn-biodiversity/css/biodiversity-stylesheet.css">
+
+
+	<!-- jquery cdn -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<!-- boostrap cdn -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<!--maps js -->
+	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+	<div class="container-fluid">
+		
+		<div class="navbar-header navbar-left">
+	    	<a id="logo" class="navbar-brand navbar-left hide-small" href="http://baynature.org" >
+	        	<img alt="Bay Nature" src="/bn-biodiversity/css/bnlogo.png">
+	    	</a>
+
+	    	<div class="nav-head navbar-link navbar-left">
+	    		<a href="/bn-biodiversity">Weird, Ugly, Rare</a>
+	    	</div>
+
+    	</div>
+
+    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<i class="fa fa-bars fa-lg"></i>
+    	</button>
+
+		<button type="button" onclick="tweetBtn()" class="navbar-toggle nav-share" data-toggle="collapse" data-target=".share-collapse">
+			<i class="fa fa-twitter fa-lg"></i>
+		</button>
+
+		<!-- <a href="http://www.facebook.com/sharer.php?u=https://seangreene.github.io/bn-biodiversity" target="_blank" > -->
+			<button onclick="fbBtn()" type="button" class="navbar-toggle nav-share" data-toggle="collapse" data-target=".share-collapse">
+				<i class="fa fa-facebook fa-lg"></i>
+			</button>
+		<!-- </a> -->
+
+		<a 	href="mailto:?Subject=The Weird, the Rare and the Ugly&amp;Body=Check%20out%20these%20Bay%20Nature%20stories http://seangreene.github.io/bn-biodiversity">
+			<button type="button" class="navbar-toggle nav-share hide-small" data-toggle="collapse" data-target=".share-collapse">
+				<i class="fa fa-envelope fa-lg"></i>
+			</button>
+		</a>
+
+    	<div class="clear"></div>
+
+  		<div class="navbar-collapse collapse">
+      		<ul class="nav navbar-nav">
+
+				<div class="nav-item nav1">
+					<li>Livermore tarplant</li>
+					<a href="/bn-biodiversity/stories/livermore-tarweed" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav5">
+					<li>Mission Blue butterfly</li>
+					<a href="/bn-biodiversity/stories/mission-blue" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav4">
+					<li>Greater sage grouse</li>
+					<a href="/bn-biodiversity/stories/sage-grouse" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav3">
+					<li>Clapper rail</li>
+					<a href="/bn-biodiversity/stories/clapper-rail" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav2">
+					<li>Galapagos damselfish</li>
+					<a href="/bn-biodiversity/stories/galapagos-damselfish" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav6">
+					<li>Plant tk</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav7">
+					<li>California sea blite</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav8">
+					<li>Ant tk</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav9">
+					<li>insect / herp / invertebrate</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav10">
+					<li>San Francisco garter snake</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<header>
+	<div class="row">
+
+		<div class="col-sm-10 col-sm-offset-1 col-xs-12">
+
+			<div class="museum-card col-sm-6">
+
+				<h1>The tarweed lives happily ever after</h1>
+
+				<h2>Livermore Tarweed</h2>
+
+				<hr></hr>
+
+				<div class="card-info">
+					<p>Habitat: <span>Alkali flats, Livermore Valley</span></p>
+					<p>Population: <span>Three known populations</span></p>
+					<p>Protection status: <span>Candidate for listing</span></p>
+				</div>
+				
+			</div>
+
+			<div class="art-box col-sm-6">
+				<figure>
+					<img src="media/illos/tarweed.jpg" />
+				</figure>
+
+			</div>
+
+		</div>
+	</div>
+</header>
+
+<article>
+<div class="container">
+	<div class="row">
+
+		<div class="story">
+
+			<div class="conversation">
+
+				<p><em>A man said to the universe:</em></p>
+
+				<p><em>“Sir, I exist!”</em></p>
+
+				<p><em>“However,” replied the universe,</em></p>
+
+				<p><em>“The fact has not created in me</em></p>
+
+				<p><em>A sense of obligation.”</em></p>
+
+				<p>&mdash; Stephen Crane</p>
+
+			</div>
+
+			<h2>1. MEET THE TARWEEDS</h2>
+
+			<p>There is a plant called the Livermore tarweed. <i>Why would anyone care about a plant called Livermore tarweed</i>? is one reasonable question you might ask. Let’s just get the bad news out of the way first: the plant is drab. Its flowers are pedestrian. It is hairy, it smells of paint-thinner, and it exudes a sticky resin that, in the unlikely event of your walking through a field of Livermore tarweeds, would accompany your pants home. One person told me that sheep are rumored to rub their faces in tarweed to detox. Cows, though, find it loathsome.</p>
+
+			<p>The Livermore tarweed is also exceedingly rare. There are three known populations of it on earth. All three live within a few miles of each other in the Livermore Valley, a narrow east-west crease in the Diablo range on the boundary between the San Francisco Bay Area and the Central Valley. A botanist named Heath Bartosh recently spent 300 hours over three years combing the valley and nearby foothills for more, but didn’t find any. While he was searching, a road was built over one of the populated fields, destroying the plants there. A figure-eight-shaped BMX course appeared in the middle of another field.</p>
+
+			<figure class="col-sm-8 col-xs-12 right">
+				<img src="media/images/tarplant.jpg">
+				<figcaption>Photo by Lech Naumovich, Golden Hour Restoration Institute</figcaption>
+			</figure>
+
+			<p>If a Livermore tarweed sprouted in your garden, you’d pull it. It is a weed, after all, and it looks like one. Since it grows instead in the wild -- or at least, in an undeveloped field in the suburbs -- it is much easier to ignore it. Which is precisely what the vast majority of people, me included, have done. “We will conserve only what we love,” environmentalist Baba Dioum began one of the most-quoted lines in conservation history. In the not-improbable case that the Livermore tarweed goes extinct, how much could you say it was its own fault for being born unlovely?</p>
+
+			<p>Heath Bartosh, a friend to underdogs, has come to love the Livermore tarweed. A few months ago, he took me to view the plant’s largest remaining population. We met in a dry field in the Livermore Valley on the morning of a 105-degree day. The rare tarweed grows behind barbed-wire fence, on the edge of a dusty area called an alkali scald. It is surrounded by more common tarweeds and by the withered carcasses of annual grasses, which create a palette Crayola would struggle to name anything other than “brown.” Suburban development, in the form of ranch-style houses and wide flat streets named after horse breeds, looms on the horizon. Bartosh pointed to an orange fence shimmering at the far end of the field – the boundary of a former landfill, he said. “It’s got a little public opinion problem because it’s not a healthy forest,” Bartosh had warned me in advance. But all around us at knee height were the unspectacular dots of the Livermore tarweed in bloom, cheerful yellow flotsam rising on the crests of a sea of plant death.</p>
+
+			<figure class="col-sm-8 col-xs-12 right">
+				<img src="media/images/bartosh.jpg">
+				<figcaption>Heath Bartosh</figcaption>
+			</figure>
+
+			<p>Bartosh wore jeans, boots, and a cherry red floral-print long-sleeve shirt. His head, neatly shaved and bare, radiated the hot sunshine. He has spent a lot of time in this particular field and he introduced it to me enthusiastically. “I like to refer to this as a poor man’s Carrizo Plain,” he said, referring to the national monument that explodes with wildflower fireworks and rare animals every spring. “You just don’t have the antelopes and the sandhill cranes and stuff. But you have at least a lot of the same genus of plants.”</p>
+
+			<p>In 2014 Bartosh petitioned the California Department of Fish and Wildlife to protect the Livermore tarweed in this field under the California Endangered Species Act. This was more audacious a request than I had realized: the state of California has not listed a plant since 2007. Only six plants have made it onto the state list in the 21st century. (The federal government, only marginally better, has listed five California plants since 2005 – but as we’ll see, federal listing has its own problems.) Last April the Fish and Game Commission granted the Livermore tarweed a hearing, and found there was “sufficient scientific information to indicate listing may be warranted.” Until the commission makes a final decision this year about whether or not to list it, the Livermore tarweed enjoys the only protection it has ever had. </p>
+
+	<p class="hide-desktop continues-below"><em>Story continues below</em></p>
+	<div class="subscribe-story col-sm-5 left col-xs-12">
+
+		 <form class="form-inline newsletter" action="https://tinyletter.com/weirduglyrare" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/weirduglyrare', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+		 	<h2>Sign up</h2>
+		 	<p>Receive an email when we publish the next story in 'Weird, Ugly, Rare.'</p>
+		 	<div class="input-group col-sm-8 col-sm-offset-2">
+		 		<input type="text" class="form-control" name="email" id="tlemail" placeholder="Email address" />
+				<span class="input-group-btn">
+		 			<input type="hidden" value="1" name="embed"/>
+		 			<button class="btn btn-default" type="submit">Subscribe</button>
+				</span>
+		 	</div>
+		 </form>
+	</div>
+
+			<p>Livermore tarweed champions like Bartosh consider it both a keystone species and a template for managing thousands of other imperiled-yet-unprotected plants. If the tarweed petition succeeds, Bartosh says, there will be many more petitions like it.</p>
+
+			<p>It makes a nice Cinderella story: a rare and unappreciated plant and its band of rag-tag allies wins the acceptance of the wider world. (“‘Rare plants, rare people,’” Bartosh told me. “You’ve got a lot of weirdos out there in the plant world, for sure.”) But while the Livermore tarweed needs some catchy narrative if people are going to learn to love it and protect it, fairy tale isn’t the right genre. In the fairy tale, Cinderella is beautiful all along. The ugly duckling turns into a swan. The frog becomes a prince. The audience is always aware of the hero’s true worth; the tension is just whether the other characters will figure it out, too. The Livermore tarweed is no Cinderella. It desires no transformation. It desires no appreciation. Even its staunchest defenders make no effort to convince anyone of its intrinsic beauty. “Happily ever after,” in this case, means accepting the tarweed’s fidelity to its own ugliness.</p>
+
+			<p>So. Why <em>would</em> anyone care about a plant called Livermore tarweed?</p>
+
+			<h2>2. HEROIC TARWEEDS</h2>
+
+			<figure class="cartoon" />
+				<img src="media/images/Tarweed-Cartoon1.jpg" />
+			</figure>
+
+			<p>A problem you run into right away in telling stories about rare ugly-smelly-hairy weeds is that they’re difficult to anthropomorphize. Take the example of the tree as a botanical protagonist a person can comprehend: You’re an individual, you’re tall, and things move slowly, which is how JRR Tolkein imagined the Ents in <i>The Lord of the Rings</i>, or how Ursula K. Leguin imagined her heroic oak tree in “The Direction of the Road.” “The ancient trees,” Zach St. George wrote <a href="https://www.guernicamag.com/features/they-seem-to-be-immortal/">recently in <i>Guernica</i></a>, “always seem to inspire this measuring of their lives against ours.” My three-year-old daughter likes to peer up into the canopy and conclude, “That tree is bigger than me.”</p>
+
+			<p>The annual plant is the red-jacket character in Star Trek. People are a storytelling species that needs to pin some identifiable quality on the species we protect; by design tarweeds exist as expendables. They’re not meant to be empathized with, or thought of as individuals. They’re a process, a waveform. You might as well try to anthropomorphize the tides.</p>
+
+			<p>As a survival strategy in an era defined by human influence on the world, dying every year might be as much a challenge as a lack of beauty. But some annual plants thrive in the role of sidekick. The reproductive fitness of tropical milkweed, you could say, has benefited dramatically by the plant’s relationship with the monarch butterfly. People love the monarch, so they plant the milkweed (even when they’re not supposed to). The Livermore tarweed has important relationships with insects, too. Alas, none of them are the charismatic monarch. If the plant goes extinct, you might blame its insect friends, too.</p>
+
+			<p>The tarweed is probably the host plant for a species of moth in the genus <em>Heliothodes</em>. No one has actually been able to find or name the moth. If the Livermore tarweed goes extinct no one ever will. So far, a lepidopterist named Terry Sears has carefully searched one field for evidence of the moth’s existence without success. He and other scientists haven’t had a chance to search the other. One of Charles Darwin’s famous validated predictions was that scientists would find a moth with a pollinating proboscis to match a uniquely shaped Madagascar orchid; this is a similar potential story happening right here, and how exciting you find it is probably only dependent on how much psychological baggage you have about tarweeds not being orchids and Livermore not being Madagascar.</p>
+
+			<div class="pull-quote">
+				<p class="quote">&ldquo;Tarweeds are immensely drought-tolerant, beautiful, smell lovely, ... and much more. And yet, thanks to an unfortunate name, they get no respect.&rdquo;</p>
+				<p class="quote-credit">Billy Krimmel</p>
+			</div>
+			<div class="clear"></div>
+
+			<p>The tarweed is also a host for predatory insects like assassin bugs. Several years ago, a then-UC Davis graduate student named Billy Krimmel looked closely at common tarweed and saw a lot of dead insects -- “carrion” -- stuck to the plant. He wondered how all these dead bugs might benefit the plant, so he went through the trash cans at the UC Davis fruit fly lab, and collected a bunch of dead fruit flies, and then stuck the fruit flies to plants, and kept track of what happened. What happened was the plants with the dead flies on them quickly grew into massive, thriving bug cities. Most of the new bugs were predators, and in addition to eating the carrion they were eating up all the herbivorous biting pests. Krimmel had an idea that maybe the plant was doing this on purpose. Its sticky hairs were serving as a “tourist trap,” he says, for all kinds of insects, and the carrion was attracting predators that would then also clean up any undesirables. Some predators had clearly evolved with sticky plants, because they had specific adaptations to avoid getting stuck themselves. This study became Krimmel’s dissertation, and a foundation for his enduring respect for the tarweed plants. “It’s so <em>intricate</em>,” he told me. “That’s what brought me to the whole thing, these intricate stories you can miss if you’re not paying attention.”</p>
+
+			<p>Krimmel, who now runs a native plant landscaping business out of Davis, is one of a handful of humans who is excited to play the gene-spreading role for tarweed. He encourages clients to plant <em>Madia elegans</em>, a tarweed known as common madia. He agrees it’s a tough sell for a homeowner worried about what the neighbors will think. The argument he’s settled on is, “A plant can be more than a decoration. It can have function.”</p>
+
+			<p>Krimmel’s tolerant definition of “function” encompasses a range of answers, from “it has fruit to eat” to “it reminds me of my grandmother.” But there’s no mistaking, he says, the wide variety of services a tarweed can provide. “Tarweed has been valued by wildlife for millions of years,” he wrote <a href="http://www.restorationlandscaping.com/bugscape-blog/2015/4/20/growing-tarweeds-from-seed" target="_blank">in a blog post</a> in which he explains how to grow common tarweed from seed. “It was a staple to the Pomo Indians, who ate its seeds for protein. Tarweeds are immensely drought-tolerant, beautiful, smell lovely, provide natural, chemical-free pest control, feed birds, protect pollinators, and much more. And yet, thanks to an unfortunate name, they get no respect.”</p>
+
+			<p>Why even call it a weed in the first place, Kimmel wants to know. Just because it grows in the wild? To quote Ralph Waldo Emerson, “What is a weed? A plant whose virtues have not yet been discovered.” Furthermore, Krimmel says, tarweeds don’t smell like tar to him. “I describe it as more a buttery lemon smell,” he says. “The name is derogatory.”</p>
+
+			<h2>3. SMELLY TARWEEDS</h2>
+
+			<figure class="cartoon" />
+				<img src="media/images/Tarweed-Cartoon2.jpg" />
+			</figure>
+
+			<p>Perhaps the best conservation narrative for the Anthropocene is a story about people that necessarily places the imperiled species on the stage with us. And so, a brief note here on the quest to define the limitations of the human sense of smell. People are terrible at accurately describing new sensory experiences. Whether this is a perception problem -- we can’t distinguish smells or tastes or even emotions very accurately -- or a linguistic problem -- we perceive but cannot translate into words -- is an active investigation.</p>
+			
+			<figure class="col-sm-6 col-xs-12 right">
+				<img src="media/images/tarplant3.jpg">
+				<p>&nbsp;</p>
+				<img src="media/images/tarplant4.jpg">
+
+				<figcaption>Photos by Lech Naumovich, Golden Hour Restoration Institute</figcaption>
+			</figure>
+
+			<p>Edward Lee Greene, the first taxonomic botanist on the faculty at UC Berkeley, rearranged the classification of the tarweeds possibly in part based on the aroma of their glands. Among other inventions he created a genus he called <em>Deinandra</em> for a group of often like-smelling tarweeds. His classification was rejected, however, for decades, until DNA techniques allowed botanists like Jepson Herbarium Curator Bruce Baldwin to prove that Greene had been mostly correct in his organization. Baldwin resurrected the <em>Deinandra</em> name, which is now the largest single genus of California tarweeds.</p>
+
+			<p>As I stood amongst the tarweeds with Heath Bartosh and three native plant experts from the California Department of Fish and Wildlife who had joined us on a scouting mission, I asked them to describe the particular smell of the Livermore tarweed.</p>
+
+			<p>“That’s a tough one,” Bartosh said. “It’s, um, I dunno. In terms of other tarweeds, it’s more bright.”</p>
+
+			<p>“That one,” CDFW environmental scientist Cherilyn Burton said, pointing to a more common tarweed, <em>Holocarpha virgata</em>, also flowering in the field, “has, like, a mintier smell? This is more herbal or something.”</p>
+
+			<p>“There’s a fire-following plant on Mount Diablo that comes out in force called whispering bells,” Bartosh said, addressing the larger philosophical problem. “I couldn’t put a phrase or a word on that smell. Somebody we were working with was like, ‘It smells like wet balloon.’ That’s it! It smells like wet balloon!”</p>
+
+			<p>How to apply words to the aroma of the Livermore tarweed has tormented me. Chemically, the smell comes from a variety of volatile organic compounds like terpenes and pinenes. Since those are also emitted by pine trees, and particularly pine sap, there is obviously a suggestion of pine. Terpenes can be distilled into turpentine, so there is that minerally whiff of paint-thinner. Tarweeds emit camphene, which Wikipedia describes as “pungent.”</p>
+
+			<p>Perhaps there is a touch of lemon. Butter would not also occur to me, but I have a subjective view of the universe. However you describe the Livermore tarweed’s aroma, it is unique. If one aspect to biodiversity loss is the “extinction of experience,” as the writer and lepidopterist Robert Michael Pyle first put it, the loss of the Livermore tarweed would leave the world with just slightly poorer an olfactory landscape. Its disappearance would rob us of a stage prop in the story about ourselves.</p>
+
+			<h2>4. DISPLACED TARWEEDS</h2>
+
+			<figure class="cartoon" />
+				<img src="media/images/Tarweed-Cartoon3.jpg" />
+			</figure>
+
+			<p>On any California hike you take, the botanical backdrop will be constructed mainly of plants introduced by people in the last two centuries. The Livermore tarweed story is plenty familiar in this context: it’s a victim imperiled because the very essence of California is that everyone wants to move here, and everyone when they move here wants “here” to look more like wherever they came from. This is our untenanted dreamscape, and the tarweed is inherited furniture. For native plant defenders this version of the narrative is a tragedy -- but the tragedy is ours; we might realize too late that the furniture was uniquely suited to the setting. It’s the parable with which Stanford biologist Paul Ehrlich opens his book <i>Extinction</i>, with species as the rivets in an airplane:</p>
+
+			<blockquote>A dozen rivets, or a dozen species, might never be missed. On the other hand, a thirteenth rivet popped from a wing flap, or the extinction of a key species involved in the cycling of nitrogen, could lead to a serious accident. In most cases an ecologist can no more predict the consequences of the extinction of a given species than an airline passenger can assess the loss of a single rivet.</blockquote>
+
+			<p>As a thing that actually exists, natural California runs on a logic apart from the one that botanical and human transplants have brought with them from abroad. And large swaths of undeveloped California are populated with all variety of tarweeds, because tarweeds have that logic in their DNA.</p>
+
+			<p>For Jepson curator Bruce Baldwin, one of the world’s leading experts on tarweeds and an editor of the <i>Jepson Manual</i>, the California plant enthusiast’s Bible, the first step in teaching an appreciation for tarweeds is to teach an appreciation for the unique features of the state. There are something like 90 tarweed species here, all of which evolved from a single common ancestor in what botanists call the “California Floristic Province” -- a global biodiversity hotspot for plants. The Livermore tarweed is limited to a particular habitat within that province, growing only in relatively rare alkali grasslands and meadows on the edge of barren scalds and vernal pools. Its setting, and the blazing late-summer day we went to look for it, are proof of its clever adaptation to the Mediterranean climate; while other plants wither away in September after months of dry heat, the Livermore tarweed blooms.</p>
+			
+			<figure class="col-sm-6 col-xs-12 left">
+				<img src="media/images/tarplant8.jpg">
+				<p>&nbsp;</p>
+				<img src="media/images/tarplant6.jpg">
+				<figcaption>Photos by Lech Naumovich, Golden Hour Restoration Institute</figcaption>
+			</figure>
+
+			<p>Baldwin grew up exploring around Arroyo Grande, in central California. He remembers the hills coming alive in the summer with the yellow flowers of grassland tarweed, <em>Deinandra increscens</em>. As a young botanist he became fascinated by the diversity of the tarweed tribe, and by its evolutionary origins in California. The common ancestor of the tarweeds probably lived in cooler, mid-elevation spots like its sister group, the common medicinal plant genus <em>Arnica</em>. As California’s climate became drier and warmer, the tarweeds moved downslope and diversified into all the different habitats they enjoy today. Perhaps because that radiation occurred recently, though, tarweeds are notoriously difficult to distinguish from each other and identify in the field. Baldwin teaches weekend-long courses solely on tarweed identification, and he says botanists are always hungry for more.</p>
+
+			<p>Thin and soft-spoken, Baldwin is a legend in California botany -- “our generation’s Jepson,” Bartosh called him. Baldwin is the curator of a 96,000-specimen herbarium, an editor of the definitive guidebook to California plants, and <a href="http://www.tropicos.org/Person/37661?tab=names" target="_blank">the first to formally describe 74 plant species</a>, among them the Livermore tarweed. Twenty years ago he demonstrated the value of using a particular DNA region to understand evolutionary relationships between closely related plants, a technique that is still widely used. His proof of concept was the tarweeds, making tarweeds, “like, fruit fly special,” Krimmel told me, as a foundational genetic case study. In 1992 Baldwin used his new approach to confirm an earlier finding that one of the most charismatic conservation cases on the planet, the Hawaiian silversword, is a direct descendant of California tarweed. “It’s not so much about trying to sell people on whether or not that’s a beautiful plant, which could be a tough sell,” Baldwin said. “Looking at them microscopically, under a dissecting scope, there are a lot of different features that excite students.”</p>
+
+			<p>Baldwin doesn’t have to make a moral case for conservation for the Livermore tarweed, because he has seen its DNA, fit it into the universe, and found it worthy. “We don’t have a big emotional connection to plants, as much as a furry critter,” Baldwin says. “But it’s important to realize that plants in some ways are more foundational in the ecosystem than furry critters.”</p>
+
+			<h2>5. DISRESPECTED TARWEEDS</h2>
+
+			<figure class="cartoon" />
+				<img src="media/images/Tarweed-Cartoon4.jpg" />
+			</figure>
+
+			<p>Why not just list the tarweed as endangered and let the scientists have their fun, while we resume blissful ignorance? In part because the federal Endangered Species Act provides dramatically weaker protections for plants than it does for animals. Unlike animals, an endangered plant receives protection from the law only on federal land. If the very last federally endangered Livermore tarweed grows on your private property, you are free to bulldoze it to build a better BMX course. The government, one recent report says, spends 25 times more on the recovery of endangered animals than it does on endangered plants. Such unequal treatment, says California Native Plant Society soil ecologist Emily Roberson, might trace back to English common law: Animals move across the land, so they’re the property of the state. Plants grow on the land, so they’re private property.</p>
+
+			<p>The California Endangered Species Act is slightly stronger for plants – it’s just, as we saw, exceedingly difficult to actually get one on the list. When I mentioned to Roberson that the Livermore tarweed was under consideration for state listing, she guffawed. “I can’t remember the last time that happened,” she said.</p>
+
+			<p>Since 2002, Roberson has directed a Native Plant Conservation Campaign meant to remedy the status of plants as “second class conservation citizens.” Her two main goals are to make the Endangered Species Act stronger for plants, and to increase funding for federal plant staff. “There is no one to whom I have explained this problem with the Endangered Species Act that has said anything other than, ‘That’s crazy,’” Roberson told me. “Congressional staff, scientists, environmentalists who are not plant people, climate activists, wilderness and wildlife people, even conservatives. It makes no sense to anybody.”</p>
+
+			<p>Anybody might appreciate Roberson’s petition. And yet, Roberson says, no one expects action. The petition is more an attempt to succor botanists as they wait for cultural change. “How we feel about an animal affects its survival,” <i>Wild Ones</i> author Jon Mooallem says in a <a href="http://blog.ted.com/the-strange-story-of-the-teddy-bear-jon-mooallem-at-ted2014/" target="_blank">2014 Ted Talk</a>; right now Americans simply don’t feel that way -- or realistically, any way at all -- about plants. “Plants in general play a very negligible role in the public discourse about extinction,” says Ursula Heise, a professor at UCLA’s Institute of the Environment who’s working on a book about cultural values and extinction. “Biodiversity conservation is at bottom a cultural and political issue, not a scientific one.”</p>
+
+			<p>A surprising amount of cultural bias enters into our thinking about plants, and so into our laws for and attitudes toward their conservation. For example, says UC Santa Cruz emeritus professor of botany Lincoln Taiz, we tend to think of plants, particularly flowering plants, as feminine. (And vice-versa; Heise points out that Western literature with its “my love is like a red red rose” has exhausted the floral metaphors for women.) It took scientists in the Age of Enlightenment more than a century to discover the importance of pollination, which Taiz argues is in part because they simply couldn’t believe that a flower -- so obviously female -- could have male reproductive parts. Taiz and his wife Lee, who are working on a book on the subject of plant sex, have traced this attitude back to at least the Paleolithic and our hunter-gatherer ancestors. The Greeks, he says, associated action with men and passivity with women; they thought plants were passive and so idealized them as feminine. The Greeks influenced the scientists, which is why the scientists argued for 150 years about whether flowers could actually have male parts. Theophrastus, the Greek student of Aristotle who many consider the father of botany, declared in his <em>Enquiry Into Plants</em>, “Any plant always appears to be, as indeed it is, more comely and more perfect when it makes new growth, blooms, and bears fruit.”</p>
+			<div class="pull-quote">
+				<p class="quote">&ldquo;Plants in general play a very negligible role in the public discourse about extinction. Biodiversity conservation is at bottom a cultural and political issue, not a scientific one.&rdquo;</p>
+				<p class="quote-credit">Ursula Heise</p>
+			</div>
+			<div class="clear"></div>
+
+			<p>It’s probably no coincidence that the rare plant that stirs protective feeling is the damsel in distress. The Baker’s larkspur, the last plant added to the California endangered species list, is one such fragile beauty, with royal purple flowers that cascade down a luxuriant forest-green stem. Baker’s larkspur <em>is</em> a Cinderella story: an overlooked and imperiled beauty threatened by a hostile outside world. If Bartosh’s petition succeeds and the Livermore tarweed joins the Baker’s larkspur on the state endangered species list this spring, it will be because botanists found a different -- yet still effective -- way to tell the tarweed’s story.</p>
+
+			<p>It’s not out of the question that people embrace the new narrative and learn to appreciate non-charismatic plants, Taiz says. After all, cultures change. Drought has convinced gardeners to forego beautiful flowers in favor of “more humble” native plants that cope with less water. Rachel Carson convinced people that DDT didn’t epitomize modern progress. Taiz recalled, more to the point, a <a href="https://www.pinterest.com/pin/414612709415342240/" target="_blank">Volkswagen ad campaign</a> from the 1960s that deliberately embraced ugliness, with a photo of the front of the van and the tagline “A face only a mother could love.” (Another one from the same era: “If you can sell her on this, you can sell her on anything.”) “We don’t want to make enemies of beautiful flowers,” Taiz told me, “but to sell the tarweed as a kind of Volkswagen.”</p>
+
+			<p>(For the record, “The tarweed is kind of a pretty plant,” Taiz said.)</p>
+
+			<p>What is the tarweed’s story? It’s not heroic epic. It’s not buddy comedy. It’s not tragedy, for the plant at least. It’s not elegy, which we write for beloved animals, and might write for a tree, but wouldn’t consider for a weed. “There’s something insidious about the narrative template,” Heise said. “Narratives are indispensable tools in relating to nature, but they also block out certain parts of it.”</p>
+
+			<h2>6. HAPPY EVER AFTER TARWEEDS</h2>
+
+			<figure class="cartoon" />
+				<img src="media/images/Tarweed-Cartoon5.jpg" />
+			</figure>
+
+			<p>When Heath Bartosh and his wife were first dating, he wanted to convince her of the merit of his love for California native plants. He thought about it carefully and selected, for her introduction to botanizing, <i>Fritilaria</i> -- “the chocolate lily.” It is “kind of weird” to go looking for native plants, Bartosh agrees. But you just need to get people out in the field. Once you’re there, he says, a plant -- even the chocolate lily -- fades into its setting. “Being out there, it’s more about seeing a place,” Bartosh told me. “It’s more about thinking about time, and looking at the plants and thinking about the time they’ve been there evolving, or how they got there.”</p>
+
+			<p>The Livermore Valley has been a basin for millions of years, since the Miocene Era, and scientists think the Livermore tarweed diverged from its nearest relative in the more recent Pliocene. In other words, several million years ago the Livermore tarweed first took root as a species in the same region where it lives today – and never left. Mount Diablo rose and eroded, an ice age came and went, a valley of gentle hills flooded and became the San Francisco Bay, people arrived, and arrived again with cows, and always in the background the short-lived Livermore tarweed bloomed anonymously. To connect with the tarweed is to connect with that staggering amount of time. To protect it is to protect the result of a process beyond our emotional comprehension.</p>
+
+			<p>The Germans, Ursula Heise told me, don’t have a direct equivalent to the Endangered Species Act. Instead they have an act animated by the preservation of <i>Landschaft</i>, landscape -- which, Heise says, includes human-transformed landscape. “You protect species so as to preserve these landscapes,” she says. Norway has a “Nature Diversity Act” that protects rare habitats in addition to rare species. Ecuador and Bolivia have tied biodiversity to indigenous cosmology and enshrined conservation in their constitutions. Native Californians encouraged tarweed growth as part of a productive grassland ecosystem.</p>
+
+			<p>You might always find the Livermore tarweed itself unappealing yet appreciate it as a functioning piece in an exceedingly rare landscape. “I guess I ended up developing a soft spot for tarplants,” Bartosh says. “When everything else is out there is dry, you can come into places where you see big swaths of yellow. I’d love to see the city adopt Livermore tarplant as its official plant.”</p>
+
+			<p>Which brings up one last story I’d like to tell you about the Livermore tarweed. That field Bartosh and I have been standing in for an hour -- the city owns it. Livermore controls the land on which grows the last stand of the Livermore tarweed.</p>
+
+			<p>So what’s the problem?</p>
+
+			<p>Bartosh laughs. The city is considering digging up the land so it can construct wetland habitat for threatened red-legged frogs.</p>
+
+		</div>
+
+	<div class="row">
+		<div class="more">
+			<span>More    </span> <i class="fa fa-bars fa-3x"></i> 
+		</div>
+	</div>
+</div>
+</article>
+
+
+<footer>
+	<div class="row" id="more-drawer">
+			<i class="fa fa-times fa-3x"></i>
+
+		<div class="col-sm-12" id="more-stories">
+			
+			<h3><a href="/bn-biodiversity">Weird, Rare, Ugly</a></h3>
+
+			<div class="more1 thumbnail">
+				<a href="" >
+				<img src="media/illos/tarweed.jpg" class="img-thumbnail">
+				<h4>Livermore tarweed</h4>
+				</a>
+			</div>
+			<div class="more2 thumbnail">
+				<a href="/bn-biodiversity/stories/galapagos-damselfish" >
+				<img src="media/illos/azurina.jpg" class="img-thumbnail">
+				<h4>Galapagos damselfish</h4>
+				</a>
+			</div>
+			<div class="more3 thumbnail">
+				<a href="/bn-biodiversity/stories/clapper-rail" >
+				<img src="media/illos/clapper-rail.jpg" class="img-thumbnail">
+				<h4>Clapper rail</h4>
+				</a>
+			</div>
+			<div class="more4 thumbnail">
+				<a href="/bn-biodiversity/stories/sage-grouse" >
+				<img src="media/illos/grouse.jpg" class="img-thumbnail">
+				<h4>Greater sage grouse</h4>
+				</a>
+			</div>
+			<div class="more5 thumbnail">
+				<a href="/bn-biodiversity/stories/mission-blue" ><img src="media/illos/missionblue.jpg" class="img-thumbnail">
+				<h4>Mission blue butterfly</h4>
+				</a>
+			</div>
+			<div class="more6 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>Plant TK</h4>
+				</a>
+			</div>
+			<div class="more7 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>California sea blite</h4>
+				</a>
+			</div>
+			<div class="more8 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>Ant tk</h4>
+				</a>
+			</div>
+			<div class="more9 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>Insect / Herp</h4>
+				</a>
+			</div>
+			<div class="more10 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>San Francisco garter snake</h4>
+				</a>
+			</div>
+		</div>
+	</div>
+
+</footer>
+
+<!--IMPORTANT: Project scripts: -->
+<script src="/js/biodiversity-scripts.js"></script>
+<script src="/bn-biodiversity/js/biodiversity-scripts.js"></script>
+
+<script>
+
+	//nav and more drawer active states
+	$('.nav1').addClass('active');
+	$('.more1').addClass('current_story');
+
+	//balancing lead box and museum card widths and heights
+	var cw = $('.lead-box figure').width();
+	$('.lead-box').css({'height':cw+'px'});
+	$('.museum-card').css({'height':cw+'px'});
+
+</script>
+</body>
+
+</html>

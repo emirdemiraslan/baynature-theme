@@ -25,6 +25,7 @@ add_action( 'after_setup_theme', function () {
 // Enqueue theme assets.
 add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style( 'bn-navigation', get_stylesheet_directory_uri() . '/assets/css/navigation.css', array(), '0.1.0' );
+    wp_enqueue_style( 'bn-paywall-cta', get_stylesheet_directory_uri() . '/blocks/paywall-cta/style.css', array(), '0.1.0' );
     wp_enqueue_script( 'bn-overlay', get_stylesheet_directory_uri() . '/assets/js/overlay.js', array(), '0.1.0', true );
 }, 30 );
 
@@ -35,7 +36,28 @@ require_once __DIR__ . '/navigation/menus.php';
 require_once __DIR__ . '/blocks.php';
 
 // Load paywall components.
+require_once __DIR__ . '/paywall/settings.php';
+require_once __DIR__ . '/paywall/membership.php';
 require_once __DIR__ . '/paywall/gate.php';
 
+// Load custom post types (legacy crate theme compatibility).
+require_once __DIR__ . '/post-types.php';
+
+// Load legacy shortcodes (crate theme compatibility).
+require_once __DIR__ . '/shortcodes.php';
+
+// Load magazine functions (legacy crate theme compatibility).
+require_once __DIR__ . '/magazine.php';
+
+// Load digital edition functions (legacy crate theme compatibility).
+require_once __DIR__ . '/digital-edition.php';
+
+// Load filters and hooks (legacy crate theme compatibility).
+require_once __DIR__ . '/filters.php';
+
+// Inject overlay menu into footer on all pages.
+add_action( 'wp_footer', function () {
+	get_template_part( 'parts/header-overlay' );
+}, 5 );
 
 

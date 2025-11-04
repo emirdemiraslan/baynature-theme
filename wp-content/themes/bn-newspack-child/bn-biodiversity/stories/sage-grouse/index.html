@@ -1,0 +1,485 @@
+<html>
+<head>
+	<title>Sage Grouse</title>
+	<meta charset="utf-8"> 
+	<meta name="viewport" content="initial-scale=1">
+	<meta property="og:title" content="The Weird, the Rare and the Ugly"/>
+	<meta property="og:description" content="Connect to the natural world of the SF Bay Area! We bring you trail and park reviews and photos, local nature journalism, and local nature event listings."/>
+	<meta property="og:url" content="http://baynature.org/"/>
+	<meta property="og:site_name" content="Bay Nature"/>
+	<meta property="fb:admins" content="1403244759"/>
+	<meta property="og:image" content="https://baynature.org/wp-content/uploads/2012/08/baynature-Orange-logo-150px.jpg"/>
+	<link rel="shortcut icon" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/images/favicon.ico"/>
+
+
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/css/baynature.scss" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/style.css?1435006863" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/style-print.css" type="text/css" media="print"/>
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/jquery.c2selectbox.css" type="text/css" media="screen"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+	<!--
+	<link href="/bn-biodiversity/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/bn-biodiversity/js/jquery.min.js"></script>
+    <script src="/bn-biodiversity/js/bootstrap.min.js"></script>
+
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+	-->
+
+
+
+    <!-- bootstrap css -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<!--leaflet-->
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <!--open sans headline font -->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<!--libre baskerville font-->
+	<link href='https://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
+	<!-- PROJECT CSS FILE -->
+		<!--local-->
+	<link rel="stylesheet" href="/css/biodiversity-stylesheet.css">
+		<!--web-->
+	<link rel="stylesheet" href="/bn-biodiversity/css/biodiversity-stylesheet.css">
+
+
+
+	<!-- jquery cdn -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<!-- boostrap cdn -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/bn-biodiversity/js/jquery.lazyload.js"></script>
+
+	<!--maps js -->
+	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+	<div class="container-fluid">
+		
+		<div class="navbar-header navbar-left">
+	    	<a id="logo" class="navbar-brand navbar-left hide-small" href="http://baynature.org" >
+	        	<img alt="Bay Nature" src="/bn-biodiversity/css/bnlogo.png">
+	    	</a>
+
+	    	<div class="nav-head navbar-link navbar-left">
+	    		<a href="/bn-biodiversity">Weird, Ugly, Rare</a>
+	    	</div>
+
+    	</div>
+
+    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<i class="fa fa-bars fa-lg"></i>
+    	</button>
+
+		<button type="button" onclick="tweetBtn()" class="navbar-toggle nav-share" data-toggle="collapse" data-target=".share-collapse">
+			<i class="fa fa-twitter fa-lg"></i>
+		</button>
+
+		<!-- <a href="http://www.facebook.com/sharer.php?u=https://seangreene.github.io/bn-biodiversity" target="_blank" > -->
+			<button onclick="fbBtn()" type="button" class="navbar-toggle nav-share" data-toggle="collapse" data-target=".share-collapse">
+				<i class="fa fa-facebook fa-lg"></i>
+			</button>
+		<!-- </a> -->
+
+		<a 	href="mailto:?Subject=The Weird, the Rare and the Ugly&amp;Body=Check%20out%20these%20Bay%20Nature%20stories http://seangreene.github.io/bn-biodiversity">
+			<button type="button" class="navbar-toggle nav-share hide-small" data-toggle="collapse" data-target=".share-collapse">
+				<i class="fa fa-envelope fa-lg"></i>
+			</button>
+		</a>
+
+    	<div class="clear"></div>
+
+  		<div class="navbar-collapse collapse">
+      		<ul class="nav navbar-nav">
+
+				<div class="nav-item nav1">
+					<li>Livermore tarplant</li>
+					<a href="/bn-biodiversity/stories/livermore-tarweed" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav5">
+					<li>Mission Blue butterfly</li>
+					<a href="/bn-biodiversity/stories/mission-blue" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav4">
+					<li>Greater sage grouse</li>
+					<a href="/bn-biodiversity/stories/sage-grouse" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav3">
+					<li>Clapper rail</li>
+					<a href="/bn-biodiversity/stories/clapper-rail" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav2">
+					<li>Galapagos damselfish</li>
+					<a href="/bn-biodiversity/stories/galapagos-damselfish" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav6">
+					<li>Plant tk</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav7">
+					<li>California sea blite</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav8">
+					<li>Ant tk</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav9">
+					<li>insect / herp / invertebrate</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav10">
+					<li>San Francisco garter snake</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<header>
+	<div class="row">
+
+		<div class="col-sm-10 col-sm-offset-1 col-xs-12">
+
+			<div class="museum-card col-sm-6">
+
+				<h1>What People Talk About When They Talk About Sage Grouse</h1>
+
+				<h2>Greater sage grouse</h2>
+
+				<hr></hr>
+
+				<div class="card-info">
+					<p>Habitat: <span>Western United States</span></p>
+					<p>Population: <span>Approximately 300,000</span></p>
+					<p>Protection status: <span>Unprotected</span></p>
+				</div>
+			</div>
+
+			<div class="art-box col-sm-6">
+				<figure>
+					<img src="media/illos/grouse.jpg" />
+				</figure>
+			</div>
+		</div>
+	</div>
+</header>
+
+<article>
+<div class="container">
+	<div class="row">
+
+		<div class="story">
+			<h2>Deciphering the future for the most controversial bird since the spotted owl.</h2>
+			<p class="byline">by <a href="http://baynature.org/author/ericsimons/">Eric Simons</a></p>
+
+			<p><strong><span class="dropcap">S</span>omewhere in the Bodie Hills</strong>, in predawn darkness on a section of dirt road that looks pretty much the same as any other spot on every other dirt road east of the Sierra Nevada, biologist Katrina Krause swings her government pickup aside. “I think this is the spot,” she says. It’s 12 degrees out, so from the heated truck she rolls down the window to double-check. “Yup,” she says.</p>
+
+			<p>High desert prairie marches away from the anonymous parking spot, clumps of bunchgrass and sagebrush shining faintly silver in the light of a waning half moon. Far off down the road a thin sliver of Mono Lake shimmers. On a windless, clear morning the gravel underfoot crunches. Krause packs up a spotting scope, and she and biologist Thad Heater walk into the dark desert. You or I would almost certainly never be able to pick this particular spot out from any other random area on the roadside, but right here and right now it is different, because right here and right now 30 of the West’s most controversial birds are making spectacles of themselves in the sagebrush.</p>
+
+			<p>You notice the noise first, which is of course what Krause was listening for from the car: a poppy, omnidirectional <em>thwap-whoop-whoop-whoop</em>, like a coffee pot percolating in a leaking bathtub. The noise seems to come from everywhere in the sprawling plain, but Krause and Heater swiftly pick out a direction and peer through binoculars. “Look for a flash of white,” Heater says. I raise my glasses, and point them back in the general direction of the car, and suddenly a little contrail streaks through my field of vision. And then another, and another. This anonymous section of desert is swarming with greater sage grouse.</p>
+	
+	<p class="hide-desktop continues-below"><em>Story continues below</em></p>
+	<div class="subscribe-story col-sm-5 left col-xs-12">
+
+		 <form class="form-inline newsletter" action="https://tinyletter.com/weirduglyrare" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/weirduglyrare', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+		 	<h2>Sign up</h2>
+		 	<p>Receive an email when we publish the next story in 'Weird, Ugly, Rare.'</p>
+		 	<div class="input-group col-sm-8 col-sm-offset-2">
+		 		<input type="text" class="form-control" name="email" id="tlemail" placeholder="Email address" />
+				<span class="input-group-btn">
+		 			<input type="hidden" value="1" name="embed"/>
+		 			<button class="btn btn-default" type="submit">Subscribe</button>
+				</span>
+		 	</div>
+		 </form>
+	</div>
+
+			<p><strong>The sage grouse is sometimes compared to the chicken</strong>, because they are about the same size and have about the same intellectual swiftness. But as light starts to creep over the Bodie Hills, it becomes apparent to me that the chicken comparison falls woefully short. The male sage grouse, which is what most of the ones out here are, has a dark, razor-sharp, fanned tail that looks like the top of a pineapple. Its tiny head pokes out from the top of a white ruff, under which are the air sacs it inflates and pops to make noise. It struts, two steps left, puff, <em>whoop</em>, stop. Two steps right, puff, <em>whoop</em>. Between the spikes and the ruff and the strutting, this isn’t just a chicken — it’s a chicken dressed up for an Oakland Raiders game.</p>
+
+			<figure class="big">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/raw/mcewan20130-1429648190-42.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/raw/mcewan20130-1429648190-42.jpg" class="lazy" />
+				<figcaption>A chicken dressed up for a Raiders game. | Photo by Rick McEwan, Sage Grouse Initiative.</figcaption>
+			</figure>
+
+			<p>Krause likes to compare the strutting male birds to men trying to pick up women in a club. You’re not sure who they’re dressed up for and who they’re showing off for, she says, but it sure doesn’t look like it’s working. Across the road, on a hillside just above the truck, about 20 male sage grouse are whooping and strutting for maybe four females. Off to our right, two male sage grouse are standing about 15 feet apart, puffing heroically at each other. Heater wonders briefly if there’s a female we can’t see. “They’re both facing the same direction,” he says, and immediately one of the two turns the other way. <em>Whoop</em>.</p>
+
+			<p>“A lot of people talk about how dumb the grouse are,” Krause says. “I find them pretty entertaining.”</p>
+
+			<p>“They’re not real graceful,” Heater adds. “You wouldn’t look at them and say, ‘That’s a bird that’s a world-class athlete.’”</p>
+
+			<p>The grouse takes a step, and bloats. The air sacks flutter. <em>Thwap-whoop</em>!</p>
+
+			<p>“I always feel a little bad for the ones who are off on the side,” Krause says, as I put the binoculars down. “It’s like they’re not quite good enough yet.”</p>
+
+			<p>One newfangled element of mortal peril for sage grouse is trees and posts. This is a bird evolved for the prairie, and it appears that it simply has never considered the idea that predators might come from the sky. Ravens and raptors perch on trees and pick off grouse eggs because the females don’t think to look up when they leave their nests. They are at least frightened of people — they’ll fly away at the&nbsp;sight of us. But they have never learned to bother with cars and trucks. You can basically drive over them and they’ll just keep strutting, Krause told me. Once, a research team <a href="https://www.youtube.com/watch?v=aC8hUXhUvoc" target="_blank" >built a robot female sage grouse</a>. They released it into the wild, where the male birds immediately tried to mate with it.</p>
+
+			<div class="col-sm-6 col-xs-12 video right">
+				<div class="embed-container">
+					<iframe src='https://www.youtube.com/embed/ov9_72xLeF0' frameborder='0' allowfullscreen></iframe>
+				</div>
+			</div>
+
+			<p><strong>The greater sage grouse</strong> is one of 150 candidate species for listing as endangered under the Endangered Species Act. But listing will not happen this year, and this is where the sage grouse story departs from the story of so many other imperiled animals. In mid-December of last year Mark Amodei, a first-term Congressman from just across the state line in Carson City, Nevada, inserted a paragraph into the $1.1 trillion, 1,600-page federal spending bill that ordered that, whatever else might happen, in 2015 the Fish and Wildlife Service was not going to spend one single penny “issuing rules” about — in other&nbsp;words, listing — the greater sage grouse.</p>
+
+			<p>This isn’t a repeat of the spotted owl — it’s bigger. You will hear, if&nbsp;you spend time around sage grouse people, the word “unprecedented” thrown around. Saving the sage grouse could save a half-dozen other species, and an iconic landscape that covers one-tenth of North America. And if it can be saved, in the way its most vocal champions think it can be saved … well, on the future of the sage grouse could hang the future of the Endangered Species Act and the way we protect wildlife in America. One U.S. Fish and Wildlife Service spokesman described the sage grouse to me as the most important conservation story of our generation.</p>
+
+			<figure class="big">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/raw/wheressagegr-1429638201-98.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/raw/wheressagegr-1429638201-98.jpg" class="lazy"/>
+				<figcaption>Where's the sage grouse? Dozens of male sage grouse puff heroically at each other in the twilight, the flashes of white of their ruffs the only thing that gives them away.</figcaption>
+			</figure>
+
+			<p><strong>None of this will be evident</strong>&nbsp;if you’re out on the sagebrush prairie in the twilight, actually looking at a sage grouse. It is not a bird that conveys majesty, nor is it a bird that immediately inspires noble sentiments of conservation. Krause point her binoculars for a few minutes at a clump on the opposite hillside. “Thought it was a grouse,” she says, “but it was just a rock.” The biologists say they’re fooled often by patches of snow.</p>
+
+			<p>Pink dawn light is now streaming over the hills, pulling the sun behind it. While the light heralds the end of the sage grouse’s strutting routine, they don’t fly away. They just melt back into the sage. One by one, they stop the dance, flatten — and disappear. A sage&nbsp;grouse sitting still under a sage clump will be all but invisible until you step on it. Without movement or drama, the count drops. The hillside that an hour ago was crawling with sage grouse is turning anonymous again. By mid-morning, a driver heading down this road will see no hint of anything different or interesting about this familiar stretch of roadside scrub.</p>
+
+			<p>At some point, I look back to my right, where a few minutes ago the two males were puffing and preening at each other. All I see is empty sagebrush prairie, running off to the horizon.</p>
+
+			<figure class="col-sm-8 col-xs-12 col-sm-offset-2">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/raw/biologists-1429644365-89.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/raw/biologists-1429644365-89.jpg" class="lazy" />
+				<figcaption>
+				Katrina Krause and Thad Heater, on the hunt for sage grouse.
+				</figcaption>
+			</figure>
+
+			<div class="clear"></div>
+
+			<h2>Flying the Sage Grouse Flag</h2>
+			<p><em>How a prairie bird from flyover country became the symbol of America's environmental future</em></p>
+
+			<p><strong>Seventeen years before the greater sage grouse</strong> became a matter for Congressional intervention, a seed ecologist from Redwood City named Craig C. Dremann loaded up his Saturn sedan and set off on a road trip from Sacramento to South Dakota. Dremann had a thick stack of notebooks and an ambitious idea: he was going to stop every mile — 2,320 of them, all told — to observe and record what was growing by the side of the road. Native grasses, nonnative grasses, weeds. It would be one of the first, and best, transects of the Western States’ grassland composition.</p>
+			<p>Dremann runs an heirloom seeds-by-mail business out of his home, but since the early 1970s had been traveling across the West leading restoration classes. He bills his teaching business, “The Reveg Edge,” as “a division of the oldest commercial company working with local native grasses.” He has taught desert revegetation to Bureau of Land Management employees in Barstow; roadway native plant use to Caltrans employees in Yuba City and Eureka; and ecological restoration to Forest Service employees in California, Oregon, Washington, Idaho, Colorado, Montana, and South Dakota. Starting in 1994, he led a 600-acre restoration north of Susanville that he says was the first Great Basin project to reintroduce native plants.</p>
+			<p>So Dremann set off to drive the country and assess it, and what he found was that almost everywhere, the native plants were gone. The Western United States was 90 percent weeds. “We had 5,000 native species in California, the ones that formed our understory, trees and shrubs, grasslands,” he said. “They might not be extinct as species — you might find 10 plants here and 10 plants there — but in terms of the space they used to occupy they’re spatially extinct.”</p>
+			<p>He found one relative exception: the Great Basin. (Some conservationists, hoping to rebrand the region, use the more poetic “sagebrush sea.”) Dremann saw it as a blank slate for restoration. Not only was it still home to largely native plants, but there was space between those plants — space that, maybe unbeknownst to us, we’re in a race against weeds to fill. Cheatgrass, a fast-spreading grass that can overwhelm the sagebrush, is a particular problem: not only does it fill in the gaps between the sage clumps, but it’s flammable. When it burns, so does everything else, and the cheat bounces back more quickly than the sage. Dremann decided that either conservation-minded people would find those uninvaded spaces and protect them, or the cheatgrass will find them.</p>
+			<p>“To me, of any place in the 48 states, the Great Basin is the largest vacancy sign hanging out,” Dremann said. “It gives us the best chance to have a big continuous area that could look like it did originally.”</p>
+
+			<figure class="big">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/raw/sagesteppe-1429643192-39.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/raw/sagesteppe-1429643192-39.jpg" class="lazy" />
+				<figcaption>The sagebrush sea.</figcation>
+			</figure>
+
+			<p><strong>Of what might once have been as much as 240 million acres,</strong> there are around 100 million acres of sagebrush sea remaining, across 11 Western states. These are, for many of us who don’t live there, still the great open spaces of the imagination, scrubby mosaics of sand and shrubs yawning off into distant, craggy horizons, where the pronghorn race off into flatlands stretching as far as the eye can see, and where the playas foster the wildest of our creative impulses. Yet we rarely visit except to drive through or fly over, and our inattention has allowed imagination to exceed reality. The spaces aren’t quite so unending, or quite so poetic. The West is crisscrossed with access roads, grazed, polluted, encroached upon, disturbed. Less than 5 percent of the sagebrush sea, one report concluded, is now more than 1.6 miles from a road; around 20 percent of it is within 2 miles of permitted oil and gas development. Thousands of acres of sage were deliberately poisoned and replaced with grass for cattle, a practice Rachel Carson decried in <i>Silent Spring</i>. A familiar “halo” of human influence follows our activity, so the footprint of any project is much greater than the space you see it occupying on a map.</p>
+
+			<p>When he finished his transect, Dremann saw also that much of the sagebrush land that was at risk was owned by the federal government. It ought to be possible, he imagined, to clean it up. He pondered how best to convince the government to move, and settled on the iconic species of the sagebrush, the sage grouse. In 2002, Dremann petitioned the Fish and Wildlife Service to list the sage grouse as endangered under the protection of the Endangered Species Act. “The sage grouse are telling us the resources are going away,” Dremann says. “It’ll be to all of our benefit to restore them.”</p>
+
+			<p>How many sage grouse did the sagebrush once support? No one really knows. Historical population estimates range from around 1.6 million to 16 million. But what no one disputes is that there aren’t as many now as there once were. The federal government’s best guess in 2014 was that there are 508,000 greater sage grouse. The bird is declining, one report says, at about 2 percent per year. Its greatest threat, the same government reports say, is continued habitat decline and fragmentation.</p>
+
+			</div>
+			
+			<div class="pull-quote">
+				<p class="quote">&ldquo;The sage grouse are telling us the resources are going away. It’ll be to all of our benefit to restore them.&rdquo;</p>
+			</div>
+			<div class="clear"></div>
+
+			<div class="story">
+
+			<p><strong>Dremann still wants the bird declared endangered</strong>, not so much to save it as to save its declining habitat. He’s working now on a project near Santa Cruz, on private property that was, until he started, 100 percent covered by nonnative weeds. He’s going to take that land and restore it to 100 percent native plants. One of the first things he found, he says, was that when he took out the weeds all sorts of dormant seeds sprouted up. Seeds that had been in the ground for decades, maybe, preserving not just themselves but re-sprouting in their original mix. The right species, the right ecotypes, the right percentages. “It’s almost like an archaeologist, you just dust the dust off the ruins, you know?” Dremann says. “And it’s good to go again.”</p>
+			<p>That, he says, is the real lesson of the sage grouse: urgency. The native seeds lying dormant under weeds on the California coast: who knows how long they’ve got before they’re no longer viable? The Great Basin: who knows how long before it’s just as invaded as its neighbors? “We should make a little sage grouse flag for every state,” Dremann says. “Just to remind us to look around and see what shape our understory is in.”</p>
+
+			<figure class="col-sm-6 col-sm-offset-3 col-xs-12">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/raw/img3288edi-1429650224-92.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/raw/img3288edi-1429650224-92.jpg" class="lazy">
+				<figcaption>Sagebrush country. | Photo by Conservation Media</figcaption>
+			</figure>	
+
+			<div class="clear"></div>		
+
+			<h2>The Sage Grouse and the Future</h2>
+			<p><em>Is there a new way of using the Endangered Species Act? And: can it work?</em></p>
+			<p><strong>This is where the sage grouse</strong> starts to sound like a typical endangered species fight. A blue-state Bay Area environmentalist, worried about habitat decline, petitions the government to list a species as endangered. The species occupies an inconveniently large red-state range also occupied by the energy industry, ranchers, and real estate speculators. Controversy ensues, lobbyists get involved, and the Republican former president of the Nevada Mining Association uses a legislative trick to prevent the species’ protection under the Endangered Species Act.</p>
+			<p>But the sage grouse fight contains multitudes. An enormous number of people eagerly want to avoid having this bird listed as endangered, and very few of them feel that way because they dislike it, or don’t believe the bird is actually small-e endangered. That’s how the sage grouse found me: earlier this year, several members of something called the Sage Grouse Initiative led a barnstorming media tour of Northern California to talk about alternative sage grouse conservation.</p>
+			<p>The sage grouse deputation was led by Christine Schellpfeffer of the Wisconsin-based Sand County Foundation, which has funded voluntary sage grouse conservation efforts. It included Wendell Gilgert, the working lands program manager at Point Blue Conservation Science; Matt Byrne, a fifth-generation rancher from SunFed Ranch in northeastern California’s Modoc County, whose family property has sage grouse on it; and Karen Sweet, whose family runs cattle on several ranches in the Livermore Hills.</p>
+			<p>For Craig Dremann, the bird is a proxy for habitat protection, for Matt Byrne, it’s a symbol of frustration with 40 years of wildlife protection by bureaucratic intervention. The sage grouse, he said, represented an opportunity to show that ranchers could and would do the right thing by the environment without being forced to by government regulation, and if the bird did end up listed after all that doing the right thing, a widely watched proof of just how monolithic and inflexible the Endangered Species Act is. Not like he wants the whole thing scrapped, Byrne said, but “what reasonable things you can do to fix what’s largely seen to be broken?”</p>
+			<p>The act, Byrne said, takes control away from people who actually live and work on the land — even ones, they said, who want to protect that land. Like most ranchers he relies on grazing cattle on public lands, and even though his family is leasing the land, they take care of it. They’re restoring their own land and public land for the benefit of the sage grouse and other species, and there are a ton of people out there recreating or birdwatching or working, he said, “but we’re the maintenance crew.”</p>
+
+			<figure class="col-sm-8 col-sm-offset-2 col-xs-12">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/raw/markingfenc-1429649485-93.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/raw/markingfenc-1429649485-93.jpg" class="lazy">
+				<figcaption>A rancher marks a fence to help sage grouse see it. | Photo by Jeremy R. Roberts, Conservation Media.</figcaption>
+			</figure>
+
+			<p>If there is an endangered species on those lands, he said, it means that someone who doesn’t live there, and doesn’t have a relationship with the land, tells them when and where they can graze, or fix fences, or clear brush. The threat of litigation means that every decision could end up challenged in court, paralyzing land managers trying to make decisions. Grazing plans that are supposed to be renewed every decade instead get ignored for 20 or even 30 years, Byrne said, “because everyone’s afraid to make a decision, because every decision is challenged.”</p>
+			<p>In the case of the sage grouse, ESA listing would also be punitive, Gilgert argued, favoring the rich at the expense of the poor, and the short-term extraction industries at the expense of the long-term stewards. A federally subsidized energy company that has already cleared a swath of sagebrush to plant biofuels, and so accelerated the sage grouse on its way to extinction, doesn’t have a problem with listing because it doesn’t have a problem (anymore) with sage grouse. The ranchers might do their best to help it along — but if the grouse is listed as endangered, the regulation would apply only to the places where the grouse still live, the ranches.</p>
+			<p>“The good actors, the people that have got sage grouse, that have been doing the right thing for sage grouse for generations, are in peril,” Gilgert said. “Are there any repercussions for the people that take out sagebrush? No, not at all. But when it’s listed, people that are doing a good job and holding the sagebrush, they’re at risk, while the people that brought the condition on walk away with a smile on their face and money in their pocket.”</p>
+			<p>Finally, for all the unnecessary bureaucracy Byrne said the ESA creates, there’s that classic anti-bureaucracy critique: it doesn’t even work. “How many species have come off of it?” Byrne said. “One?”</p>
+			<p>I didn’t know, so I guessed: “More than one, but not very many?”</p>
+			<p>“A handful, yeah,” Byrne said.</p>
+			
+			<h2>Sage Grouse Unregulated</h2>
+			<p><em>Can you save an endangered species without declaring it endangered?</em></p>
+			<p><strong>By coincidence, the same day that Byrne and I talked</strong>, the U.S. Fish and Wildlife Service was holding a small ceremony to celebrate the Oregon chub, the 28th species removed from the endangered species list. It’s not just those 28, says Center for Biological Diversity Executive Director Kierán Suckling, since after all, even 28 is a relatively small number of the total species list — about two percent.</p>
+			<p>It’s the expectation of how long it should take to recover something that matters, Suckling said. No one would reasonably expect that a species gets listed and then immediately recovers to the point it no longer needs protection. So the ESA requires Fish and Wildlife, each time it lists a species, to also suggest a recovery time, to give some context by which to measure the success of the law. Suckling and his team at CBD looked at recovery and expectation and found that nine out of 10 species that were supposed to have recovered by now have. Ninety percent of the species listed are on schedule, but have not yet reached their expected recovery. The average recovery time of a listed species is 42 years, Suckling said; the average species currently on the list has been there for 21 years.</p>
+
+			</div>
+			
+			<div class="pull-quote">
+				<p class="quote">&ldquo;This is someone going to a doctor when they’re sick, getting a 10-day course of antibiotics, and on day three, saying, ‘I’m still sick’ and throwing the antibiotics away. It doesn’t make any sense.&rdquo;</p>
+			</div>
+			<div class="clear"></div>
+
+			<div class="story">
+			<p>“From that perspective, why would you possibly say the Endangered Species Act isn’t working?” Suckling said. “What, because it didn’t recover the species twice as fast as expected? That’s your measure of failure? This is someone going to a doctor when they’re sick, getting a 10-day course of antibiotics, and on day three, saying, ‘I’m still sick’ and throwing the antibiotics away. It doesn’t make any sense.”</p>
+
+			<p><strong>An endangered listing would almost certainly</strong> help the sage grouse, because absent anything else the Endangered Species Act helps endangered species. But saving the sage grouse by listing it as endangered would conflict with other American desires: energy independence, biofuels, grass-fed local beef, wilderness recreation. We need the sage grouse’s space for our own stuff, and our track record of restraint in such circumstances is dismal. That’s where the Sage Grouse Initiative comes in, as an alternative to the poles of regulation or destruction. Its idea of collaborative voluntary conservation still relies on an intact Endangered Species Act — without the specter of regulation, you won’t get many volunteers — but allows Fish and Wildlife to revise its viewpoint slightly to consider listing as a threat, not a goal. “We’re not just a big bad federal agency that just wants to regulate regulate regulate,” Fish and Wildlife spokesman Dan Hottle told me. “We think the Endangered Species Act should be this tool for driving people into partnerships.”</p>
+			<p>The voluntary conservation measures to preserve the sage grouse are widespread, and well-funded. The USDA’s Natural Resources Conservation Service has spent $300 million on sage grouse conservation, and partners and landowners have put up $125 million of their own. The money has been used to remove encroaching conifer trees such as juniper and pinyon, and to buy conservation easements across the West, which will preserve ranches and prevent development. Sage grouse turn out, also, to be particularly susceptible to taking off suddenly and exploding into barbed wire fences, so they’ve spent money marking fences.</p>
+			
+			<figure class="col-sm-8 col-sm-offset-2 col-xs-12">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/raw/encroaching-1429648443-9.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/raw/encroaching-1429648443-9.jpg" class="lazy" >
+				<figcaption>Conifers dot the sagebrush sea, encroaching on sage grouse habitat. | Photo by Jeremy R. Roberts, Conservation Media.</figcaption>
+			</figure>
+
+			<p><strong>Gilgert wanted to talk most particularly</strong> about the “bi-state” greater sage grouse, the one I went to see. Scientists say that the birds living on the California-Nevada border might have been separated from other greater sage grouse for thousands of years, making them a genetically distinct population. In 2010 Fish and Wildlife decided that the bi-state greater sage grouse warranted its own listing, as a so-called “distinct population segment,” and that because it has a smaller range, and a higher risk, it would be a higher priority for listing than the species as a whole. Even before 2010, biologists, ranchers, and landowners around the border area had been working to save the grouse, but the finding kicked their project into a higher gear.</p>
+			<p>Two years ago scientists counted more sage grouse in the Bodie Hills area than they had since 1953. In six of seven “core areas” identified by biologists in the bi-state region, the sage grouse population is holding steady or increasing. A group formed to lead the conservation effort has come up with $45 million in funding and 79 conservation project proposals. “This is probably the most unprecedented partnership we’ve ever seen,” Hottle, the Fish and Wildlife Service spokesman, said.</p>
+			<p>Gilgert, when we first talked at the beginning of this year, seemed near-despondent at the idea that all the work would go for nothing; all these people were trying so hard, and had actually halted the bi-state sage grouse decline, and it was all going to end in regulation anyway — as had just happened in Colorado with the closely related Gunnison sage grouse, which was listed as threatened last November despite significant voluntary conservation.</p>
+			<p>In April, though, U.S. Interior Secretary Sally Jewell flew to Reno for a press conference to say that on the Nevada-California border, it hadn’t been for nothing. Fish and Wildlife was removing the bi-state greater sage grouse from consideration for listing. Voluntary conservation had worked.</p>
+
+			<figure class="col-sm-8 col-sm-offset-2 col-xs-12">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/raw/malesagegr-1429650566-16.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/raw/malesagegr-1429650566-16.jpg" class="lazy">
+				<figcaption>A resplendent male sage grouse. | Photo by Tatiana Gettleman.</figcaption>
+			</figure>
+
+			<div class="clear"></div>
+
+			<h2>Sage Grouse Reconsidered</h2>
+			<p><em>Can a bird point the way to a healthier democracy?</em></p>
+			<p><strong>Without participating in our argument</strong> about how best to save it, the sage grouse nonetheless serves as an effective symbol for the stories we want to tell about nature: about government overregulation, about conservation success, about the sagebrush ecosystem, about endangered wildlife. It also tells a story about the blind reach of our modern world. So long as we want to eat meat and turn on lights and go to Burning Man, we will have to displace something.</p>
+			<p>“Everybody has to stop pointing fingers, because there’s always those pointing back at us,” Gilgert said. “We all need the energy. We’re all looking for a good firm supply of food. We all want a place to recreate. We want good watersheds that are giving us water to live and do our business. And all of those things are part of that matrix out there in the range of the sage grouse.”</p>
+			<p>Gilgert grew up on a ranch in the San Joaquin Valley, became a government soil scientist and spent four decades riding around talking to ranchers for the NRCS. Now he has a similar role for Point Blue, driving up and down the Central Valley, 2,000 miles a month, talking to ranchers about how to improve the conservation value of their ranches. Gilgert takes the sage grouse saga as seriously, and as personally, as anyone I met. He’s invested in the issue, but even more in the land ethic of the open spaces, of “the West”. He tells stories of hitchhiking around the sagebrush sea, in the old days, before the houses and the vapor lights and the cheatgrass showed up. He quotes Leopold, Carson, and Cicero. He calls the sage grouse an ecological issue about the stability of ecosystems, and a cultural issue about trust and responsibility. It puzzles, disappoints, and frustrates him that there are so many people out there, even amongst his friends in the government, who don’t seem to be doing what is to him the obvious right thing for the sage grouse, or the sagebrush, or the West.</p>
+			<p>“My grandchildren can take 20 percent of any field guide and throw it away,” he said. “Things are blinking out of existence. Lots of things can happen in 50 years, but we’re not seeing wisdom, or leadership, or people bringing experience to this big issue.”</p>
+			<p>It’s easy to make the sage grouse a story about the Endangered Species Act, to subsume the bird in a more familiar debate about conservation and regulation. But in conversations with people like Gilgert, I kept coming back to the idea of the sage grouse as a reminder that we all have some responsibility to pay attention to the natural world, and that we all have to work at it. It parallels, in a relevant way, arguments about our entire political system: democracy, to succeed, is something you have to work at.</p>
+			<p>It's easy in the urban Bay Area to default to inattention. Our economy exists to hide externalities like sage grouse and sagebrush from consumer decision-making. (You mean now that our beef has to be grass-fed, free-range, hormone-free, antibiotic-free and grouse-friendly?) Industry and regulators are perfectly well set up to work without our attention; presumably they prefer to work without our attention. But it seems to me that the sort of voluntary coalition in the middle that Gilgert and the Sage Grouse Initiative champion can exist only if the bird, and the health of the sagebrush, matter to a broader audience. It requires more public input, more participation, and more trust. The voluntary conservation of the sage grouse is a promise for renewed democracy at a cost of more work. As Craig Dremann told me, we might need a sage grouse flag for every state as a reminder to pay attention.</p>
+
+			<figure class="big">
+				<img src="https://baynature.atavist.com/data/files/organization/9410/image/raw/sinnamon-1429643934-61.jpg" data-original="https://baynature.atavist.com/data/files/organization/9410/image/raw/sinnamon-1429643934-61.jpg" class="lazy">
+				<figcaption>Biologist Katrina Krause at Sinnamon Meadows Ranch.</figcaption>
+			</figure>
+
+			<p>With the sun hanging over the Bridgeport Valley, Krause drove us up into the mountains east of town, to the Sinnamon Meadows Ranch. The ranch has been there for generations, and for generations has been eyed for outside development. Builders thought it would be ideal to subdivide for summer homes. The meadow, snow-covered at the moment, bubbles with natural springs in the summer, and Nestle looked into its potential as a bottling source. But last fall, the Eastern Sierra Land Trust used funding from the Farm Bill to buy a conservation easement for it, preserving the ranch as well as 600 acres of prime sage grouse territory. Whether the bird gets listed or not, the effort to conserve it and prevent listing has resulted in new protections for thousands of acres of the American West.</p>
+			<p>“I want to come back here with my daughter in 15 years and say, ‘All this is protected, is the same as it was, because of the work we did,’” Krause says. “And we can drive to that same lek and find a sage grouse still strutting. That’s my dream.”</p>
+			<p>Krause wandered off across the meadow to check on some fence markers she’d posted. Heater bent down over some rabbit tracks in the snow. I paused next to a small patch of sagebrush, then bent down and picked off a leaf and rubbed it between my fingers. Mark Twain once declared the sagebrush “as a vegetable, a distinguished failure.” In a letter to his wife in 1861 he described its aroma, when crushed, as “sort of a compromise” between a magnolia and a weasel. I sniffed the rolled up sage, but not deeply, and then tossed the leaf into the snow.</p>
+			<p>The sun was high overhead, and the temperature had warmed past freezing. If there were grouse here, they had long since disappeared into the bush to hide until the next morning’s routine. That’s  the thing I noticed about just allowing that little bit of attention to the open spaces: once you’ve seen them filled with puffing, strutting, hellraiser-spiked grouse, it’s hard to turn back. The world just isn’t as much fun when the birds are gone.</p>
+			</div>
+
+	<div class="row" >
+		<div class="more">
+			<span>More    </span> <i class="fa fa-bars fa-3x"></i> 
+		</div>
+
+	</div>
+</div>
+</article>
+
+
+<footer>
+	<div class="row" id="more-drawer">
+			<i class="fa fa-times fa-3x"></i>
+
+		<div class="col-sm-12" id="more-stories">
+			
+			<h3><a href="/bn-biodiversity">Weird, Rare, Ugly</a></h3>
+
+			<div class="more1 thumbnail">
+				<a href="" >
+				<img src="media/illos/tarweed.jpg" class="img-thumbnail">
+				<h4>Livermore tarweed</h4>
+				</a>
+			</div>
+			<div class="more2 thumbnail">
+				<a href="/bn-biodiversity/stories/galapagos-damselfish" >
+				<img src="media/illos/azurina.jpg" class="img-thumbnail">
+				<h4>Galapagos damselfish</h4>
+				</a>
+			</div>
+			<div class="more3 thumbnail">
+				<a href="/bn-biodiversity/stories/clapper-rail" >
+				<img src="media/illos/clapper-rail.jpg" class="img-thumbnail">
+				<h4>Clapper rail</h4>
+				</a>
+			</div>
+			<div class="more4 thumbnail">
+				<a href="/bn-biodiversity/stories/sage-grouse" >
+				<img src="media/illos/grouse.jpg" class="img-thumbnail">
+				<h4>Greater sage grouse</h4>
+				</a>
+			</div>
+			<div class="more5 thumbnail">
+				<a href="/bn-biodiversity/stories/mission-blue" ><img src="media/illos/missionblue.jpg" class="img-thumbnail">
+				<h4>Mission blue butterfly</h4>
+				</a>
+			</div>
+			<div class="more6 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>Plant TK</h4>
+				</a>
+			</div>
+			<div class="more7 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>California sea blite</h4>
+				</a>
+			</div>
+			<div class="more8 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>Ant tk</h4>
+				</a>
+			</div>
+			<div class="more9 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>Insect / Herp</h4>
+				</a>
+			</div>
+			<div class="more10 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>San Francisco garter snake</h4>
+				</a>
+			</div>
+		</div>
+	</div>
+
+</footer>
+
+<!--IMPORTANT: Project scripts: -->
+<script src="/js/biodiversity-scripts.js"></script>
+<script src="/bn-biodiversity/js/biodiversity-scripts.js"></script>
+
+<script>
+
+	$("img.lazy").lazyload({
+		threshold: 900,
+		effect : "fadeIn"
+	});
+
+	//nav and more drawer active states
+	$('.nav4').addClass('active');
+	$('.more4').addClass('current_story');
+
+	//balancing lead box and museum card widths and heights
+	var cw = $('.lead-box figure').width();
+	$('.lead-box').css({'height':cw+'px'});
+	$('.museum-card').css({'height':cw+'px'});
+
+</script>
+</body>
+
+</html>

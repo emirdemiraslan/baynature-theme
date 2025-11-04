@@ -151,11 +151,59 @@ Managed in `theme.json`:
    - Templates (Home, Archive, Single)
    - Mobile: overlay menu, topics scroll, CWV
 
+## Membership System
+
+The paywall uses a flexible, extensible membership system:
+
+### How It Works
+
+1. **Filter Override** (highest priority): allows plugins to integrate via `bn_is_subscriber_override` filter
+2. **User Role Check**: logged-in users with these roles get access:
+   - `subscriber`, `member`, `administrator`, `editor`, `author`
+   - Customize via `bn_subscriber_roles` filter
+3. **Cookie-Based Free Views**: anonymous users get N free views (default 3, configurable in settings)
+   - Cookie: `bn_paywall_views` (30-day expiration)
+   - View counter increments on gated content access
+4. **Bot Detection**: search engine bots (Google, Bing, etc.) always get full content for SEO
+
+### Integration with Membership Plugins
+
+To integrate with **WooCommerce Subscriptions**, **Paid Memberships Pro**, or similar:
+
+```php
+// In your theme's functions.php or custom plugin
+add_filter( 'bn_is_subscriber_override', function( $default ) {
+    // WooCommerce Subscriptions example
+    if ( function_exists( 'wcs_user_has_subscription' ) ) {
+        return wcs_user_has_subscription( get_current_user_id(), '', 'active' );
+    }
+    
+    // Paid Memberships Pro example
+    if ( function_exists( 'pmpro_hasMembershipLevel' ) ) {
+        return pmpro_hasMembershipLevel();
+    }
+    
+    return $default; // Fall back to built-in logic
+} );
+```
+
+### Custom Member Role
+
+The theme registers a `member` role on activation, separate from WordPress's default `subscriber`. Assign this role to paying members.
+
+### Anonymous User Tracking
+
+- View tracking happens on first content access (before access check)
+- Cookie persists for 30 days
+- Respects `COOKIEPATH` and `COOKIE_DOMAIN`
+- Secure flag enabled on HTTPS sites
+
 ## Support & Extension
 
-- To port membership logic from the "crate" theme: replace `bn_is_subscriber()` in `inc/paywall/membership.php`
-- To add GA4 events: hook `wp_footer` or enqueue a tracking script that listens for `.bn-paywall-cta`, `.bn-hamburger`, `.bn-topics-menu`, etc.
+- To customize membership logic: use the `bn_is_subscriber_override` or `bn_subscriber_roles` filters
+- To add GA4 events: hook `wp_footer` or enqueue a tracking script that listens for `.bn-paywall-cta-button`, `.bn-hamburger`, `.bn-topics-menu a`, etc.
 - To extend blocks: copy a block folder, update `block.json` name, register in `inc/blocks.php`
+- To modify bot detection: filter `bn_is_bot` return value or add patterns to `inc/paywall/membership.php`
 
 ## License
 

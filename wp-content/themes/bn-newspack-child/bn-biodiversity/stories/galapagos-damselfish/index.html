@@ -1,0 +1,403 @@
+<html>
+<head>
+	<title>The Fish We Never Knew</title>
+	
+	<meta charset="utf-8"> 
+	<meta name="viewport" content="initial-scale=1">
+	<meta property="og:title" content="The Weird, the Rare and the Ugly"/>
+	<meta property="og:description" content="Connect to the natural world of the SF Bay Area! We bring you trail and park reviews and photos, local nature journalism, and local nature event listings."/>
+	<meta property="og:url" content="http://baynature.org/"/>
+	<meta property="og:site_name" content="Bay Nature"/>
+	<meta property="fb:admins" content="1403244759"/>
+	<meta property="og:image" content="https://baynature.org/wp-content/uploads/2012/08/baynature-Orange-logo-150px.jpg"/>
+	<link rel="shortcut icon" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/images/favicon.ico"/>
+
+
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/css/baynature.scss" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/style.css?1435006863" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/style-print.css" type="text/css" media="print"/>
+	<link rel="stylesheet" href="http://3vswoj22h2l7nt08f1ye9o4r.wpengine.netdna-cdn.com/wp-content/themes/bay-nature-responsive/jquery.c2selectbox.css" type="text/css" media="screen"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+	<!--
+	<link href="/bn-biodiversity/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/bn-biodiversity/js/jquery.min.js"></script>
+    <script src="/bn-biodiversity/js/bootstrap.min.js"></script>
+
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+	-->
+	<style>
+		#fishFader {position:relative;}
+		#fishFader img{position:absolute;z-index:1; width:"100%"}
+		#second {display:none; z-index: -1;}
+		#fishFader figcaption {position: absolute; bottom: -5;}
+	</style>
+
+
+    <!-- bootstrap css -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<!--leaflet-->
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <!--open sans headline font -->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<!--libre baskerville font-->
+	<link href='https://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
+	<!-- PROJECT CSS FILE -->
+		<!--local-->
+	<link rel="stylesheet" href="/css/biodiversity-stylesheet.css">
+		<!--web-->
+	<link rel="stylesheet" href="/bn-biodiversity/css/biodiversity-stylesheet.css">
+
+	<!-- jquery cdn -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<!-- boostrap cdn -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/bn-biodiversity/js/jquery.lazyload.js"></script>
+    <!--lazyload-->
+    <script src="/bn-biodiversity/js/jquery.lazyload.js"></script>
+	<!--maps js -->
+	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+
+	<!-- howler js for audio -->
+	<script src="http://seangreene.github.io/bn-biodiversity/js/howler.min.js"></script>
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+	<div class="container-fluid">
+		
+		<div class="navbar-header navbar-left">
+	    	<a id="logo" class="navbar-brand navbar-left hide-small" href="http://baynature.org" >
+	        	<img alt="Bay Nature" src="/bn-biodiversity/css/bnlogo.png">
+	    	</a>
+
+	    	<div class="nav-head navbar-link navbar-left">
+	    		<a href="/bn-biodiversity">Weird, Ugly, Rare</a>
+	    	</div>
+
+    	</div>
+
+    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<i class="fa fa-bars fa-lg"></i>
+    	</button>
+
+		<button type="button" onclick="tweetBtn()" class="navbar-toggle nav-share" data-toggle="collapse" data-target=".share-collapse">
+			<i class="fa fa-twitter fa-lg"></i>
+		</button>
+
+		<!-- <a href="http://www.facebook.com/sharer.php?u=https://seangreene.github.io/bn-biodiversity" target="_blank" > -->
+			<button onclick="fbBtn()" type="button" class="navbar-toggle nav-share" data-toggle="collapse" data-target=".share-collapse">
+				<i class="fa fa-facebook fa-lg"></i>
+			</button>
+		<!-- </a> -->
+
+		<a 	href="mailto:?Subject=The Weird, the Rare and the Ugly&amp;Body=Check%20out%20these%20Bay%20Nature%20stories http://seangreene.github.io/bn-biodiversity">
+			<button type="button" class="navbar-toggle nav-share hide-small" data-toggle="collapse" data-target=".share-collapse">
+				<i class="fa fa-envelope fa-lg"></i>
+			</button>
+		</a>
+
+    	<div class="clear"></div>
+
+ 		<div class="navbar-collapse collapse">
+      		<ul class="nav navbar-nav">
+
+				<div class="nav-item nav1">
+					<li>Livermore tarplant</li>
+					<a href="/bn-biodiversity/stories/livermore-tarweed" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav5">
+					<li>Mission Blue butterfly</li>
+					<a href="/bn-biodiversity/stories/mission-blue" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav4">
+					<li>Greater sage grouse</li>
+					<a href="/bn-biodiversity/stories/sage-grouse" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav3">
+					<li>Clapper rail</li>
+					<a href="/bn-biodiversity/stories/clapper-rail" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav2">
+					<li>Galapagos damselfish</li>
+					<a href="/bn-biodiversity/stories/galapagos-damselfish" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav6">
+					<li>Plant tk</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav7">
+					<li>California sea blite</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav8">
+					<li>Ant tk</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav9">
+					<li>insect / herp / invertebrate</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+
+				<div class="nav-item nav10">
+					<li>San Francisco garter snake</li>
+					<a href="" class="thumbnail"><img src="media/images/filler.jpg"></a>
+				</div>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<header>
+	<div class="row">
+
+		<div class="col-sm-10 col-sm-offset-1 col-xs-12">
+
+			<div class="museum-card col-sm-6">
+
+				<h1>The Fish We Never Knew</h1>
+
+				<h2>Galapagos damselfish</h2>
+
+				<hr></hr>
+
+				<div class="card-info">
+					<p>Habitat: <span>Galapagos Islands</span></p>
+					<p>Population: <span>Unknown</span></p>
+					<p>Protection status: <span>Believed extinct</span></p>
+				</div>
+			</div>
+
+			<div class="art-box col-sm-6">
+				<figure>
+					<img src="media/illos/azurina.jpg" />
+				</figure>
+
+			</div>
+
+
+		</div>
+	</div>
+</header>
+
+<article>
+<div class="container">
+	<div class="row">
+
+		<div class="story">
+			<h2>Looking extinction in the eye</h2>
+			<p class="byline">by <a href="http://baynature.org/author/ericsimons/">Eric Simons</a></p>
+
+			<p><span class="dropcap">O</span>nce, not so long ago, there lived a fish in the Galapagos Islands. Its name was <em>Azurina eupalama</em>, the Galapagos damsel; it was not particularly different from any other small rocky reef fish. “Indistinct,” says California Academy of Sciences ichthyologist Luiz Rocha. “Small, silver. Looks like a sardine.”</p>
+			<p>In 1982, the strongest El Niño ever recorded created a huge pool of hot water around the Galapagos Islands. And then … no one ever saw the Galapagos damselfish again. No one’s ever missed it enough to mount an expedition to look for it, but it was one of those fish that scientific divers and snorkelers would record as they made their rounds, and it’s been 32 years since anyone has seen one alive. It is presumed extinct, which Rocha says would make it the first marine fish to go extinct while we’ve been watching. It would also, he says, be the first marine fish known to have disappeared because of a change in climate.</p>
+			<p>Today you can follow Rocha deep into the library-stack bowels of the California Academy of Sciences in San Francisco, and on a ceiling-high metal shelf that’s stacked with collecting jars, you can find a five-inch bottle with a nondescript typewritten label that says, “Azurina eupalama.” A blue ribbon tied around the lid tells Rocha that the little guy floating there in ethanol is the “holotype” for this fish, the single individual out of all the individuals in the world that will be forever linked to its Latin name.</p>
+		
+		<p class="hide-desktop continues-below"><em>Story continues below</em></p>
+		<div class="subscribe-story col-sm-5 left col-xs-12">
+
+			 <form class="form-inline newsletter" action="https://tinyletter.com/weirduglyrare" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/weirduglyrare', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+			 	<h2>Sign up</h2>
+			 	<p>Receive an email when we publish the next story in 'Weird, Ugly, Rare.'</p>
+			 	<div class="input-group col-sm-8 col-sm-offset-2">
+			 		<input type="text" class="form-control" name="email" id="tlemail" placeholder="Email address" />
+					<span class="input-group-btn">
+			 			<input type="hidden" value="1" name="embed"/>
+			 			<button class="btn btn-default" type="submit">Subscribe</button>
+					</span>
+			 	</div>
+			 </form>
+		</div>
+
+			<p>This “type specimen” was collected on a Galapagos expedition in 1893 by Stanford biologist Edmund Heller, labeled and stored at Stanford and then assumed into the Academy’s collection in the 1960s. Some species are so common that Rocha is content to just drop their holotypes in the mail for other researchers to examine. With Azurina, he chuckles at the idea. Trusting the mailbox is not the kind of thing you can do when the 100-year-old thing in the bottle becomes irreplaceable.</p>
+			<p>Rocha twists the lid off and pulls the fish out. Its silver color has faded to yellow. Size and shape-wise, it looks like he’s holding a dinner sardine; you could picture it on toast. Rocha flicks at its pectoral fin to demonstrate the lifelike preservation granted by formalin injection. As we talk, he rests the fish gently on top of the open jar. I stare at the fish. Rocha stares at the fish. Out of an empty, black eye, the fish stares hollowly at the ceiling.</p>
+
+			<figure id="fishFader" class="col-md-10 col-md-offset-1 col-sm-12 col-sm-12 col-xs-12">
+ 				<img id="first" src="media/images/azurina_eupalama_original_web.jpg" />
+				<img id="second" src="media/images/azurina_eupalema_googeley_eyes_2.jpg" />
+				<figcaption>Azurina eupalama, from the original species description.</figcaption>
+			</figure>
+
+			<p><strong><em>Azurina eupalama</em>, rather manifestly</strong>, is not a fish that anyone misses. It does not exude charisma, like the dodo. It does not represent some great tragedy of American hubris, like the passenger pigeon. It is not the target of resurrection schemes, like the mammoth. Somewhat against the odds given everything else we’re doing to the planet, it was not even directly our fault that the Galapagos damselfish disappeared.</p>
+			<p>And yet: we’re now missing something out there in the world, and this little guy resting on the jar is a formalin-stuffed relic, a symbol of absence, of scarcity, of zero. Ever since Rocha first told me about it, several years ago, it has lodged in my brain, and I find that to examine it and hold it is in some small way to plug into the incomprehensible enormity of the universe. Its unique existence hints at answers, if only I could ask it the right question.</p>
+			<p>So I start with this one: As the Pacific Ocean heats again into what looks like an intense El Niño by December, as human-caused climate change stresses the natural world even as it puts us under more pressure to solve problems for humans first, Azurina must have a story to tell about what we lose when something we didn’t notice blinks out of existence.</p>
+			<p>“It’s a question I get often,” Rocha says, and he has his own ways of thinking about the answer, a blend of moral and utilitarian thinking about how to face a world in peril. “One answer,” he says, “is if my grandson goes to the Galapagos, he won’t see it.” Another answer is: “Every species has a role in the ecosystem,” even small and indistinct fish. “It’s not a panda bear,” Rocha says. “But everything has a role.”</p>
+			<p>John McCosker, the chair of the Academy’s Department of Aquatic Biology, who took the last photo of Azurina and wrote the paper suggesting it had gone extinct, has spent his life fighting to save life in the oceans — but says that without scientific knowledge, it’s hard to make any judgment at all about the value of an extinction.</p>
+			<p>“Are we going to stop all life on Earth, all competition with living plants and animals?” he says. “It’s a question you have to ask. The way you can prepare to answer that is by knowing as much as you can about every species and their role in the ecosystem, and what would life on Earth be like after its extinction.”</p>
+						
+			<figure class="col-sm-6 col-xs-12 right">
+				<img src="media/images/hamlet_eric.jpg" data-original="media/images/hamlet_eric.jpg" class="lazy" />
+				<figcaption>Alas, poor fish, I knew … well, I never knew you. (Illustration by Rachel Diaz-Bastin)</figcaption>
+			</figure>
+
+			<p>That seems acutely relevant in the midst of the so-called Anthropocene extinction, as species both known and unknown hurtle into oblivion at, according to various estimates, some hundreds of times the background extinction rate.</p>
+			<p>Humming somewhere in Rocha’s brain is the urgency of documenting species as fast as he can, just so we have some idea the reach of our own blind thrashing. Earlier this year he went on a dive trip to the Philippines to collect fish from drowned coral reefs in deeper waters rarely examined before by humans. In a week he found 12 new species, almost one per dive, to add to the 32,000 fish species in the world. The ocean, at times, can seem like such a vast and limitless place, which is why marine biology professors, in the days when McCosker was a graduate student, would confidently declare we’d never run out of fish.</p>
+			<p>Now we are running out of fish.</p>
+			<p>“A lot of scientists have done all but immolate themselves over the potential loss of a species that they knew would go extinct, and has gone extinct, as a result of things that would happen in our lifetime,” McCosker says. “All we can do is the best we can, and grab and shake people and say, ‘Don’t you realize human behavior is going to cause the extinction of this species?’ And their reaction is either sadness or ‘So what.’”</p>
+			<p>Rocha told me he flew back from the Philippines, paused for six hours in San Francisco, and boarded a plane for Houston to join a meeting of the International Union for Conservation of Nature. Over the next two days he evaluated around 500 fish species for the IUCN, a global environmental organization that tries to assess the threat level for every species on Earth. (The little conservation status bar when you look up an animal on Wikipedia is their work.) The news is mainly grim, and one fish that crossed his desk in that evaluation happens to rest two jars down on the shelf from Azurina.</p>
+			<p>I had asked Rocha where he worries the next extinction might happen, and he slid over to a jar holding <em>Halichoeres socialis</em>, the social wrasse. The inch-long fish lives in only one small area in the Pelican Keys in Belize. Habitat destruction and mangrove clearing has left it without much resilience. If nothing is done — and it’s not clear what there is to do, except that we are people and when we find out about things like this we feel like we should do <em>something</em> — it will probably be eaten to extinction by human-introduced lionfish. In January, Rocha’s IUCN group declared it critically endangered.</p>
+			<p>It’s the <em>something</em> that’s always the problem.</p>
+			<p>We put the fish away in the jar, and reversed down the collection aisle, past biological riches that would take decades to understand. Rocha spun the wheel on the giant library-stack cabinets to pull them back together again, locking the extinct and endangered fish back in the anonymous darkness.</p>
+
+			<figure class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+				<img src="media/images/azurina_reef.jpg" data-original="media/images/azurina_reef.jpg" class="lazy" />
+				<figcaption>Illustration by Rachel Diaz-Bastin</figcaption>
+			</figure>
+
+			<p><strong>McCosker, a frequent Galapagos explorer</strong> and one of the last people to see <em>Azurina eupalama</em> alive, happens to have the office next door to Rocha, so on the way back from the collections we walked in, past a nameplate on the door that said “HEAD SHARK” and a <em>Far Side</em> cartoon about ichthyology signed by Gary Larson. What, I asked him, does he do to reconcile 70 years of scientific work studying marine life with the incredible peril much of that life finds itself in? How do you deal with the knowledge you’ll very likely never see another one of these fish again?</p>
+			<p>McCosker pointed to a photo of the Dalai Lama on his desk. “I do what he does,” he said. “It’s just a species in time, passing through, like you or me.”</p>
+			<p>“If there are other universes with ecosystems that because of natural events animals go extinct, and humans aren’t even there, am I sad?” he said. “No. But as a human being with the ability to understand what’s going on, and make predictions, I have a responsibility. A moral, ethical responsibility to do the right thing, and to convince other people to do the right thing. That’s the role of science.”</p>
+			<p>McCosker and Rocha both said that some form of life in the oceans will endure no matter what we do to them — because before we destroy everything around us, we’ll have destroyed ourselves. “I feel bad because we’re the ones causing it,” Rocha said. “But I don’t feel bad for the ecosystem.”</p>
+			<p>Compartmentalization is not an entirely comfortable way to go about your life, but it might be a necessary one. Modern biologists spend their lives looking at animals that may or may not make it into the 22nd century. It’s our own contradictory nature that our emotional brain screams at us to wrap our arms around an endangered fish and devote 80 hours a week to keeping it alive, even as our prefrontal cortex notes that 32,000 species times 80 hours a week leads to unsustainable work-life balance. It’s why, as Jon Mooallem writes in <em>Wild Ones</em>, “The best of us are cursed by caring.”</p>
+			<p>The biologist’s way of addressing the urgency of extinction is to document, evaluate, predict, and warn. You grab the new species that’s in front of you, and you do what you can to help each individual you come across, and you celebrate that in areas where protections are put in place the fish do come back, even if those places aren’t nearly sufficient and fish aren’t that great at observing human-drawn boundaries.</p>
+			<p>“I continue to work,” McCosker says. “I’m long past retirement age, and I still go to work every day so I can do this. I still talk about this at every dinner party I go to. Every kids’ school group I attend. Whatever. It’s all I talk about.”</p>
+			<p>And he said one lesson of Azurina isn’t so much in the void left by its absence as it is that it disappeared without us fully understanding it.</p>
+			<p>“Will the health and ecology of the Galapagos change as a result of the loss of Azurina?” he says. “I don’t know, but I’d be surprised. It was never so abundant or so significant in ecosystem food webs that its absence will make much if any difference. But we’ll never know. We’ll never know because we just didn’t have a chance to understand them.”</p>
+			<p>That, I think, is what sticks with me most about Azurina. We’ll never know about the fish, and we’re uniquely able to understand what <em>never</em> means. We are, uniquely among the animals, able to be driven crazy by the mere knowledge of experiences we can’t have. We are uniquely able to look at the unrealized Platonic ideal that is Azurina and see it as more than just a dead fish.</p>
+			<p>“Hundreds of millions of years of evolution have produced hundreds of thousands of species with brains, and tens of thousands with complex behavioral, perceptual, and learning abilities,” UC Berkeley evolutionary anthropologist Terry Deacon writes at the beginning of his book <em>The Symbolic Species</em>. “Only one of these has ever wondered about its place in the world, because only one evolved the ability to do so.”</p>
+			<p>As minimal, as uncharismatic, as anonymous a fish as Azurina may be, it’s a symbol and a warning that we alone can see, and as such it seems to convey both the enormity of extinction and an utterly immense obligation.</p>
+			<p>Rocha and I stood and stared at that fish. We poked it, propped it, wondered about it. Rocha mentioned that Azurina is a lesson taught in grad school marine biology across the country.</p>
+			<p>But all the while the fish just stared out of that hollow black eye at the ceiling, and at some point you start to feel silly because, well, you’re interrogating a small, indistinct, sardine-looking thing that’s been sitting in preservatives for a century.</p>
+
+			<p><strong>Azurina had nine million years</strong> on Earth, and those nine million years went pleasantly untroubled by philosophy or vexing questions of life and meaning. Dead fish tell no tales, zero is our concept, and existential guilt is ours and ours alone.</p>
+
+
+		</div>
+
+	</div>
+			
+	<div class="row" >
+		<div class="more">
+			<span>More    </span> <i class="fa fa-bars fa-3x"></i> 
+		</div>
+
+	</div>
+</div>
+</article>
+
+
+<footer>
+	<div class="row" id="more-drawer">
+			<i class="fa fa-times fa-3x"></i>
+
+		<div class="col-sm-12" id="more-stories">
+			
+			<h3><a href="/bn-biodiversity">Weird, Rare, Ugly</a></h3>
+
+			<div class="more1 thumbnail">
+				<a href="" >
+				<img src="media/illos/tarweed.jpg" class="img-thumbnail">
+				<h4>Livermore tarweed</h4>
+				</a>
+			</div>
+			<div class="more2 thumbnail">
+				<a href="/bn-biodiversity/stories/galapagos-damselfish" >
+				<img src="media/illos/azurina.jpg" class="img-thumbnail">
+				<h4>Galapagos damselfish</h4>
+				</a>
+			</div>
+			<div class="more3 thumbnail">
+				<a href="/bn-biodiversity/stories/clapper-rail" >
+				<img src="media/illos/clapper-rail.jpg" class="img-thumbnail">
+				<h4>Clapper rail</h4>
+				</a>
+			</div>
+			<div class="more4 thumbnail">
+				<a href="/bn-biodiversity/stories/sage-grouse" >
+				<img src="media/illos/grouse.jpg" class="img-thumbnail">
+				<h4>Greater sage grouse</h4>
+				</a>
+			</div>
+			<div class="more5 thumbnail">
+				<a href="/bn-biodiversity/stories/mission-blue" ><img src="media/illos/missionblue.jpg" class="img-thumbnail">
+				<h4>Mission blue butterfly</h4>
+				</a>
+			</div>
+			<div class="more6 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>Plant TK</h4>
+				</a>
+			</div>
+			<div class="more7 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>California sea blite</h4>
+				</a>
+			</div>
+			<div class="more8 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>Ant tk</h4>
+				</a>
+			</div>
+			<div class="more9 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>Insect / Herp</h4>
+				</a>
+			</div>
+			<div class="more10 thumbnail">
+				<a href="" >
+				<img src="media/images/filler.jpg" class="img-thumbnail">
+				<h4>San Francisco garter snake</h4>
+				</a>
+			</div>
+		</div>
+	</div>
+
+</footer>
+
+<!--IMPORTANT: Project scripts: -->
+<script src="/js/biodiversity-scripts.js"></script>
+<script src="/bn-biodiversity/js/biodiversity-scripts.js"></script>
+<script>
+//page specific scripts
+
+	//active status for nav and more drawers
+	$('.nav2').addClass('active');	
+	$('.more2').addClass('current_story');
+
+	//scroll event on fish illustrations
+	$(window).scroll(function(event){
+
+		var h = $('#first').height();
+		var ch = $('#fishFader figcaption').height();
+		$('#fishFader').css({'height': h + ch + 'px'});
+
+		var scroll = $(window).scrollTop();
+		var swimmer = $('#fishFader').offset().top;
+
+		var fish_height = $('#fishFader').height();
+
+		if ( scroll > (swimmer - fish_height) ) {
+			$('#second').fadeIn('slow');
+			$('#first').fadeOut('slow');
+		} 
+
+		if ( scroll < (swimmer - fish_height) ) {
+			$('#first').fadeIn('slow');
+			$('#second').fadeOut('slow');
+		}
+
+	});
+</script>
+
+
+</body>
+
+</html>
