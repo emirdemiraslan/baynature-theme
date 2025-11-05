@@ -10,7 +10,7 @@ body {
 /* Header wrapper - full width */
 .bn-header-wrapper {
   width: 100%;
-  background-color: #003da5;
+  background-color: transparent;
 }
 
 /* Header layout */
@@ -22,7 +22,7 @@ body {
   padding: 1rem var(--wp--preset--spacing--md);
   gap: var(--wp--preset--spacing--md);
   color: #ffffff;
-  background-color: #003da5;
+  background-color: transparent;
   width: 100%;
   max-width: 100%;
   /* Sticky behavior */
@@ -31,7 +31,8 @@ body {
   z-index: 1000;
   transition:
     padding 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .bn-header-tagline {
@@ -45,9 +46,7 @@ body {
 }
 
 .bn-header-logo {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  position: static;
   flex-shrink: 0;
 }
 
@@ -56,6 +55,13 @@ body {
   max-height: 40px;
   width: auto;
   height: auto;
+  display: block;
+}
+
+.bn-header-logo a {
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
 }
 
 .bn-header-logo .custom-logo-link {
@@ -67,7 +73,7 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   padding: 0.5rem var(--wp--preset--spacing--md);
   position: fixed;
-  background: #003da5 !important;
+  background: #484848 !important;
 }
 .bn-header-bar.is-fixed {
   position: fixed;
@@ -292,28 +298,21 @@ body {
   }
 
   .bn-header-logo {
-    position: static;
-    transform: none;
     order: 1;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 0.5rem;
-  }
-
-  .bn-header-tagline {
-    order: 2;
-    flex: 1;
+    width: auto;
+    text-align: left;
+    margin-bottom: 0;
   }
 
   .bn-header-right {
-    order: 3;
+    order: 2;
     width: 100%;
     justify-content: space-between;
     margin-left: 0;
   }
 
   .bn-header-nav-wrap {
-    order: 4;
+    order: 3;
     width: 100%;
     justify-content: flex-start;
     overflow-x: auto;
@@ -343,14 +342,8 @@ body {
     display: none;
   }
 
-  .bn-header-tagline {
-    font-size: 0.75rem;
-    order: 2;
-    flex: 1;
-  }
-
   .bn-header-right {
-    order: 3;
+    order: 2;
   }
 }
 

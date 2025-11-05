@@ -10,18 +10,22 @@
 
     $join_url   = isset( $utility_urls['join_url'] ) ? $utility_urls['join_url'] : '/join';
     $donate_url = isset( $utility_urls['donate_url'] ) ? $utility_urls['donate_url'] : '/donate';
-    $tagline    = get_bloginfo( 'description', 'display' );
     ?>
     <header class="bn-header-bar" aria-label="<?php esc_attr_e( 'Site header', 'bn-newspack-child' ); ?>">
-        <?php if ( $tagline ) : ?>
-            <p class="bn-header-tagline"><?php echo esc_html( $tagline ); ?></p>
-        <?php endif; ?>
-
-        <?php if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) : ?>
-            <div class="bn-header-logo">
-                <?php the_custom_logo(); ?>
-            </div>
-        <?php endif; ?>
+        <div class="bn-header-logo">
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+                <?php
+                $logo_path = get_stylesheet_directory() . '/assets/imgs/bn-white-logo.svg';
+                $logo_url = get_stylesheet_directory_uri() . '/assets/imgs/bn-white-logo.svg';
+                if ( file_exists( $logo_path ) ) {
+                    echo file_get_contents( $logo_path );
+                } else {
+                    // Fallback if file doesn't exist
+                    echo '<img src="' . esc_url( $logo_url ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" />';
+                }
+                ?>
+            </a>
+        </div>
 
         <div class="bn-header-right">
             <div class="bn-header-nav-wrap">
