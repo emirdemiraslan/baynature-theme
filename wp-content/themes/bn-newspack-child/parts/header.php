@@ -105,22 +105,3 @@
 </div>
 <!-- /wp:group -->
 
-<!-- wp:group {"align":"full","className":"bn-topics-row","style":{"spacing":{"padding":{"top":"var:preset|spacing|xs","bottom":"var:preset|spacing|xs","left":"var:preset|spacing|sm","right":"var:preset|spacing|sm"}}},"backgroundColor":"gray-50","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull bn-topics-row has-gray-50-background-color has-background" style="padding-top:var(--wp--preset--spacing--xs);padding-right:var(--wp--preset--spacing--sm);padding-bottom:var(--wp--preset--spacing--xs);padding-left:var(--wp--preset--spacing--sm)">
-    <!-- wp:html -->
-    <?php
-    if ( has_nav_menu( 'topics' ) ) {
-        wp_nav_menu( array(
-            'theme_location' => 'topics',
-            'container'      => 'nav',
-            'container_class' => 'bn-topics-nav',
-            'menu_class'     => 'bn-topics-menu',
-            'depth'          => 1,
-            'fallback_cb'    => false,
-        ) );
-    }
-    ?>
-    <!-- /wp:html -->
-</div>
-<!-- /wp:group -->
-

@@ -65,17 +65,37 @@ add_action( 'admin_menu', function () {
         'manage_options',
         'bn-settings',
         function () {
-            echo '<div class="wrap">';
-            echo '<h1>Bay Nature</h1>';
-            echo '<h2 class="nav-tab-wrapper">';
-            echo '<a href="?page=bn-settings" class="nav-tab nav-tab-active">' . esc_html__( 'Paywall', 'bn-newspack-child' ) . '</a>';
-            echo '</h2>';
-            echo '<form method="post" action="options.php">';
-            settings_fields( 'bn_paywall' );
-            do_settings_sections( 'bn_paywall' );
-            submit_button();
-            echo '</form>';
-            echo '</div>';
+            $active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'paywall';
+            ?>
+            <div class="wrap">
+                <h1><?php esc_html_e( 'Bay Nature', 'bn-newspack-child' ); ?></h1>
+                <h2 class="nav-tab-wrapper">
+                    <a href="?page=bn-settings&tab=paywall" class="nav-tab <?php echo 'paywall' === $active_tab ? 'nav-tab-active' : ''; ?>">
+                        <?php esc_html_e( 'Paywall', 'bn-newspack-child' ); ?>
+                    </a>
+                    <a href="?page=bn-settings&tab=navigation" class="nav-tab <?php echo 'navigation' === $active_tab ? 'nav-tab-active' : ''; ?>">
+                        <?php esc_html_e( 'Navigation', 'bn-newspack-child' ); ?>
+                    </a>
+                </h2>
+                <?php if ( 'paywall' === $active_tab ) : ?>
+                    <form method="post" action="options.php">
+                        <?php
+                        settings_fields( 'bn_paywall' );
+                        do_settings_sections( 'bn_paywall' );
+                        submit_button();
+                        ?>
+                    </form>
+                <?php elseif ( 'navigation' === $active_tab ) : ?>
+                    <form method="post" action="options.php">
+                        <?php
+                        settings_fields( 'bn_navigation' );
+                        do_settings_sections( 'bn_navigation' );
+                        submit_button();
+                        ?>
+                    </form>
+                <?php endif; ?>
+            </div>
+            <?php
         }
     );
 } );

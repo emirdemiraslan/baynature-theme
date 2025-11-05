@@ -25,20 +25,22 @@ add_action( 'after_setup_theme', function () {
 function bn_get_utility_urls() {
     $opts = get_option( 'bn_navigation_options', array() );
     return wp_parse_args( $opts, array(
-        'join_url'   => '/join',
-        'donate_url' => '/donate',
+        'join_url'          => '/join',
+        'donate_url'        => '/donate',
+        'overlay_intro_text' => '',
     ) );
 }
 
 /**
- * Add settings for Join/Donate URLs.
+ * Add settings for Join/Donate URLs and Overlay intro text.
  */
 add_action( 'admin_init', function () {
     register_setting( 'bn_navigation', 'bn_navigation_options', array(
         'type'    => 'array',
         'default' => array(
-            'join_url'   => '/join',
-            'donate_url' => '/donate',
+            'join_url'          => '/join',
+            'donate_url'        => '/donate',
+            'overlay_intro_text' => '',
         ),
     ) );
 
@@ -55,6 +57,15 @@ add_action( 'admin_init', function () {
         $val  = isset( $opts['donate_url'] ) ? $opts['donate_url'] : '/donate';
         echo '<input type="text" name="bn_navigation_options[donate_url]" value="' . esc_attr( $val ) . '" class="regular-text" />';
     }, 'bn_navigation', 'bn_nav_urls' );
+
+    add_settings_section( 'bn_overlay_settings', __( 'Overlay Menu', 'bn-newspack-child' ), '__return_false', 'bn_navigation' );
+
+    add_settings_field( 'overlay_intro_text', __( 'Intro Text', 'bn-newspack-child' ), function () {
+        $opts = get_option( 'bn_navigation_options', array() );
+        $val  = isset( $opts['overlay_intro_text'] ) ? $opts['overlay_intro_text'] : '';
+        echo '<textarea name="bn_navigation_options[overlay_intro_text]" rows="4" class="large-text">' . esc_textarea( $val ) . '</textarea>';
+        echo '<p class="description">' . esc_html__( 'Intro text displayed at the top of the overlay menu.', 'bn-newspack-child' ) . '</p>';
+    }, 'bn_navigation', 'bn_overlay_settings' );
 } );
 
 /**
