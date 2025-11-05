@@ -1,6 +1,6 @@
 .issue-hero {
   position: relative;
-  min-height: 70vh;
+  height: 100vh;
   color: #fff;
   margin-bottom: 2rem;
 }
@@ -91,7 +91,7 @@
 /* Mobile adjustments */
 @media (max-width: 782px) {
   .issue-hero {
-    min-height: 60vh;
+    height: 100vh;
   }
   .issue-hero__inner {
     padding: 6rem 1rem;
@@ -162,4 +162,103 @@ body.has-hero-issue .bn-primary-row {
   margin-right: auto;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}
+
+/* Scroll indicator */
+.issue-hero__scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: transparent;
+  border: 0px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation:
+    fadeInUp 0.5s ease 0.3s forwards,
+    moveDownBounce 0.5s ease-in-out 0.3s infinite;
+}
+
+.issue-hero__scroll-indicator:hover,
+.issue-hero__scroll-indicator:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 1);
+  transform: translateX(-50%) translateY(4px);
+  outline: none;
+}
+
+.issue-hero__scroll-indicator:active {
+  transform: translateX(-50%) translateY(2px);
+}
+
+.issue-hero__scroll-indicator svg {
+  width: 40px;
+  height: 40px;
+  fill: rgba(255, 255, 255, 0.9);
+  transition: fill 0.3s ease;
+}
+
+.issue-hero__scroll-indicator:hover svg,
+.issue-hero__scroll-indicator:focus svg {
+  fill: rgba(255, 255, 255, 1);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes moveDownBounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(8px);
+  }
+}
+
+/* Hide scroll indicator when scrolled past hero */
+.issue-hero.scrolled-past .issue-hero__scroll-indicator {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Responsive adjustments for scroll indicator */
+@media (max-width: 782px) {
+  .issue-hero__scroll-indicator {
+    width: 40px;
+    height: 40px;
+    bottom: 1.5rem;
+  }
+
+  .issue-hero__scroll-indicator svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  @keyframes moveDownBounce {
+    0%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(6px);
+    }
+  }
 }
