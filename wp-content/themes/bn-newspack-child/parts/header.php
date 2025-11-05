@@ -11,12 +11,15 @@
     $join_url   = isset( $utility_urls['join_url'] ) ? $utility_urls['join_url'] : '/join';
     $donate_url = isset( $utility_urls['donate_url'] ) ? $utility_urls['donate_url'] : '/donate';
     ?>
-    <header class="bn-header-bar" aria-label="<?php esc_attr_e( 'Site header', 'bn-newspack-child' ); ?>">
+    <?php
+    // Helper function to render logo
+    function bn_render_header_logo() {
+        $logo_path = get_stylesheet_directory() . '/assets/imgs/bn-white-logo.svg';
+        $logo_url = get_stylesheet_directory_uri() . '/assets/imgs/bn-white-logo.svg';
+        ?>
         <div class="bn-header-logo">
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
                 <?php
-                $logo_path = get_stylesheet_directory() . '/assets/imgs/bn-white-logo.svg';
-                $logo_url = get_stylesheet_directory_uri() . '/assets/imgs/bn-white-logo.svg';
                 if ( file_exists( $logo_path ) ) {
                     echo file_get_contents( $logo_path );
                 } else {
@@ -26,7 +29,12 @@
                 ?>
             </a>
         </div>
+        <?php
+    }
 
+    // Helper function to render menu and actions
+    function bn_render_header_menu_actions( $utility_menu_assigned, $utility_urls, $join_url, $donate_url ) {
+        ?>
         <div class="bn-header-right">
             <div class="bn-header-nav-wrap">
                 <?php if ( $utility_menu_assigned ) : ?>
@@ -74,6 +82,23 @@
                 </button>
             </div>
         </div>
+        <?php
+    }
+    ?>
+
+    <!-- Pre-scroll header: tagline left, logo center, menu right -->
+    <header class="bn-header-bar-pre-scroll" aria-label="<?php esc_attr_e( 'Site header', 'bn-newspack-child' ); ?>">
+        <div class="bn-header-tagline">
+            <?php echo esc_html( get_bloginfo( 'description' ) ); ?>
+        </div>
+        <?php bn_render_header_logo(); ?>
+        <?php bn_render_header_menu_actions( $utility_menu_assigned, $utility_urls, $join_url, $donate_url ); ?>
+    </header>
+
+    <!-- After-scroll header: logo left, menu right (hidden initially) -->
+    <header class="bn-header-bar-after-scroll" aria-label="<?php esc_attr_e( 'Site header', 'bn-newspack-child' ); ?>">
+        <?php bn_render_header_logo(); ?>
+        <?php bn_render_header_menu_actions( $utility_menu_assigned, $utility_urls, $join_url, $donate_url ); ?>
     </header>
     <!-- /wp:html -->
 </div>

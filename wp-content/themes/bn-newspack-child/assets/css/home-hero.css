@@ -105,34 +105,20 @@
 }
 
 /* Header overlay adjustments when hero is active */
-body.has-hero-issue .bn-header-bar {
+body.has-hero-issue .bn-header-bar-pre-scroll {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   background: transparent;
   z-index: 5;
-  transform: translateY(0);
-  transition:
-    background-color 0.2s ease,
-    transform 0.25s ease;
 }
+
 body.has-hero-issue .bn-primary-row {
   display: none;
 }
 .newspack-front-page .site-content {
   margin-top: 0;
-}
-
-/* Stuck state: slide in and solid background */
-.bn-header-bar.is-stuck {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: #003da5 !important;
-  z-index: 9999;
-  transform: translateY(0);
 }
 
 /* Full-width hero section - breaks out of content flow */

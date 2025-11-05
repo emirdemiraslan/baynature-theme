@@ -13,7 +13,7 @@ body {
   background-color: transparent;
 }
 
-/* Header layout */
+/* Legacy header - keeping for backward compatibility */
 .bn-header-bar {
   display: flex;
   align-items: center;
@@ -33,6 +33,97 @@ body {
     padding 0.2s ease,
     box-shadow 0.2s ease,
     background-color 0.2s ease;
+}
+
+/* Pre-scroll header: tagline left, logo center, menu right */
+.bn-header-bar-pre-scroll {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  position: relative;
+  padding: 1rem var(--wp--preset--spacing--md);
+  gap: var(--wp--preset--spacing--md);
+  color: #ffffff;
+  background-color: #484848;
+  width: 100%;
+  max-width: 100%;
+  z-index: 1000;
+  transition:
+    opacity 0.3s ease,
+    background-color 0.2s ease;
+}
+
+/* Transparent background on hero pages */
+body.has-hero-issue .bn-header-bar-pre-scroll {
+  background-color: transparent;
+}
+
+/* Hide pre-scroll header when scrolled */
+.bn-header-bar-pre-scroll.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Pre-scroll header: three-column layout positioning */
+.bn-header-bar-pre-scroll .bn-header-tagline {
+  justify-self: start;
+}
+
+.bn-header-bar-pre-scroll .bn-header-logo {
+  justify-self: center;
+}
+
+.bn-header-bar-pre-scroll .bn-header-right {
+  justify-self: end;
+  margin-left: 0;
+}
+
+/* After-scroll header: logo left, menu right */
+.bn-header-bar-after-scroll {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem var(--wp--preset--spacing--md);
+  gap: var(--wp--preset--spacing--md);
+  color: #ffffff;
+  background-color: #484848;
+  width: 100%;
+  max-width: 100%;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transform: translateY(-100%);
+  opacity: 0;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    padding 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Show after-scroll header when visible */
+.bn-header-bar-after-scroll.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Admin bar offset for after-scroll header */
+.admin-bar .bn-header-bar-after-scroll {
+  top: 32px;
+}
+@media (max-width: 782px) {
+  .admin-bar .bn-header-bar-after-scroll {
+    top: 46px;
+  }
+}
+
+/* Compact logo in after-scroll header */
+.bn-header-bar-after-scroll .bn-header-logo img,
+.bn-header-bar-after-scroll .bn-header-logo svg {
+  max-height: 32px;
 }
 
 .bn-header-tagline {
@@ -297,6 +388,43 @@ body {
     padding: 1rem var(--wp--preset--spacing--sm);
   }
 
+  .bn-header-bar-pre-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: var(--wp--preset--spacing--sm);
+    padding: 1rem var(--wp--preset--spacing--sm);
+  }
+
+  .bn-header-bar-pre-scroll .bn-header-tagline {
+    order: 1;
+  }
+
+  .bn-header-bar-pre-scroll .bn-header-logo {
+    order: 2;
+  }
+
+  .bn-header-bar-pre-scroll .bn-header-right {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    margin-left: 0;
+  }
+
+  .bn-header-bar-pre-scroll .bn-header-nav-wrap {
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+
+  .bn-header-bar-pre-scroll .bn-header-nav {
+    justify-content: flex-start;
+  }
+
+  .bn-header-bar-pre-scroll .bn-header-menu {
+    gap: 1rem;
+  }
+
   .bn-header-logo {
     order: 1;
     width: auto;
@@ -331,6 +459,19 @@ body {
   .bn-header-bar {
     align-items: flex-start;
     padding: 0.75rem var(--wp--preset--spacing--sm);
+  }
+
+  .bn-header-bar-pre-scroll {
+    padding: 0.75rem var(--wp--preset--spacing--sm);
+  }
+
+  .bn-header-bar-pre-scroll .bn-header-logo img,
+  .bn-header-bar-pre-scroll .bn-header-logo svg {
+    max-height: 32px;
+  }
+
+  .bn-header-bar-pre-scroll .bn-header-nav-wrap {
+    display: none;
   }
 
   .bn-header-logo img,
