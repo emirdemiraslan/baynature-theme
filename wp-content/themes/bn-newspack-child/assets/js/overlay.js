@@ -96,3 +96,34 @@
   });
 })();
 
+// Sticky header compact state toggle
+(function(){
+  var header = document.querySelector('.bn-header-bar');
+  if (!header) return;
+  // Ensure spacer exists to avoid layout jump when fixed
+  var spacer = document.querySelector('.bn-header-spacer');
+  if (!spacer) {
+    spacer = document.createElement('div');
+    spacer.className = 'bn-header-spacer';
+    var masthead = header.parentElement; // header is inside .bn-header-wrapper group
+    if (masthead && masthead.parentNode) {
+      masthead.parentNode.insertBefore(spacer, masthead.nextSibling);
+    }
+  }
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      var stuck = window.scrollY > 1;
+      header.classList.toggle('is-stuck', stuck);
+      header.classList.toggle('is-fixed', stuck);
+      if (spacer) {
+        spacer.style.height = stuck ? header.offsetHeight + 'px' : '0px';
+      }
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+

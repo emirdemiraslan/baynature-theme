@@ -2,35 +2,155 @@
  * Navigation styles (mobile-first)
  */
 
+/* Body padding reset */
+body {
+    padding: 0;
+}
+
+/* Header wrapper - full width */
+.bn-header-wrapper {
+    width: 100%;
+    background-color: #003da5;
+}
+
 /* Header layout */
 .bn-header-bar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 1rem var(--wp--preset--spacing--md);
     gap: var(--wp--preset--spacing--md);
-    color: var(--wp--preset--color--contrast);
+    color: #ffffff;
+    background-color: #003da5;
+    width: 100%;
+    max-width: 100%;
+    /* Sticky behavior */
+    position: sticky; /* fallback; JS will switch to fixed for robustness */
+    top: 0;
+    z-index: 1000;
+    transition: padding 0.2s ease, box-shadow 0.2s ease;
 }
 
-.bn-header-branding {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--wp--preset--spacing--sm);
+.bn-header-tagline {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #ffffff;
+    opacity: 0.9;
+    line-height: 1.2;
     flex-shrink: 0;
-    min-width: 0;
+    white-space: nowrap;
+}
+
+.bn-header-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-shrink: 0;
 }
 
 .bn-header-logo img,
 .bn-header-logo svg {
-    max-height: 56px;
+    max-height: 40px;
     width: auto;
     height: auto;
 }
 
-.bn-header-text {
+/* Compact state when stuck */
+.bn-header-bar.is-stuck {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    padding: 0.5rem var(--wp--preset--spacing--md);
+}
+.bn-header-bar.is-fixed {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+.admin-bar .bn-header-bar.is-fixed { top: 32px; }
+@media (max-width: 782px) { .admin-bar .bn-header-bar.is-fixed { top: 46px; } }
+.bn-header-bar.is-stuck .bn-header-logo img,
+.bn-header-bar.is-stuck .bn-header-logo svg {
+    max-height: 32px;
+}
+
+.bn-header-right {
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    line-height: 1.2;
-    min-width: 0;
+    align-items: center;
+    gap: var(--wp--preset--spacing--md);
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+/* Primary row (under the top header) */
+.bn-primary-row {
+    background: #f2f2f2;
+    color: #111111;
+}
+
+.bn-primary-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem var(--wp--preset--spacing--sm);
+    gap: var(--wp--preset--spacing--md);
+}
+
+.bn-primary-center {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.bn-primary-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bn-primary-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.bn-primary-menu li + li {
+    position: relative;
+}
+
+.bn-primary-menu li + li::before {
+    content: '\2022';
+    color: #999999;
+    margin: 0 0.5rem;
+}
+
+.bn-primary-menu a {
+    color: #111111;
+    text-decoration: none;
+}
+
+.bn-primary-menu a:hover,
+.bn-primary-menu a:focus-visible {
+    text-decoration: underline;
+}
+
+.bn-primary-right {
+    display: flex;
+    align-items: center;
+}
+
+.bn-primary-all {
+    color: #111111;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.bn-primary-all:hover,
+.bn-primary-all:focus-visible {
+    text-decoration: underline;
 }
 
 .bn-header-title {
@@ -40,6 +160,7 @@
     text-transform: uppercase;
     text-decoration: none;
     color: var(--wp--preset--color--contrast);
+    line-height: 1.2;
 }
 
 .bn-header-title:hover,
@@ -47,25 +168,16 @@
     color: var(--wp--preset--color--primary);
 }
 
-.bn-header-tagline {
-    margin: 0;
-    font-size: 0.85rem;
-    color: var(--wp--preset--color--contrast);
-    opacity: 0.75;
-}
-
 .bn-header-nav-wrap {
-    flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     min-width: 0;
 }
 
 .bn-header-nav {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
+    justify-content: flex-end;
 }
 
 .bn-header-menu {
@@ -91,27 +203,39 @@
     font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
-    color: var(--wp--preset--color--contrast);
-    transition: color 0.2s ease;
+    color: #ffffff !important;
+    transition: opacity 0.2s ease;
     white-space: nowrap;
 }
 
 .bn-header-menu-link:hover,
-.bn-header-menu-link:focus-visible {
-    color: var(--wp--preset--color--primary);
+.bn-header-menu-link:focus-visible,
+.bn-header-menu-link:visited,
+.bn-header-menu-link:active {
+    color: #ffffff !important;
+    opacity: 0.8;
 }
 
 .bn-header-menu-link--cta {
     padding: 0.5rem 1.25rem;
-    border: 1px solid currentColor;
+    border: 1px solid #ffffff;
     border-radius: 999px;
+    color: #ffffff !important;
+}
+
+.bn-header-menu-link--cta:hover,
+.bn-header-menu-link--cta:focus-visible,
+.bn-header-menu-link--cta:visited,
+.bn-header-menu-link--cta:active {
+    color: #ffffff !important;
+    border-color: #ffffff;
+    opacity: 0.8;
 }
 
 .bn-header-actions {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-left: auto;
 }
 
 .bn-header-icon {
@@ -121,9 +245,9 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    border: 2px solid currentColor;
+    border: 2px solid #ffffff;
     background: transparent;
-    color: var(--wp--preset--color--contrast);
+    color: #ffffff;
     cursor: pointer;
     padding: 0;
     transition: opacity 0.2s ease, transform 0.2s ease;
@@ -135,7 +259,7 @@
 }
 
 .bn-header-icon:focus-visible {
-    outline: 2px solid var(--wp--preset--color--primary);
+    outline: 2px solid #ffffff;
     outline-offset: 2px;
 }
 
@@ -148,14 +272,32 @@
     .bn-header-bar {
         flex-wrap: wrap;
         row-gap: var(--wp--preset--spacing--sm);
+        padding: 1rem var(--wp--preset--spacing--sm);
     }
 
-    .bn-header-actions {
+    .bn-header-logo {
+        position: static;
+        transform: none;
+        order: 1;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .bn-header-tagline {
+        order: 2;
+        flex: 1;
+    }
+
+    .bn-header-right {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
         margin-left: 0;
     }
 
     .bn-header-nav-wrap {
-        order: 3;
+        order: 4;
         width: 100%;
         justify-content: flex-start;
         overflow-x: auto;
@@ -173,24 +315,33 @@
 @media (max-width: 720px) {
     .bn-header-bar {
         align-items: flex-start;
+        padding: 0.75rem var(--wp--preset--spacing--sm);
     }
 
-    .bn-header-branding {
-        flex-direction: column;
-        gap: 0.5rem;
+    .bn-header-logo img,
+    .bn-header-logo svg {
+        max-height: 32px;
     }
 
     .bn-header-nav-wrap {
         display: none;
     }
 
-    .bn-header-title {
-        font-size: clamp(1.1rem, 4vw, 1.4rem);
+    .bn-header-tagline {
+        font-size: 0.75rem;
+        order: 2;
+        flex: 1;
     }
 
-    .bn-header-tagline {
-        font-size: 0.8rem;
+    .bn-header-right {
+        order: 3;
     }
+}
+
+/* Hide the primary menu on smaller mobile screens */
+@media (max-width: 720px) {
+    .bn-primary-center { display: none; }
+    .bn-primary-inner { justify-content: flex-end; }
 }
 
 .bn-btn {
@@ -255,7 +406,7 @@
     display: block;
     width: 100%;
     height: 2px;
-    background-color: var(--wp--preset--color--contrast);
+    background-color: #ffffff;
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
@@ -465,5 +616,19 @@
     .bn-popup-menu a {
         font-size: 1.25rem;
     }
+}
+
+/* WordPress admin bar offset for sticky header */
+.admin-bar .bn-header-bar { top: 32px; }
+@media (max-width: 782px) {
+    .admin-bar .bn-header-bar { top: 46px; }
+}
+
+/* Spacer used to prevent layout shift when header becomes fixed */
+.bn-header-spacer { height: 0; }
+
+/* Show primary row only on desktop (>=1024px) */
+@media (max-width: 1023px) {
+    .bn-primary-row { display: none; }
 }
 

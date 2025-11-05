@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 add_action( 'after_setup_theme', function () {
     register_nav_menus( array(
+        'primary'        => __( 'Primary Menu', 'bn-newspack-child' ),
         'header-utility' => __( 'Header Utility (Join/Donate)', 'bn-newspack-child' ),
         'popup'          => __( 'Popup Overlay Menu', 'bn-newspack-child' ),
         'topics'         => __( 'Topics Row', 'bn-newspack-child' ),
@@ -63,4 +64,26 @@ add_action( 'admin_menu', function () {
     // Piggyback on the existing bn-settings page added by paywall/settings.php.
     // We'll enhance the page to show tabs in the next commit.
 }, 99 );
+
+/**
+ * Add bn-header-menu-link class to header-utility menu links.
+ */
+add_filter( 'nav_menu_link_attributes', function ( $atts, $item, $args ) {
+    if ( isset( $args->theme_location ) && 'header-utility' === $args->theme_location ) {
+        $classes = isset( $atts['class'] ) ? $atts['class'] : '';
+        $classes = $classes ? $classes . ' bn-header-menu-link' : 'bn-header-menu-link';
+        $atts['class'] = $classes;
+    }
+    return $atts;
+}, 10, 3 );
+
+/**
+ * Add bn-header-menu-item class to header-utility menu list items.
+ */
+add_filter( 'nav_menu_css_class', function ( $classes, $item, $args ) {
+    if ( isset( $args->theme_location ) && 'header-utility' === $args->theme_location ) {
+        $classes[] = 'bn-header-menu-item';
+    }
+    return $classes;
+}, 10, 3 );
 
