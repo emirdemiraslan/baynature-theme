@@ -19,7 +19,7 @@
 }
 .issue-hero__inner {
   position: relative;
-  max-width: 1100px;
+  max-width: var(--wp--style--global--wide-size, 1100px);
   margin: 0 auto;
   padding: 8rem 1.25rem;
 }
@@ -133,4 +133,33 @@ body.has-hero-issue .bn-primary-row {
   background: #003da5 !important;
   z-index: 9999;
   transform: translateY(0);
+}
+
+/* Full-width hero section - breaks out of content flow */
+.site-content > .issue-hero {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+/* Constrain content after hero to max-width and center */
+.site-content > .issue-hero ~ * {
+  max-width: var(--wp--style--global--wide-size, 1100px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* Target WordPress block editor content wrappers */
+.site-content > .issue-hero ~ .wp-block-group:not(.alignfull):not(.alignwide),
+.site-content > .issue-hero ~ .entry-content {
+  max-width: var(--wp--style--global--wide-size, 1100px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }

@@ -58,6 +58,10 @@ body {
   height: auto;
 }
 
+.bn-header-logo .custom-logo-link {
+  vertical-align: middle;
+}
+
 /* Compact state when stuck */
 .bn-header-bar.is-stuck {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
@@ -560,8 +564,6 @@ body {
   width: 48px;
   height: 48px;
   padding: 0;
-  font-size: 1.5rem;
-  line-height: 1;
   background: #ffffff;
   border: none;
   border-radius: 50%;
@@ -574,17 +576,27 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
+.bn-overlay-close svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
 /* Admin bar offset for close button (mobile only - fixed positioning) */
 @media (max-width: 767px) {
+  .bn-overlay-close {
+    right: 20px;
+  }
   .admin-bar .bn-overlay-close {
     top: calc(32px + var(--wp--preset--spacing--sm));
-    right: -60px;
+    right: 20px;
   }
 }
 @media (max-width: 782px) {
   .admin-bar .bn-overlay-close {
     top: calc(46px + var(--wp--preset--spacing--sm));
-    right: -60px;
+    right: 20px;
   }
 }
 
@@ -594,11 +606,6 @@ body {
   transform: scale(1.05);
   outline: 2px solid #333333;
   outline-offset: 2px;
-}
-
-.bn-overlay-close span {
-  display: block;
-  line-height: 1;
 }
 
 .bn-overlay-content {
