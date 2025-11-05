@@ -52,7 +52,7 @@ body {
 
 .bn-header-logo img,
 .bn-header-logo svg {
-  max-height: 40px;
+  max-height: 50px;
   width: auto;
   height: auto;
   display: block;
@@ -82,7 +82,7 @@ body {
   top: 0;
 }
 .admin-bar .bn-header-bar.is-fixed {
-  top: 32px;
+  top: 40px;
 }
 @media (max-width: 782px) {
   .admin-bar .bn-header-bar.is-fixed {
