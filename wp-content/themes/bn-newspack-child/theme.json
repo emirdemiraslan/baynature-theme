@@ -3,7 +3,7 @@
   "version": 3,
   "settings": {
     "layout": {
-      "contentSize": "680px",
+      "contentSize": "1280px",
       "wideSize": "1280px"
     },
     "spacing": {
@@ -37,13 +37,48 @@
       "fontSizes": [
         { "slug": "xs", "size": "0.75rem", "name": "XS" },
         { "slug": "sm", "size": "0.875rem", "name": "Small" },
-        { "slug": "base", "size": "1rem", "name": "Base", "fluid": { "min": "0.875rem", "max": "1rem" } },
-        { "slug": "lg", "size": "1.125rem", "name": "Large", "fluid": { "min": "1rem", "max": "1.125rem" } },
-        { "slug": "xl", "size": "1.25rem", "name": "XL", "fluid": { "min": "1.125rem", "max": "1.25rem" } },
-        { "slug": "2xl", "size": "1.5rem", "name": "2XL", "fluid": { "min": "1.25rem", "max": "1.5rem" } },
-        { "slug": "3xl", "size": "2rem", "name": "3XL", "fluid": { "min": "1.5rem", "max": "2rem" } },
-        { "slug": "4xl", "size": "2.5rem", "name": "4XL", "fluid": { "min": "2rem", "max": "2.5rem" } },
-        { "slug": "5xl", "size": "3rem", "name": "5XL", "fluid": { "min": "2.5rem", "max": "3rem" } }
+        {
+          "slug": "base",
+          "size": "1rem",
+          "name": "Base",
+          "fluid": { "min": "0.875rem", "max": "1rem" }
+        },
+        {
+          "slug": "lg",
+          "size": "1.125rem",
+          "name": "Large",
+          "fluid": { "min": "1rem", "max": "1.125rem" }
+        },
+        {
+          "slug": "xl",
+          "size": "1.25rem",
+          "name": "XL",
+          "fluid": { "min": "1.125rem", "max": "1.25rem" }
+        },
+        {
+          "slug": "2xl",
+          "size": "1.5rem",
+          "name": "2XL",
+          "fluid": { "min": "1.25rem", "max": "1.5rem" }
+        },
+        {
+          "slug": "3xl",
+          "size": "2rem",
+          "name": "3XL",
+          "fluid": { "min": "1.5rem", "max": "2rem" }
+        },
+        {
+          "slug": "4xl",
+          "size": "2.5rem",
+          "name": "4XL",
+          "fluid": { "min": "2rem", "max": "2.5rem" }
+        },
+        {
+          "slug": "5xl",
+          "size": "3rem",
+          "name": "5XL",
+          "fluid": { "min": "2.5rem", "max": "3rem" }
+        }
       ]
     },
     "color": {
@@ -51,8 +86,16 @@
       "palette": [
         { "slug": "base", "name": "Base", "color": "#111111" },
         { "slug": "contrast", "name": "Contrast", "color": "#ffffff" },
-        { "slug": "primary", "name": "Primary (Bay Nature Orange)", "color": "#E87722" },
-        { "slug": "secondary", "name": "Secondary (Green)", "color": "#0a6847" },
+        {
+          "slug": "primary",
+          "name": "Primary (Bay Nature Orange)",
+          "color": "#E87722"
+        },
+        {
+          "slug": "secondary",
+          "name": "Secondary (Green)",
+          "color": "#0a6847"
+        },
         { "slug": "cyan", "name": "Cyan (Join)", "color": "#00B8D4" },
         { "slug": "yellow", "name": "Yellow (Donate)", "color": "#FFD600" },
         { "slug": "gray-50", "name": "Gray 50", "color": "#f9fafb" },
@@ -62,6 +105,11 @@
         { "slug": "gray-700", "name": "Gray 700", "color": "#374151" },
         { "slug": "gray-900", "name": "Gray 900", "color": "#111827" }
       ]
+    },
+    "custom": {
+      "color": {
+        "header-bg-dark": "#484848"
+      }
     }
   },
   "styles": {
@@ -125,4 +173,3 @@
     }
   ]
 }
-

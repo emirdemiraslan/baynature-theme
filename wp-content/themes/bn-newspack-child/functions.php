@@ -225,3 +225,30 @@ add_filter( 'body_class', function ( $classes ) {
     return $classes;
 } );
 
+// Add body class for pages/singulars that render a full-width hero via featured image.
+add_filter( 'body_class', function ( $classes ) {
+    $has_hero = false;
+
+    if ( is_singular() && has_post_thumbnail() ) {
+        if ( function_exists( 'newspack_post_has_hero' ) ) {
+            // Prefer theme helper if available.
+            $has_hero = (bool) newspack_post_has_hero( get_post() );
+        } else {
+            // Design assumption: featured image renders as a full-width hero on singulars.
+            $has_hero = true;
+        }
+    }
+
+    if ( $has_hero ) {
+        $classes[] = 'has-hero-header';
+    }
+
+    return $classes;
+} );
+
+// Ensure headers render across classic and block templates by injecting after body open.
+add_action( 'wp_body_open', function () {
+    // Output once and as early as possible after <body> open for all templates.
+    get_template_part( 'parts/header' );
+}, 5 );
+

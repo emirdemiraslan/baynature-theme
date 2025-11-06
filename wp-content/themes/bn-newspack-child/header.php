@@ -36,11 +36,7 @@ do_action( 'before_header' );
 	<?php endif; ?>
 
 	<header id="masthead" class="site-header">
-		<?php get_template_part( 'parts/header' ); ?>
-
-		<?php if ( $header_sticky ) : ?>
-			<div class="sticky-bg"></div>
-		<?php endif; ?>
+		<!-- Header markup is injected at wp_body_open for universal coverage (classic + block templates). -->
 	</header><!-- #masthead -->
 
 	<?php

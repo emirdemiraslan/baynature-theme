@@ -54,8 +54,24 @@ body {
 }
 
 /* Transparent background on hero pages */
-body.has-hero-issue .bn-header-bar-pre-scroll {
+body.has-hero-issue .bn-header-bar-pre-scroll,
+body.has-hero-header .bn-header-bar-pre-scroll {
   background-color: transparent;
+}
+
+/* Float pre-scroll header over hero on pages with a hero */
+body.has-hero-issue .bn-header-wrapper,
+body.has-hero-header .bn-header-wrapper {
+  position: relative;
+}
+
+body.has-hero-issue .bn-header-bar-pre-scroll,
+body.has-hero-header .bn-header-bar-pre-scroll {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
 /* Hide pre-scroll header when scrolled */
@@ -197,6 +213,7 @@ body.has-hero-issue .bn-header-bar-pre-scroll {
 .bn-primary-row {
   background: #f2f2f2;
   color: #111111;
+  display: none !important;
 }
 
 .bn-primary-inner {
