@@ -12,7 +12,7 @@
     $donate_url = isset( $utility_urls['donate_url'] ) ? $utility_urls['donate_url'] : '/donate';
     ?>
     <?php
-    // Helper function to render logo
+    // Helper function to render logo for sticky header (SVG)
     function bn_render_header_logo() {
         $logo_path = get_stylesheet_directory() . '/assets/imgs/bn-white-logo.svg';
         $logo_url = get_stylesheet_directory_uri() . '/assets/imgs/bn-white-logo.svg';
@@ -32,38 +32,72 @@
         <?php
     }
 
+    // Helper function to render logo for static header (site logo from customizer)
+    function bn_render_static_header_logo() {
+        ?>
+        <div class="bn-header-logo">
+            <?php
+            $custom_logo = get_custom_logo();
+            if ( $custom_logo ) {
+                echo $custom_logo;
+            } else {
+                // Fallback to site title styled as text logo
+                ?>
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="bn-header-title">
+                    <?php echo esc_html( get_bloginfo( 'name' ) ); ?>
+                </a>
+                <?php
+            }
+            ?>
+        </div>
+        <?php
+    }
+
     // Helper function to render menu and actions
-    function bn_render_header_menu_actions( $utility_menu_assigned, $utility_urls, $join_url, $donate_url ) {
+    function bn_render_header_menu_actions( $utility_menu_assigned, $utility_urls, $join_url, $donate_url, $header_type = 'sticky' ) {
         ?>
         <div class="bn-header-right">
             <div class="bn-header-nav-wrap">
-                <?php if ( $utility_menu_assigned ) : ?>
-                    <?php
-                    wp_nav_menu( array(
-                        'theme_location' => 'header-utility',
-                        'container'      => 'nav',
-                        'container_class'=> 'bn-header-nav',
-                        'menu_class'     => 'bn-header-menu',
-                        'depth'          => 1,
-                        'fallback_cb'    => false,
-                        'aria_label'     => __( 'Header utility menu', 'bn-newspack-child' ),
-                    ) );
-                    ?>
+                <?php if ( 'static' === $header_type ) : ?>
+                    <?php // Static header: render buttons instead of menu ?>
+                    <div class="bn-header-buttons">
+                        <a href="<?php echo esc_url( $join_url ); ?>" class="bn-header-join-button">
+                            <?php esc_html_e( 'Join', 'bn-newspack-child' ); ?>
+                        </a>
+                        <a href="<?php echo esc_url( $donate_url ); ?>" class="bn-header-donate-button">
+                            <?php esc_html_e( 'Donate', 'bn-newspack-child' ); ?>
+                        </a>
+                    </div>
                 <?php else : ?>
-                    <nav class="bn-header-nav" aria-label="<?php esc_attr_e( 'Header utility menu', 'bn-newspack-child' ); ?>">
-                        <ul class="bn-header-menu">
-                            <li class="bn-header-menu-item">
-                                <a class="bn-header-menu-link" href="<?php echo esc_url( $join_url ); ?>">
-                                    <?php esc_html_e( 'Join', 'bn-newspack-child' ); ?>
-                                </a>
-                            </li>
-                            <li class="bn-header-menu-item">
-                                <a class="bn-header-menu-link" href="<?php echo esc_url( $donate_url ); ?>">
-                                    <?php esc_html_e( 'Donate', 'bn-newspack-child' ); ?>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                    <?php // Sticky header: render utility menu ?>
+                    <?php if ( $utility_menu_assigned ) : ?>
+                        <?php
+                        wp_nav_menu( array(
+                            'theme_location' => 'header-utility',
+                            'container'      => 'nav',
+                            'container_class'=> 'bn-header-nav',
+                            'menu_class'     => 'bn-header-menu',
+                            'depth'          => 1,
+                            'fallback_cb'    => false,
+                            'aria_label'     => __( 'Header utility menu', 'bn-newspack-child' ),
+                        ) );
+                        ?>
+                    <?php else : ?>
+                        <nav class="bn-header-nav" aria-label="<?php esc_attr_e( 'Header utility menu', 'bn-newspack-child' ); ?>">
+                            <ul class="bn-header-menu">
+                                <li class="bn-header-menu-item">
+                                    <a class="bn-header-menu-link" href="<?php echo esc_url( $join_url ); ?>">
+                                        <?php esc_html_e( 'Join', 'bn-newspack-child' ); ?>
+                                    </a>
+                                </li>
+                                <li class="bn-header-menu-item">
+                                    <a class="bn-header-menu-link" href="<?php echo esc_url( $donate_url ); ?>">
+                                        <?php esc_html_e( 'Donate', 'bn-newspack-child' ); ?>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    <?php endif; ?>
                 <?php endif; ?>
             </div>
 
@@ -91,8 +125,8 @@
         <div class="bn-header-tagline">
             <?php echo esc_html( get_bloginfo( 'description' ) ); ?>
         </div>
-        <?php bn_render_header_logo(); ?>
-        <?php bn_render_header_menu_actions( $utility_menu_assigned, $utility_urls, $join_url, $donate_url ); ?>
+        <?php bn_render_static_header_logo(); ?>
+        <?php bn_render_header_menu_actions( $utility_menu_assigned, $utility_urls, $join_url, $donate_url, 'static' ); ?>
     </header>
 
     <!-- After-scroll header: logo left, menu right (hidden initially) -->
