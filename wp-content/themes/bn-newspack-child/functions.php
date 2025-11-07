@@ -252,3 +252,34 @@ add_action( 'wp_body_open', function () {
     get_template_part( 'parts/header' );
 }, 5 );
 
+/**
+ * Force all single posts (including CPTs) to use the one-column wide template.
+ */
+add_filter( 'single_template', function( $template ) {
+    // Check if we're on a single post page (any post type)
+    if ( is_single() ) {
+        // Locate the single-wide.php template in parent theme
+        $one_column_template = locate_template( 'single-wide.php' );
+        
+        // If found, use it; otherwise fall back to default
+        if ( $one_column_template ) {
+            return $one_column_template;
+        }
+    }
+    
+    return $template;
+}, 99 );
+
+/**
+ * Add body class for one-column template so Newspack's CSS applies correctly.
+ */
+add_filter( 'body_class', function( $classes ) {
+    if ( is_single() ) {
+        // Add the class that Newspack uses for one-column layout
+        $classes[] = 'post-template-single-wide';
+        // Remove any sidebar-related classes
+        $classes = array_diff( $classes, array( 'has-sidebar' ) );
+    }
+    return $classes;
+} );
+
