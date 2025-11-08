@@ -61,11 +61,11 @@
                 <?php if ( 'static' === $header_type ) : ?>
                     <?php // Static header: render buttons instead of menu ?>
                     <div class="bn-header-buttons">
-                        <a href="<?php echo esc_url( $join_url ); ?>" class="bn-header-join-button">
-                            <?php esc_html_e( 'Join', 'bn-newspack-child' ); ?>
+                        <a href="<?php echo esc_url( $join_url ); ?>" class="bn-btn bn-btn--join">
+                           <span class="bn-btn-inner"><?php esc_html_e( 'Join', 'bn-newspack-child' ); ?></span>
                         </a>
-                        <a href="<?php echo esc_url( $donate_url ); ?>" class="bn-header-donate-button">
-                            <?php esc_html_e( 'Donate', 'bn-newspack-child' ); ?>
+                        <a href="<?php echo esc_url( $donate_url ); ?>" class="bn-btn bn-btn--donate">
+                            <span class="bn-btn-inner"><?php esc_html_e( 'Donate', 'bn-newspack-child' ); ?></span>
                         </a>
                     </div>
                 <?php else : ?>

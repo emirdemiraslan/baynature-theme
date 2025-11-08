@@ -58,10 +58,15 @@ $overlay_opacity = isset( $args['overlay_opacity'] ) ? (int) $args['overlay_opac
             <div class="issue-hero__meta">
                 <?php if ( $author_id ) : ?>
                     <span class="issue-hero__avatar-wrap">
-                        <?php echo get_avatar( $author_id, 48, '', '', array( 'class' => 'issue-hero__avatar' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                        <?php echo get_avatar( $author_id, 32, '', '', array( 'class' => 'issue-hero__avatar' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                     </span>
                 <?php endif; ?>
-                <?php if ( $author_name ) : ?>By <?php echo esc_html( $author_name ); ?><?php endif; ?><?php echo $author_name && $date ? ' · ' : ''; ?><?php echo esc_html( $date ); ?>
+                <?php if ( $author_name ) : ?>
+                    <span class="issue-hero__author">By <a href="<?php echo esc_url( get_author_posts_url( $author_id ) ); ?>"><?php echo esc_html( $author_name ); ?></a></span>
+                <?php endif; ?>
+                <?php if ( $date ) : ?>
+                    <span class="issue-hero__date"> • <?php echo esc_html( $date ); ?></span>
+                <?php endif; ?>
             </div>
         <?php endif; ?>
         </div>

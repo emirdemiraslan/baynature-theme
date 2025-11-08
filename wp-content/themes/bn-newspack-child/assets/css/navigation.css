@@ -1177,3 +1177,88 @@ body.has-hero-header .bn-header-bar-pre-scroll {
     display: none;
   }
 }
+/* ==================== BN CONSOLIDATED PATCH (2025-10-21) ==================== */
+:root {
+  --bn-blue-500: #009ad9;
+  --bn-green-300: #a6ce38;
+  --bn-yellow: #ffcb04;
+  --bn-orange: #f5821f;
+}
+/* buttons: circle fill (hover-in), text visible */
+.bn-btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 6px;
+  padding: 9px 14px;
+  font-weight: 700;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.bn-btn > span {
+  position: relative;
+  z-index: 1;
+  font-size: 0.625rem;
+}
+
+.bn-btn::before {
+  display: none !important;
+}
+
+.bn-btn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%) scale(0);
+  transform-origin: 50% 50%;
+  transition: transform 0.35s ease;
+  z-index: 0;
+  pointer-events: none;
+  background: transparent;
+}
+
+.bn-btn--join {
+  background: #009ad9;
+  color: #fff;
+  border-color: transparent;
+}
+
+.bn-btn--join::after {
+  background: var(--bn-green-300);
+}
+
+.bn-btn--join:hover::after {
+  transform: translate(-50%, -50%) scale(40);
+}
+
+.bn-btn--join:hover {
+  color: #111;
+  border-color: #7fb126;
+}
+
+.bn-btn--donate {
+  background: var(--bn-yellow);
+  color: #111;
+  border-color: #e0b700;
+}
+
+.bn-btn--donate::after {
+  background: var(--bn-orange);
+}
+
+.bn-btn--donate:hover::after {
+  transform: translate(-50%, -50%) scale(40);
+}
+
+.bn-btn--donate:hover {
+  color: #fff;
+  border-color: #d06e18;
+}
