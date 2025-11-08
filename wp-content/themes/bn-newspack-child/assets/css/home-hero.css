@@ -21,7 +21,10 @@
   position: relative;
   max-width: var(--wp--style--global--wide-size, 1100px);
   margin: 0 auto;
-  padding: 8rem 1.25rem;
+  padding: 0 2rem 4rem 2rem;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
 }
 .issue-hero__content {
   width: 60%;
@@ -90,7 +93,7 @@
     height: 100vh;
   }
   .issue-hero__inner {
-    padding: 6rem 1rem;
+    padding: 0 2rem 2rem 2rem;
   }
   .issue-hero__content {
     width: 80%;

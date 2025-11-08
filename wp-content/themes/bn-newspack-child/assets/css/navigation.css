@@ -1183,6 +1183,7 @@ body.has-hero-header .bn-header-bar-pre-scroll {
   --bn-green-300: #a6ce38;
   --bn-yellow: #ffcb04;
   --bn-orange: #f5821f;
+  --bn-black: #111111;
 }
 /* buttons: circle fill (hover-in), text visible */
 .bn-btn {
