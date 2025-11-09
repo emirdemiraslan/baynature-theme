@@ -172,7 +172,7 @@ body.has-hero-header .bn-header-bar-pre-scroll {
 }
 
 .bn-header-logo .custom-logo-link {
-  vertical-align: middle;
+  margin: 0;
 }
 
 .bn-header-logo .custom-logo-link img {
@@ -404,6 +404,43 @@ body.has-hero-header .bn-header-bar-pre-scroll {
 .bn-header-menu-link:active {
   color: #ffffff !important;
   opacity: 0.8;
+}
+
+/* After-scroll header: style menu links as buttons (Grist-style) */
+.bn-header-bar-after-scroll .bn-header-menu-link {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background-color: #ffffff;
+  color: #484848 !important;
+  border: 1px solid #ffffff;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+  white-space: nowrap;
+  opacity: 1;
+}
+
+.bn-header-bar-after-scroll .bn-header-menu-link:hover,
+.bn-header-bar-after-scroll .bn-header-menu-link:focus-visible {
+  background-color: #f5821f;
+  color: #ffffff !important;
+  border-color: #f5821f;
+  opacity: 1;
+}
+
+.bn-header-bar-after-scroll .bn-header-menu-link:visited,
+.bn-header-bar-after-scroll .bn-header-menu-link:active {
+  color: #484848 !important;
+  opacity: 1;
+}
+
+.bn-header-bar-after-scroll .bn-header-menu-link:visited:hover,
+.bn-header-bar-after-scroll .bn-header-menu-link:active:hover {
+  color: #ffffff !important;
 }
 
 .bn-header-menu-link--cta {

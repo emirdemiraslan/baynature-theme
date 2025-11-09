@@ -30,6 +30,8 @@ $excerpt = ! empty( $args['custom_excerpt'] ) ? $args['custom_excerpt'] : get_th
 
 $cats = get_the_category( $issue_id );
 $cat_name = ! empty( $cats ) ? $cats[0]->name : '';
+$cat_id = ! empty( $cats ) ? $cats[0]->term_id : 0;
+$cat_link = $cat_id ? get_category_link( $cat_id ) : '';
 
 $author_id   = (int) get_post_field( 'post_author', $issue_id );
 $author_name = $author_id ? get_the_author_meta( 'display_name', $author_id ) : '';
@@ -45,7 +47,13 @@ $overlay_opacity = isset( $args['overlay_opacity'] ) ? (int) $args['overlay_opac
     <div class="issue-hero__inner">
         <div class="issue-hero__content">
         <?php if ( $cat_name ) : ?>
-            <div class="issue-hero__kicker"><?php echo esc_html( $cat_name ); ?></div>
+            <div class="issue-hero__kicker">
+                <?php if ( $cat_link ) : ?>
+                    <a href="<?php echo esc_url( $cat_link ); ?>"><?php echo esc_html( $cat_name ); ?></a>
+                <?php else : ?>
+                    <?php echo esc_html( $cat_name ); ?>
+                <?php endif; ?>
+            </div>
         <?php endif; ?>
 
         <h1 class="issue-hero__title"><a href="<?php echo esc_url( get_permalink( $issue_id ) ); ?>"><?php echo esc_html( get_the_title( $issue_id ) ); ?></a></h1>

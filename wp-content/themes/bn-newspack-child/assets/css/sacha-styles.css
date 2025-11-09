@@ -730,3 +730,62 @@ body.single .featured-image-behind .entry-sponsor {
 .newspack-listings.hide-date.hide-author .entry-subhead {
   border-top: 0;
 }
+/* Newspack Carousel changes */
+.wp-block-newspack-blocks-carousel article div.entry-wrapper {
+  position: relative;
+  background-color: transparent;
+  color: var(--newspack-theme-color-text-main);
+  padding: 1rem 0;
+}
+
+.wp-block-newspack-blocks-carousel .swiper-slide {
+  height: auto !important;
+  max-height: unset !important;
+}
+
+.wp-block-newspack-blocks-carousel .post-thumbnail {
+  max-height: 50vh;
+}
+
+.wp-block-newspack-blocks-carousel article .entry-wrapper a {
+  color: var(--newspack-theme-color-text-main);
+}
+
+.wp-block-newspack-blocks-carousel article .entry-wrapper a:hover {
+  color: #4f4f4f;
+}
+
+.wp-block-newspack-blocks-carousel article .entry-meta span,
+.wp-block-newspack-blocks-carousel article .entry-meta time {
+  color: var(--newspack-theme-color-text-main);
+}
+
+.wp-block-newspack-blocks-carousel article .avatar {
+  display: none;
+}
+
+.wp-block-newspack-blocks-carousel .swiper-pagination-bullet {
+  border-radius: 4px !important;
+  width: 8px !important;
+  height: 8px !important;
+  background: rgb(229, 229, 229) !important;
+}
+
+.wp-block-newspack-blocks-carousel
+  .swiper-pagination-bullet.swiper-pagination-bullet-active,
+.wp-block-newspack-blocks-carousel .swiper-pagination-bullet[selected] {
+  width: 8px !important;
+  background: #000 !important;
+}
+.wp-block-newspack-blocks-carousel button.swiper-button {
+  background-color: transparent;
+  margin: 0;
+  top: 25%;
+  transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+.wp-block-newspack-blocks-carousel button.swiper-button:hover,
+.wp-block-newspack-blocks-carousel button.swiper-button:focus {
+  background-color: transparent;
+  scale: 1.2;
+  box-shadow: none;
+}

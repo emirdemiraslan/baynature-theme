@@ -64,6 +64,18 @@
   margin-bottom: 0.5rem;
   opacity: 0.9;
 }
+
+.issue-hero__kicker a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.issue-hero__kicker a:hover,
+.issue-hero__kicker a:focus {
+  color: #f5821f;
+  text-decoration: underline;
+}
 .issue-hero__title {
   font-size: clamp(2rem, 6vw, 2.5rem);
   line-height: 1.05;
