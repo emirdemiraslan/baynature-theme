@@ -397,6 +397,10 @@ body.has-hero-header .bn-header-bar-pre-scroll {
   transition: opacity 0.2s ease;
   white-space: nowrap;
 }
+a.bn-header-menu-link,
+.bn-header-buttons .bn-btn {
+  font-family: var(--newspack-theme-font-heading);
+}
 
 .bn-header-menu-link:hover,
 .bn-header-menu-link:focus-visible,
@@ -409,7 +413,7 @@ body.has-hero-header .bn-header-bar-pre-scroll {
 /* After-scroll header: style menu links as buttons (Grist-style) */
 .bn-header-bar-after-scroll .bn-header-menu-link {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 9px 14px;
   background-color: #ffffff;
   color: #484848 !important;
   border: 1px solid #ffffff;
