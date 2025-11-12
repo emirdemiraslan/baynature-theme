@@ -1495,3 +1495,27 @@ body.single .featured-image-behind .entry-sponsor {
 .is-email .tiled-gallery__gallery {
   display: block;
 }
+
+/**
+ * Hide all comment-related elements from frontend visitors
+ */
+.comments-area,
+.comment-form,
+.comment-form-comment,
+.comment-list,
+.comment,
+.comment-reply-link,
+.comment-respond,
+#respond,
+#comments,
+.comment-count,
+.post-comments,
+.entry-comments,
+.comments-title,
+.comment-form-author,
+.comment-form-email,
+.comment-form-url,
+.comment-form-comment,
+.form-submit {
+  display: none !important;
+}

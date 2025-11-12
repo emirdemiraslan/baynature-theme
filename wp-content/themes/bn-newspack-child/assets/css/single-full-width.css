@@ -34,10 +34,9 @@
 	padding-right: 1.25rem;
 }
 
-/* Author bio and comments should respect max-width */
+/* Author bio should respect max-width */
 @media (min-width: 782px) {
-	.post-template-single-wide .author-bio,
-	.post-template-single-wide .comments-area {
+	.post-template-single-wide .author-bio {
 		margin-left: auto;
 		margin-right: auto;
 		max-width: var(--wp--style--global--content-size, 1200px);

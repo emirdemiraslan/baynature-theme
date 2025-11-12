@@ -283,3 +283,26 @@ add_filter( 'body_class', function( $classes ) {
     return $classes;
 } );
 
+/**
+ * Hide comments from frontend visitors while keeping admin functionality
+ */
+// Close comments on the frontend (prevent new comments from being submitted)
+add_filter( 'comments_open', '__return_false', 20, 2 );
+add_filter( 'pings_open', '__return_false', 20, 2 );
+
+// Hide existing comments from display
+add_filter( 'comments_array', '__return_empty_array', 10, 2 );
+
+// Hide comment counts in post meta and listings
+add_filter( 'get_comments_number', '__return_zero', 10, 2 );
+
+// Prevent comment form from displaying
+add_filter( 'comment_form_defaults', function( $defaults ) {
+    if ( ! is_admin() ) {
+        $defaults['title_reply'] = '';
+        $defaults['comment_field'] = '';
+        $defaults['submit_button'] = '';
+    }
+    return $defaults;
+}, 20 );
+
