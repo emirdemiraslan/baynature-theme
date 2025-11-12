@@ -38,11 +38,16 @@
                 <label class="bn-overlay-search-label"><?php esc_html_e( 'Search', 'bn-newspack-child' ); ?></label>
                 <form role="search" method="get" class="bn-overlay-search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                     <div class="bn-overlay-search-input-wrapper">
+                        <span class="bn-overlay-search-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </span>
                         <input type="search" class="bn-overlay-search-input" placeholder="<?php esc_attr_e( 'Search', 'bn-newspack-child' ); ?>" value="<?php echo get_search_query(); ?>" name="s" />
                         <button type="submit" class="bn-overlay-search-submit" aria-label="<?php esc_attr_e( 'Submit search', 'bn-newspack-child' ); ?>">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <path d="m21 21-4.35-4.35"></path>
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
                             </svg>
                         </button>
                     </div>
