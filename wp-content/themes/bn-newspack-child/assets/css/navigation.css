@@ -409,7 +409,7 @@ body.has-hero-header .bn-header-bar-pre-scroll {
 /* After-scroll header: style menu links as buttons (Grist-style) */
 .bn-header-bar-after-scroll .bn-header-menu-link {
   display: inline-block;
-  padding: 0.5rem 1.25rem;
+  padding: 0.5rem 1rem;
   background-color: #ffffff;
   color: #484848 !important;
   border: 1px solid #ffffff;
@@ -422,6 +422,7 @@ body.has-hero-header .bn-header-bar-pre-scroll {
     border-color 0.2s ease;
   white-space: nowrap;
   opacity: 1;
+  font-size: 0.625rem;
 }
 
 .bn-header-bar-after-scroll .bn-header-menu-link:hover,
