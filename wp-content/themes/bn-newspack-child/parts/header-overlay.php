@@ -57,6 +57,38 @@
 
             <!-- wp:html -->
             <?php
+            // Print Edition section - show if magazine cover image is set
+            $nav_options = bn_get_utility_urls();
+            $magazine_cover_id = isset( $nav_options['magazine_cover_image'] ) ? intval( $nav_options['magazine_cover_image'] ) : 0;
+            if ( $magazine_cover_id ) :
+                $magazine_cover_url = wp_get_attachment_image_url( $magazine_cover_id, 'medium' );
+                if ( $magazine_cover_url ) :
+                    ?>
+                    <div class="bn-overlay-print-edition-section">
+                        <label class="bn-overlay-section-label"><?php esc_html_e( 'THE PRINT EDITION', 'bn-newspack-child' ); ?></label>
+                        <div class="bn-overlay-print-edition-separator"></div>
+                        <div class="bn-overlay-print-edition-content">
+                            <div class="bn-overlay-print-edition-cover">
+                                <a href="/magazine">
+                                    <img src="<?php echo esc_url( $magazine_cover_url ); ?>" alt="<?php esc_attr_e( 'Magazine Cover', 'bn-newspack-child' ); ?>" />
+                                </a>
+                            </div>
+                            <nav class="bn-overlay-print-edition-nav">
+                                <ul class="bn-overlay-print-edition-menu">
+                                    <li><a href="/magazine"><?php esc_html_e( 'Current Issue', 'bn-newspack-child' ); ?></a></li>
+                                    <li><a href="/magazine-archive"><?php esc_html_e( 'Past Issues', 'bn-newspack-child' ); ?></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <?php
+                endif;
+            endif;
+            ?>
+            <!-- /wp:html -->
+
+            <!-- wp:html -->
+            <?php
             // "Go To" section - always show if menu exists
             ?>
             <div class="bn-overlay-goto-section">
