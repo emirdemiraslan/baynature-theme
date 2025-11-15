@@ -37,7 +37,8 @@
 .issue-hero__kicker,
 .issue-hero__title,
 .issue-hero__excerpt,
-.issue-hero__meta {
+.issue-hero__meta,
+.issue-hero__meta a {
   color: #fff;
 }
 .layout-left .issue-hero__inner {
