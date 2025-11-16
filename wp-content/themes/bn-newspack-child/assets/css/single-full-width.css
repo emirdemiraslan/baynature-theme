@@ -60,12 +60,121 @@
   padding-right: 1.25rem;
 }
 
-/* Featured image on Full Width pages should be full width */
-.page-template-page-full-width .entry-thumbnail {
-  margin-bottom: 2rem;
+/* Remove top margin from site-content on full-width pages with hero */
+body.page-template-page-full-width.has-hero-header .site-content {
+  margin-top: 0;
 }
 
-.page-template-page-full-width .entry-thumbnail img {
+body.page-template-page-full-width.has-hero-header #primary {
+  padding-top: 0;
+}
+
+/* Hero section for Full Width pages with featured images */
+.page-template-page-full-width .page-hero {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-bottom: 2rem;
+  margin-top: 0;
+}
+
+.page-template-page-full-width .page-hero .hero-wrap {
+  position: relative;
+  height: 100vh;
+  min-height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Adjust hero height when header is overlaying */
+body.has-hero-header.page-template-page-full-width .page-hero .hero-wrap {
+  height: calc(80vh - 20rem);
+}
+
+.page-template-page-full-width .page-hero .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.page-template-page-full-width .page-hero .hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  max-width: var(--wp--style--global--wide-size, 1100px);
   width: 100%;
-  height: auto;
+}
+
+.page-template-page-full-width .page-hero .entry-title {
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.2;
+}
+
+.page-template-page-full-width .page-hero .wp-caption-text {
+  max-width: var(--wp--style--global--content-size, 1100px);
+  margin: 0.5rem auto 0;
+  padding: 0 1.25rem;
+  font-size: 0.875rem;
+  color: #666;
+  text-align: center;
+}
+
+/* Also hide primary navigation row on full-width pages with hero */
+body.page-template-page-full-width.has-hero-header .bn-primary-row {
+  display: none;
+}
+
+/* Title positioned below hero */
+.page-template-page-full-width .entry-header-below-hero {
+  max-width: var(--wp--style--global--content-size, 1100px);
+  margin: 3rem auto 2rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  text-align: center;
+}
+
+.page-template-page-full-width .entry-header-below-hero .entry-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.2;
+  margin: 0;
+  color: inherit;
+  text-shadow: none;
+}
+
+@media (max-width: 782px) {
+  .page-template-page-full-width .entry-header-below-hero {
+    margin: 2rem auto 1.5rem;
+  }
+
+  .page-template-page-full-width .entry-header-below-hero .entry-title {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+}
+
+/* Mobile adjustments for hero */
+@media (max-width: 782px) {
+  .page-template-page-full-width .page-hero .hero-wrap {
+    height: 70vh;
+    min-height: 300px;
+  }
+
+  .page-template-page-full-width .page-hero .entry-title {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  .page-template-page-full-width .page-hero .hero-content {
+    padding: 1rem;
+  }
 }

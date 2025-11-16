@@ -42,7 +42,7 @@ do_action( 'before_header' );
 	<?php
 do_action( 'after_header' );
 
-if ( function_exists( 'yoast_breadcrumb' ) ) {
+if ( function_exists( 'yoast_breadcrumb' ) && ! is_page_template( 'page-full-width.php' ) ) {
 	yoast_breadcrumb( '<div class="site-breadcrumb desktop-only"><div class="wrapper">', '</div></div>' );
 }
 

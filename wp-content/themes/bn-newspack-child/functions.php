@@ -239,6 +239,11 @@ add_filter( 'body_class', function ( $classes ) {
         }
     }
 
+    // Also check for full-width page template with featured image
+    if ( is_page_template( 'page-full-width.php' ) && has_post_thumbnail() ) {
+        $has_hero = true;
+    }
+
     if ( $has_hero ) {
         $classes[] = 'has-hero-header';
     }
@@ -305,4 +310,77 @@ add_filter( 'comment_form_defaults', function( $defaults ) {
     }
     return $defaults;
 }, 20 );
+
+/**
+ * Add meta box for full-width page title position option
+ */
+add_action( 'add_meta_boxes', function() {
+    add_meta_box(
+        'bn_title_position',
+        __( 'Title Position', 'bn-newspack-child' ),
+        'bn_title_position_callback',
+        'page',
+        'side',
+        'default'
+    );
+} );
+
+/**
+ * Meta box callback function
+ */
+function bn_title_position_callback( $post ) {
+    wp_nonce_field( 'bn_title_position_nonce', 'bn_title_position_nonce' );
+    
+    $value = get_post_meta( $post->ID, '_bn_title_position', true );
+    $value = $value ? $value : 'overlay';
+    
+    $is_full_width = get_page_template_slug( $post->ID ) === 'page-full-width.php';
+    
+    if ( ! $is_full_width ) {
+        echo '<p style="color: #666; font-style: italic;">' . esc_html__( 'This option only applies to pages using the "Full Width" template.', 'bn-newspack-child' ) . '</p>';
+    }
+    ?>
+    <p>
+        <label>
+            <input type="radio" name="bn_title_position" value="overlay" <?php checked( $value, 'overlay' ); ?> />
+            <?php esc_html_e( 'On Hero Image (Overlay)', 'bn-newspack-child' ); ?>
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="radio" name="bn_title_position" value="below" <?php checked( $value, 'below' ); ?> />
+            <?php esc_html_e( 'Below Hero Image', 'bn-newspack-child' ); ?>
+        </label>
+    </p>
+    <p style="color: #666; font-size: 12px;">
+        <?php esc_html_e( 'Choose where to display the page title when a featured image is set.', 'bn-newspack-child' ); ?>
+    </p>
+    <?php
+}
+
+/**
+ * Save meta box data
+ */
+add_action( 'save_post', function( $post_id ) {
+    // Check nonce
+    if ( ! isset( $_POST['bn_title_position_nonce'] ) || ! wp_verify_nonce( $_POST['bn_title_position_nonce'], 'bn_title_position_nonce' ) ) {
+        return;
+    }
+    
+    // Check autosave
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+    
+    // Check permissions
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
+        return;
+    }
+    
+    // Save the data
+    if ( isset( $_POST['bn_title_position'] ) ) {
+        $value = sanitize_text_field( $_POST['bn_title_position'] );
+        update_post_meta( $post_id, '_bn_title_position', $value );
+    }
+} );
 
