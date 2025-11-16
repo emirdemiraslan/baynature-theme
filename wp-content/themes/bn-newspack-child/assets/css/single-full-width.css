@@ -1,48 +1,71 @@
 /**
- * Force full-width layout for all single posts (including CPTs)
+ * Force full-width layout for all single posts (including CPTs) and Full Width page template
  * Overrides Newspack's default 65% width when sidebar is removed
  */
 
 /* Ensure all single posts use full width layout */
-.post-template-single-wide .main-content {
-	width: 100% !important;
-	max-width: 100% !important;
+.post-template-single-wide .main-content,
+.page-template-page-full-width .main-content {
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 /* Prevent flex layout that reserves sidebar space */
-.post-template-single-wide.single #main {
-	display: block !important;
+.post-template-single-wide.single #main,
+.page-template-page-full-width #main {
+  display: block !important;
 }
 
 /* Hide sidebar area completely */
-.post-template-single-wide #secondary {
-	display: none !important;
+.post-template-single-wide #secondary,
+.page-template-page-full-width #secondary {
+  display: none !important;
 }
 
 /* Ensure content area is full width */
-.post-template-single-wide #primary {
-	max-width: 90vw;
-	width: 100%;
+.post-template-single-wide #primary,
+.page-template-page-full-width #primary {
+  max-width: 90vw;
+  width: 100%;
 }
 
 /* Constrain entry content to readable max-width while centered */
-.post-template-single-wide .entry-content {
-	max-width: var(--wp--style--global--content-size, 1200px);
-	margin-left: auto;
-	margin-right: auto;
-	padding-left: 1.25rem;
-	padding-right: 1.25rem;
+.post-template-single-wide .entry-content,
+.page-template-page-full-width .entry-content {
+  max-width: var(--wp--style--global--content-size, 1200px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 /* Author bio should respect max-width */
 @media (min-width: 782px) {
-	.post-template-single-wide .author-bio {
-		margin-left: auto;
-		margin-right: auto;
-		max-width: var(--wp--style--global--content-size, 1200px);
-		width: 100%;
-		padding-left: 1.25rem;
-		padding-right: 1.25rem;
-	}
+  .post-template-single-wide .author-bio {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--wp--style--global--content-size, 1200px);
+    width: 100%;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
 }
 
+/* Entry header should also respect max-width for Full Width pages */
+.page-template-page-full-width .entry-header {
+  max-width: var(--wp--style--global--content-size, 1200px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* Featured image on Full Width pages should be full width */
+.page-template-page-full-width .entry-thumbnail {
+  margin-bottom: 2rem;
+}
+
+.page-template-page-full-width .entry-thumbnail img {
+  width: 100%;
+  height: auto;
+}
