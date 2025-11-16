@@ -384,3 +384,22 @@ add_action( 'save_post', function( $post_id ) {
     }
 } );
 
+/**
+ * Add 'article' post type support for Newspack Featured Image Position options.
+ * This enables the "Featured Image Position" sidebar panel in the block editor
+ * for article posts, with options like Default, Behind, Beside, etc.
+ */
+add_filter( 'newspack_theme_featured_image_post_types', function( $post_types ) {
+    $post_types[] = 'article';
+    return $post_types;
+} );
+
+/**
+ * Enable post templates for article post type.
+ * This makes the "Template" dropdown available in the editor sidebar,
+ * allowing articles to use different page templates like posts can.
+ */
+add_action( 'init', function() {
+    add_post_type_support( 'article', 'page-templates' );
+}, 20 );
+
