@@ -37,7 +37,14 @@
 :root {
   --newspack-theme-font-heading: "IBM Plex Serif", georgia, serif;
 }
+p {
+  margin-top: 0;
+}
 
+.wp-block-media-text > .wp-block-media-text__content,
+.wp-block-media-text > .wp-block-media-text__media {
+  align-self: normal;
+}
 /* Header Solid Background */
 .h-sb .top-header-contain,
 .h-sb .middle-header-contain {
