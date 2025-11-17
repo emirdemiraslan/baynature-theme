@@ -6,7 +6,8 @@
 /* Ensure all single posts use full width layout */
 .post-template-single-wide .main-content,
 .page-template-page-full-width .main-content,
-.page-template-magazine_archive_page .main-content {
+.page-template-magazine_archive_page .main-content,
+.page-template-current_issue_template .main-content {
   width: 100% !important;
   max-width: 100% !important;
 }
@@ -14,21 +15,24 @@
 /* Prevent flex layout that reserves sidebar space */
 .post-template-single-wide.single #main,
 .page-template-page-full-width #main,
-.page-template-magazine_archive_page #main {
+.page-template-magazine_archive_page #main,
+.page-template-current_issue_template #main {
   display: block !important;
 }
 
 /* Hide sidebar area completely */
 .post-template-single-wide #secondary,
 .page-template-page-full-width #secondary,
-.page-template-magazine_archive_page #secondary {
+.page-template-magazine_archive_page #secondary,
+.page-template-current_issue_template #secondary {
   display: none !important;
 }
 
 /* Ensure content area is full width */
 .post-template-single-wide #primary,
 .page-template-page-full-width #primary,
-.page-template-magazine_archive_page #primary {
+.page-template-magazine_archive_page #primary,
+.page-template-current_issue_template #primary {
   max-width: 65vw;
   width: 100%;
 }
@@ -36,7 +40,8 @@
 /* Constrain entry content to readable max-width while centered */
 .post-template-single-wide .entry-content,
 .page-template-page-full-width .entry-content,
-.page-template-magazine_archive_page .entry-content {
+.page-template-magazine_archive_page .entry-content,
+.page-template-current_issue_template .entry-content {
   max-width: var(--wp--style--global--content-size, 1100px);
   margin-left: auto;
   margin-right: auto;
@@ -58,12 +63,23 @@
 
 /* Entry header should also respect max-width for Full Width pages */
 .page-template-page-full-width .entry-header,
-.page-template-magazine_archive_page .entry-header {
+.page-template-magazine_archive_page .entry-header,
+.page-template-current_issue_template .entry-header {
   max-width: var(--wp--style--global--content-size, 1200px);
   margin-left: auto;
   margin-right: auto;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}
+.page-template-current_issue_template .entry-header {
+  text-align: center;
+}
+
+.page-template-current_issue_template .entry-subtitle {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: inherit;
+  margin-top: 0.5rem;
+  font-weight: 400;
 }
 
 /* Remove top margin from site-content on full-width pages with hero */

@@ -248,6 +248,11 @@ add_filter( 'body_class', function ( $classes ) {
         $classes[] = 'has-hero-header';
     }
 
+	// The Magazine Issue template never renders a hero, so ensure transparent header styles stay disabled.
+	if ( is_page_template( 'current_issue_template.php' ) ) {
+		$classes = array_diff( $classes, array( 'has-hero-header' ) );
+	}
+
     return $classes;
 } );
 
