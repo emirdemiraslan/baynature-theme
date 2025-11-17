@@ -2,6 +2,9 @@
  * Force full-width layout for all single posts (including CPTs) and Full Width page template
  * Overrides Newspack's default 65% width when sidebar is removed
  */
+#primary {
+  max-width: 100vw;
+}
 
 /* Ensure all single posts use full width layout */
 .post-template-single-wide .main-content,
@@ -28,13 +31,15 @@
   display: none !important;
 }
 
-/* Ensure content area is full width */
-.post-template-single-wide #primary,
-.page-template-page-full-width #primary,
-.page-template-magazine_archive_page #primary,
-.page-template-current_issue_template #primary {
-  max-width: 65vw;
-  width: 100%;
+@media (min-width: 782px) {
+  /* Ensure content area is full width */
+  .post-template-single-wide #primary,
+  .page-template-page-full-width #primary,
+  .page-template-magazine_archive_page #primary,
+  .page-template-current_issue_template #primary {
+    max-width: 65vw;
+    width: 100%;
+  }
 }
 
 /* Constrain entry content to readable max-width while centered */
