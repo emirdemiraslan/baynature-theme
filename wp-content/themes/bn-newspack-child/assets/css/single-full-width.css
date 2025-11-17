@@ -5,33 +5,38 @@
 
 /* Ensure all single posts use full width layout */
 .post-template-single-wide .main-content,
-.page-template-page-full-width .main-content {
+.page-template-page-full-width .main-content,
+.page-template-magazine_archive_page .main-content {
   width: 100% !important;
   max-width: 100% !important;
 }
 
 /* Prevent flex layout that reserves sidebar space */
 .post-template-single-wide.single #main,
-.page-template-page-full-width #main {
+.page-template-page-full-width #main,
+.page-template-magazine_archive_page #main {
   display: block !important;
 }
 
 /* Hide sidebar area completely */
 .post-template-single-wide #secondary,
-.page-template-page-full-width #secondary {
+.page-template-page-full-width #secondary,
+.page-template-magazine_archive_page #secondary {
   display: none !important;
 }
 
 /* Ensure content area is full width */
 .post-template-single-wide #primary,
-.page-template-page-full-width #primary {
+.page-template-page-full-width #primary,
+.page-template-magazine_archive_page #primary {
   max-width: 65vw;
   width: 100%;
 }
 
 /* Constrain entry content to readable max-width while centered */
 .post-template-single-wide .entry-content,
-.page-template-page-full-width .entry-content {
+.page-template-page-full-width .entry-content,
+.page-template-magazine_archive_page .entry-content {
   max-width: var(--wp--style--global--content-size, 1100px);
   margin-left: auto;
   margin-right: auto;
@@ -52,7 +57,8 @@
 }
 
 /* Entry header should also respect max-width for Full Width pages */
-.page-template-page-full-width .entry-header {
+.page-template-page-full-width .entry-header,
+.page-template-magazine_archive_page .entry-header {
   max-width: var(--wp--style--global--content-size, 1200px);
   margin-left: auto;
   margin-right: auto;
@@ -61,16 +67,19 @@
 }
 
 /* Remove top margin from site-content on full-width pages with hero */
-body.page-template-page-full-width.has-hero-header .site-content {
+body.page-template-page-full-width.has-hero-header .site-content,
+body.page-template-magazine_archive_page.has-hero-header .site-content {
   margin-top: 0;
 }
 
-body.page-template-page-full-width.has-hero-header #primary {
+body.page-template-page-full-width.has-hero-header #primary,
+body.page-template-magazine_archive_page.has-hero-header #primary {
   padding-top: 0;
 }
 
 /* Hero section for Full Width pages with featured images */
-.page-template-page-full-width .page-hero {
+.page-template-page-full-width .page-hero,
+.page-template-magazine_archive_page .page-hero {
   position: relative;
   width: 100vw;
   left: 50%;
@@ -81,7 +90,8 @@ body.page-template-page-full-width.has-hero-header #primary {
   margin-top: 0;
 }
 
-.page-template-page-full-width .page-hero .hero-wrap {
+.page-template-page-full-width .page-hero .hero-wrap,
+.page-template-magazine_archive_page .page-hero .hero-wrap {
   position: relative;
   height: 100vh;
   min-height: 500px;
@@ -94,18 +104,21 @@ body.page-template-page-full-width.has-hero-header #primary {
 }
 
 /* Adjust hero height when header is overlaying */
-body.has-hero-header.page-template-page-full-width .page-hero .hero-wrap {
+body.has-hero-header.page-template-page-full-width .page-hero .hero-wrap,
+body.has-hero-header.page-template-magazine_archive_page .page-hero .hero-wrap {
   height: calc(80vh - 20rem);
 }
 
-.page-template-page-full-width .page-hero .hero-overlay {
+.page-template-page-full-width .page-hero .hero-overlay,
+.page-template-magazine_archive_page .page-hero .hero-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
 
-.page-template-page-full-width .page-hero .hero-content {
+.page-template-page-full-width .page-hero .hero-content,
+.page-template-magazine_archive_page .page-hero .hero-content {
   position: relative;
   z-index: 2;
   text-align: center;
@@ -114,7 +127,11 @@ body.has-hero-header.page-template-page-full-width .page-hero .hero-wrap {
   width: 100%;
 }
 
-.page-template-page-full-width .page-hero .entry-title {
+.page-template-magazine_archive_page .entry-title {
+  text-align: center;
+}
+.page-template-page-full-width .page-hero .entry-title,
+.page-template-magazine_archive_page .page-hero .entry-title {
   color: #fff;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   margin: 0;
@@ -122,7 +139,8 @@ body.has-hero-header.page-template-page-full-width .page-hero .hero-wrap {
   line-height: 1.2;
 }
 
-.page-template-page-full-width .page-hero .wp-caption-text {
+.page-template-page-full-width .page-hero .wp-caption-text,
+.page-template-magazine_archive_page .page-hero .wp-caption-text {
   max-width: var(--wp--style--global--content-size, 1100px);
   margin: 0.5rem auto 0;
   padding: 0 1.25rem;
@@ -132,12 +150,14 @@ body.has-hero-header.page-template-page-full-width .page-hero .hero-wrap {
 }
 
 /* Also hide primary navigation row on full-width pages with hero */
-body.page-template-page-full-width.has-hero-header .bn-primary-row {
+body.page-template-page-full-width.has-hero-header .bn-primary-row,
+body.page-template-magazine_archive_page.has-hero-header .bn-primary-row {
   display: none;
 }
 
 /* Title positioned below hero */
-.page-template-page-full-width .entry-header-below-hero {
+.page-template-page-full-width .entry-header-below-hero,
+.page-template-magazine_archive_page .entry-header-below-hero {
   max-width: var(--wp--style--global--content-size, 1100px);
   margin: 3rem auto 2rem;
   padding-left: 1.25rem;
@@ -145,7 +165,8 @@ body.page-template-page-full-width.has-hero-header .bn-primary-row {
   text-align: center;
 }
 
-.page-template-page-full-width .entry-header-below-hero .entry-title {
+.page-template-page-full-width .entry-header-below-hero .entry-title,
+.page-template-magazine_archive_page .entry-header-below-hero .entry-title {
   font-size: clamp(2rem, 5vw, 3rem);
   line-height: 1.2;
   margin: 0;
@@ -154,27 +175,32 @@ body.page-template-page-full-width.has-hero-header .bn-primary-row {
 }
 
 @media (max-width: 782px) {
-  .page-template-page-full-width .entry-header-below-hero {
+  .page-template-page-full-width .entry-header-below-hero,
+  .page-template-magazine_archive_page .entry-header-below-hero {
     margin: 2rem auto 1.5rem;
   }
 
-  .page-template-page-full-width .entry-header-below-hero .entry-title {
+  .page-template-page-full-width .entry-header-below-hero .entry-title,
+  .page-template-magazine_archive_page .entry-header-below-hero .entry-title {
     font-size: clamp(1.5rem, 6vw, 2.5rem);
   }
 }
 
 /* Mobile adjustments for hero */
 @media (max-width: 782px) {
-  .page-template-page-full-width .page-hero .hero-wrap {
+  .page-template-page-full-width .page-hero .hero-wrap,
+  .page-template-magazine_archive_page .page-hero .hero-wrap {
     height: 70vh;
     min-height: 300px;
   }
 
-  .page-template-page-full-width .page-hero .entry-title {
+  .page-template-page-full-width .page-hero .entry-title,
+  .page-template-magazine_archive_page .page-hero .entry-title {
     font-size: clamp(1.5rem, 6vw, 2.5rem);
   }
 
-  .page-template-page-full-width .page-hero .hero-content {
+  .page-template-page-full-width .page-hero .hero-content,
+  .page-template-magazine_archive_page .page-hero .hero-content {
     padding: 1rem;
   }
 }
