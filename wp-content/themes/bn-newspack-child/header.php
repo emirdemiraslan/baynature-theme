@@ -43,7 +43,8 @@ do_action( 'before_header' );
 do_action( 'after_header' );
 
 if (
-	function_exists( 'yoast_breadcrumb' )
+	apply_filters( 'bn_show_breadcrumbs', false )
+	&& function_exists( 'yoast_breadcrumb' )
 	&& ! is_page_template( 'page-full-width.php' )
 	&& ! is_page_template( 'current_issue_template.php' )
 ) {
