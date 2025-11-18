@@ -111,18 +111,36 @@ add_filter( 'the_content', function ( $content ) {
         $out .= $chunk . $closing;
     }
 
-    // Build CTA with context.
-    $join_url = '/join'; // Default
-    if ( function_exists( 'bn_get_utility_urls' ) ) {
-        $urls = bn_get_utility_urls();
-        $join_url = isset( $urls['join_url'] ) ? $urls['join_url'] : '/join';
+    // Build CTA with context - using ACF Site Options fields
+    $paywall_greeting = function_exists( 'get_field' ) ? get_field( 'paywall_greeting', 'option' ) : '';
+    $become_member_message = function_exists( 'get_field' ) ? get_field( 'paywall_become_a_member_message', 'option' ) : '';
+    $become_member_link = function_exists( 'get_field' ) ? get_field( 'paywall_become_a_member_link', 'option' ) : '';
+    $login_message = function_exists( 'get_field' ) ? get_field( 'paywall_login_message', 'option' ) : '';
+    $login_link = function_exists( 'get_field' ) ? get_field( 'paywall_login_link', 'option' ) : '';
+    
+    // Fallbacks if fields are empty
+    if ( empty( $paywall_greeting ) ) {
+        $paywall_greeting = __( 'Become a member to continue reading', 'bn-newspack-child' );
+    }
+    if ( empty( $become_member_message ) ) {
+        $become_member_message = __( 'Support independent environmental journalism in the San Francisco Bay Area.', 'bn-newspack-child' );
+    }
+    if ( empty( $become_member_link ) ) {
+        $become_member_link = '/join';
+    }
+    if ( empty( $login_message ) ) {
+        $login_message = __( 'Already a member?', 'bn-newspack-child' );
+    }
+    if ( empty( $login_link ) ) {
+        $login_link = '/login';
     }
     
     $cta = '<div class="bn-paywall-cta bn-inline-paywall-cta">';
     $cta .= '<div class="bn-paywall-cta-inner">';
-    $cta .= '<h3 class="bn-paywall-cta-heading">' . esc_html__( 'Become a member to continue reading', 'bn-newspack-child' ) . '</h3>';
-    $cta .= '<p class="bn-paywall-cta-message">' . esc_html__( 'Support independent environmental journalism in the San Francisco Bay Area.', 'bn-newspack-child' ) . '</p>';
-    $cta .= '<a href="' . esc_url( $join_url ) . '" class="bn-paywall-cta-button">' . esc_html__( 'Join Now', 'bn-newspack-child' ) . '</a>';
+    $cta .= '<h3 class="bn-paywall-cta-heading">' . esc_html( $paywall_greeting ) . '</h3>';
+    $cta .= '<p class="bn-paywall-cta-message">' . esc_html( $become_member_message ) . '</p>';
+    $cta .= '<a href="' . esc_url( $become_member_link ) . '" class="bn-paywall-cta-button">' . esc_html__( 'Join / Renew', 'bn-newspack-child' ) . '</a>';
+    $cta .= '<p class="bn-paywall-cta-login">' . esc_html( $login_message ) . ' <a href="' . esc_url( $login_link ) . '">' . esc_html__( 'Log in', 'bn-newspack-child' ) . '</a></p>';
     $cta .= '</div>';
     $cta .= '</div>';
 
