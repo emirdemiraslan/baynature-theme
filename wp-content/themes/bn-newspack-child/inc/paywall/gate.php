@@ -27,6 +27,8 @@ function bn_should_paywall_post( $post ) {
     $member_only_templates = array(
         'member-only-content-default-template',
         'member-only-content-no-banner-template',
+        'member_only_content_default_template.php',
+        'member_only_content_no_banner_template.php',
         'templates/member-only-content-default-template.php',
         'templates/member-only-content-no-banner-template.php',
     );

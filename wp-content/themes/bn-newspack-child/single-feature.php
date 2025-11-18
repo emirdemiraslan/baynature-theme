@@ -10,6 +10,15 @@
  * @package Newspack
  */
 
+// TODO: Remove this debug after testing
+global $post;
+echo '<!-- DEBUG: ';
+echo 'Post ID: ' . get_the_ID() . ', ';
+echo 'Post Type: ' . get_post_type() . ', ';
+echo 'Template: ' . get_page_template_slug() . ', ';
+echo 'Should paywall: ' . ( bn_should_paywall_post( $post ) ? 'YES' : 'NO' ) . ', ';
+echo 'Is subscriber: ' . ( bn_is_subscriber() ? 'YES' : 'NO' );
+echo ' -->';
 get_header();
 ?>
 

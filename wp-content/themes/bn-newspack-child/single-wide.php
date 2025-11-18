@@ -9,7 +9,6 @@
  *
  * @package Newspack
  */
-
 get_header();
 ?>
 

@@ -266,12 +266,21 @@ add_action( 'wp_body_open', function () {
 }, 5 );
 
 /**
- * Force all single posts (including CPTs) to use the one-column wide template.
+ * Force all single posts (including CPTs) to use the one-column wide template,
+ * UNLESS a custom page template has been explicitly assigned.
  */
 add_filter( 'single_template', function( $template ) {
     // Check if we're on a single post page (any post type)
     if ( is_single() ) {
-        // Locate the single-wide.php template in parent theme
+        // Check if a custom page template has been assigned
+        $page_template = get_page_template_slug();
+        
+        // If a custom template is assigned, respect it and don't override
+        if ( ! empty( $page_template ) ) {
+            return $template;
+        }
+        
+        // Only apply single-wide.php if no custom template is assigned
         $one_column_template = locate_template( 'single-wide.php' );
         
         // If found, use it; otherwise fall back to default
