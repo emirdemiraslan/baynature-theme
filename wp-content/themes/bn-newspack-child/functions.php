@@ -41,6 +41,9 @@ add_action( 'wp_enqueue_scripts', function () {
 // Load theme setup and feature wiring.
 require_once __DIR__ . '/inc/setup.php';
 
+// Load site options functionality
+require_once __DIR__ . '/inc/site-options.php';
+
 /**
  * Sacha-style theme customizations
  */
