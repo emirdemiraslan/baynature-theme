@@ -24,7 +24,13 @@ function bn_should_paywall_post( $post ) {
     // Template-only check: respect classic editorial template assignment.
     $template_match = false;
     $tpl = get_page_template_slug( $post );
-    if ( $tpl === 'member-only-content-default-template' || $tpl === 'templates/member-only-content-default-template.php' ) {
+    $member_only_templates = array(
+        'member-only-content-default-template',
+        'member-only-content-no-banner-template',
+        'templates/member-only-content-default-template.php',
+        'templates/member-only-content-no-banner-template.php',
+    );
+    if ( in_array( $tpl, $member_only_templates, true ) ) {
         $template_match = true;
     }
 
