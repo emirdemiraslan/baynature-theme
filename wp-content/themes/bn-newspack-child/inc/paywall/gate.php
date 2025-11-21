@@ -39,7 +39,7 @@ function bn_should_paywall_post( $post ) {
     // Automatic latest-N printed issues for Article CPT using ACF Issue field.
     $auto_match = false;
     if ( post_type_exists( 'article' ) && $post->post_type === 'article' ) {
-        $issue = function_exists( 'get_field' ) ? get_field( 'issue', $post->ID ) : null;
+        $issue = function_exists( 'get_field' ) ? get_field( 'issue_key', $post->ID ) : null;
         if ( ! empty( $issue ) ) {
             $latest = bn_latest_printed_issues( intval( $opts['latest_n'] ) );
             $auto_match = in_array( $issue, $latest, true );
@@ -63,15 +63,60 @@ add_filter( 'the_content', function ( $content ) {
         return $content;
     }
 
-    // Bots get full content for SEO.
-    if ( bn_is_bot() ) {
+    // Only apply paywall on single article pages
+    if ( ! is_single() ) {
         return $content;
     }
 
     global $post;
-    if ( ! $post || ! bn_should_paywall_post( $post ) ) {
+    
+    // Only apply paywall to article post type
+    if ( ! $post || $post->post_type !== 'article' ) {
         return $content;
     }
+
+    // Bots get full content for SEO.
+    if ( bn_is_bot() ) {
+        return $content;
+    }
+    //TODO: Remove this before production
+    // TEMPORARY DEBUG - Remove after testing
+    /*
+    $opts = bn_paywall_options();
+    error_log('=== PAYWALL DEBUG START ===');
+    error_log('Mode from options: ' . print_r($opts['mode'], true));
+    error_log('Latest N setting: ' . print_r($opts['latest_n'], true));
+    error_log('Free views setting: ' . print_r($opts['free_views'], true));
+    error_log('Post ID: ' . ($post ? $post->ID : 'NULL'));
+    error_log('Post type: ' . ($post ? $post->post_type : 'NULL'));
+    error_log('ACF get_field exists?: ' . (function_exists('get_field') ? 'YES' : 'NO'));
+    
+    if ($post && $post->post_type === 'article') {
+        $issue = function_exists('get_field') ? get_field('issue_key', $post->ID) : null;
+        error_log('Article issue field: ' . print_r($issue, true));
+        
+        if (empty($issue)) {
+            error_log('WARNING: Article has NO issue field set!');
+        } else {
+            $latest = bn_latest_printed_issues($opts['latest_n']);
+            error_log('Latest ' . $opts['latest_n'] . ' issues: ' . print_r($latest, true));
+            $is_in_latest = in_array($issue, $latest, true);
+            error_log('Is article issue in latest?: ' . ($is_in_latest ? 'YES' : 'NO'));
+        }
+    }
+    
+    if ( ! $post || ! bn_should_paywall_post( $post ) ) {
+        error_log('bn_should_paywall_post returned FALSE - NO PAYWALL');
+        error_log('=== PAYWALL DEBUG END ===');
+        return $content;
+    }
+    
+    error_log('bn_should_paywall_post returned TRUE - PAYWALL SHOULD TRIGGER');
+    error_log('Is subscriber?: ' . (bn_is_subscriber() ? 'YES' : 'NO'));
+    error_log('Has free views?: ' . (bn_has_free_views_remaining() ? 'YES' : 'NO'));
+    error_log('=== PAYWALL DEBUG END ===');
+
+    */
 
     // Track this view for anonymous users BEFORE checking access.
     // This ensures the counter increments on every gated content access attempt.
@@ -170,7 +215,7 @@ function bn_latest_printed_issues( $n = 3 ) {
         'fields' => 'ids',
     ) );
     foreach ( $q->posts as $pid ) {
-        $issue = function_exists( 'get_field' ) ? get_field( 'issue', $pid ) : null;
+        $issue = function_exists( 'get_field' ) ? get_field( 'issue_key', $pid ) : null;
         if ( empty( $issue ) ) {
             continue;
         }
@@ -200,5 +245,27 @@ add_action( 'save_post_article', function () {
     }
 } );
 
+//TODO: Remove this before production
+/**
+ * DEBUG HELPER: Clear all paywall transients manually.
+ * Call this from browser console or use: bn_clear_paywall_cache()
+ */
+/*
+function bn_clear_paywall_cache() {
+    global $wpdb;
+    $keys = $wpdb->get_col( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE '_transient_bn_latest_issues_%'" );
+    $cleared = 0;
+    if ( $keys ) {
+        foreach ( $keys as $key ) {
+            $name = str_replace( '_transient_', '', $key );
+            delete_transient( $name );
+            $cleared++;
+            error_log( 'Cleared transient: ' . $name );
+        }
+    }
+    error_log( 'Total transients cleared: ' . $cleared );
+    return $cleared;
+}
+*/
 
 

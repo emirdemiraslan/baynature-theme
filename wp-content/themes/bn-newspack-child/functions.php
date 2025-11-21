@@ -446,3 +446,12 @@ add_action( 'init', function() {
     add_post_type_support( 'article', 'page-templates' );
 }, 20 );
 
+//TODO: Remove this before production   
+/*
+add_action('init', function() {
+    if (isset($_GET['clear_pw_cache']) && current_user_can('manage_options')) {
+        $cleared = bn_clear_paywall_cache();
+        wp_die('Cleared ' . $cleared . ' paywall cache entries');
+    }
+});
+*/
