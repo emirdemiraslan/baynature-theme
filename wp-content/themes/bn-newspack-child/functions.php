@@ -428,6 +428,138 @@ add_action( 'save_post', function( $post_id ) {
 } );
 
 /**
+ * Add meta box for featured image beside background color option
+ */
+add_action( 'add_meta_boxes', function() {
+    add_meta_box(
+        'bn_beside_bg_color',
+        __( 'Featured Image Beside - Background Color', 'bn-newspack-child' ),
+        'bn_beside_bg_color_callback',
+        array( 'post', 'article' ),
+        'side',
+        'default'
+    );
+} );
+
+/**
+ * Meta box callback function for beside background color
+ */
+function bn_beside_bg_color_callback( $post ) {
+    wp_nonce_field( 'bn_beside_bg_color_nonce', 'bn_beside_bg_color_nonce' );
+    
+    $value = get_post_meta( $post->ID, '_bn_beside_bg_color', true );
+    $value = $value ? $value : '#333333';
+    ?>
+    <p style="color: #666; font-style: italic; margin-bottom: 10px;">
+        <?php esc_html_e( 'This option only applies when "Beside article title" is selected as the Featured Image Position.', 'bn-newspack-child' ); ?>
+    </p>
+    <p>
+        <label for="bn_beside_bg_color">
+            <?php esc_html_e( 'Background Color', 'bn-newspack-child' ); ?>
+        </label>
+        <input type="text" id="bn_beside_bg_color" name="bn_beside_bg_color" value="<?php echo esc_attr( $value ); ?>" class="bn-color-picker" />
+    </p>
+    <p style="color: #666; font-size: 12px;">
+        <?php esc_html_e( 'Choose the background color for the left section containing the title and post meta.', 'bn-newspack-child' ); ?>
+    </p>
+    <?php
+}
+
+/**
+ * Save meta box data for beside background color
+ */
+add_action( 'save_post', function( $post_id ) {
+    // Check nonce
+    if ( ! isset( $_POST['bn_beside_bg_color_nonce'] ) || ! wp_verify_nonce( $_POST['bn_beside_bg_color_nonce'], 'bn_beside_bg_color_nonce' ) ) {
+        return;
+    }
+    
+    // Check autosave
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+    
+    // Check permissions
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
+        return;
+    }
+    
+    // Save the data
+    if ( isset( $_POST['bn_beside_bg_color'] ) ) {
+        $value = sanitize_hex_color( $_POST['bn_beside_bg_color'] );
+        if ( $value ) {
+            update_post_meta( $post_id, '_bn_beside_bg_color', $value );
+        } else {
+            // Delete the meta when color is cleared
+            delete_post_meta( $post_id, '_bn_beside_bg_color' );
+        }
+    }
+} );
+
+/**
+ * Enqueue WordPress color picker for the beside background color meta box
+ */
+add_action( 'admin_enqueue_scripts', function( $hook ) {
+    // Only load on post edit screens
+    if ( 'post.php' !== $hook && 'post-new.php' !== $hook ) {
+        return;
+    }
+    
+    // Check if we're editing a post or article
+    global $post;
+    if ( ! $post || ! in_array( $post->post_type, array( 'post', 'article' ) ) ) {
+        return;
+    }
+    
+    // Enqueue color picker
+    wp_enqueue_style( 'wp-color-picker' );
+    wp_enqueue_script( 'wp-color-picker' );
+    
+    // Add inline script to initialize color picker
+    wp_add_inline_script( 'wp-color-picker', '
+        jQuery(document).ready(function($) {
+            $(".bn-color-picker").wpColorPicker();
+        });
+    ' );
+} );
+
+/**
+ * Output custom background color for featured image beside layout
+ */
+add_action( 'wp_head', function() {
+    if ( ! is_singular( array( 'post', 'article' ) ) ) {
+        return;
+    }
+    
+    // Check if the featured image position function exists
+    if ( ! function_exists( 'newspack_featured_image_position' ) ) {
+        return;
+    }
+    
+    // Check if the featured image position is set to "beside"
+    $position = newspack_featured_image_position();
+    if ( 'beside' !== $position ) {
+        return;
+    }
+    
+    $post_id = get_the_ID();
+    $bg_color = get_post_meta( $post_id, '_bn_beside_bg_color', true );
+    
+    if ( $bg_color ) {
+        ?>
+        <style id="bn-beside-bg-color">
+    @media (min-width: 782px) {
+        .single-featured-image-beside .featured-image-beside,
+        .featured-image-beside {
+            background-color: <?php echo esc_attr( $bg_color ); ?> !important;
+        }
+    }
+</style>
+        <?php
+    }
+}, 100 );
+
+/**
  * Add 'article' post type support for Newspack Featured Image Position options.
  * This enables the "Featured Image Position" sidebar panel in the block editor
  * for article posts, with options like Default, Behind, Beside, etc.

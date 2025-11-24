@@ -36,6 +36,7 @@
 
 :root {
   --newspack-theme-font-heading: "IBM Plex Serif", georgia, serif;
+  --newspack-theme-color-bg-pre: #333333;
 }
 p {
   margin-top: 0;
@@ -371,6 +372,8 @@ cite i {
 }
 
 @media (min-width: 782px) {
+  /* Override parent theme background color for featured-image-beside layout */
+  .h-db .featured-image-beside,
   .h-sb .featured-image-beside {
     background-color: var(--newspack-theme-color-bg-pre);
   }
