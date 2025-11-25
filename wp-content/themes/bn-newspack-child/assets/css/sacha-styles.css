@@ -2,18 +2,18 @@
  * Newspack Sacha-inspired styles for Bay Nature
  * Based on Newspack Sacha theme by Automattic
  */
+.button:focus,
+.wp-block-search__button:focus,
+button:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus {
+  outline: inherit;
+  color: inherit;
+  background-color: inherit;
+  outline-offset: inherit;
+}
 
-:root {
-  --newspack-theme-color-bg-pre: #333333;
-}
-p {
-  margin-top: 0;
-}
-
-.wp-block-media-text > .wp-block-media-text__content,
-.wp-block-media-text > .wp-block-media-text__media {
-  align-self: normal;
-}
 /* Header Solid Background */
 .h-sb .top-header-contain,
 .h-sb .middle-header-contain {

@@ -240,7 +240,7 @@ body.has-hero-header .bn-header-tagline {
 .bn-header-right {
   display: flex;
   align-items: center;
-  gap: var(--wp--preset--spacing--md);
+  gap: var(--wp--preset--spacing--sm);
   margin-left: auto;
   flex-shrink: 0;
 }
@@ -562,6 +562,38 @@ a.bn-header-menu-link,
 .bn-header-search svg {
   width: 36px;
   height: 36px;
+}
+
+/* Dark grey icons on single posts/pages without hero */
+body.single:not(.has-hero-header):not(.has-hero-issue)
+  .bn-header-bar-pre-scroll
+  .bn-header-search
+  svg
+  path,
+body.page:not(.has-hero-header):not(.has-hero-issue)
+  .bn-header-bar-pre-scroll
+  .bn-header-search
+  svg
+  path {
+  fill: #4b4b4b;
+}
+
+body.single:not(.has-hero-header):not(.has-hero-issue)
+  .bn-header-bar-pre-scroll
+  .bn-hamburger-line,
+body.page:not(.has-hero-header):not(.has-hero-issue)
+  .bn-header-bar-pre-scroll
+  .bn-hamburger-line {
+  background-color: #4b4b4b;
+}
+
+body.single:not(.has-hero-header):not(.has-hero-issue)
+  .bn-header-bar-pre-scroll
+  .bn-header-search:focus-visible,
+body.page:not(.has-hero-header):not(.has-hero-issue)
+  .bn-header-bar-pre-scroll
+  .bn-header-search:focus-visible {
+  outline-color: #4b4b4b;
 }
 
 @media (max-width: 1023px) {
