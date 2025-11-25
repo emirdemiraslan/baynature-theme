@@ -12,21 +12,13 @@
     $donate_url = isset( $utility_urls['donate_url'] ) ? $utility_urls['donate_url'] : '/donate';
     ?>
     <?php
-    // Helper function to render logo for sticky header (SVG)
+    // Helper function to render logo for sticky header (PNG)
     function bn_render_header_logo() {
-        $logo_path = get_stylesheet_directory() . '/assets/imgs/bn-white-logo.svg';
-        $logo_url = get_stylesheet_directory_uri() . '/assets/imgs/bn-white-logo.svg';
+        $logo_url = get_stylesheet_directory_uri() . '/assets/imgs/bn-white-logo.png';
         ?>
         <div class="bn-header-logo">
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-                <?php
-                if ( file_exists( $logo_path ) ) {
-                    echo file_get_contents( $logo_path );
-                } else {
-                    // Fallback if file doesn't exist
-                    echo '<img src="' . esc_url( $logo_url ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" />';
-                }
-                ?>
+                <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" />
             </a>
         </div>
         <?php
@@ -35,20 +27,23 @@
     // Helper function to render logo for static header (site logo from customizer)
     function bn_render_static_header_logo() {
         ?>
-        <div class="bn-header-logo">
-            <?php
-            $custom_logo = get_custom_logo();
-            if ( $custom_logo ) {
-                echo $custom_logo;
-            } else {
-                // Fallback to site title styled as text logo
-                ?>
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="bn-header-title">
-                    <?php echo esc_html( get_bloginfo( 'name' ) ); ?>
-                </a>
+        <div class="bn-header-logo-wrapper">
+            <div class="bn-header-logo">
                 <?php
-            }
-            ?>
+                $custom_logo = get_custom_logo();
+                if ( $custom_logo ) {
+                    echo $custom_logo;
+                } else {
+                    // Fallback to site title styled as text logo
+                    ?>
+                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="bn-header-title">
+                        <?php echo esc_html( get_bloginfo( 'name' ) ); ?>
+                    </a>
+                    <?php
+                }
+                ?>
+            </div>
+            <div class="bn-header-tagline">Exploring Nature in the San Francisco Bay Area</div>
         </div>
         <?php
     }
@@ -120,11 +115,8 @@
     }
     ?>
 
-    <!-- Pre-scroll header: tagline left, logo center, menu right -->
+    <!-- Pre-scroll header: logo center with tagline below, menu right -->
     <header class="bn-header-bar-pre-scroll" aria-label="<?php esc_attr_e( 'Site header', 'bn-newspack-child' ); ?>">
-        <div class="bn-header-tagline">
-            <?php echo esc_html( get_bloginfo( 'description' ) ); ?>
-        </div>
         <?php bn_render_static_header_logo(); ?>
         <?php bn_render_header_menu_actions( $utility_menu_assigned, $utility_urls, $join_url, $donate_url, 'static' ); ?>
     </header>

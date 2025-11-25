@@ -48,7 +48,7 @@ input[type="reset"],
     background-color 0.2s ease;
 }
 
-/* Pre-scroll header: tagline left, logo center, menu right */
+/* Pre-scroll header: logo center with tagline below, menu right */
 .bn-header-bar-pre-scroll {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -57,19 +57,13 @@ input[type="reset"],
   padding: 1rem var(--wp--preset--spacing--md);
   gap: var(--wp--preset--spacing--md);
   color: #ffffff;
-  background-color: #484848;
+  background-color: transparent;
   width: 100%;
   max-width: 100%;
   z-index: 1000;
   transition:
     opacity 0.3s ease,
     background-color 0.2s ease;
-}
-
-/* Transparent background on hero pages */
-body.has-hero-issue .bn-header-bar-pre-scroll,
-body.has-hero-header .bn-header-bar-pre-scroll {
-  background-color: transparent;
 }
 
 /* Float pre-scroll header over hero on pages with a hero */
@@ -94,16 +88,29 @@ body.has-hero-header .bn-header-bar-pre-scroll {
 }
 
 /* Pre-scroll header: three-column layout positioning */
-.bn-header-bar-pre-scroll .bn-header-tagline {
-  justify-self: start;
+.bn-header-bar-pre-scroll .bn-header-logo-wrapper {
+  justify-self: center;
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
 }
 
 .bn-header-bar-pre-scroll .bn-header-logo {
   justify-self: center;
+  display: flex;
+  justify-content: center;
+}
+
+.bn-header-bar-pre-scroll .bn-header-logo a {
+  display: block;
+  width: fit-content;
 }
 
 .bn-header-bar-pre-scroll .bn-header-right {
   justify-self: end;
+  grid-column: 3;
   margin-left: 0;
 }
 
@@ -157,12 +164,21 @@ body.has-hero-header .bn-header-bar-pre-scroll {
 
 .bn-header-tagline {
   margin: 0;
-  font-size: 0.85rem;
-  color: #ffffff;
-  opacity: 0.9;
+  font-size: 0.88rem;
+  color: #555555;
   line-height: 1.2;
   flex-shrink: 0;
   white-space: nowrap;
+  text-align: center;
+  width: 100%;
+  min-width: fit-content;
+}
+
+/* White tagline on pages with hero sections */
+body.has-hero-issue .bn-header-tagline,
+body.has-hero-header .bn-header-tagline {
+  color: #ffffff;
+  opacity: 0.9;
 }
 
 .bn-header-logo {
