@@ -140,7 +140,7 @@ function bn_register_article_post_type() {
 		'capability_type' => 'post',
 		'hierarchical'  => false,
 		'rewrite'       => array( 'slug' => 'articles' ),
-		'supports'      => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'comments', 'page-attributes', 'post-formats' ),
+		'supports'      => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'comments', 'page-attributes', 'post-formats', 'newspack_blocks' ),
 		'show_in_rest'  => true,
 		'taxonomies'    => array( 'category', 'post_tag', 'picks' ),
 		'yarpp_support' => true,
