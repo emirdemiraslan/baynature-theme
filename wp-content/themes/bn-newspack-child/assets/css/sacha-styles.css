@@ -2,6 +2,15 @@
  * Newspack Sacha-inspired styles for Bay Nature
  * Based on Newspack Sacha theme by Automattic
  */
+
+/**
+ * Reset visited link styles globally
+ * Makes visited links look identical to unvisited links without affecting :hover
+ */
+a:visited {
+  color: inherit;
+}
+
 .button:focus,
 .wp-block-search__button:focus,
 button:focus,
@@ -30,7 +39,6 @@ input[type="submit"]:focus {
 
 .h-sb .site-header,
 .h-sb .site-title a,
-.h-sb .site-title a:visited,
 .h-sb .site-description,
 .h-sb .middle-header-contain,
 .h-sb .middle-header-contain .nav1 .main-menu > li,
@@ -101,17 +109,7 @@ div.wpnbha .article-section-title,
 }
 
 .entry-meta .byline a,
-.entry-meta .byline a:visited,
-.wp-block-newspack-blocks-carousel.wpnbpc
-  article
-  div.entry-meta
-  .byline
-  a:visited,
-.wp-block-newspack-blocks-carousel.wpnbpc
-  article
-  div.entry-meta
-  .byline
-  a:visited {
+.wp-block-newspack-blocks-carousel.wpnbpc article div.entry-meta .byline a {
   color: #6b6b6b;
 }
 
@@ -615,9 +613,7 @@ cite i {
 }
 
 .site-footer .widget a,
-.site-footer .widget a:visited,
-.site-footer a,
-.site-footer a:visited {
+.site-footer a {
   color: #ffffff;
   transition: color 0.3s ease;
 }
@@ -647,8 +643,7 @@ cite i {
 
 .site-info,
 .site-info a,
-.site-info a:hover,
-.site-info a:visited {
+.site-info a:hover {
   color: var(--newspack-theme-color-bg-body);
 }
 
