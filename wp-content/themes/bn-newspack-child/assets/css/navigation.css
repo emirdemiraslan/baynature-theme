@@ -164,7 +164,8 @@ body.has-hero-header .bn-header-bar-pre-scroll {
 
 .bn-header-tagline {
   margin: 0;
-  font-size: 0.97rem;
+  font-size: 0.95rem;
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
   color: #555555;
   line-height: 1.2;
   flex-shrink: 0;
