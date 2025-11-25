@@ -180,6 +180,11 @@ div.wpnbha .article-section-title,
   background: transparent;
 }
 
+.featured-image-behind .entry-header .cat-links a:hover,
+.featured-image-behind .entry-header .byline .author a:hover {
+  color: var(--bn-orange);
+}
+
 .blog .cat-links,
 .search .cat-links,
 .archive .cat-links {
@@ -280,6 +285,11 @@ cite i {
 .single .entry-header {
   text-align: center;
   padding: 8rem 0 4rem 0;
+}
+.featured-image-behind .entry-header {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  padding-bottom: 0;
+  margin-bottom: 0rem;
 }
 
 .single .entry-header .entry-title {
