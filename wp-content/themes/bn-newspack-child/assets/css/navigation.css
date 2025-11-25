@@ -1458,7 +1458,8 @@ a.bn-header-menu-link,
   border-color: #7fb126;
 }
 
-.bn-btn--donate {
+.bn-btn--donate,
+.bn-btn--donate:visited {
   background: var(--bn-yellow);
   color: #111;
   border-color: #e0b700;
