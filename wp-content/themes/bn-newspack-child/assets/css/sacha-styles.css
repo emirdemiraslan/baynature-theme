@@ -3,39 +3,7 @@
  * Based on Newspack Sacha theme by Automattic
  */
 
-/* IBM Plex Serif Font */
-@font-face {
-  font-family: "IBM Plex Serif";
-  src: url("../../fonts/ibm-plex-serif/IBMPlexSerif-Regular.ttf");
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "IBM Plex Serif";
-  src: url("../../fonts/ibm-plex-serif/IBMPlexSerif-Italic.ttf");
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "IBM Plex Serif";
-  src: url("../../fonts/ibm-plex-serif/IBMPlexSerif-Bold.ttf");
-  font-weight: 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "IBM Plex Serif";
-  src: url("../../fonts/ibm-plex-serif/IBMPlexSerif-BoldItalic.ttf");
-  font-style: italic;
-  font-weight: 700;
-  font-display: swap;
-}
-
 :root {
-  --newspack-theme-font-heading: "IBM Plex Serif", georgia, serif;
   --newspack-theme-color-bg-pre: #333333;
 }
 p {
@@ -176,6 +144,11 @@ div.wpnbha .article-section-title,
 
 .cat-links {
   font-size: var(--newspack-theme-font-size-sm);
+  font-family:
+    "ff-tisa-sans-web-pro",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
 }
 
 .cat-links a {
@@ -203,7 +176,7 @@ figcaption,
 /* Blockquotes */
 blockquote,
 cite {
-  font-family: var(--newspack-theme-font-heading);
+  font-family: "utopia-std", Georgia, serif;
   font-style: italic;
 }
 
@@ -282,6 +255,7 @@ cite i {
 /* Single post centered header */
 .single .entry-header {
   text-align: center;
+  padding: 8rem 0 4rem 0;
 }
 
 .single .entry-header .entry-title {
@@ -576,6 +550,16 @@ cite i {
 .site-footer {
   background-color: #3d434b;
   color: #ffffff;
+}
+
+.site-footer a,
+.site-footer .widget a,
+.site-footer .widget-area a {
+  font-family:
+    "ff-tisa-sans-web-pro",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
 }
 
 .site-footer p,
