@@ -62,14 +62,14 @@
 .issue-hero__kicker {
   letter-spacing: 0.12em;
   font-weight: 700;
-  margin-bottom: 0.5rem;
-  opacity: 0.9;
+  margin-bottom: 1.2rem;
 }
 
 .issue-hero__kicker a {
-  color: inherit;
+  color: var(--bn-orange);
   text-decoration: none;
   transition: color 0.2s ease;
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
 }
 
 .issue-hero__kicker a:hover,
@@ -80,7 +80,7 @@
 .issue-hero__title {
   font-size: clamp(2rem, 6vw, 2.5rem);
   line-height: 1.05;
-  margin: 0.25rem 0 1rem;
+  margin: 0.25rem 0 0rem;
 }
 .issue-hero__excerpt {
   max-width: 60ch;
