@@ -126,7 +126,7 @@ body.has-hero-header .bn-header-bar-pre-scroll {
   padding: 0.5rem var(--wp--preset--spacing--md);
   gap: var(--wp--preset--spacing--md);
   color: #ffffff;
-  background-color: #484848;
+  background-color: #454545;
   width: 100%;
   max-width: 100%;
   z-index: 9999;
@@ -164,7 +164,7 @@ body.has-hero-header .bn-header-bar-pre-scroll {
 
 .bn-header-tagline {
   margin: 0;
-  font-size: 0.88rem;
+  font-size: 0.97rem;
   color: #555555;
   line-height: 1.2;
   flex-shrink: 0;
@@ -205,7 +205,7 @@ body.has-hero-header .bn-header-tagline {
 }
 
 .bn-header-logo .custom-logo-link img {
-  max-height: 50px;
+  max-height: 55px;
   width: auto;
   height: auto;
   display: block;
@@ -445,12 +445,12 @@ a.bn-header-menu-link,
 /* After-scroll header: style menu links as buttons (Grist-style) */
 .bn-header-bar-after-scroll .bn-header-menu-link {
   display: inline-block;
-  padding: 9px 14px;
-  background-color: #ffffff;
+  padding: 0.1rem 1.2rem;
+  background-color: #7e7e7e;
   color: #484848 !important;
-  border: 1px solid #ffffff;
-  border-radius: 6px;
-  font-weight: 700;
+  border: 0;
+  border-radius: 4px;
+  font-weight: 500;
   text-decoration: none;
   transition:
     background-color 0.2s ease,
@@ -458,7 +458,7 @@ a.bn-header-menu-link,
     border-color 0.2s ease;
   white-space: nowrap;
   opacity: 1;
-  font-size: 0.625rem;
+  font-size: 0.85rem;
 }
 
 .bn-header-bar-after-scroll .bn-header-menu-link:hover,
@@ -471,13 +471,13 @@ a.bn-header-menu-link,
 
 .bn-header-bar-after-scroll .bn-header-menu-link:visited,
 .bn-header-bar-after-scroll .bn-header-menu-link:active {
-  color: #484848 !important;
+  color: #c1c1c1 !important;
   opacity: 1;
 }
 
 .bn-header-bar-after-scroll .bn-header-menu-link:visited:hover,
 .bn-header-bar-after-scroll .bn-header-menu-link:active:hover {
-  color: #ffffff !important;
+  color: #000 !important;
 }
 
 .bn-header-menu-link--cta {
@@ -702,7 +702,7 @@ a.bn-header-menu-link,
   align-items: center;
   justify-content: center;
   padding: 0.625rem 1.25rem;
-  min-height: 44px;
+  min-height: 32px;
   min-width: 44px;
   font-size: 0.875rem;
   font-weight: 600;
@@ -1329,7 +1329,7 @@ a.bn-header-menu-link,
 /* Desktop enhancements */
 @media (min-width: 768px) {
   .bn-btn {
-    font-size: 1rem;
+    font-size: 0.825rem;
     padding: 0.75rem 1.5rem;
   }
 
@@ -1398,9 +1398,9 @@ a.bn-header-menu-link,
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  border-radius: 6px;
-  padding: 9px 14px;
-  font-weight: 700;
+  border-radius: 4px;
+  padding: 0.1rem 1.2rem;
+  font-weight: 500;
   font-family:
     "ff-tisa-sans-web-pro",
     -apple-system,
@@ -1416,7 +1416,7 @@ a.bn-header-menu-link,
 .bn-btn > span {
   position: relative;
   z-index: 1;
-  font-size: 0.625rem;
+  font-size: 0.8rem;
 }
 
 .bn-btn::before {
