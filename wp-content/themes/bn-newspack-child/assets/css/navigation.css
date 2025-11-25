@@ -523,6 +523,7 @@ a.bn-header-menu-link,
   width: auto;
   height: auto;
   padding: 0;
+  margin-top: 9px;
   transition:
     opacity 0.2s ease,
     transform 0.2s ease;
