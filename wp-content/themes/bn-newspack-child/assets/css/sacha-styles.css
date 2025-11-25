@@ -423,6 +423,7 @@ cite i {
 .author-bio h2 {
   color: var(--newspack-theme-color-text-main);
   margin: 0;
+  text-transform: capitalize;
 }
 
 @media (min-width: 782px) {
