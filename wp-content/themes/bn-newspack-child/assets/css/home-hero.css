@@ -9,13 +9,16 @@
   inset: 0;
   background-size: cover;
   background-position: center;
-  filter: saturate(1.05);
 }
 .issue-hero__overlay {
   position: absolute;
   inset: 0;
-  background: var(--overlay-color, #000);
-  opacity: calc(var(--overlay-opacity, 35) / 100);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    var(--overlay-color, #000)
+  );
+  opacity: 0.7;
 }
 .issue-hero__inner {
   position: relative;
