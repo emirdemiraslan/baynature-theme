@@ -178,7 +178,7 @@ body.has-hero-header .bn-header-bar-pre-scroll {
 body.has-hero-issue .bn-header-tagline,
 body.has-hero-header .bn-header-tagline {
   color: #ffffff;
-  opacity: 0.9;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .bn-header-logo {
