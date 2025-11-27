@@ -111,6 +111,11 @@ div.wpnbha .article-section-title,
 .entry-meta .byline a,
 .wp-block-newspack-blocks-carousel.wpnbpc article div.entry-meta .byline a {
   color: #6b6b6b;
+  font-weight: 300;
+}
+.entry-meta .byline * {
+  font-weight: 300;
+  text-transform: capitalize;
 }
 
 .accent-header,
