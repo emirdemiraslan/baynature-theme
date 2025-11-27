@@ -112,6 +112,7 @@ body.has-hero-header .bn-header-bar-pre-scroll {
   justify-self: end;
   grid-column: 3;
   margin-left: 0;
+  margin-top: -35px;
 }
 
 /* After-scroll header: logo left, menu right */
@@ -403,11 +404,10 @@ body.has-hero-header .bn-header-tagline {
 .bn-header-menu {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 0.825rem;
   margin: 0;
   padding: 0;
   list-style: none;
-  letter-spacing: 0.08em;
 }
 
 .bn-header-menu-item {
@@ -458,7 +458,7 @@ a.bn-header-menu-link,
     border-color 0.2s ease;
   white-space: nowrap;
   opacity: 1;
-  font-size: 0.85rem;
+  font-size: 0.825rem;
 }
 
 .bn-header-bar-after-scroll .bn-header-menu-link:hover,
@@ -603,10 +603,11 @@ body.page:not(.has-hero-header):not(.has-hero-issue)
 
   .bn-header-bar-pre-scroll {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
     row-gap: var(--wp--preset--spacing--sm);
     padding: 1rem var(--wp--preset--spacing--sm);
+    flex-wrap: nowrap;
+    justify-content: center;
   }
 
   .bn-header-bar-pre-scroll .bn-header-tagline {
