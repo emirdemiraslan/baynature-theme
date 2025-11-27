@@ -92,7 +92,7 @@ input[type="submit"]:focus {
 .accent-header,
 div.wpnbha .article-section-title,
 .cat-links {
-  font-size: var(--newspack-theme-font-size-xs);
+  font-size: 0.85rem;
 }
 .wpnbha .cat-links {
   margin-bottom: 1.5rem;
