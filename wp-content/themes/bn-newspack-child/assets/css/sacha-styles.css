@@ -380,6 +380,31 @@ cite i {
   margin-bottom: 1rem !important;
 }
 
+/* Article post type indicator - orange triangle */
+.wpnbha .type-article.post-has-image .post-thumbnail,
+.wp-block-newspack-blocks-carousel
+  .type-article.post-has-image
+  .post-thumbnail {
+  position: relative;
+}
+
+.wpnbha .type-article.post-has-image .post-thumbnail a::before,
+.wp-block-newspack-blocks-carousel
+  .type-article.post-has-image
+  .post-thumbnail
+  a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 40px 40px 0 0;
+  border-color: var(--bn-orange, #f5821f) transparent transparent transparent;
+  z-index: 10;
+}
+
 @media (min-width: 782px) {
   /* Override parent theme background color for featured-image-beside layout */
   .h-db .featured-image-beside,
