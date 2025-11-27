@@ -378,6 +378,7 @@ cite i {
 .wp-block-newspack-blocks-carousel .cat-links {
   text-align: left;
   margin-bottom: 1rem !important;
+  text-transform: capitalize;
 }
 
 /* Article post type indicator - orange triangle */
