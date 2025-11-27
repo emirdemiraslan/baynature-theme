@@ -587,3 +587,29 @@ add_action('init', function() {
     }
 });
 */
+
+/**
+ * Map custom 'subheading' field to Newspack's subtitle
+ * This allows the custom 'subheading' post meta to appear in Newspack Content Loop blocks
+ */
+add_filter( 'get_post_metadata', 'bn_map_subheading_to_newspack_subtitle', 10, 4 );
+function bn_map_subheading_to_newspack_subtitle( $value, $object_id, $meta_key, $single ) {
+    // Only filter if requesting Newspack's subtitle meta key
+    if ( 'newspack_post_subtitle' === $meta_key ) {
+        // Remove the filter to avoid infinite loop
+        remove_filter( 'get_post_metadata', 'bn_map_subheading_to_newspack_subtitle', 10 );
+        
+        // Get the custom subheading value
+        $subheading = get_post_meta( $object_id, 'subheading', true );
+        
+        // Re-add the filter
+        add_filter( 'get_post_metadata', 'bn_map_subheading_to_newspack_subtitle', 10, 4 );
+        
+        // Return the subheading if it exists
+        if ( ! empty( $subheading ) ) {
+            return $single ? $subheading : array( $subheading );
+        }
+    }
+    
+    return $value;
+}

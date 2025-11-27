@@ -111,10 +111,10 @@ div.wpnbha .article-section-title,
 .entry-meta .byline a,
 .wp-block-newspack-blocks-carousel.wpnbpc article div.entry-meta .byline a {
   color: #6b6b6b;
-  font-weight: 300;
+  font-weight: 400;
 }
 .entry-meta .byline * {
-  font-weight: 300;
+  font-weight: 400;
   text-transform: capitalize;
 }
 
@@ -199,10 +199,18 @@ div.wpnbha .article-section-title,
   font-weight: normal;
 }
 
+.wpnbha .type-article .entry-title {
+  font-size: 1.25rem;
+}
 /* Bold captions */
 figcaption,
 .wp-caption-text {
   font-weight: bold;
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
+  text-align: center;
+}
+.wpnbha.wp-block-newspack-blocks-homepage-articles .post-thumbnail figcaption {
+  margin-bottom: 1.5rem;
 }
 
 /* Blockquotes */
@@ -317,6 +325,12 @@ cite i {
   margin-bottom: 4.95rem;
 }
 
+.entry-wrapper .newspack-post-subtitle,
+.entry-wrapper
+  .newspack-post-subtitle.newspack-post-subtitle--in-homepage-block {
+  font-style: normal;
+}
+
 /* Entry subhead */
 .single .entry-subhead {
   border-bottom: 1px solid var(--newspack-theme-color-border);
@@ -384,6 +398,10 @@ cite i {
   text-align: left;
   margin-bottom: 1rem !important;
   text-transform: capitalize;
+}
+.wpnbha .category-from-the-magazine .cat-links a,
+.wpnbha .type-article .cat-links a {
+  color: var(--bn-orange);
 }
 
 /* Article post type indicator - orange triangle */
