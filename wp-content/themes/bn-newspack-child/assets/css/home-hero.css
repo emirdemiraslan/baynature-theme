@@ -18,7 +18,7 @@
     rgba(255, 255, 255, 0),
     var(--overlay-color, #000)
   );
-  opacity: 0.7;
+  opacity: 0.4;
 }
 .issue-hero__inner {
   position: relative;
