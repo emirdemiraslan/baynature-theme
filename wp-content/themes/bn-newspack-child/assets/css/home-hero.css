@@ -83,6 +83,7 @@
   font-size: clamp(2rem, 6vw, 2.5rem);
   line-height: 1.05;
   margin: 0.25rem 0 0rem;
+  font-weight: 500;
 }
 .issue-hero__excerpt {
   max-width: 60ch;
