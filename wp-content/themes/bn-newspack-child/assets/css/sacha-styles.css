@@ -78,6 +78,10 @@ input[type="submit"]:focus {
   border-radius: 0;
 }
 
+aside#secondary {
+  margin-top: 0;
+}
+
 /* Accent headers with decorative lines */
 .accent-header,
 #secondary .widgettitle,
