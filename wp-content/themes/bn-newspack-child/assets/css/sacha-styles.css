@@ -606,6 +606,8 @@ div.author-bio h2 a:hover {
 /* Archives centered */
 .archive .page-title {
   color: #000;
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
+  font-size: var(--newspack-theme-font-size-sm);
 }
 .page-title {
   letter-spacing: 0;
