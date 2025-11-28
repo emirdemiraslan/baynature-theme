@@ -37,7 +37,7 @@
   .page-template-page-full-width #primary,
   .page-template-magazine_archive_page #primary,
   .page-template-current_issue_template #primary {
-    max-width: 65vw;
+    max-width: 750px;
     width: 100%;
   }
 }
