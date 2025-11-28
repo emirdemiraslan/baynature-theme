@@ -924,6 +924,10 @@ body.single .featured-image-behind .entry-sponsor {
   margin: auto;
 }
 
+.pagination .nav-links {
+  align-items: center;
+}
+
 /* Override for aligned blocks/images */
 .wp-block-image.alignleft img,
 .wp-block-image.alignright img,
