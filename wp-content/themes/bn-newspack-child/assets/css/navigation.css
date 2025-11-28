@@ -1238,6 +1238,7 @@ body.page:not(.has-hero-header):not(.has-hero-issue)
 
 .bn-overlay-print-edition-cover {
   flex-shrink: 0;
+  box-shadow: 4px 4px 0 #b9b9b9;
 }
 
 .bn-overlay-print-edition-cover a {
