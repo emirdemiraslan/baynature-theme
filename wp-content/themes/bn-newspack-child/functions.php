@@ -52,7 +52,8 @@ add_action( 'wp_head', function() {
     <script>
         (function(d) {
         var config = {
-            kitId: 'knt2fsi',
+            /*kitId: 'knt2fsi',*/
+            kitId: 'hiz3obw',
             scriptTimeout: 3000,
             async: true
         },
