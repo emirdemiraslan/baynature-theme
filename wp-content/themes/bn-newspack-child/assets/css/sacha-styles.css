@@ -492,7 +492,7 @@ cite i {
 
 /* Entry footer */
 .entry .entry-footer {
-  color: var(--newspack-theme-color-primary-against-white);
+  color: #000;
   text-align: center;
 }
 
@@ -502,6 +502,9 @@ cite i {
 }
 
 /* Tags styling */
+.tags-links {
+  display: none !important;
+}
 .tags-links span:first-child {
   text-transform: none;
 }
@@ -606,8 +609,6 @@ div.author-bio h2 a:hover {
 /* Archives centered */
 .archive .page-title {
   color: #000;
-  font-family: "ff-tisa-sans-web-pro", sans-serif;
-  font-size: var(--newspack-theme-font-size-sm);
 }
 .page-title {
   letter-spacing: 0;
