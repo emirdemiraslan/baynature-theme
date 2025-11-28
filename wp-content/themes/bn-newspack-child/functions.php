@@ -267,7 +267,13 @@ add_filter( 'body_class', function ( $classes ) {
     $has_hero = false;
 
     if ( is_singular() && has_post_thumbnail() ) {
-        if ( function_exists( 'newspack_post_has_hero' ) ) {
+        // Check if featured image position is 'hidden'
+        $featured_image_position = function_exists( 'newspack_featured_image_position' ) ? newspack_featured_image_position() : '';
+        
+        if ( 'hidden' === $featured_image_position ) {
+            // If hidden, treat as if there's no featured image
+            $has_hero = false;
+        } elseif ( function_exists( 'newspack_post_has_hero' ) ) {
             // Prefer theme helper if available.
             $has_hero = (bool) newspack_post_has_hero( get_post() );
         } else {
@@ -278,7 +284,11 @@ add_filter( 'body_class', function ( $classes ) {
 
     // Also check for full-width page template with featured image
     if ( is_page_template( 'page-full-width.php' ) && has_post_thumbnail() ) {
-        $has_hero = true;
+        // Check if featured image position is 'hidden' for pages too
+        $featured_image_position = function_exists( 'newspack_featured_image_position' ) ? newspack_featured_image_position() : '';
+        if ( 'hidden' !== $featured_image_position ) {
+            $has_hero = true;
+        }
     }
 
     if ( $has_hero ) {

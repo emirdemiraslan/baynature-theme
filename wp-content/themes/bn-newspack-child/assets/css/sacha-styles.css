@@ -179,10 +179,15 @@ div.wpnbha .article-section-title,
 }
 
 .cat-links a,
+.cat-links a:visited,
 .cat-links {
   color: inherit;
   background: transparent;
   text-transform: capitalize !important;
+}
+.cat-links a:hover {
+  color: var(--bn-orange);
+  background-color: transparent;
 }
 
 .featured-image-behind .entry-header .cat-links a:hover,
