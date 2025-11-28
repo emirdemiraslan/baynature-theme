@@ -175,11 +175,7 @@ div.wpnbha .article-section-title,
 
 .cat-links {
   font-size: var(--newspack-theme-font-size-sm);
-  font-family:
-    "ff-tisa-sans-web-pro",
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
 }
 
 .cat-links a,
@@ -309,7 +305,7 @@ cite i {
 /* Single post centered header */
 .single .entry-header {
   text-align: center;
-  padding: 6rem 0 4rem 0;
+  padding: 8rem 0 4rem 0;
 }
 .featured-image-behind .entry-header {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
@@ -318,7 +314,7 @@ cite i {
 }
 
 .single .entry-header .entry-title {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.25rem;
   margin-top: 1.5rem;
 }
 
@@ -332,11 +328,11 @@ cite i {
 }
 
 .single .entry-header .entry-title--with-subtitle {
-  margin-bottom: 1.05rem;
+  margin-bottom: 0rem;
 }
 
 .single .entry-header .newspack-post-subtitle {
-  margin-bottom: 2.95rem;
+  margin-bottom: 2.5rem;
 }
 
 .entry-wrapper .newspack-post-subtitle,
@@ -350,29 +346,34 @@ cite i {
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5rem;
-  padding: 1.125rem 0;
+  /* padding: 1.125rem 0; */
   text-align: center;
 }
 
-@media (min-width: 600px) {
-  .single .entry-subhead {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 3rem;
-    text-align: left;
-  }
-  .single .entry-subhead .entry-meta {
-    display: flex;
-    margin: 1rem 0;
-    align-items: center;
-    width: 100%;
-    justify-content: center;
-    gap: 0rem;
-  }
+.single .entry-subhead {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  text-align: left;
+}
+.single .entry-subhead .entry-meta {
+  display: flex;
+  margin: 0;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  gap: 0rem;
+}
+.single .entry-subhead .sharedaddy {
+  margin: 1rem 0;
+}
+.single .entry-subhead .bn-reading-time .reading-time-text {
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
+  font-weight: 500;
+}
 
-  .single .entry-subhead .entry-meta span.byline {
-    margin-right: 1rem;
-  }
+.single .entry-subhead .entry-meta span.byline {
+  margin-right: 1rem;
 }
 
 .single .entry-subhead .sd-content {

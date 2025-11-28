@@ -660,3 +660,88 @@ add_filter( 'pre_get_posts', function( $query ) {
     }
     return $query;
 }, 1 );
+
+/**
+ * Calculate reading time for a post
+ * 
+ * @param int $post_id Post ID. Defaults to current post.
+ * @return int Reading time in minutes
+ */
+function bn_get_reading_time( $post_id = null ) {
+    if ( ! $post_id ) {
+        $post_id = get_the_ID();
+    }
+    
+    $post = get_post( $post_id );
+    if ( ! $post ) {
+        return 0;
+    }
+    
+    // Get the post content
+    $content = $post->post_content;
+    
+    // Strip shortcodes and HTML tags
+    $content = strip_shortcodes( $content );
+    $content = wp_strip_all_tags( $content );
+    
+    // Count words
+    $word_count = str_word_count( $content );
+    
+    // Calculate reading time (words / 250)
+    $reading_time = ceil( $word_count / 250 );
+    
+    // Minimum 1 minute
+    return max( 1, $reading_time );
+}
+
+/**
+ * Add inline styles for reading time display
+ */
+function bn_reading_time_styles() {
+    if ( ! is_singular( array( 'post', 'article' ) ) ) {
+        return;
+    }
+    ?>
+    <style id="bn-reading-time-styles">
+        /* Reading time styles */
+        .bn-reading-time {
+            text-align: center;
+            margin: 1rem 0 0.5rem 0;
+            font-size: 0.875rem;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        @media (min-width: 600px) {
+            .bn-reading-time {
+                text-align: center;
+                margin: 0.75rem 0;
+            }
+        }
+        
+        .bn-reading-time .reading-time-text {
+            font-style: italic;
+            font-size: 0.875rem;
+        }
+        
+        /* Featured image behind variation */
+        .single .featured-image-behind .bn-reading-time {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Featured image beside variation */
+        @media (min-width: 782px) {
+            .single .featured-image-beside .entry-subhead .bn-reading-time {
+                margin: 0.5rem 0;
+            }
+        }
+        
+        /* Entry subhead context */
+        .entry-subhead .bn-reading-time {
+            display: block;
+            width: 100%;
+        }
+    </style>
+    <?php
+}
+add_action( 'wp_head', 'bn_reading_time_styles', 100 );
