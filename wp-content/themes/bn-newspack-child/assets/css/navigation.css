@@ -1508,3 +1508,16 @@ body.page:not(.has-hero-header):not(.has-hero-issue)
   color: #fff;
   border-color: #d06e18;
 }
+/*wp-block-navigation*/
+.wp-block-navigation .wp-block-navigation-item__label {
+  vertical-align: text-bottom;
+  vertical-align: -webkit-baseline-middle;
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
+}
+.wp-block-navigation .wp-block-navigation-item__content {
+  transition: color 0.2s ease;
+  font-weight: 400;
+}
+.wp-block-navigation .wp-block-navigation-item__content:hover {
+  color: var(--bn-orange);
+}
