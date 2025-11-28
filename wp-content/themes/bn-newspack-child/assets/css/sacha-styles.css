@@ -182,9 +182,11 @@ div.wpnbha .article-section-title,
     sans-serif;
 }
 
-.cat-links a {
+.cat-links a,
+.cat-links {
   color: inherit;
   background: transparent;
+  text-transform: capitalize !important;
 }
 
 .featured-image-behind .entry-header .cat-links a:hover,
@@ -300,10 +302,6 @@ cite i {
   text-align: center;
 }
 
-.single .featured-image-behind .entry-subhead .author-avatar {
-  display: none;
-}
-
 .single .featured-image-behind .entry-meta {
   margin-bottom: 1.5rem;
 }
@@ -311,7 +309,7 @@ cite i {
 /* Single post centered header */
 .single .entry-header {
   text-align: center;
-  padding: 8rem 0 4rem 0;
+  padding: 6rem 0 4rem 0;
 }
 .featured-image-behind .entry-header {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
@@ -320,13 +318,13 @@ cite i {
 }
 
 .single .entry-header .entry-title {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1.5rem;
   margin-top: 1.5rem;
 }
 
 @media (min-width: 782px) {
   .single .entry-header .entry-title {
-    margin-bottom: 4.5rem;
+    margin-bottom: 1.5rem;
     margin-left: auto;
     margin-right: auto;
     width: 85%;
@@ -338,7 +336,7 @@ cite i {
 }
 
 .single .entry-header .newspack-post-subtitle {
-  margin-bottom: 4.95rem;
+  margin-bottom: 2.95rem;
 }
 
 .entry-wrapper .newspack-post-subtitle,
@@ -349,9 +347,8 @@ cite i {
 
 /* Entry subhead */
 .single .entry-subhead {
-  border-bottom: 1px solid var(--newspack-theme-color-border);
-  border-top: 1px solid var(--newspack-theme-color-border);
-  display: block;
+  display: flex;
+  flex-direction: column;
   margin-bottom: 1.5rem;
   padding: 1.125rem 0;
   text-align: center;
@@ -360,8 +357,21 @@ cite i {
 @media (min-width: 600px) {
   .single .entry-subhead {
     display: flex;
+    flex-direction: column;
     margin-bottom: 3rem;
     text-align: left;
+  }
+  .single .entry-subhead .entry-meta {
+    display: flex;
+    margin: 1rem 0;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    gap: 0rem;
+  }
+
+  .single .entry-subhead .entry-meta span.byline {
+    margin-right: 1rem;
   }
 }
 
@@ -381,6 +391,7 @@ cite i {
 
 .single:not(.has-large-featured-image) .entry-header {
   border-bottom: 0;
+  padding: 1rem 0 0 0;
 }
 
 /* Date hidden variations */
