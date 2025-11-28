@@ -642,37 +642,6 @@ function bn_map_subheading_to_newspack_subtitle( $value, $object_id, $meta_key, 
 }
 
 /**
- * Detect SearchWP queries and treat them as search queries
- * SearchWP uses custom parameters (swps, swp_form) instead of standard ?s=
- * This prevents the homepage template from loading for search results
- */
-add_action( 'template_redirect', function() {
-    // Check if this is a SearchWP query (not standard WordPress search)
-    if ( ! is_admin() && isset( $_GET['swps'] ) && ! empty( $_GET['swps'] ) ) {
-        // Set the query var so WordPress recognizes this as a search
-        global $wp_query;
-        $wp_query->is_search = true;
-        $wp_query->is_home = false;
-        $wp_query->is_front_page = false;
-    }
-}, 1 ); // Priority 1 to run very early
-
-/**
- * Make SearchWP queries work with WP_Query
- * This ensures the search.php template receives the search results
- */
-add_filter( 'pre_get_posts', function( $query ) {
-    // Only run on main query, not admin, and when swps parameter exists
-    if ( ! is_admin() && $query->is_main_query() && isset( $_GET['swps'] ) && ! empty( $_GET['swps'] ) ) {
-        // Set the search query
-        $query->set( 's', sanitize_text_field( $_GET['swps'] ) );
-        $query->is_search = true;
-        $query->is_home = false;
-    }
-    return $query;
-}, 1 );
-
-/**
  * Calculate reading time for a post
  * 
  * @param int $post_id Post ID. Defaults to current post.
