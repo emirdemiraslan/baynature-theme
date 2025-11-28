@@ -57,32 +57,59 @@
 
             <!-- wp:html -->
             <?php
-            // Print Edition section - show if magazine cover image is set
-            $nav_options = bn_get_utility_urls();
-            $magazine_cover_id = isset( $nav_options['magazine_cover_image'] ) ? intval( $nav_options['magazine_cover_image'] ) : 0;
-            if ( $magazine_cover_id ) :
-                $magazine_cover_url = wp_get_attachment_image_url( $magazine_cover_id, 'medium' );
-                if ( $magazine_cover_url ) :
-                    ?>
-                    <div class="bn-overlay-print-edition-section">
-                        <label class="bn-overlay-section-label"><?php esc_html_e( 'THE PRINT EDITION', 'bn-newspack-child' ); ?></label>
-                        <div class="bn-overlay-print-edition-separator"></div>
-                        <div class="bn-overlay-print-edition-content">
-                            <div class="bn-overlay-print-edition-cover">
-                                <a href="/magazine">
-                                    <img src="<?php echo esc_url( $magazine_cover_url ); ?>" alt="<?php esc_attr_e( 'Magazine Cover', 'bn-newspack-child' ); ?>" />
-                                </a>
-                            </div>
-                            <nav class="bn-overlay-print-edition-nav">
-                                <ul class="bn-overlay-print-edition-menu">
-                                    <li><a href="/magazine"><?php esc_html_e( 'Current Issue', 'bn-newspack-child' ); ?></a></li>
-                                    <li><a href="/magazine-archive"><?php esc_html_e( 'Past Issues', 'bn-newspack-child' ); ?></a></li>
-                                </ul>
-                            </nav>
+            // Print Edition section - show if we have a cover, preferring the latest issue automatically.
+            $nav_options        = bn_get_utility_urls();
+            $magazine_cover_id  = isset( $nav_options['magazine_cover_image'] ) ? intval( $nav_options['magazine_cover_image'] ) : 0;
+            $magazine_cover_url = '';
+            $magazine_cover_alt = __( 'Magazine Cover', 'bn-newspack-child' );
+            $magazine_cover_link = '/magazine';
+
+            if ( function_exists( 'bn_get_latest_magazine_cover_data' ) ) {
+                $latest_cover = bn_get_latest_magazine_cover_data( 'medium' );
+
+                if ( ! empty( $latest_cover['url'] ) ) {
+                    $magazine_cover_url = $latest_cover['url'];
+
+                    if ( ! empty( $latest_cover['issue_url'] ) ) {
+                        $magazine_cover_link = $latest_cover['issue_url'];
+                    }
+
+                    if ( ! empty( $latest_cover['image_alt'] ) ) {
+                        $magazine_cover_alt = $latest_cover['image_alt'];
+                    } elseif ( ! empty( $latest_cover['issue_title'] ) ) {
+                        /* translators: %s: magazine issue title. */
+                        $magazine_cover_alt = sprintf( __( '%s cover', 'bn-newspack-child' ), $latest_cover['issue_title'] );
+                    }
+                }
+            }
+
+            if ( ! $magazine_cover_url && $magazine_cover_id ) {
+                $manual_cover_url = wp_get_attachment_image_url( $magazine_cover_id, 'medium' );
+                if ( $manual_cover_url ) {
+                    $magazine_cover_url = $manual_cover_url;
+                }
+            }
+
+            if ( $magazine_cover_url ) :
+                ?>
+                <div class="bn-overlay-print-edition-section">
+                    <label class="bn-overlay-section-label"><?php esc_html_e( 'THE PRINT EDITION', 'bn-newspack-child' ); ?></label>
+                    <div class="bn-overlay-print-edition-separator"></div>
+                    <div class="bn-overlay-print-edition-content">
+                        <div class="bn-overlay-print-edition-cover">
+                            <a href="<?php echo esc_url( $magazine_cover_link ); ?>">
+                                <img src="<?php echo esc_url( $magazine_cover_url ); ?>" alt="<?php echo esc_attr( $magazine_cover_alt ); ?>" />
+                            </a>
                         </div>
+                        <nav class="bn-overlay-print-edition-nav">
+                            <ul class="bn-overlay-print-edition-menu">
+                                <li><a href="/magazine"><?php esc_html_e( 'Current Issue', 'bn-newspack-child' ); ?></a></li>
+                                <li><a href="/magazine-archive"><?php esc_html_e( 'Past Issues', 'bn-newspack-child' ); ?></a></li>
+                            </ul>
+                        </nav>
                     </div>
-                    <?php
-                endif;
+                </div>
+                <?php
             endif;
             ?>
             <!-- /wp:html -->

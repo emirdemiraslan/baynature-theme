@@ -88,7 +88,7 @@ add_action( 'admin_init', function () {
             <?php if ( $image_id ) : ?>
                 <button type="button" class="button bn-remove-magazine-cover-button" style="margin-left: 10px;"><?php esc_html_e( 'Remove Image', 'bn-newspack-child' ); ?></button>
             <?php endif; ?>
-            <p class="description"><?php esc_html_e( 'Magazine cover image displayed in the Print Edition section of the overlay menu.', 'bn-newspack-child' ); ?></p>
+            <p class="description"><?php esc_html_e( 'Magazine cover Fallback image displayed in the Print Edition section of the overlay menu if latest magazine cover image can not be found.', 'bn-newspack-child' ); ?></p>
         </div>
         <?php
     }, 'bn_navigation', 'bn_overlay_settings' );
