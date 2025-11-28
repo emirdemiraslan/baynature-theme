@@ -51,12 +51,16 @@
 
 @media (min-width: 782px) {
   /* Ensure content area is full width */
-  .post-template-single-wide #primary,
+
   .page-template-page-full-width #primary,
   .page-template-magazine_archive_page #primary,
   .page-template-current_issue_template #primary,
   .search-full-width #primary {
     max-width: 1200px;
+    width: 100%;
+  }
+  .post-template-single-wide #primary {
+    max-width: 750px;
     width: 100%;
   }
 }
