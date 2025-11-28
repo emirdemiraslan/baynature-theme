@@ -6,11 +6,12 @@
   max-width: 100vw;
 }
 
-/* Ensure all single posts use full width layout */
+/* Ensure all single posts and search pages use full width layout */
 .post-template-single-wide .main-content,
 .page-template-page-full-width .main-content,
 .page-template-magazine_archive_page .main-content,
-.page-template-current_issue_template .main-content {
+.page-template-current_issue_template .main-content,
+.search-full-width .main-content {
   width: 100% !important;
   max-width: 100% !important;
 }
@@ -19,15 +20,32 @@
 .post-template-single-wide.single #main,
 .page-template-page-full-width #main,
 .page-template-magazine_archive_page #main,
-.page-template-current_issue_template #main {
+.page-template-current_issue_template #main,
+.search-full-width #main {
   display: block !important;
+}
+
+/* Force content-area and main to be 100% width when no sidebar */
+.search-full-width .content-area,
+.search-full-width #primary {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.search-full-width #main,
+.search-full-width .site-main {
+  width: 100% !important;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Hide sidebar area completely */
 .post-template-single-wide #secondary,
 .page-template-page-full-width #secondary,
 .page-template-magazine_archive_page #secondary,
-.page-template-current_issue_template #secondary {
+.page-template-current_issue_template #secondary,
+.search-full-width #secondary {
   display: none !important;
 }
 
@@ -36,8 +54,9 @@
   .post-template-single-wide #primary,
   .page-template-page-full-width #primary,
   .page-template-magazine_archive_page #primary,
-  .page-template-current_issue_template #primary {
-    max-width: 750px;
+  .page-template-current_issue_template #primary,
+  .search-full-width #primary {
+    max-width: 1200px;
     width: 100%;
   }
 }
@@ -237,4 +256,119 @@ body.page-template-magazine_archive_page.has-hero-header .bn-primary-row {
   .page-template-magazine_archive_page .page-hero .hero-content {
     padding: 1rem;
   }
+}
+
+/* ========================================
+   Search Results Full Width Styles
+   ======================================== */
+
+/* Search results container */
+.search-full-width .search-wrap {
+  max-width: var(--wp--style--global--wide-size, 1200px);
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.search-full-width .search-term {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Search results grid */
+.search-full-width .search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .search-full-width .search-results {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Individual search result items */
+.search-full-width .search-results article {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.search-full-width .search-results article figure {
+  margin: 0 0 1rem 0;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.search-full-width .search-results article figure img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.search-full-width .search-results article figure a:hover img {
+  transform: scale(1.05);
+}
+
+.search-full-width .search-results .entry-header {
+  margin-bottom: 0.5rem;
+}
+
+.search-full-width .search-results .entry-title {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  margin: 0 0 0.5rem 0;
+}
+
+.search-full-width .search-results .entry-title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.search-full-width .search-results .entry-title a:hover {
+  color: var(--newspack-theme-color-primary, #0073aa);
+}
+
+.search-full-width .search-results .entry-meta {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 0.75rem;
+}
+
+.search-full-width .search-results .entry-content {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+/* Pagination for search results */
+.search-full-width .pagination {
+  max-width: var(--wp--style--global--wide-size, 1200px);
+  margin: 3rem auto 2rem;
+  padding: 0 1.25rem;
+  text-align: center;
+}
+
+/* No results message */
+.search-full-width .no-results {
+  max-width: var(--wp--style--global--content-size, 800px);
+  margin: 3rem auto;
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+
+.search-full-width .no-results .page-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 1rem;
+}
+
+.search-full-width .no-results .page-content p {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
 }

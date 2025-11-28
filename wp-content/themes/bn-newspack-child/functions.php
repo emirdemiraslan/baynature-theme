@@ -19,6 +19,14 @@ add_action( 'wp_enqueue_scripts', function () {
         '1.0.0' 
     );
 
+    // Enqueue full-width layout styles for singles, pages, and search
+    wp_enqueue_style(
+        'bn-single-full-width',
+        get_stylesheet_directory_uri() . '/assets/css/single-full-width.css',
+        array( 'bn-parent-style' ),
+        '1.0.1'
+    );
+
     // Enqueue Homepage Hero stylesheet and script when template is used or on front page
     if ( is_page_template( 'template-home-hero.php' ) || is_front_page() ) {
         wp_enqueue_style(
@@ -328,6 +336,14 @@ add_filter( 'body_class', function( $classes ) {
         // Remove any sidebar-related classes
         $classes = array_diff( $classes, array( 'has-sidebar' ) );
     }
+    
+    // Add full-width class for search results pages
+    if ( is_search() || ( ! empty( $_GET['swps'] ) ) ) {
+        $classes[] = 'search-full-width';
+        // Remove any sidebar-related classes
+        $classes = array_diff( $classes, array( 'has-sidebar' ) );
+    }
+    
     return $classes;
 } );
 
@@ -613,3 +629,34 @@ function bn_map_subheading_to_newspack_subtitle( $value, $object_id, $meta_key, 
     
     return $value;
 }
+
+/**
+ * Detect SearchWP queries and treat them as search queries
+ * SearchWP uses custom parameters (swps, swp_form) instead of standard ?s=
+ * This prevents the homepage template from loading for search results
+ */
+add_action( 'template_redirect', function() {
+    // Check if this is a SearchWP query (not standard WordPress search)
+    if ( ! is_admin() && isset( $_GET['swps'] ) && ! empty( $_GET['swps'] ) ) {
+        // Set the query var so WordPress recognizes this as a search
+        global $wp_query;
+        $wp_query->is_search = true;
+        $wp_query->is_home = false;
+        $wp_query->is_front_page = false;
+    }
+}, 1 ); // Priority 1 to run very early
+
+/**
+ * Make SearchWP queries work with WP_Query
+ * This ensures the search.php template receives the search results
+ */
+add_filter( 'pre_get_posts', function( $query ) {
+    // Only run on main query, not admin, and when swps parameter exists
+    if ( ! is_admin() && $query->is_main_query() && isset( $_GET['swps'] ) && ! empty( $_GET['swps'] ) ) {
+        // Set the search query
+        $query->set( 's', sanitize_text_field( $_GET['swps'] ) );
+        $query->is_search = true;
+        $query->is_home = false;
+    }
+    return $query;
+}, 1 );
