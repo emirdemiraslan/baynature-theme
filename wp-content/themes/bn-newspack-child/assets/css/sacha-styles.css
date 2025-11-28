@@ -212,9 +212,10 @@ div.wpnbha .article-section-title,
 /* Bold captions */
 figcaption,
 .wp-caption-text {
-  font-weight: bold;
+  font-weight: normal;
   font-family: "ff-tisa-sans-web-pro", sans-serif;
   text-align: center;
+  font-style: italic;
 }
 .wpnbha.wp-block-newspack-blocks-homepage-articles .post-thumbnail figcaption {
   margin-bottom: 1.5rem;
