@@ -317,6 +317,11 @@ add_action( 'wp_body_open', function () {
 add_filter( 'single_template', function( $template ) {
     // Check if we're on a single post page (any post type)
     if ( is_single() ) {
+        // Exclude biodiversity post type - it has its own template (single-biodiversity.php)
+        if ( get_post_type() === 'biodiversity' ) {
+            return $template;
+        }
+        
         // Check if a custom page template has been assigned
         $page_template = get_page_template_slug();
         
