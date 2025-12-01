@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bn/mec-events-list",
+  "title": "BN Events List",
+  "category": "widgets",
+  "icon": "calendar-alt",
+  "description": "Display a list of Modern Events List events with customizable options",
+  "keywords": ["events", "calendar", "mec", "upcoming"],
+  "supports": {
+    "align": true,
+    "anchor": true,
+    "html": false
+  },
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "numberOfEvents": {
+      "type": "number",
+      "default": 5
+    },
+    "showDate": {
+      "type": "boolean",
+      "default": true
+    },
+    "showExcerpt": {
+      "type": "boolean",
+      "default": false
+    },
+    "categoryFilter": {
+      "type": "string",
+      "default": ""
+    },
+    "showPastEvents": {
+      "type": "boolean",
+      "default": false
+    },
+    "orderBy": {
+      "type": "string",
+      "enum": ["date_asc", "date_desc"],
+      "default": "date_asc"
+    }
+  },
+  "textdomain": "bn-newspack-child",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}

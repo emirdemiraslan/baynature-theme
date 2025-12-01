@@ -8,6 +8,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Enqueue block editor assets.
+ */
+add_action( 'enqueue_block_editor_assets', function () {
+    $asset_file = get_stylesheet_directory() . '/build/index.asset.php';
+    
+    if ( ! file_exists( $asset_file ) ) {
+        return;
+    }
+    
+    $asset = include $asset_file;
+    
+    wp_enqueue_script(
+        'bn-blocks-editor',
+        get_stylesheet_directory_uri() . '/build/index.js',
+        $asset['dependencies'],
+        $asset['version'],
+        true
+    );
+} );
+
+/**
  * Register all custom blocks.
  */
 add_action( 'init', function () {
@@ -25,6 +46,7 @@ add_action( 'init', function () {
         'featured-trail',
         'paywall-cta',
         'author-box',
+        'mec-events-list',
     );
 
     foreach ( $blocks as $block ) {

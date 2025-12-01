@@ -1,0 +1,17 @@
+const defaultConfig = require('@wordpress/scripts/config/webpack.config');
+const path = require('path');
+
+module.exports = {
+    ...defaultConfig,
+    entry: {
+        'hero-header/edit': './blocks/hero-header/edit.js',
+        'paywall-cta/edit': './blocks/paywall-cta/edit.js',
+        'mec-events-list/edit': './blocks/mec-events-list/edit.js',
+    },
+    output: {
+        ...defaultConfig.output,
+        path: path.resolve(__dirname, 'build'),
+        filename: '[name].js',
+    },
+};
+
