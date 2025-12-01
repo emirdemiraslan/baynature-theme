@@ -485,9 +485,7 @@ a.bn-header-menu-link,
   color: #ffffff !important;
 }
 
-.bn-header-menu-link--cta:hover,
-.bn-header-menu-link--cta:focus-visible,
-.bn-header-menu-link--cta:active {
+.bn-header-menu-link--cta:hover {
   color: #ffffff !important;
   border-color: #ffffff;
   opacity: 0.8;
@@ -1420,6 +1418,12 @@ body.archive .bn-header-bar-pre-scroll .bn-header-search:focus-visible {
     display: none;
   }
 }
+
+/* Homepage inline menu*/
+nav.homepage-inline-menu {
+  margin: 2rem auto;
+}
+
 /* ==================== BN CONSOLIDATED PATCH (2025-10-21) ==================== */
 :root {
   --bn-blue-500: #009ad9;
