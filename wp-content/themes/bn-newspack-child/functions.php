@@ -730,3 +730,18 @@ function bn_reading_time_styles() {
     <?php
 }
 add_action( 'wp_head', 'bn_reading_time_styles', 100 );
+
+/**
+ * Include 'article' post type in category and tag archives
+ */
+add_action( 'pre_get_posts', function( $query ) {
+    // Only modify the main query on the frontend
+    if ( is_admin() || ! $query->is_main_query() ) {
+        return;
+    }
+    
+    // Include 'article' post type in category, tag, and date archives
+    if ( $query->is_category() || $query->is_tag() || $query->is_date() || $query->is_author() ) {
+        $query->set( 'post_type', array( 'post', 'article' ) );
+    }
+} );
