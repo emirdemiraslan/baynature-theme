@@ -932,6 +932,10 @@ body.single .featured-image-behind .entry-sponsor {
   align-items: center;
 }
 
+/*Hid br after ads*/
+div.dfw-unit + br {
+  display: none;
+}
 /* Override for aligned blocks/images */
 .wp-block-image.alignleft img,
 .wp-block-image.alignright img,
