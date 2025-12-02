@@ -146,19 +146,39 @@ $wrapper_attributes = get_block_wrapper_attributes(
                     <?php endif; ?>
 
                     <?php if ( ( $show_author ) || $date_display ) : ?>
-                        <?php setup_postdata( $post ); ?>
                         <div class="entry-meta">
                             <?php if ( $show_author ) : ?>
+                                <?php
+                                $authors = array();
+                                if ( function_exists( 'get_coauthors' ) ) {
+                                    $authors = get_coauthors( $post_id );
+                                } else {
+                                    $user = get_user_by( 'ID', $post->post_author );
+                                    if ( $user ) {
+                                        $authors[] = $user;
+                                    }
+                                }
+                                ?>
                                 <div class="byline-container">
-                                    <?php echo get_avatar( get_the_author_meta( 'ID', $post->post_author ), 40 ); ?>
+                                    <?php
+                                    if ( ! empty( $authors ) ) {
+                                        echo get_avatar( $authors[0]->ID, 40 );
+                                    }
+                                    ?>
                                     <span class="byline">
                                         <span class="author-prefix"><?php echo esc_html__( 'By', 'bn-newspack-child' ); ?></span>
                                         <span class="author vcard">
                                             <?php
-                                            if ( function_exists( 'coauthors_posts_links' ) ) {
-                                                coauthors_posts_links();
-                                            } else {
-                                                the_author_posts_link();
+                                            foreach ( $authors as $index => $author ) {
+                                                if ( $index > 0 ) {
+                                                    echo $index === count( $authors ) - 1 ? esc_html__( ' and ', 'bn-newspack-child' ) : ', ';
+                                                }
+                                                $author_link = get_author_posts_url( $author->ID, $author->user_nicename );
+                                                ?>
+                                                <a href="<?php echo esc_url( $author_link ); ?>" class="url fn n" rel="author">
+                                                    <?php echo esc_html( $author->display_name ); ?>
+                                                </a>
+                                                <?php
                                             }
                                             ?>
                                         </span>
@@ -169,7 +189,6 @@ $wrapper_attributes = get_block_wrapper_attributes(
                                 <time class="entry-date published"><?php echo esc_html( $date_display ); ?></time>
                             <?php endif; ?>
                         </div>
-                        <?php wp_reset_postdata(); ?>
                     <?php endif; ?>
                 </div>
             </div>
@@ -208,19 +227,39 @@ $wrapper_attributes = get_block_wrapper_attributes(
             <?php endif; ?>
 
             <?php if ( ( $show_author ) || $date_display ) : ?>
-                <?php setup_postdata( $post ); ?>
                 <div class="entry-meta">
                     <?php if ( $show_author ) : ?>
+                        <?php
+                        $authors = array();
+                        if ( function_exists( 'get_coauthors' ) ) {
+                            $authors = get_coauthors( $post_id );
+                        } else {
+                            $user = get_user_by( 'ID', $post->post_author );
+                            if ( $user ) {
+                                $authors[] = $user;
+                            }
+                        }
+                        ?>
                         <div class="byline-container">
-                            <?php echo get_avatar( get_the_author_meta( 'ID', $post->post_author ), 40 ); ?>
+                            <?php
+                            if ( ! empty( $authors ) ) {
+                                echo get_avatar( $authors[0]->ID, 40 );
+                            }
+                            ?>
                             <span class="byline">
                                 <span class="author-prefix"><?php echo esc_html__( 'By', 'bn-newspack-child' ); ?></span>
                                 <span class="author vcard">
                                     <?php
-                                    if ( function_exists( 'coauthors_posts_links' ) ) {
-                                        coauthors_posts_links();
-                                    } else {
-                                        the_author_posts_link();
+                                    foreach ( $authors as $index => $author ) {
+                                        if ( $index > 0 ) {
+                                            echo $index === count( $authors ) - 1 ? esc_html__( ' and ', 'bn-newspack-child' ) : ', ';
+                                        }
+                                        $author_link = get_author_posts_url( $author->ID, $author->user_nicename );
+                                        ?>
+                                        <a href="<?php echo esc_url( $author_link ); ?>" class="url fn n" rel="author">
+                                            <?php echo esc_html( $author->display_name ); ?>
+                                        </a>
+                                        <?php
                                     }
                                     ?>
                                 </span>
@@ -231,7 +270,6 @@ $wrapper_attributes = get_block_wrapper_attributes(
                         <time class="entry-date published"><?php echo esc_html( $date_display ); ?></time>
                     <?php endif; ?>
                 </div>
-                <?php wp_reset_postdata(); ?>
             <?php endif; ?>
         </div>
     <?php endif; ?>
