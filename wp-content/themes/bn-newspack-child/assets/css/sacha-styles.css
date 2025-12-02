@@ -215,7 +215,7 @@ figcaption,
   font-weight: normal;
   font-family: "ff-tisa-sans-web-pro", sans-serif;
   text-align: center;
-  font-style: italic;
+  font-style: normal;
 }
 .wpnbha.wp-block-newspack-blocks-homepage-articles .post-thumbnail figcaption {
   margin-bottom: 1.5rem;
@@ -339,6 +339,7 @@ cite i {
 
 .single .entry-header .newspack-post-subtitle {
   margin: 1.5rem 4.5rem 2.5rem;
+  font-style: normal;
 }
 
 .entry-wrapper .newspack-post-subtitle,
