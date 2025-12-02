@@ -201,18 +201,16 @@ export default function Edit({ attributes, setAttributes }) {
             ]}
             onChange={(val) => setAttributes({ featuredImagePosition: val })}
           />
-          {featuredImagePosition !== "beside" && (
-            <SelectControl
-              label={__("Content Position (Desktop)", "bn-newspack-child")}
-              value={contentPosition}
-              options={[
-                { label: __("Left", "bn-newspack-child"), value: "left" },
-                { label: __("Center", "bn-newspack-child"), value: "center" },
-                { label: __("Right", "bn-newspack-child"), value: "right" },
-              ]}
-              onChange={(val) => setAttributes({ contentPosition: val })}
-            />
-          )}
+          <SelectControl
+            label={__("Content Position (Desktop)", "bn-newspack-child")}
+            value={contentPosition}
+            options={[
+              { label: __("Left", "bn-newspack-child"), value: "left" },
+              { label: __("Center", "bn-newspack-child"), value: "center" },
+              { label: __("Right", "bn-newspack-child"), value: "right" },
+            ]}
+            onChange={(val) => setAttributes({ contentPosition: val })}
+          />
           {featuredImagePosition === "beside" && (
             <SelectControl
               label={__("Image Alignment", "bn-newspack-child")}

@@ -120,9 +120,6 @@
   justify-content: flex-end;
 }
 
-.bn-hero-image-beside .entry-meta {
-  justify-content: flex-start;
-}
 
 .bn-hero-content .byline-container {
   display: flex;
@@ -150,9 +147,11 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   opacity: 0.8;
-  margin-right: 10px;
+  margin-right: 5px;
 }
-
+.wp-block-bn-hero-header .byline .author a {
+    color: #fff;
+}
 .bn-hero-content .author {
   font-weight: 700;
   color: var(--bn-hero-author-color, inherit);
@@ -306,5 +305,23 @@
     max-width: 680px;
     padding: var(--wp--preset--spacing--xl);
     text-align: left;
+  }
+
+  .bn-hero-image-beside.bn-hero-position-center .bn-hero-content {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .bn-hero-image-beside.bn-hero-position-right .bn-hero-content {
+    text-align: right;
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .bn-hero-image-beside.bn-hero-position-left .bn-hero-content {
+    text-align: left;
+    margin-right: auto;
+    margin-left: 0;
   }
 }
