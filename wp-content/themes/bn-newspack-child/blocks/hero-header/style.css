@@ -123,6 +123,8 @@
   background-color: var(--bn-hero-category-bg, transparent);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  text-decoration: none;
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
 }
 
 /* Desktop enhancements */
