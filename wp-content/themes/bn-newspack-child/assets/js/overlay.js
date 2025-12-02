@@ -11,6 +11,12 @@
     return;
   }
 
+  // Force placeholder for SearchWP form if present
+  const searchInput = overlay.querySelector('.bn-overlay-search-section .searchwp-form-input-container input');
+  if (searchInput) {
+    searchInput.setAttribute('placeholder', 'Search');
+  }
+
   let lastFocusedElement = null;
   const focusableSelector =
     'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';

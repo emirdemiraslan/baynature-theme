@@ -1123,21 +1123,15 @@ body.archive .bn-header-bar-pre-scroll .bn-header-search:focus-visible {
     sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.5rem 0;
 }
 
 .bn-overlay-goto-separator,
 .bn-overlay-topics-separator,
 .bn-overlay-print-edition-separator {
   height: 1px;
-  background: repeating-linear-gradient(
-    to right,
-    #333333 0,
-    #333333 4px,
-    transparent 4px,
-    transparent 8px
-  );
-  margin-bottom: 1rem;
+  background-color: #333333;
+  margin-bottom: 0.5rem;
 }
 
 /* Go To section */
