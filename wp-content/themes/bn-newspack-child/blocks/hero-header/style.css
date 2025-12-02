@@ -99,16 +99,93 @@
   text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.6);
 }
 
-.bn-hero-author {
-  font-weight: 500;
-  color: var(--bn-hero-author-color, inherit);
-  background-color: var(--bn-hero-author-bg, transparent);
+.bn-hero-content .entry-meta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: calc(var(--bn-hero-meta-base) * var(--bn-hero-scale));
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.6);
+  flex-wrap: wrap;
+  color: #ffffff;
 }
 
-.bn-hero-date {
-  margin-left: 0.5rem;
+.bn-hero-position-left .entry-meta {
+  justify-content: flex-start;
+}
+
+.bn-hero-position-right .entry-meta {
+  justify-content: flex-end;
+}
+
+.bn-hero-image-beside .entry-meta {
+  justify-content: flex-start;
+}
+
+.bn-hero-content .byline-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.bn-hero-content .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.bn-hero-content .byline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.bn-hero-content .author-prefix {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+  margin-right: 10px;
+}
+
+.bn-hero-content .author {
+  font-weight: 700;
+  color: var(--bn-hero-author-color, inherit);
+}
+
+.bn-hero-content .author a {
+  color: var(--bn-hero-author-color, inherit);
+  text-decoration: none;
+}
+
+:where(.editor-styles-wrapper) .bn-hero-content .entry-meta .byline .author a {
+  color: var(--bn-hero-author-color, inherit);
+}
+
+.bn-hero-content .author a:hover {
+  text-decoration: underline;
+}
+
+.bn-hero-content .entry-date {
+  font-size: 0.875rem;
+  opacity: 0.9;
   color: var(--bn-hero-date-color, inherit);
-  background-color: var(--bn-hero-date-bg, transparent);
+}
+
+/* Desktop adjustments */
+@media (min-width: 768px) {
+  .bn-hero-position-left .entry-meta {
+    justify-content: flex-start;
+  }
+
+  .bn-hero-position-right .entry-meta {
+    justify-content: flex-end;
+  }
 }
 
 .issue-hero__kicker.bn-hero-topic {
@@ -181,8 +258,12 @@
 .bn-hero-beside-text .bn-hero-topic,
 .bn-hero-beside-text .bn-hero-title,
 .bn-hero-beside-text .bn-hero-excerpt,
-.bn-hero-beside-text .bn-hero-meta {
+.bn-hero-beside-text .entry-meta {
   text-shadow: none;
+}
+
+.bn-hero-beside-text .avatar {
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .bn-hero-image-beside .bn-hero-content {

@@ -145,15 +145,31 @@ $wrapper_attributes = get_block_wrapper_attributes(
                         <div class="bn-hero-excerpt"><?php echo esc_html( $subheading ); ?></div>
                     <?php endif; ?>
 
-                    <?php if ( ( $show_author && $author_name ) || $date_display ) : ?>
-                        <div class="bn-hero-meta">
-                            <?php if ( $show_author && $author_name ) : ?>
-                                <span class="bn-hero-author"><?php echo esc_html__( 'By', 'bn-newspack-child' ) . ' ' . esc_html( $author_name ); ?></span>
+                    <?php if ( ( $show_author ) || $date_display ) : ?>
+                        <?php setup_postdata( $post ); ?>
+                        <div class="entry-meta">
+                            <?php if ( $show_author ) : ?>
+                                <div class="byline-container">
+                                    <?php echo get_avatar( get_the_author_meta( 'ID', $post->post_author ), 40 ); ?>
+                                    <span class="byline">
+                                        <span class="author-prefix"><?php echo esc_html__( 'By', 'bn-newspack-child' ); ?></span>
+                                        <span class="author vcard">
+                                            <?php
+                                            if ( function_exists( 'coauthors_posts_links' ) ) {
+                                                coauthors_posts_links();
+                                            } else {
+                                                the_author_posts_link();
+                                            }
+                                            ?>
+                                        </span>
+                                    </span>
+                                </div>
                             <?php endif; ?>
                             <?php if ( $date_display ) : ?>
-                                <span class="bn-hero-date"><?php echo esc_html( $date_display ); ?></span>
+                                <time class="entry-date published"><?php echo esc_html( $date_display ); ?></time>
                             <?php endif; ?>
                         </div>
+                        <?php wp_reset_postdata(); ?>
                     <?php endif; ?>
                 </div>
             </div>
@@ -191,15 +207,31 @@ $wrapper_attributes = get_block_wrapper_attributes(
                 <div class="bn-hero-excerpt"><?php echo esc_html( $subheading ); ?></div>
             <?php endif; ?>
 
-            <?php if ( ( $show_author && $author_name ) || $date_display ) : ?>
-                <div class="bn-hero-meta">
-                    <?php if ( $show_author && $author_name ) : ?>
-                        <span class="bn-hero-author"><?php echo esc_html__( 'By', 'bn-newspack-child' ) . ' ' . esc_html( $author_name ); ?></span>
+            <?php if ( ( $show_author ) || $date_display ) : ?>
+                <?php setup_postdata( $post ); ?>
+                <div class="entry-meta">
+                    <?php if ( $show_author ) : ?>
+                        <div class="byline-container">
+                            <?php echo get_avatar( get_the_author_meta( 'ID', $post->post_author ), 40 ); ?>
+                            <span class="byline">
+                                <span class="author-prefix"><?php echo esc_html__( 'By', 'bn-newspack-child' ); ?></span>
+                                <span class="author vcard">
+                                    <?php
+                                    if ( function_exists( 'coauthors_posts_links' ) ) {
+                                        coauthors_posts_links();
+                                    } else {
+                                        the_author_posts_link();
+                                    }
+                                    ?>
+                                </span>
+                            </span>
+                        </div>
                     <?php endif; ?>
                     <?php if ( $date_display ) : ?>
-                        <span class="bn-hero-date"><?php echo esc_html( $date_display ); ?></span>
+                        <time class="entry-date published"><?php echo esc_html( $date_display ); ?></time>
                     <?php endif; ?>
                 </div>
+                <?php wp_reset_postdata(); ?>
             <?php endif; ?>
         </div>
     <?php endif; ?>
