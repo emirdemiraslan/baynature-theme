@@ -178,6 +178,12 @@
   background-color: var(--bn-hero-beside-bg, #333333);
   color: #ffffff;
 }
+.bn-hero-beside-text .bn-hero-topic,
+.bn-hero-beside-text .bn-hero-title,
+.bn-hero-beside-text .bn-hero-excerpt,
+.bn-hero-beside-text .bn-hero-meta {
+  text-shadow: none;
+}
 
 .bn-hero-image-beside .bn-hero-content {
   max-width: 720px;
@@ -201,6 +207,10 @@
   .bn-hero-beside-inner {
     flex-direction: row;
     min-height: var(--bn-hero-desktop-height, 80vh);
+  }
+
+  .bn-hero-image-left .bn-hero-beside-inner {
+    flex-direction: row-reverse;
   }
 
   .bn-hero-beside-text,

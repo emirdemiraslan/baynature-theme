@@ -63,6 +63,11 @@
       "type": "string",
       "default": ""
     },
+    "imageAlignment": {
+      "type": "string",
+      "enum": ["left", "right"],
+      "default": "right"
+    },
     "typographyScale": {
       "type": "number",
       "default": 1

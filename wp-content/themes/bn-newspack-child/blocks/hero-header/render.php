@@ -39,6 +39,7 @@ $show_author              = isset( $attributes['showAuthor'] ) ? (bool) $attribu
 $overlay_gradient         = isset( $attributes['overlay'] ) ? esc_attr( $attributes['overlay'] ) : 'linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.3))';
 $taxonomy                 = isset( $attributes['taxonomy'] ) ? sanitize_key( $attributes['taxonomy'] ) : 'category';
 $image_position           = isset( $attributes['featuredImagePosition'] ) ? sanitize_key( $attributes['featuredImagePosition'] ) : 'behind';
+$image_alignment          = isset( $attributes['imageAlignment'] ) ? sanitize_key( $attributes['imageAlignment'] ) : 'right';
 $beside_background_raw    = isset( $attributes['besideBackgroundColor'] ) ? $attributes['besideBackgroundColor'] : '';
 $beside_background_color  = $beside_background_raw ? sanitize_hex_color( $beside_background_raw ) : '';
 $typography_scale_raw     = isset( $attributes['typographyScale'] ) ? $attributes['typographyScale'] : 1;
@@ -76,6 +77,9 @@ $classes = array(
 
 if ( 'beside' === $image_position ) {
     $classes[] = 'bn-hero-image-beside';
+    if ( 'left' === $image_alignment ) {
+        $classes[] = 'bn-hero-image-left';
+    }
 } else {
     $classes[] = 'bn-hero-image-behind';
 }

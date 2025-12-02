@@ -117,6 +117,7 @@ export default function Edit({ attributes, setAttributes }) {
     dateColor,
     dateBackgroundColor,
     typographyScale,
+    imageAlignment,
   } = attributes;
 
   const [search, setSearch] = useState("");
@@ -200,16 +201,29 @@ export default function Edit({ attributes, setAttributes }) {
             ]}
             onChange={(val) => setAttributes({ featuredImagePosition: val })}
           />
-          <SelectControl
-            label={__("Content Position (Desktop)", "bn-newspack-child")}
-            value={contentPosition}
-            options={[
-              { label: __("Left", "bn-newspack-child"), value: "left" },
-              { label: __("Center", "bn-newspack-child"), value: "center" },
-              { label: __("Right", "bn-newspack-child"), value: "right" },
-            ]}
-            onChange={(val) => setAttributes({ contentPosition: val })}
-          />
+          {featuredImagePosition !== "beside" && (
+            <SelectControl
+              label={__("Content Position (Desktop)", "bn-newspack-child")}
+              value={contentPosition}
+              options={[
+                { label: __("Left", "bn-newspack-child"), value: "left" },
+                { label: __("Center", "bn-newspack-child"), value: "center" },
+                { label: __("Right", "bn-newspack-child"), value: "right" },
+              ]}
+              onChange={(val) => setAttributes({ contentPosition: val })}
+            />
+          )}
+          {featuredImagePosition === "beside" && (
+            <SelectControl
+              label={__("Image Alignment", "bn-newspack-child")}
+              value={imageAlignment}
+              options={[
+                { label: __("Left", "bn-newspack-child"), value: "left" },
+                { label: __("Right", "bn-newspack-child"), value: "right" },
+              ]}
+              onChange={(val) => setAttributes({ imageAlignment: val })}
+            />
+          )}
           <TextControl
             label={__("Mobile Height", "bn-newspack-child")}
             value={mobileHeight}
