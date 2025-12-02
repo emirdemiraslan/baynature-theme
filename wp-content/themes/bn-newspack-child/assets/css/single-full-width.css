@@ -222,13 +222,13 @@ body.page-template-magazine_archive_page.has-hero-header .bn-primary-row {
   text-align: center;
 }
 
-.page-template-page-full-width .entry-header-below-hero .entry-title,
-.page-template-magazine_archive_page .entry-header-below-hero .entry-title {
+.page .entry-title {
   font-size: clamp(2rem, 5vw, 3rem);
   line-height: 1.2;
   margin: 0;
   color: inherit;
   text-shadow: none;
+  text-align: center;
 }
 
 @media (max-width: 782px) {
