@@ -430,11 +430,11 @@ a.bn-header-menu-link,
 .bn-header-buttons .bn-btn {
   font-family:
     "ff-tisa-sans-web-pro",
-    -apple-system,
-    BlinkMacSystemFont,
     sans-serif;
 }
-
+.bn-header-buttons .bn-btn{
+  box-shadow:0 1px 3px rgba(0,0,0,0.2);
+}
 .bn-header-menu-link:hover,
 .bn-header-menu-link:focus-visible,
 .bn-header-menu-link:active {

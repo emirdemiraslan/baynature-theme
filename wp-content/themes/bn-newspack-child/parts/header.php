@@ -97,13 +97,13 @@
             </div>
 
             <div class="bn-header-actions">
-                <a href="/search" class="bn-header-icon bn-header-search" aria-label="<?php esc_attr_e( 'Search', 'bn-newspack-child' ); ?>">
+                <button class="bn-header-icon bn-header-search" aria-label="<?php esc_attr_e( 'Search', 'bn-newspack-child' ); ?>" aria-expanded="false" aria-controls="bn-overlay-menu">
                     <span class="bn-header-icon-inner" aria-hidden="true">
                         <svg viewBox="0 0 24 24" focusable="false" role="img">
                             <path d="M15.5 14h-.79l-.28-.27a6 6 0 1 0-.71.71l.27.28v.79l5 5a1 1 0 0 0 1.41-1.41zm-5.5 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" fill="currentColor" />
                         </svg>
                     </span>
-                </a>
+                </button>
                 <button class="bn-hamburger" aria-label="<?php esc_attr_e( 'Open menu', 'bn-newspack-child' ); ?>" aria-expanded="false" aria-controls="bn-overlay-menu">
                     <span class="bn-hamburger-line"></span>
                     <span class="bn-hamburger-line"></span>

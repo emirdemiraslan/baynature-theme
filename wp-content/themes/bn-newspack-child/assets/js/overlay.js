@@ -3,7 +3,7 @@
  */
 
 (function () {
-  const hamburgers = document.querySelectorAll(".bn-hamburger");
+  const hamburgers = document.querySelectorAll(".bn-hamburger, .bn-header-search");
   const overlay = document.getElementById("bn-overlay-menu");
   const closeBtn = overlay ? overlay.querySelector(".bn-overlay-close") : null;
 
