@@ -8,11 +8,84 @@ import {
   RangeControl,
   ColorPalette,
   ComboboxControl,
+  Button,
+  Popover,
+  BaseControl,
 } from "@wordpress/components";
 import { useState, useMemo } from "@wordpress/element";
 import { useSelect } from "@wordpress/data";
 import { store as coreStore } from "@wordpress/core-data";
 import ServerSideRender from "@wordpress/server-side-render";
+
+const InlineColorControl = ({ label, value, onChange, help }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <BaseControl help={help} className="bn-inline-color-control">
+      <div
+        className="components-base-control__field"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: "8px",
+        }}
+      >
+        <label
+          className="components-base-control__label"
+          style={{ marginBottom: 0 }}
+        >
+          {label}
+        </label>
+        <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+          <Button
+            onClick={() => setIsOpen(!isOpen)}
+            style={{
+              backgroundColor: value,
+              width: "24px",
+              height: "24px",
+              borderRadius: "50%",
+              border: "1px solid #ccc",
+              padding: 0,
+            }}
+            className="bn-color-swatch"
+          >
+            {!value && (
+              <span
+                className="components-color-palette__custom-color-gradient"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "50%",
+                  background:
+                    "conic-gradient(#eee 0.25turn, white 0.25turn 0.5turn, #eee 0.5turn 0.75turn, white 0.75turn)",
+                }}
+              ></span>
+            )}
+          </Button>
+          {isOpen && (
+            <Popover onClose={() => setIsOpen(false)}>
+              <div style={{ padding: "16px" }}>
+                <ColorPalette
+                  value={value}
+                  onChange={onChange}
+                  clearable={false}
+                />
+              </div>
+            </Popover>
+          )}
+          <Button
+            icon="trash"
+            label={__("Clear", "bn-newspack-child")}
+            onClick={() => onChange(undefined)}
+            disabled={!value}
+            isSmall
+            style={{ minWidth: "24px", padding: 0 }}
+          />
+        </div>
+      </div>
+    </BaseControl>
+  );
+};
 
 export default function Edit({ attributes, setAttributes }) {
   const {
@@ -168,7 +241,7 @@ export default function Edit({ attributes, setAttributes }) {
             onChange={(val) => setAttributes({ showDate: val })}
           />
           {featuredImagePosition === "beside" && (
-            <TextControl
+            <InlineColorControl
               label={__("Beside layout background color", "bn-newspack-child")}
               value={besideBackgroundColor}
               onChange={(val) => setAttributes({ besideBackgroundColor: val })}
@@ -204,59 +277,59 @@ export default function Edit({ attributes, setAttributes }) {
             )}
           />
 
-          <p>{__("Title color", "bn-newspack-child")}</p>
-          <ColorPalette
+          <InlineColorControl
+            label={__("Title color", "bn-newspack-child")}
             value={titleColor}
             onChange={(val) => setAttributes({ titleColor: val })}
           />
-          <p>{__("Title background color", "bn-newspack-child")}</p>
-          <ColorPalette
+          <InlineColorControl
+            label={__("Title background color", "bn-newspack-child")}
             value={titleBackgroundColor}
             onChange={(val) => setAttributes({ titleBackgroundColor: val })}
           />
 
-          <p>{__("Category color", "bn-newspack-child")}</p>
-          <ColorPalette
+          <InlineColorControl
+            label={__("Category color", "bn-newspack-child")}
             value={categoryColor}
             onChange={(val) => setAttributes({ categoryColor: val })}
           />
-          <p>{__("Category background color", "bn-newspack-child")}</p>
-          <ColorPalette
+          <InlineColorControl
+            label={__("Category background color", "bn-newspack-child")}
             value={categoryBackgroundColor}
             onChange={(val) => setAttributes({ categoryBackgroundColor: val })}
           />
 
-          <p>{__("Sub heading color", "bn-newspack-child")}</p>
-          <ColorPalette
+          <InlineColorControl
+            label={__("Sub heading color", "bn-newspack-child")}
             value={subheadingColor}
             onChange={(val) => setAttributes({ subheadingColor: val })}
           />
-          <p>{__("Sub heading background color", "bn-newspack-child")}</p>
-          <ColorPalette
+          <InlineColorControl
+            label={__("Sub heading background color", "bn-newspack-child")}
             value={subheadingBackgroundColor}
             onChange={(val) =>
               setAttributes({ subheadingBackgroundColor: val })
             }
           />
 
-          <p>{__("Author color", "bn-newspack-child")}</p>
-          <ColorPalette
+          <InlineColorControl
+            label={__("Author color", "bn-newspack-child")}
             value={authorColor}
             onChange={(val) => setAttributes({ authorColor: val })}
           />
-          <p>{__("Author background color", "bn-newspack-child")}</p>
-          <ColorPalette
+          <InlineColorControl
+            label={__("Author background color", "bn-newspack-child")}
             value={authorBackgroundColor}
             onChange={(val) => setAttributes({ authorBackgroundColor: val })}
           />
 
-          <p>{__("Date color", "bn-newspack-child")}</p>
-          <ColorPalette
+          <InlineColorControl
+            label={__("Date color", "bn-newspack-child")}
             value={dateColor}
             onChange={(val) => setAttributes({ dateColor: val })}
           />
-          <p>{__("Date background color", "bn-newspack-child")}</p>
-          <ColorPalette
+          <InlineColorControl
+            label={__("Date background color", "bn-newspack-child")}
             value={dateBackgroundColor}
             onChange={(val) => setAttributes({ dateBackgroundColor: val })}
           />
