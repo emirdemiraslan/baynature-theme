@@ -1414,8 +1414,9 @@ body.archive .bn-header-bar-pre-scroll .bn-header-search:focus-visible {
 }
 
 /* Homepage inline menu*/
-nav.homepage-inline-menu {
+.site-content > nav.homepage-inline-menu {
   margin: 2rem auto;
+  width: 100%;
 }
 
 /* ==================== BN CONSOLIDATED PATCH (2025-10-21) ==================== */
