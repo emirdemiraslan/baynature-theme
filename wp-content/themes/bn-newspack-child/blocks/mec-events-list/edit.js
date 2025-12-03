@@ -16,7 +16,8 @@ export default function Edit({ attributes, setAttributes }) {
         showExcerpt,
         categoryFilter,
         showPastEvents,
-        orderBy
+        orderBy,
+        showImage
     } = attributes;
 
     // Fetch MEC categories for the dropdown
@@ -94,6 +95,13 @@ export default function Edit({ attributes, setAttributes }) {
                         checked={showDate}
                         onChange={(value) => setAttributes({ showDate: value })}
                         help={__('Display event start date below title', 'bn-newspack-child')}
+                    />
+
+                    <ToggleControl
+                        label={__('Show Event Image', 'bn-newspack-child')}
+                        checked={showImage}
+                        onChange={(value) => setAttributes({ showImage: value })}
+                        help={__('Display event featured image', 'bn-newspack-child')}
                     />
                     
                     <ToggleControl

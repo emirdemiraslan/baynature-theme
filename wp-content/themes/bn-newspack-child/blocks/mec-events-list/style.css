@@ -21,6 +21,23 @@
   border: none;
 }
 
+.bn-mec-event-item.has-image {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.bn-mec-event-image-wrapper {
+  flex-shrink: 0;
+}
+
+.bn-mec-event-image {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  display: block;
+}
+
 .bn-mec-event-content {
   display: flex;
   flex-direction: column;

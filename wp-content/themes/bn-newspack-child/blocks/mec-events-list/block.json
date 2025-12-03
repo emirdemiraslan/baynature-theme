@@ -41,6 +41,10 @@
       "type": "string",
       "enum": ["date_asc", "date_desc"],
       "default": "date_asc"
+    },
+    "showImage": {
+      "type": "boolean",
+      "default": false
     }
   },
   "textdomain": "bn-newspack-child",

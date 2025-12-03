@@ -29,6 +29,7 @@ $show_excerpt     = isset( $attributes['showExcerpt'] ) ? (bool) $attributes['sh
 $category_filter  = isset( $attributes['categoryFilter'] ) ? sanitize_text_field( $attributes['categoryFilter'] ) : '';
 $show_past_events = isset( $attributes['showPastEvents'] ) ? (bool) $attributes['showPastEvents'] : false;
 $order_by         = isset( $attributes['orderBy'] ) ? sanitize_key( $attributes['orderBy'] ) : 'date_asc';
+$show_image       = isset( $attributes['showImage'] ) ? (bool) $attributes['showImage'] : false;
 
 $order_direction = ( 'date_desc' === $order_by ) ? 'DESC' : 'ASC';
 
@@ -105,8 +106,20 @@ if ( empty( $items ) ) {
                     $excerpt = wp_trim_words( wp_strip_all_tags( $event->data->post->post_content ), 20 );
                 }
             }
+
+            $image_html = '';
+            if ( $show_image && $event_id && has_post_thumbnail( $event_id ) ) {
+                $image_html = get_the_post_thumbnail( $event_id, 'thumbnail', array( 'class' => 'bn-mec-event-image' ) );
+            }
             ?>
-            <li class="bn-mec-event-item">
+            <li class="bn-mec-event-item<?php echo $show_image ? ' has-image' : ''; ?>">
+                <?php if ( $image_html ) : ?>
+                    <div class="bn-mec-event-image-wrapper">
+                        <a href="<?php echo esc_url( $link ); ?>">
+                            <?php echo $image_html; ?>
+                        </a>
+                    </div>
+                <?php endif; ?>
         <div class="bn-mec-event-content">
             <div class="bn-mec-event-header">
                 <h3 class="bn-mec-event-title">
