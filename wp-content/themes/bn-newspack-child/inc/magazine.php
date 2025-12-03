@@ -124,7 +124,7 @@ function render_current_issue_content( $querystr, $show_title, $key ) {
 	.featured-date-grid { margin-right: 10px; }
 	.featured-grid p small { font-size: 12px; line-height: 12px; color: #afafaf; }
 	.featured-title-grid h4 { margin: 0px; font-style: normal; }
-	.featured-title-grid { font-style: italic; }
+	.featured-title-grid { font-style: normal; }
 	.featured-author-grid { margin: 0 0 8px 0; color: #afafaf;}
 	.featured-author-grid .author { color: #7a7a7a;}
 	.featured-image-grid { margin: 0; padding: 0 0 1em 0; }
@@ -171,7 +171,7 @@ function render_current_issue_content( $querystr, $show_title, $key ) {
 				</div>';
 			}
 			echo '<div class="featured-title-grid"><h4>' . $article . '</h4></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo '<div class="featured-title-grid">' . ( $percent_similarity >= $threshold ? '' : esc_html( $subtitle ) ) . '</div>';
+			echo '<div class="featured-title-grid">' . ( $percent_similarity >= $threshold ? '' : wp_kses_post( $subtitle ) ) . '</div>';
 			echo '<div class="featured-author-grid"><small>by ';
 			echo '<span class="author">';
 			if ( function_exists( 'coauthors_posts_links' ) ) {
@@ -199,7 +199,7 @@ function render_issue_archive_issues() {
 	.featured-date-grid { margin-right: 10px; }
 	.featured-grid p small { font-size: 10px; line-height: 12px; color: #afafaf; }
 	.featured-title-grid h4 { margin: 0px; font-style: normal; }
-	.featured-title-grid { font-style: italic; }
+	.featured-title-grid { font-style: normal; }
 	.featured-author-grid { margin: 0 0 8px 0; color: #afafaf;}
 	.featured-author-grid .author { color: #7a7a7a;}
 	.featured-image-grid { margin: 0; padding: 0 0 1em 0; }
@@ -242,7 +242,7 @@ function render_issue_archive_issues() {
 				</div>';
 			}
 			echo '<div class="featured-title-grid"><h4><a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a></h4></div>';
-			echo '<div class="featured-title-grid">' . esc_html( get_the_excerpt() ) . '</div>';
+			echo '<div class="featured-title-grid">' . wp_kses_post( get_the_excerpt() ) . '</div>';
 			echo '</div>';
 		endwhile;
 	endif;
