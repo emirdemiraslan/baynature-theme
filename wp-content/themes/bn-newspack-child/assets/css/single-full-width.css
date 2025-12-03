@@ -222,7 +222,7 @@ body.page-template-magazine_archive_page.has-hero-header .bn-primary-row {
   text-align: center;
 }
 
-.page .entry-title {
+.page .entry-header .entry-title {
   font-size: clamp(2rem, 5vw, 3rem);
   line-height: 1.2;
   margin: 0;
