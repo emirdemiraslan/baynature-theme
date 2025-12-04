@@ -880,7 +880,8 @@ body.single .featured-image-behind .entry-sponsor {
   max-height: 240px !important;
 }
 
-.wp-block-newspack-blocks-carousel article .entry-wrapper a {
+.wp-block-newspack-blocks-carousel article .entry-wrapper a,
+.wp-block-newspack-blocks-carousel article .entry-wrapper a:visited {
   color: var(--newspack-theme-color-text-main);
 }
 
@@ -913,13 +914,14 @@ body.single .featured-image-behind .entry-sponsor {
 .wp-block-newspack-blocks-carousel button.swiper-button {
   background-color: transparent;
   margin: 0;
-  top: 25%;
+  top: 21%;
   transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+  scale: 3;
 }
 .wp-block-newspack-blocks-carousel button.swiper-button:hover,
 .wp-block-newspack-blocks-carousel button.swiper-button:focus {
   background-color: transparent;
-  scale: 1.2;
+  scale: 3.5;
   box-shadow: none;
 }
 
