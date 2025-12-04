@@ -160,8 +160,11 @@ body.page-template-magazine_archive_page.has-hero-header #primary {
 
 /* Adjust hero height when header is overlaying */
 body.has-hero-header.page-template-page-full-width .page-hero .hero-wrap,
-body.has-hero-header.page-template-magazine_archive_page .page-hero .hero-wrap {
-  height: calc(80vh - 20rem);
+body.has-hero-header.page-template-magazine_archive_page .page-hero .hero-wrap,
+.page.has-hero-header .featured-image-behind 
+{
+  height: 50vh;
+  min-height:300px;
 }
 
 .page-template-page-full-width .page-hero .hero-overlay,
@@ -240,6 +243,9 @@ body.page-template-magazine_archive_page.has-hero-header .bn-primary-row {
   color: inherit;
   text-shadow: none;
   text-align: center;
+}
+.page.has-hero-header .entry-header .entry-title{
+  text-shadow:0 1px 3px rgba(0,0,0,0.6)
 }
 
 @media (max-width: 782px) {
