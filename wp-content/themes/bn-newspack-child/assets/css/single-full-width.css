@@ -393,3 +393,109 @@ body.page-template-magazine_archive_page.has-hero-header .bn-primary-row {
   font-size: 1.125rem;
   margin-bottom: 2rem;
 }
+
+/* ========================================
+   Archive Hero Styles
+   ======================================== */
+
+/* Remove top margin/padding to allow header overlay */
+body.archive.has-hero-header .site-content {
+  margin-top: 0;
+}
+
+body.archive.has-hero-header #primary {
+  padding-top: 0;
+}
+
+/* Hero container styling */
+.archive.has-hero-header .featured-image-behind {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-bottom: 2rem;
+  margin-top: 0;
+  height: 50vh;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Hero image */
+.archive.has-hero-header .featured-image-behind .post-thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  margin: 0;
+}
+
+.archive.has-hero-header .featured-image-behind .post-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay gradient */
+.archive.has-hero-header .featured-image-behind::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);
+  opacity: 0.5;
+  z-index: 1;
+}
+
+/* Content wrapper */
+.archive.has-hero-header .featured-image-behind .wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--wp--style--global--wide-size, 1200px);
+  padding: 0 1.25rem;
+  text-align: center;
+}
+
+/* Typography */
+.archive.has-hero-header .featured-image-behind .entry-title {
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  font-size: clamp(1rem, 5vw, 1.5rem);
+  line-height: 1.2;
+  margin: 0 0 1rem 0;
+}
+.archive.has-hero-header .featured-image-behind .entry-title .page-description {
+  color: #ffffff;
+}
+
+.archive.has-hero-header .featured-image-behind .taxonomy-description,
+.archive.has-hero-header .featured-image-behind .newspack-post-subtitle {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  font-size: 1.125rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.archive.has-hero-header .featured-image-behind .taxonomy-description p,
+.archive.has-hero-header .featured-image-behind .newspack-post-subtitle p {
+  margin-bottom: 0.5rem;
+}
+
+/* Ensure entry header inside hero doesn't have conflicting margins */
+.archive.has-hero-header .featured-image-behind .entry-header {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+}

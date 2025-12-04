@@ -571,7 +571,7 @@ body.page:not(.has-hero-header):not(.has-hero-issue)
   .bn-header-search
   svg
   path,
-body.archive .bn-header-bar-pre-scroll .bn-header-search svg path {
+body.archive:not(.has-hero-header) .bn-header-bar-pre-scroll .bn-header-search svg path {
   fill: #4b4b4b;
 }
 
@@ -581,7 +581,7 @@ body.single:not(.has-hero-header):not(.has-hero-issue)
 body.page:not(.has-hero-header):not(.has-hero-issue)
   .bn-header-bar-pre-scroll
   .bn-hamburger-line,
-body.archive .bn-header-bar-pre-scroll .bn-hamburger-line {
+body.archive:not(.has-hero-header) .bn-header-bar-pre-scroll .bn-hamburger-line {
   background-color: #4b4b4b;
 }
 
@@ -591,7 +591,7 @@ body.single:not(.has-hero-header):not(.has-hero-issue)
 body.page:not(.has-hero-header):not(.has-hero-issue)
   .bn-header-bar-pre-scroll
   .bn-header-search:focus-visible,
-body.archive .bn-header-bar-pre-scroll .bn-header-search:focus-visible {
+body.archive:not(.has-hero-header) .bn-header-bar-pre-scroll .bn-header-search:focus-visible {
   outline-color: #4b4b4b;
 }
 

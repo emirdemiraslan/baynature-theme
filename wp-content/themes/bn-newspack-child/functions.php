@@ -296,10 +296,25 @@ add_filter( 'body_class', function ( $classes ) {
         $classes[] = 'has-hero-header';
     }
 
-	// The Magazine Issue template never renders a hero, so ensure transparent header styles stay disabled.
+    // The Magazine Issue template never renders a hero, so ensure transparent header styles stay disabled.
 	if ( is_page_template( 'current_issue_template.php' ) ) {
 		$classes = array_diff( $classes, array( 'has-hero-header' ) );
 	}
+
+    // Add has-hero-header class for category archives with a category image
+    if ( is_category() ) {
+        $term = get_queried_object();
+        if ( $term ) {
+            $image_field = get_field( 'category_image', 'category_' . $term->term_id );
+            if ( ! $image_field ) {
+                $image_field = get_field( 'category_image', $term );
+            }
+            
+            if ( $image_field ) {
+                $classes[] = 'has-hero-header';
+            }
+        }
+    }
 
     return $classes;
 } );
