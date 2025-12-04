@@ -410,14 +410,8 @@ body.archive.has-hero-header #primary {
 /* Hero container styling */
 .archive.has-hero-header .featured-image-behind {
   position: relative;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
   margin-bottom: 2rem;
   margin-top: 0;
-  height: 50vh;
   min-height: 400px;
   display: flex;
   align-items: center;
@@ -471,12 +465,24 @@ body.archive.has-hero-header #primary {
 .archive.has-hero-header .featured-image-behind .entry-title {
   color: #ffffff;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-  font-size: clamp(1rem, 5vw, 1.5rem);
+  font-size: inherit;
   line-height: 1.2;
   margin: 0 0 1rem 0;
 }
 .archive.has-hero-header .featured-image-behind .entry-title .page-description {
   color: #ffffff;
+  margin: 1rem auto 0 auto;
+  font-weight: 400;
+}
+.archive.has-hero-header .featured-image-behind .entry-title .page-subtitle {
+  color: #ffffff;
+  font-size: 1rem;
+}
+.archive.has-hero-header .featured-image-behind a{
+  color: #ffffff;
+}
+.archive.has-hero-header .featured-image-behind a:hover{
+  text-decoration: underline;
 }
 
 .archive.has-hero-header .featured-image-behind .taxonomy-description,
@@ -496,6 +502,6 @@ body.archive.has-hero-header #primary {
 /* Ensure entry header inside hero doesn't have conflicting margins */
 .archive.has-hero-header .featured-image-behind .entry-header {
   margin: 0;
-  padding: 0;
+  padding: 8rem 0 2rem;
   max-width: 100%;
 }
