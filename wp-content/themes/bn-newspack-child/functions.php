@@ -359,6 +359,12 @@ add_filter( 'body_class', function( $classes ) {
         // Remove any sidebar-related classes
         $classes = array_diff( $classes, array( 'has-sidebar' ) );
     }
+
+    // Force one-column layout on Pages when the sidebar is empty and using default template
+    if ( is_page() && ! is_active_sidebar( 'sidebar-1' ) && ! get_page_template_slug() ) {
+        $classes[] = 'post-template-single-wide';
+        $classes = array_diff( $classes, array( 'has-sidebar' ) );
+    }
     
     return $classes;
 } );
