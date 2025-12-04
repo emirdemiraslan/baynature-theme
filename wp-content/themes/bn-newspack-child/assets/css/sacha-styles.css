@@ -10,6 +10,16 @@
 a:visited, .entry-meta .byline a:visited, .entry-meta a:visited {
   color: inherit;
 }
+.wp-block-spacer {
+    margin: 0 !important;
+}
+.entry .entry-content>*, .newspack-inline-popup>*, [id=pico]>*{
+  margin: 0 0 1rem 0;
+}
+.entry .entry-content>.wp-block-separator, .entry .entry-content>hr, [id=pico]>.wp-block-separator, [id=pico]>hr{
+  margin: 1rem 0;
+}
+
 
 .button:focus,
 .wp-block-search__button:focus,
