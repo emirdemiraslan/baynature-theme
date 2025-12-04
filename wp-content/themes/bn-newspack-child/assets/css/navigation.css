@@ -1416,7 +1416,8 @@ body.archive:not(.has-hero-header) .bn-header-bar-pre-scroll .bn-header-search:f
 /* Homepage inline menu*/
 .site-content > nav.homepage-inline-menu {
   margin: 2rem auto;
-  width: 100%;
+  max-width: 100vw;
+  width: 100vw;
 }
 
 /* ==================== BN CONSOLIDATED PATCH (2025-10-21) ==================== */
