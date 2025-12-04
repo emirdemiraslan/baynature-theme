@@ -7,7 +7,7 @@
  * Reset visited link styles globally
  * Makes visited links look identical to unvisited links without affecting :hover
  */
-a:visited {
+a:visited, .entry-meta .byline a:visited, .entry-meta a:visited {
   color: inherit;
 }
 
@@ -116,6 +116,9 @@ div.wpnbha .article-section-title,
 .wp-block-newspack-blocks-carousel.wpnbpc article div.entry-meta .byline a {
   color: #6b6b6b;
   font-weight: 400;
+}
+.entry-meta .byline a:hover{
+  color: #4b4b4b;
 }
 .entry-meta .byline * {
   font-weight: 400;
