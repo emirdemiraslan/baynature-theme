@@ -67,27 +67,30 @@ if ( class_exists( '\Newspack\Optional_Modules\Collections' ) &&
 									?>
 								</div>
 							</div>
-							<?php the_archive_title( '<h1 class="entry-title">', '</h1>' ); ?>
-							<?php if ( '' !== get_the_archive_description() ) : ?>
-								<div class="newspack-post-subtitle">
-									<?php echo wp_kses_post( wpautop( get_the_archive_description() ) ); ?>
-								</div>
-							<?php endif; ?>
-							
-							<?php
-							if ( ! empty( $native_sponsors ) ) :
-								// Get description for native archive sponsors.
-								newspack_sponsor_archive_description( $native_sponsors );
-							endif;
-							
-							if ( ! empty( $underwriter_sponsors ) ) {
-								// Get info for underwriter archive sponsors.
-								newspack_sponsored_underwriters_info( $underwriter_sponsors );
-							}
-							?>
+							<h1 class="entry-title"><?php single_term_title(); ?></h1>
 						</header>
 					</div><!-- .wrapper -->
 				</div><!-- .featured-image-behind -->
+
+				<div class="archive-hero-meta">
+					<?php if ( '' !== get_the_archive_description() ) : ?>
+						<div class="newspack-post-subtitle">
+							<?php echo wp_kses_post( wpautop( get_the_archive_description() ) ); ?>
+						</div>
+					<?php endif; ?>
+					
+					<?php
+					if ( ! empty( $native_sponsors ) ) :
+						// Get description for native archive sponsors.
+						newspack_sponsor_archive_description( $native_sponsors );
+					endif;
+					
+					if ( ! empty( $underwriter_sponsors ) ) {
+						// Get info for underwriter archive sponsors.
+						newspack_sponsored_underwriters_info( $underwriter_sponsors );
+					}
+					?>
+				</div>
 				<?php
 			else :
 				if ( is_author() ) {

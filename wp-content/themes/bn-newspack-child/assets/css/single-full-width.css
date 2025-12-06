@@ -465,7 +465,7 @@ body.archive.has-hero-header #primary {
 .archive.has-hero-header .featured-image-behind .entry-title {
   color: #ffffff;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-  font-size: inherit;
+  font-size: 2.8rem;
   line-height: 1.2;
   margin: 0 0 1rem 0;
 }
@@ -504,4 +504,20 @@ body.archive.has-hero-header #primary {
   margin: 0;
   padding: 8rem 0 2rem;
   max-width: 100%;
+}
+
+/* Styles for content moved below hero */
+.archive.has-hero-header .archive-hero-meta {
+  color: #000000;
+}
+
+.archive.has-hero-header .archive-hero-meta .newspack-post-subtitle {
+  color: #000000;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.archive.has-hero-header .archive-hero-meta .newspack-post-subtitle p {
+  margin-bottom: 1rem;
+  font-style: normal;
 }
