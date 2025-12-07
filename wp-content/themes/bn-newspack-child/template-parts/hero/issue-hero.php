@@ -33,8 +33,15 @@ $cat_name = ! empty( $cats ) ? $cats[0]->name : '';
 $cat_id = ! empty( $cats ) ? $cats[0]->term_id : 0;
 $cat_link = $cat_id ? get_category_link( $cat_id ) : '';
 
-$author_id   = (int) get_post_field( 'post_author', $issue_id );
-$author_name = $author_id ? get_the_author_meta( 'display_name', $author_id ) : '';
+$authors = array();
+if ( function_exists( 'get_coauthors' ) ) {
+	$authors = get_coauthors( $issue_id );
+} else {
+	$author_id = (int) get_post_field( 'post_author', $issue_id );
+	if ( $author_id ) {
+		$authors[] = get_userdata( $author_id );
+	}
+}
 $date        = get_the_date( '', $issue_id );
 
 $overlay_color   = isset( $args['overlay_color'] ) ? $args['overlay_color'] : '#000000';
@@ -64,14 +71,26 @@ $overlay_opacity = isset( $args['overlay_opacity'] ) ? (int) $args['overlay_opac
 
         <?php if ( ! empty( $args['show_meta'] ) ) : ?>
             <div class="issue-hero__meta">
-                <?php if ( $author_id ) : ?>
-                    <span class="issue-hero__avatar-wrap">
-                        <?php echo get_avatar( $author_id, 32, '', '', array( 'class' => 'issue-hero__avatar' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                    </span>
-                <?php endif; ?>
-                <?php if ( $author_name ) : ?>
-                    <span class="issue-hero__author">By <a href="<?php echo esc_url( get_author_posts_url( $author_id ) ); ?>"><?php echo esc_html( $author_name ); ?></a></span>
-                <?php endif; ?>
+			<?php if ( ! empty( $authors ) ) : ?>
+					<span class="issue-hero__avatar-wrap">
+						<?php echo get_avatar( $authors[0]->ID, 32, '', '', array( 'class' => 'issue-hero__avatar' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</span>
+				<?php endif; ?>
+				<?php if ( ! empty( $authors ) ) : ?>
+					<span class="issue-hero__author">
+						By
+						<?php
+						foreach ( $authors as $index => $author ) {
+							if ( $index > 0 ) {
+								echo $index === count( $authors ) - 1 ? esc_html__( ' and ', 'bn-newspack-child' ) : ', ';
+							}
+							?>
+							<a href="<?php echo esc_url( get_author_posts_url( $author->ID, $author->user_nicename ) ); ?>"><?php echo esc_html( $author->display_name ); ?></a>
+							<?php
+						}
+						?>
+					</span>
+				<?php endif; ?>
                 <?php if ( $date ) : ?>
                     <span class="issue-hero__date"> • <?php echo esc_html( $date ); ?></span>
                 <?php endif; ?>
