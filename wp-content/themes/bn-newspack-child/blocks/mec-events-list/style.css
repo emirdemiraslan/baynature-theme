@@ -60,15 +60,15 @@
 }
 
 .bn-mec-event-title a {
-  color: inherit;
+  color: var(--bn-home-link-color);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .bn-mec-event-title a:hover,
 .bn-mec-event-title a:focus {
-  color: #0073aa;
-  text-decoration: underline;
+  color: var(--bn-home-link-hover-color);
+  text-decoration: none
 }
 
 .bn-mec-event-date {

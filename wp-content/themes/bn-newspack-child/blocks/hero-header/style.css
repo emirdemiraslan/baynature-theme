@@ -167,7 +167,7 @@
 }
 
 .bn-hero-content .author a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .bn-hero-content .entry-date {

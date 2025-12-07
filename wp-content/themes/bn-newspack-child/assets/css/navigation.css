@@ -127,7 +127,7 @@ body.has-hero-header .bn-header-bar-pre-scroll {
   padding: 0.5rem var(--wp--preset--spacing--md);
   gap: var(--wp--preset--spacing--md);
   color: #ffffff;
-  background-color: #454545;
+  background-color: #595959;
   width: 100%;
   max-width: 100%;
   z-index: 9999;
@@ -1160,12 +1160,9 @@ body.archive:not(.has-hero-header) .bn-header-bar-pre-scroll .bn-header-search:f
 
 .bn-overlay-goto-menu a {
   display: block;
-  color: #333333;
+  color: var(--bn-home-link-color);
   font-family:
-    "ff-tisa-sans-web-pro",
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
+    "ff-tisa-sans-web-pro", sans-serif;
   font-size: 0.9375rem;
   font-weight: 400;
   text-decoration: none;
@@ -1175,8 +1172,8 @@ body.archive:not(.has-hero-header) .bn-header-bar-pre-scroll .bn-header-search:f
 
 .bn-overlay-goto-menu a:hover,
 .bn-overlay-goto-menu a:focus {
-  color: #000000;
-  text-decoration: underline;
+  color: var(--bn-home-link-hover-color);
+  text-decoration: none;
 }
 
 /* Topics section */
@@ -1200,12 +1197,9 @@ body.archive:not(.has-hero-header) .bn-header-bar-pre-scroll .bn-header-search:f
 
 .bn-overlay-topics-menu a {
   display: block;
-  color: #333333;
+  color: var(--bn-home-link-color);
   font-family:
-    "ff-tisa-sans-web-pro",
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
+    "ff-tisa-sans-web-pro", sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   text-decoration: none;
@@ -1215,8 +1209,8 @@ body.archive:not(.has-hero-header) .bn-header-bar-pre-scroll .bn-header-search:f
 
 .bn-overlay-topics-menu a:hover,
 .bn-overlay-topics-menu a:focus {
-  color: #000000;
-  text-decoration: underline;
+  color: var(--bn-home-link-hover-color);
+  text-decoration: none;
 }
 
 /* Print Edition section */
@@ -1275,12 +1269,9 @@ body.archive:not(.has-hero-header) .bn-header-bar-pre-scroll .bn-header-search:f
 
 .bn-overlay-print-edition-menu a {
   display: block;
-  color: #333333;
+  color: var(--bn-home-link-color); 
   font-family:
-    "ff-tisa-sans-web-pro",
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
+    "ff-tisa-sans-web-pro", sans-serif;
   font-size: 0.9375rem;
   font-weight: 400;
   text-decoration: none;
@@ -1290,8 +1281,8 @@ body.archive:not(.has-hero-header) .bn-header-bar-pre-scroll .bn-header-search:f
 
 .bn-overlay-print-edition-menu a:hover,
 .bn-overlay-print-edition-menu a:focus {
-  color: #000000;
-  text-decoration: underline;
+  color: var(--bn-home-link-hover-color);
+  text-decoration: none;
 }
 
 /* Print Edition section - mobile responsive */
@@ -1523,5 +1514,5 @@ body.archive:not(.has-hero-header) .bn-header-bar-pre-scroll .bn-header-search:f
   font-weight: 400;
 }
 .wp-block-navigation .wp-block-navigation-item__content:hover {
-  color: var(--bn-orange);
+  color: var(--bn-header-hero-link-hover-color);
 }

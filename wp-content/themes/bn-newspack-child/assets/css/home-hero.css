@@ -76,8 +76,7 @@
 
 .issue-hero__kicker a:hover,
 .issue-hero__kicker a:focus {
-  color: #f5821f;
-  text-decoration: underline;
+  color: var(--bn-orange-hover-color);
 }
 .issue-hero__title {
   font-size: clamp(2rem, 6vw, 2.5rem);
