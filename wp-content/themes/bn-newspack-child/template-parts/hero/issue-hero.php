@@ -53,7 +53,18 @@ $overlay_opacity = isset( $args['overlay_opacity'] ) ? (int) $args['overlay_opac
     <div class="issue-hero__overlay" style="--overlay-color: <?php echo esc_attr( $overlay_color ); ?>; --overlay-opacity: <?php echo esc_attr( $overlay_opacity ); ?>;"></div>
     <div class="issue-hero__inner">
         <div class="issue-hero__content">
-        <?php if ( $cat_name ) : ?>
+        <?php
+        // Override category for 'article' post type
+        if ( 'article' === get_post_type( $issue_id ) ) :
+            $issue_key = get_post_meta( $issue_id, 'issue_key', true );
+            $magazine_url = function_exists( 'bn_get_issue_url' ) ? bn_get_issue_url( $issue_key ) : home_url( '/magazine/' );
+            ?>
+            <div class="issue-hero__kicker">
+                <a href="<?php echo esc_url( $magazine_url ); ?>"><?php esc_html_e( 'From the Magazine', 'bn-newspack-child' ); ?></a>
+            </div>
+            <?php
+        elseif ( $cat_name ) :
+            ?>
             <div class="issue-hero__kicker">
                 <?php if ( $cat_link ) : ?>
                     <a href="<?php echo esc_url( $cat_link ); ?>"><?php echo esc_html( $cat_name ); ?></a>

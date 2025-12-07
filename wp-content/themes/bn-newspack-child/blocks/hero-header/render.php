@@ -53,9 +53,28 @@ $permalink          = get_permalink( $post );
 $terms        = get_the_terms( $post_id, $taxonomy );
 $topic_output = '';
 $topic_term   = null;
-if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+$topic_link   = '';
+
+// Issue Key Logic for Article post type
+if ( 'article' === get_post_type( $post_id ) ) {
+    $issue_key = get_post_meta( $post_id, 'issue_key', true );
+    if ( function_exists( 'bn_get_issue_name' ) ) {
+        $issue_name = bn_get_issue_name( $issue_key );
+        if ( $issue_name ) {
+            $topic_output = $issue_name;
+            $topic_link   = function_exists( 'bn_get_issue_url' ) ? bn_get_issue_url( $issue_key ) : home_url( '/magazine/' );
+        }
+    }
+}
+
+// Fallback to standard taxonomy term
+if ( ! $topic_output && ! empty( $terms ) && ! is_wp_error( $terms ) ) {
     $topic_term   = array_shift( $terms );
     $topic_output = $topic_term ? $topic_term->name : '';
+    $topic_link   = $topic_term ? get_term_link( $topic_term ) : '';
+    if ( is_wp_error( $topic_link ) ) {
+        $topic_link = '';
+    }
 }
 
 $author_name = '';
@@ -126,15 +145,10 @@ $wrapper_attributes = get_block_wrapper_attributes(
         <div class="bn-hero-beside-inner">
             <div class="bn-hero-beside-text">
                 <div class="bn-hero-content">
-                    <?php if ( $show_category && $topic_output && $topic_term ) : ?>
-                        <?php
-                        $topic_link = get_term_link( $topic_term );
-                        if ( ! is_wp_error( $topic_link ) ) :
-                            ?>
+                    <?php if ( $show_category && $topic_output && $topic_link ) : ?>
                             <div class="issue-hero__kicker bn-hero-topic">
                                 <a href="<?php echo esc_url( $topic_link ); ?>"><?php echo esc_html( $topic_output ); ?></a>
                             </div>
-                        <?php endif; ?>
                     <?php endif; ?>
 
                     <h1 class="bn-hero-title">
@@ -207,15 +221,10 @@ $wrapper_attributes = get_block_wrapper_attributes(
         <div class="bn-hero-overlay"></div>
 
         <div class="bn-hero-content">
-            <?php if ( $show_category && $topic_output && $topic_term ) : ?>
-                <?php
-                $topic_link = get_term_link( $topic_term );
-                if ( ! is_wp_error( $topic_link ) ) :
-                    ?>
+            <?php if ( $show_category && $topic_output && $topic_link ) : ?>
                     <div class="issue-hero__kicker bn-hero-topic">
                         <a href="<?php echo esc_url( $topic_link ); ?>"><?php echo esc_html( $topic_output ); ?></a>
                     </div>
-                <?php endif; ?>
             <?php endif; ?>
 
             <h1 class="bn-hero-title">

@@ -760,9 +760,173 @@ add_action( 'pre_get_posts', function( $query ) {
     if ( is_admin() || ! $query->is_main_query() ) {
         return;
     }
-    
+
     // Include 'article' post type in category, tag, and date archives
     if ( $query->is_category() || $query->is_tag() || $query->is_date() || $query->is_author() ) {
         $query->set( 'post_type', array( 'post', 'article' ) );
     }
 } );
+
+/**
+ * Get readable issue name from issue key.
+ * Format: v{year}n{season} -> {Season} Issue 20{year}
+ * Example: v25n4 -> Fall Issue 2025
+ *
+ * @param string $issue_key The issue key code (e.g. v25n4)
+ * @return string|null The formatted issue name or null if invalid format.
+ */
+function bn_get_issue_name( $issue_key ) {
+    if ( ! $issue_key ) {
+        return null;
+    }
+
+    // Pattern: v{YY}n{S}
+    if ( preg_match( '/^v(\d{2})n(\d)$/', $issue_key, $matches ) ) {
+        $year_short = $matches[1];
+        $season_num = $matches[2];
+        $year = '20' . $year_short;
+
+        $seasons = array(
+            '1' => 'Winter',
+            '2' => 'Spring',
+            '3' => 'Summer',
+            '4' => 'Fall',
+        );
+
+        if ( isset( $seasons[ $season_num ] ) ) {
+            return sprintf( '%s Issue %s', $seasons[ $season_num ], $year );
+        }
+    }
+
+    return null;
+}
+
+/**
+ * Get the URL for a specific issue or the main magazine page.
+ * 
+ * @param string $issue_key The issue key code (e.g. v25n4)
+ * @return string The URL for the issue or magazine archive.
+ */
+function bn_get_issue_url( $issue_key = null ) {
+    // If issue key is provided, try to find a matching page by current_issue_key ACF field
+    // Pages with "Magazine Issue Page" template have this field
+    if ( $issue_key ) {
+        $issue_pages = get_posts( array(
+            'post_type'      => 'page',
+            'posts_per_page' => 1,
+            'fields'         => 'ids',
+            'post_status'    => 'publish',
+            'meta_query'     => array(
+                'relation' => 'AND',
+                array(
+                    'key'   => '_wp_page_template',
+                    'value' => 'current_issue_template.php',
+                ),
+                array(
+                    'key'   => 'current_issue_key',
+                    'value' => $issue_key,
+                ),
+            ),
+        ) );
+        
+        if ( ! empty( $issue_pages ) ) {
+            return get_permalink( $issue_pages[0] );
+        }
+    }
+    
+    // Fallback to main magazine page
+    if ( function_exists( 'bn_get_magazine_parent_page_id' ) ) {
+        $parent_id = bn_get_magazine_parent_page_id();
+        if ( $parent_id ) {
+            return get_permalink( $parent_id );
+        }
+    }
+    
+    return home_url( '/magazine/' );
+}
+
+if ( ! function_exists( 'newspack_categories' ) ) {
+    function newspack_categories() {
+        // Check for Issue Key on Articles
+        if ( 'article' === get_post_type() ) {
+            $issue_key = get_post_meta( get_the_ID(), 'issue_key', true );
+            $issue_name = bn_get_issue_name( $issue_key );
+            
+            if ( $issue_name ) {
+                $issue_url = bn_get_issue_url( $issue_key );
+                echo '<span class="cat-links"><a href="' . esc_url( $issue_url ) . '">' . esc_html( $issue_name ) . '</a></span>';
+                return;
+            }
+        }
+
+        $categories_list     = '';
+        $primary_cat_enabled = get_theme_mod( 'post_primary_category', true );
+
+        // Only display Yoast primary category if set.
+        if ( class_exists( 'WPSEO_Primary_Term' ) && $primary_cat_enabled ) {
+            $primary_term = new WPSEO_Primary_Term( 'category', get_the_ID() );
+            $category_id  = $primary_term->get_primary_term();
+            if ( $category_id ) {
+                $category = get_term( $category_id );
+                if ( $category ) {
+                    $categories_list = '<a href="' . esc_url( get_category_link( $category->term_id ) ) . '" rel="category tag">' . $category->name . '</a>';
+                }
+            }
+        }
+
+        if ( ! $categories_list ) {
+            /* translators: used between list items; followed by a space. */
+            $categories_list = get_the_category_list( '<span class="sep">' . esc_html__( ',', 'newspack-theme' ) . ' </span>' );
+        }
+
+        if ( $categories_list ) {
+            /* translators: 1: formatted categories list. */
+            printf( '<span class="cat-links">%1$s</span>', $categories_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        }
+    }
+}
+
+/**
+ * Filter the category list to display Issue Name for Articles.
+ * This covers blocks or other components that bypass newspack_categories().
+ */
+function bn_filter_issue_category_list( $html, $post_id = 0 ) {
+    if ( ! $post_id ) {
+        $post_id = get_the_ID();
+    }
+    
+    if ( 'article' === get_post_type( $post_id ) ) {
+        $issue_key = get_post_meta( $post_id, 'issue_key', true );
+        $issue_name = bn_get_issue_name( $issue_key );
+        
+        if ( $issue_name ) {
+            $issue_url = bn_get_issue_url( $issue_key );
+            // Return link format matching standard category output (anchors)
+            return '<a href="' . esc_url( $issue_url ) . '" rel="category tag">' . esc_html( $issue_name ) . '</a>';
+        }
+    }
+    
+    return $html;
+}
+add_filter( 'the_category_list', 'bn_filter_issue_category_list', 10, 2 );
+
+/**
+ * Filter Newspack Blocks category output for articles.
+ * This is the main hook used by Newspack Blocks (Homepage Articles, Carousel).
+ */
+function bn_filter_newspack_blocks_categories( $category_html ) {
+    $post_id = get_the_ID();
+    
+    if ( 'article' === get_post_type( $post_id ) ) {
+        $issue_key = get_post_meta( $post_id, 'issue_key', true );
+        $issue_name = bn_get_issue_name( $issue_key );
+        
+        if ( $issue_name ) {
+            $issue_url = bn_get_issue_url( $issue_key );
+            return '<a href="' . esc_url( $issue_url ) . '">' . esc_html( $issue_name ) . '</a>';
+        }
+    }
+    
+    return $category_html;
+}
+add_filter( 'newspack_blocks_categories', 'bn_filter_newspack_blocks_categories', 10, 1 );

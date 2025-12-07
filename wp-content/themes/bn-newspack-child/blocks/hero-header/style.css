@@ -50,7 +50,7 @@
   padding: 0.25rem 0.75rem;
   font-size: 0.875rem;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: 0.05em;
   background-color: var(--wp--preset--color--primary);
   border-radius: 0.25rem;
@@ -81,7 +81,8 @@
 
 .bn-hero-title a:hover,
 .bn-hero-title a:focus {
-  text-decoration: underline;
+  text-decoration: none;
+  opacity: 0.8;
 }
 
 .bn-hero-excerpt {
@@ -168,6 +169,7 @@
 
 .bn-hero-content .author a:hover {
   text-decoration: none;
+  opacity: 0.8;
 }
 
 .bn-hero-content .entry-date {
@@ -197,11 +199,15 @@
   font-size: var(--bn-hero-category-font-size, 0.875rem);
   color: var(--bn-hero-category-color, inherit);
   background-color: var(--bn-hero-category-bg, transparent);
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: 0.05em;
   text-decoration: none;
   font-family: "ff-tisa-sans-web-pro", sans-serif;
 }
+.issue-hero__kicker.bn-hero-topic a:hover {
+  opacity: 0.8;
+  text-decoration: none;
+} 
 
 /* Desktop enhancements */
 @media (min-width: 768px) {
