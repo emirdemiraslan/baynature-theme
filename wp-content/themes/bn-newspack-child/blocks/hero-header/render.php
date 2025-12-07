@@ -36,6 +36,7 @@ $show_category            = isset( $attributes['showCategory'] ) ? (bool) $attri
 $show_date                = isset( $attributes['showDate'] ) ? (bool) $attributes['showDate'] : true;
 $show_excerpt             = isset( $attributes['showExcerpt'] ) ? (bool) $attributes['showExcerpt'] : true;
 $show_author              = isset( $attributes['showAuthor'] ) ? (bool) $attributes['showAuthor'] : true;
+$show_avatar              = isset( $attributes['showAvatar'] ) ? (bool) $attributes['showAvatar'] : true;
 $overlay_gradient         = isset( $attributes['overlay'] ) ? esc_attr( $attributes['overlay'] ) : 'linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.3))';
 $taxonomy                 = isset( $attributes['taxonomy'] ) ? sanitize_key( $attributes['taxonomy'] ) : 'category';
 $image_position           = isset( $attributes['featuredImagePosition'] ) ? sanitize_key( $attributes['featuredImagePosition'] ) : 'behind';
@@ -175,7 +176,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
                                 ?>
                                 <div class="byline-container">
                                     <?php
-                                    if ( ! empty( $authors ) ) {
+                                    if ( $show_avatar && ! empty( $authors ) ) {
                                         echo get_avatar( $authors[0]->ID, 40 );
                                     }
                                     ?>
@@ -251,7 +252,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
                         ?>
                         <div class="byline-container">
                             <?php
-                            if ( ! empty( $authors ) ) {
+                            if ( $show_avatar && ! empty( $authors ) ) {
                                 echo get_avatar( $authors[0]->ID, 40 );
                             }
                             ?>

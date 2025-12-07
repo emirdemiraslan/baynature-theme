@@ -95,6 +95,7 @@ export default function Edit({ attributes, setAttributes }) {
     desktopHeight,
     showExcerpt,
     showAuthor,
+    showAvatar,
     showCategory,
     showDate,
     overlay,
@@ -241,6 +242,11 @@ export default function Edit({ attributes, setAttributes }) {
             label={__("Show Author", "bn-newspack-child")}
             checked={showAuthor}
             onChange={(val) => setAttributes({ showAuthor: val })}
+          />
+          <ToggleControl
+            label={__("Show Avatar", "bn-newspack-child")}
+            checked={showAvatar}
+            onChange={(val) => setAttributes({ showAvatar: val })}
           />
           <ToggleControl
             label={__("Show Category", "bn-newspack-child")}

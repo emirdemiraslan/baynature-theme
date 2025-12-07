@@ -46,6 +46,10 @@
       "type": "boolean",
       "default": true
     },
+    "showAvatar": {
+      "type": "boolean",
+      "default": true
+    },
     "overlay": {
       "type": "string",
       "default": "linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%)"
