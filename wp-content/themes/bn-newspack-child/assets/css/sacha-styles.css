@@ -43,7 +43,7 @@ a:focus{
   --bn-header-link-color: #111111;
   --bn-header-link-hover-color: #595959;
   --bn-header-hero-link-color: #fff;
-  --bn-header-hero-link-hover-color: #f9f9f9;
+  --bn-header-hero-link-hover-color: #c7c7c7;
   --bn-home-link-color: #111111;
   --bn-home-link-hover-color: #595959;
   --bn-orange-hover-color: #f8a160;
@@ -167,11 +167,19 @@ div.wpnbha .article-section-title,
   color: var(--bn-header-link-hover-color);
   text-decoration: none !important;
 }
-.wpnbha .entry-title a {
+.entry-title a, .entry-title a:visited, .entry-content .entry-title a, .entry-content .entry-title a:visited, .entry-content h1 a:visited, .entry-content h2 a:visited, .entry-content h3 a:visited, .entry-content h4 a:visited, .entry-content h5 a:visited, .entry-content h6 a:visited {
+    color: var(--bn-general-link-color);
+    text-decoration: none !important;
+}
+.entry-content .entry-title a:hover, entry-title a:hover {
+    color: var(--bn-general-link-hover-color);
+    text-decoration: none !important;
+}
+.home .wpnbha .entry-title a {
     color: var(--bn-home-link-color);
     text-decoration: none !important;
 }
-.wpnbha .entry-title a:hover {
+.home .wpnbha .entry-title a:hover {
     color: var(--bn-home-link-hover-color);
     text-decoration: none !important;
 }
@@ -276,9 +284,14 @@ div.wpnbha .article-section-title,
   background-color: transparent;
 }
 
+.featured-image-behind .entry-header .cat-links a,
+.featured-image-behind .entry-header .byline .author a {
+    color: var(--bn-header-hero-link-color);
+}
+
 .featured-image-behind .entry-header .cat-links a:hover,
 .featured-image-behind .entry-header .byline .author a:hover {
-  color: var(--bn-orange);
+  color: var(--bn-header-hero-link-hover-color);
 }
 
 .blog .cat-links,
@@ -1042,13 +1055,19 @@ div.dfw-unit + br {
 
 /*Jetpack related post styles*/
 #jp-relatedposts.jp-relatedposts .jp-relatedposts-items-minimal.jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a, #jp-relatedposts.jp-relatedposts .jp-relatedposts-items-visual.jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a{
-  color: var(--bn-home-link-color);
+  color: var(--bn-general-link-color);
   text-decoration: none;
 }
 
 #jp-relatedposts.jp-relatedposts .jp-relatedposts-items-minimal.jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a:hover, #jp-relatedposts.jp-relatedposts .jp-relatedposts-items-visual.jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a:hover{
-  color: var(--bn-home-link-hover-color);
+  color: var(--bn-general-link-hover-color);
   text-decoration: none;
+}
+
+/*Search Results Page*/
+.entry .entry-content article.swp-result-item {
+    padding: 2rem 0;
+    margin: auto;
 }
 
 /* Jetpack Tiled Gallery Styles - Fallback when not injected */

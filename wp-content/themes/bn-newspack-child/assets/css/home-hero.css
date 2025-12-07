@@ -34,15 +34,23 @@
   text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.8);
 }
 .issue-hero__title a {
-  color: #fff;
+  color: var(--bn-header-hero-link-color);
   text-decoration: none;
+}
+.issue-hero__title a:hover,
+.issue-hero__title a:focus {
+  color: var(--bn-header-hero-link-hover-color);
 }
 .issue-hero__kicker,
 .issue-hero__title,
 .issue-hero__excerpt,
 .issue-hero__meta,
 .issue-hero__meta a {
-  color: #fff;
+  color: var(--bn-header-hero-link-color);
+}
+.issue-hero__meta a:hover,
+.issue-hero__meta a:focus {
+  color: var(--bn-header-hero-link-hover-color);
 }
 .layout-left .issue-hero__inner {
   text-align: left;
