@@ -167,7 +167,14 @@ div.wpnbha .article-section-title,
   color: var(--bn-header-link-hover-color);
   text-decoration: none !important;
 }
-
+.wpnbha .entry-title a {
+    color: var(--bn-home-link-color);
+    text-decoration: none !important;
+}
+.wpnbha .entry-title a:hover {
+    color: var(--bn-home-link-hover-color);
+    text-decoration: none !important;
+}
 .entry-meta,
 .wp-block-newspack-blocks-carousel.wpnbpc article div.entry-meta {
   color: var(--bn-home-author-color);
