@@ -175,11 +175,11 @@ div.wpnbha .article-section-title,
     color: var(--bn-general-link-hover-color);
     text-decoration: none !important;
 }
-.home .wpnbha .entry-title a {
+.home .wpnbha .entry-title a, .article-section-title a, .article-section-title a:visited {
     color: var(--bn-home-link-color);
     text-decoration: none !important;
 }
-.home .wpnbha .entry-title a:hover {
+.home .wpnbha .entry-title a:hover, .article-section-title a:hover {
     color: var(--bn-home-link-hover-color);
     text-decoration: none !important;
 }
@@ -1025,6 +1025,7 @@ body.single .featured-image-behind .entry-sponsor {
   top: 21%;
   transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
   scale: 3;
+  display: block;
 }
 .wp-block-newspack-blocks-carousel button.swiper-button:hover,
 .wp-block-newspack-blocks-carousel button.swiper-button:focus {
