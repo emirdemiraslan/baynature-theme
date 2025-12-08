@@ -294,6 +294,12 @@ div.wpnbha .article-section-title,
   color: var(--bn-header-hero-link-hover-color);
 }
 
+.single-article .featured-image-behind .entry-header .cat-links a{
+  color: var(--bn-orange);
+}
+.single-article .featured-image-behind .entry-header .cat-links a:hover{
+  color: var(--bn-orange-hover-color);
+}
 .blog .cat-links,
 .search .cat-links,
 .archive .cat-links {
