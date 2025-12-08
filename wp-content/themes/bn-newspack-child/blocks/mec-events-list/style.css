@@ -29,6 +29,7 @@
 
 .bn-mec-event-image-wrapper {
   flex-shrink: 0;
+  overflow: hidden;
 }
 
 .bn-mec-event-image {
@@ -36,6 +37,11 @@
   height: 4rem;
   object-fit: cover;
   display: block;
+  transition: 0.4s ease-out;
+}
+.bn-mec-event-item.has-image:hover .bn-mec-event-image {
+  scale: 1.1;
+  filter: brightness(0.8);
 }
 
 .bn-mec-event-content {

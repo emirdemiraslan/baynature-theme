@@ -976,6 +976,16 @@ body.single .featured-image-behind .entry-sponsor {
 
 .wp-block-newspack-blocks-carousel .post-thumbnail {
   max-height: 240px !important;
+  overflow: hidden;
+}
+.wp-block-newspack-blocks-carousel .post-thumbnail img {
+  object-fit:contain;
+  display:block;
+  transition:0.4s ease-out;
+}
+.wp-block-newspack-blocks-carousel article:hover .post-thumbnail img {
+  scale:1.1;
+  filter:brightness(0.8);
 }
 
 .wp-block-newspack-blocks-carousel article .entry-wrapper a,
@@ -1057,6 +1067,7 @@ div.dfw-unit + br {
 #jp-relatedposts.jp-relatedposts .jp-relatedposts-items-minimal.jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a, #jp-relatedposts.jp-relatedposts .jp-relatedposts-items-visual.jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a{
   color: var(--bn-general-link-color);
   text-decoration: none;
+  font-weight: 400 !important;
 }
 
 #jp-relatedposts.jp-relatedposts .jp-relatedposts-items-minimal.jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a:hover, #jp-relatedposts.jp-relatedposts .jp-relatedposts-items-visual.jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a:hover{
