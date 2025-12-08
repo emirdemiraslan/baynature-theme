@@ -381,6 +381,13 @@ add_filter( 'body_class', function( $classes ) {
         $classes = array_diff( $classes, array( 'has-sidebar' ) );
     }
     
+    // Force one-column layout on 404 pages
+    if ( is_404() ) {
+        $classes[] = 'post-template-single-wide';
+        $classes[] = 'error404-one-column';
+        $classes = array_diff( $classes, array( 'has-sidebar', 'has-hero-header' ) );
+    }
+    
     return $classes;
 } );
 

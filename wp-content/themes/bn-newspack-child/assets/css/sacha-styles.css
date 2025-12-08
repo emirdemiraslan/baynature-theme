@@ -1795,3 +1795,56 @@ div.dfw-unit + br {
 .form-submit {
   display: none !important;
 }
+
+/**
+ * 404 Page Styles
+ * One-column layout with SearchWP styled search form
+ */
+.error404 .site-main {
+  padding: 3rem 1.5rem;
+}
+
+@media (min-width: 782px) {
+  .error404 .site-main {
+    padding: 4rem 2rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+}
+
+.error404 .entry-header {
+  text-align: center;
+  padding: 0;
+  border: 0;
+  margin-bottom: 2rem;
+}
+
+.error404 .entry-header .entry-title {
+  font-size: 2rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+@media (min-width: 782px) {
+  .error404 .entry-header .entry-title {
+    font-size: 2.5rem;
+  }
+}
+
+.error404 .entry-content {
+  text-align: center;
+}
+
+.error404 .entry-content p {
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333333;
+  margin-bottom: 1.5rem;
+}
+
+/* Search form section on 404 page */
+.bn-404-search-section {
+  max-width: 500px;
+  margin: 2rem auto 0;
+}
