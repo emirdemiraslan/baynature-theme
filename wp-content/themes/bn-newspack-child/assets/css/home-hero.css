@@ -109,6 +109,9 @@
   border-radius: 999px;
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85);
 }
+.home .issue-hero__avatar-wrap {
+    display: none;
+}
 
 /* Mobile adjustments */
 @media (max-width: 782px) {

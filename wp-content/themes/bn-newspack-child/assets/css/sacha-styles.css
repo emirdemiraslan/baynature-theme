@@ -496,14 +496,14 @@ cite i {
 }
 
 .single .entry-subhead .author-avatar {
+  display: block;
+}
+
+
+.single-article .entry-subhead .author-avatar {
   display: none;
 }
 
-@media (min-width: 600px) {
-  .single .entry-subhead .author-avatar {
-    display: block;
-  }
-}
 
 .single:not(.has-large-featured-image) .entry-header {
   border-bottom: 0;
