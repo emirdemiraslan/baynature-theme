@@ -73,6 +73,23 @@ if ( class_exists( '\Newspack\Optional_Modules\Collections' ) &&
 				</div><!-- .featured-image-behind -->
 
 				<div class="archive-hero-meta">
+					<?php
+					$category_image_caption = wp_get_attachment_caption( $category_image_id );
+					if ( $category_image_caption ) {
+						$allowed_tags = wp_kses_allowed_html( 'post' );
+						$allowed_tags['svg']  = array(
+							'xmlns'   => true,
+							'style'   => true,
+							'viewbox' => true,
+							'height'  => true,
+							'width'   => true,
+						);
+						$allowed_tags['path'] = array(
+							'd' => true,
+						);
+						echo '<div class="wp-caption-text">' . wp_kses( $category_image_caption, $allowed_tags ) . '</div>';
+					}
+					?>
 					<?php if ( '' !== get_the_archive_description() ) : ?>
 						<div class="newspack-post-subtitle">
 							<?php echo wp_kses_post( wpautop( get_the_archive_description() ) ); ?>
