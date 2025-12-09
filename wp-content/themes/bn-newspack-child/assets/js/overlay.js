@@ -130,7 +130,7 @@
       var homepageInlineMenu = document.querySelector(
         "nav.homepage-inline-menu"
       );
-      if (document.body.classList.contains("home") && homepageInlineMenu) {
+      if (document.body.classList.contains("home") && homepageInlineMenu && homepageInlineMenu.offsetParent !== null) {
         var rect = homepageInlineMenu.getBoundingClientRect();
         // Consider "scrolled" once the menu has left the viewport
         scrolled = rect.bottom <= 0;
