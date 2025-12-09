@@ -60,7 +60,7 @@ a:focus{
     font-size: 0.825rem;
     line-height: 1rem;
 }
-.entry-content a {
+.entry-content a, .entry-content h1 a, .entry-content h2 a, .entry-content h3 a, .entry-content h4 a, .entry-content h5 a, .entry-content h6 a {
     color: var(--bn-general-link-color);
     text-decoration: none;
 }
@@ -1848,4 +1848,18 @@ div.dfw-unit + br {
 .bn-404-search-section {
   max-width: 500px;
   margin: 2rem auto 0;
+}
+/*Social Sharing List last item margin fix*/
+.sd-content ul li.share-end:last-child {
+    margin-right: -12px;
+}
+
+/*Newspack Carousel arrow fix*/
+.wp-block-newspack-blocks-carousel .swiper-button.swiper-button-next {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27%3E%3Cpath fill=%27%23f5821f%27 d=%27M5.88 4.12 13.76 12l-7.88 7.88L8 22l10-10L8 2z%27/%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0z%27/%3E%3C/svg%3E");
+    transition: 0.4s ease-out;
+}
+.wp-block-newspack-blocks-carousel .swiper-button.swiper-button-prev {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27%3E%3Cpath fill=%27%23f5821f%27 d=%27M18 4.12 10.12 12 18 19.88 15.88 22l-10-10 10-10z%27/%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0z%27/%3E%3C/svg%3E");
+    transition: 0.4s ease-out;
 }

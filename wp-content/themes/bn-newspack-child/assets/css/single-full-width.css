@@ -521,3 +521,9 @@ body.archive.has-hero-header #primary {
   margin-bottom: 1rem;
   font-style: normal;
 }
+.archive.has-hero-header .archive-hero-meta .newspack-post-subtitle a {
+    color: var(--newspack-theme-color-text-light);
+}
+.archive.has-hero-header .archive-hero-meta .newspack-post-subtitle a:hover {
+    color: black;
+}
