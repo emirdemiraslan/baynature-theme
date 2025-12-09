@@ -503,7 +503,12 @@ cite i {
 .single-article .entry-subhead .author-avatar {
   display: none;
 }
-
+.single-article .entry-header .cat-links{
+  color:var(--bn-orange);
+}
+.single-article .entry-header .cat-links a:hover{
+  color:var(--bn-orange-hover-color);
+}
 
 .single:not(.has-large-featured-image) .entry-header {
   border-bottom: 0;
