@@ -722,6 +722,7 @@ div.author-bio h2 a:hover {
 .archive .page-subtitle {
   font-family: "ff-tisa-sans-web-pro", sans-serif;
   font-size: var(--newspack-theme-font-size-sm);
+  display: none;
 }
 .page-title {
   letter-spacing: 0;
