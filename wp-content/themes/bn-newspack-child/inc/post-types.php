@@ -115,6 +115,8 @@ add_action( 'init', 'bn_register_biodiversity_post_type' );
  * Used for special articles and legacy content.
  */
 function bn_register_article_post_type() {
+	add_rewrite_tag( '%issue_slug%', '([^/]+)' );
+
 	$labels = array(
 		'name'          => 'Articles',
 		'singular_name' => 'Article',
@@ -139,7 +141,7 @@ function bn_register_article_post_type() {
 		'has_archive'   => true,
 		'capability_type' => 'post',
 		'hierarchical'  => false,
-		'rewrite'       => array( 'slug' => 'articles' ),
+		'rewrite'       => array( 'slug' => 'magazine/%issue_slug%' ),
 		'supports'      => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'comments', 'page-attributes', 'post-formats', 'newspack_blocks' ),
 		'show_in_rest'  => true,
 		'taxonomies'    => array( 'category', 'post_tag', 'picks' ),
@@ -150,4 +152,27 @@ function bn_register_article_post_type() {
 	register_post_type( 'article', $args );
 }
 add_action( 'init', 'bn_register_article_post_type' );
+
+/**
+ * Filter the link for the 'article' post type to replace %issue_slug% with the actual issue slug.
+ *
+ * @param string  $post_link The post's permalink.
+ * @param WP_Post $post      The post in question.
+ * @return string
+ */
+function bn_article_permalink( $post_link, $post ) {
+	if ( 'article' !== $post->post_type || false === strpos( $post_link, '%issue_slug%' ) ) {
+		return $post_link;
+	}
+
+	$issue_key  = get_post_meta( $post->ID, 'issue_key', true );
+	$issue_slug = 'archive';
+
+	if ( function_exists( 'bn_get_issue_slug' ) ) {
+		$issue_slug = bn_get_issue_slug( $issue_key );
+	}
+
+	return str_replace( '%issue_slug%', $issue_slug, $post_link );
+}
+add_filter( 'post_type_link', 'bn_article_permalink', 10, 2 );
 

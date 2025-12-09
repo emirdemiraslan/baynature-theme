@@ -809,6 +809,103 @@ function bn_get_issue_name( $issue_key ) {
 }
 
 /**
+ * Get issue slug from issue key for URLs.
+ * Format: v{year}n{season} -> {season}20{year}
+ * Example: v25n4 -> fall2025
+ *
+ * @param string $issue_key The issue key code (e.g. v25n4)
+ * @return string The formatted issue slug or 'archive' if invalid/missing.
+ */
+function bn_get_issue_slug( $issue_key ) {
+	if ( ! $issue_key ) {
+		return 'archive';
+	}
+
+	if ( preg_match( '/^v(\d{2})n(\d)$/', $issue_key, $matches ) ) {
+		$year_short = $matches[1];
+		$season_num = $matches[2];
+		$year       = '20' . $year_short;
+
+		$seasons = array(
+			'1' => 'winter',
+			'2' => 'spring',
+			'3' => 'summer',
+			'4' => 'fall',
+		);
+
+		if ( isset( $seasons[ $season_num ] ) ) {
+			return $seasons[ $season_num ] . $year;
+		}
+	}
+
+	return 'archive';
+}
+
+/**
+ * Redirect old /articles/{slug}/ URLs to new /magazine/{issue}/ structure.
+ * This preserves SEO value from old links.
+ */
+add_action( 'template_redirect', 'bn_redirect_old_article_urls' );
+function bn_redirect_old_article_urls() {
+    // Only run on 404 pages (old URLs won't match new structure)
+    if ( ! is_404() ) {
+        return;
+    }
+    
+    $request_uri = $_SERVER['REQUEST_URI'];
+    
+    // Check if this looks like an old /articles/ URL
+    if ( preg_match( '#^/articles?/([^/]+)/?$#i', $request_uri, $matches ) ) {
+        $post_slug = $matches[1];
+        
+        // Try to find the article by slug
+        $article = get_page_by_path( $post_slug, OBJECT, 'article' );
+        
+        if ( $article ) {
+            $new_url = get_permalink( $article->ID );
+            wp_redirect( $new_url, 301 );
+            exit;
+        }
+    }
+}
+
+/**
+ * Redirect old post URLs (without category) to new structure (with category).
+ * Old: /2019/01/25/post-slug/
+ * New: /2019/01/25/category-slug/post-slug/
+ */
+add_action( 'template_redirect', 'bn_redirect_old_post_urls' );
+function bn_redirect_old_post_urls() {
+    // Only run on 404 pages
+    if ( ! is_404() ) {
+        return;
+    }
+    
+    $request_uri = trim( $_SERVER['REQUEST_URI'], '/' );
+    
+    // Match old pattern: YYYY/MM/DD/post-slug
+    if ( preg_match( '#^(\d{4})/(\d{2})/(\d{2})/([^/]+)/?$#', $request_uri, $matches ) ) {
+        $year = $matches[1];
+        $month = $matches[2];
+        $day = $matches[3];
+        $post_slug = $matches[4];
+        
+        // Try to find the post by slug
+        $post = get_page_by_path( $post_slug, OBJECT, 'post' );
+        
+        if ( $post ) {
+            // Verify the date matches (optional but safer)
+            $post_date = get_the_date( 'Y/m/d', $post );
+            if ( $post_date === "$year/$month/$day" ) {
+                $new_url = get_permalink( $post->ID );
+                wp_redirect( $new_url, 301 );
+                exit;
+            }
+        }
+    }
+}
+
+/**
  * Get the URL for a specific issue or the main magazine page.
  * 
  * @param string $issue_key The issue key code (e.g. v25n4)
