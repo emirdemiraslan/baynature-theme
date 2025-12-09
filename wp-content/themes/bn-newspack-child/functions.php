@@ -620,6 +620,28 @@ add_action( 'wp_head', function() {
 }, 100 );
 
 /**
+ * Output custom navigation background color for pre-scroll state
+ */
+add_action( 'wp_head', function() {
+    if ( ! is_singular( array( 'post', 'article', 'page' ) ) ) {
+        return;
+    }
+    
+    // Check for the navigation background ACF field
+    $nav_bg = get_field( 'navigation_background' );
+    
+    if ( $nav_bg ) {
+        ?>
+        <style id="bn-navigation-background">
+            .bn-header-bar-pre-scroll {
+                background-color: <?php echo esc_attr( $nav_bg ); ?> !important;
+            }
+        </style>
+        <?php
+    }
+}, 100 );
+
+/**
  * Add 'article' post type support for Newspack Featured Image Position options.
  * This enables the "Featured Image Position" sidebar panel in the block editor
  * for article posts, with options like Default, Behind, Beside, etc.
