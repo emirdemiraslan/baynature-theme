@@ -7,6 +7,25 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+/**
+ * Force featured image to be hidden for "No Banner" paywall template.
+ * Overrides the per-post featured image position meta to 'hidden'.
+ */
+add_action( 'wp', function() {
+    if ( is_singular() ) {
+        $template = get_page_template_slug();
+        if ( 'member_only_content_no_banner_template.php' === $template ) {
+            // Override the post meta filter to return 'hidden' for featured image position
+            add_filter( 'get_post_metadata', function( $value, $object_id, $meta_key, $single ) {
+                if ( 'newspack_featured_image_position' === $meta_key && get_the_ID() === $object_id ) {
+                    return $single ? 'hidden' : array( 'hidden' );
+                }
+                return $value;
+            }, 10, 4 );
+        }
+    }
+} );
+
 // Enqueue parent stylesheet after parent has registered it.
 add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style( 'bn-parent-style', get_template_directory_uri() . '/style.css', array(), null );

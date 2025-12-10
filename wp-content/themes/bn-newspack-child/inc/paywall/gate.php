@@ -25,21 +25,17 @@ function bn_should_paywall_post( $post ) {
     $template_match = false;
     $tpl = get_page_template_slug( $post );
     $member_only_templates = array(
-        'member-only-content-default-template',
-        'member-only-content-no-banner-template',
         'member_only_content_default_template.php',
         'member_only_content_no_banner_template.php',
-        'templates/member-only-content-default-template.php',
-        'templates/member-only-content-no-banner-template.php',
     );
     if ( in_array( $tpl, $member_only_templates, true ) ) {
         $template_match = true;
     }
 
-    // Automatic latest-N printed issues for Article CPT using ACF Issue field.
+    // Automatic latest-N printed issues for Article CPT using issue_key meta field.
     $auto_match = false;
     if ( post_type_exists( 'article' ) && $post->post_type === 'article' ) {
-        $issue = function_exists( 'get_field' ) ? get_field( 'issue_key', $post->ID ) : null;
+        $issue = get_post_meta( $post->ID, 'issue_key', true );
         if ( ! empty( $issue ) ) {
             $latest = bn_latest_printed_issues( intval( $opts['latest_n'] ) );
             $auto_match = in_array( $issue, $latest, true );
@@ -79,44 +75,12 @@ add_filter( 'the_content', function ( $content ) {
     if ( bn_is_bot() ) {
         return $content;
     }
-    //TODO: Remove this before production
-    // TEMPORARY DEBUG - Remove after testing
-    /*
-    $opts = bn_paywall_options();
-    error_log('=== PAYWALL DEBUG START ===');
-    error_log('Mode from options: ' . print_r($opts['mode'], true));
-    error_log('Latest N setting: ' . print_r($opts['latest_n'], true));
-    error_log('Free views setting: ' . print_r($opts['free_views'], true));
-    error_log('Post ID: ' . ($post ? $post->ID : 'NULL'));
-    error_log('Post type: ' . ($post ? $post->post_type : 'NULL'));
-    error_log('ACF get_field exists?: ' . (function_exists('get_field') ? 'YES' : 'NO'));
-    
-    if ($post && $post->post_type === 'article') {
-        $issue = function_exists('get_field') ? get_field('issue_key', $post->ID) : null;
-        error_log('Article issue field: ' . print_r($issue, true));
-        
-        if (empty($issue)) {
-            error_log('WARNING: Article has NO issue field set!');
-        } else {
-            $latest = bn_latest_printed_issues($opts['latest_n']);
-            error_log('Latest ' . $opts['latest_n'] . ' issues: ' . print_r($latest, true));
-            $is_in_latest = in_array($issue, $latest, true);
-            error_log('Is article issue in latest?: ' . ($is_in_latest ? 'YES' : 'NO'));
-        }
-    }
-    
-    if ( ! $post || ! bn_should_paywall_post( $post ) ) {
-        error_log('bn_should_paywall_post returned FALSE - NO PAYWALL');
-        error_log('=== PAYWALL DEBUG END ===');
+
+    // Check if this post should be paywalled at all.
+    // If not, return full content immediately.
+    if ( ! bn_should_paywall_post( $post ) ) {
         return $content;
     }
-    
-    error_log('bn_should_paywall_post returned TRUE - PAYWALL SHOULD TRIGGER');
-    error_log('Is subscriber?: ' . (bn_is_subscriber() ? 'YES' : 'NO'));
-    error_log('Has free views?: ' . (bn_has_free_views_remaining() ? 'YES' : 'NO'));
-    error_log('=== PAYWALL DEBUG END ===');
-
-    */
 
     // Track this view for anonymous users BEFORE checking access.
     // This ensures the counter increments on every gated content access attempt.
@@ -194,6 +158,7 @@ add_filter( 'the_content', function ( $content ) {
 
 /**
  * Compute the latest N printed issues by scanning Article CPT and ACF Issue field.
+ * Sorts issues by volume/number (e.g., v24n4 > v01n3) instead of post dates.
  * Result is cached in a transient for performance.
  */
 function bn_latest_printed_issues( $n = 3 ) {
@@ -204,33 +169,44 @@ function bn_latest_printed_issues( $n = 3 ) {
         return $cached;
     }
 
-    $map = array();
+    $issues = array();
     $q = new WP_Query( array(
-        'post_type' => 'article',
+        'post_type'      => 'article',
         'posts_per_page' => 500,
-        'post_status' => 'publish',
-        'no_found_rows' => true,
-        'orderby' => 'date',
-        'order' => 'DESC',
-        'fields' => 'ids',
+        'post_status'    => 'publish',
+        'no_found_rows'  => true,
+        'fields'         => 'ids',
     ) );
+
+    // Collect all unique issue_keys
     foreach ( $q->posts as $pid ) {
-        $issue = function_exists( 'get_field' ) ? get_field( 'issue_key', $pid ) : null;
-        if ( empty( $issue ) ) {
-            continue;
-        }
-        $d = get_post_time( 'U', true, $pid );
-        if ( ! isset( $map[ $issue ] ) || $d > $map[ $issue ] ) {
-            $map[ $issue ] = $d;
-        }
-        if ( count( $map ) >= ( $n * 3 ) ) {
-            // Heuristic: we likely saw enough issues; continue but keep small set.
+        $issue = get_post_meta( $pid, 'issue_key', true );
+        if ( ! empty( $issue ) && ! in_array( $issue, $issues, true ) ) {
+            $issues[] = $issue;
         }
     }
-    arsort( $map );
-    $issues = array_slice( array_keys( $map ), 0, $n );
-    set_transient( $cache_key, $issues, HOUR_IN_SECONDS );
-    return $issues;
+
+    // Sort issue_keys by parsing volume/number (e.g., v24n4 > v01n3)
+    usort( $issues, function( $a, $b ) {
+        // Parse format like "v01n3" into volume and number
+        preg_match( '/v(\d+)n(\d+)/i', $a, $ma );
+        preg_match( '/v(\d+)n(\d+)/i', $b, $mb );
+
+        $vol_a = isset( $ma[1] ) ? intval( $ma[1] ) : 0;
+        $num_a = isset( $ma[2] ) ? intval( $ma[2] ) : 0;
+        $vol_b = isset( $mb[1] ) ? intval( $mb[1] ) : 0;
+        $num_b = isset( $mb[2] ) ? intval( $mb[2] ) : 0;
+
+        // Sort descending by volume first, then by number
+        if ( $vol_a !== $vol_b ) {
+            return $vol_b - $vol_a;
+        }
+        return $num_b - $num_a;
+    } );
+
+    $result = array_slice( $issues, 0, $n );
+    set_transient( $cache_key, $result, HOUR_IN_SECONDS );
+    return $result;
 }
 
 // Bust cache on Article save.
@@ -244,28 +220,4 @@ add_action( 'save_post_article', function () {
         }
     }
 } );
-
-//TODO: Remove this before production
-/**
- * DEBUG HELPER: Clear all paywall transients manually.
- * Call this from browser console or use: bn_clear_paywall_cache()
- */
-/*
-function bn_clear_paywall_cache() {
-    global $wpdb;
-    $keys = $wpdb->get_col( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE '_transient_bn_latest_issues_%'" );
-    $cleared = 0;
-    if ( $keys ) {
-        foreach ( $keys as $key ) {
-            $name = str_replace( '_transient_', '', $key );
-            delete_transient( $name );
-            $cleared++;
-            error_log( 'Cleared transient: ' . $name );
-        }
-    }
-    error_log( 'Total transients cleared: ' . $cleared );
-    return $cleared;
-}
-*/
-
 

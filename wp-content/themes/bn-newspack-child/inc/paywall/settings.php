@@ -85,6 +85,49 @@ add_action( 'admin_menu', function () {
                         submit_button();
                         ?>
                     </form>
+                    <?php
+                    // Debug info: show currently detected latest issues
+                    if ( function_exists( 'bn_latest_printed_issues' ) ) {
+                        $opts = bn_paywall_options();
+                        $n = intval( $opts['latest_n'] );
+                        // Force fresh calculation (bypass cache for debug display)
+                        delete_transient( 'bn_latest_issues_' . $n );
+                        delete_transient( 'bn_latest_issues_100' ); // For full list
+                        $latest = bn_latest_printed_issues( $n );
+                        $all_sorted = bn_latest_printed_issues( 100 ); // Get more to show full sorted list
+                        ?>
+                        <div class="notice notice-info" style="margin-top: 20px; padding: 15px;">
+                            <h3 style="margin-top: 0;">Debug Info: Currently Paywalled Issues</h3>
+                            <p><strong>Latest <?php echo esc_html( $n ); ?> issue(s) that WILL be paywalled:</strong></p>
+                            <?php if ( ! empty( $latest ) ) : ?>
+                                <ul style="margin-left: 20px; color: #d63638; font-weight: bold;">
+                                    <?php foreach ( $latest as $issue_key ) : ?>
+                                        <li><code><?php echo esc_html( $issue_key ); ?></code> (PAYWALLED)</li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php else : ?>
+                                <p><em>No issues detected. Check that articles have issue_key values set.</em></p>
+                            <?php endif; ?>
+                            
+                            <?php if ( count( $all_sorted ) > $n ) : ?>
+                                <p style="margin-top: 15px;"><strong>Other issues (NOT paywalled, sorted newest to oldest):</strong></p>
+                                <ul style="margin-left: 20px; color: #00a32a;">
+                                    <?php foreach ( array_slice( $all_sorted, $n, 20 ) as $issue_key ) : ?>
+                                        <li><code><?php echo esc_html( $issue_key ); ?></code></li>
+                                    <?php endforeach; ?>
+                                    <?php if ( count( $all_sorted ) > $n + 20 ) : ?>
+                                        <li><em>...and <?php echo count( $all_sorted ) - $n - 20; ?> more</em></li>
+                                    <?php endif; ?>
+                                </ul>
+                            <?php endif; ?>
+                            
+                            <p style="color: #666; font-size: 12px; margin-bottom: 0; margin-top: 15px;">
+                                Issue keys are sorted by volume then number (e.g., v25n4 > v25n3 > v24n4 > v01n1).
+                            </p>
+                        </div>
+                        <?php
+                    }
+                    ?>
                 <?php elseif ( 'navigation' === $active_tab ) : ?>
                     <form method="post" action="options.php">
                         <?php
@@ -98,6 +141,21 @@ add_action( 'admin_menu', function () {
             <?php
         }
     );
+} );
+
+/**
+ * Clear paywall transient cache when settings are updated.
+ * This ensures changes to "Latest N" take effect immediately.
+ */
+add_action( 'update_option_' . BN_PAYWALL_OPTION_KEY, function () {
+    global $wpdb;
+    $keys = $wpdb->get_col( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE '_transient_bn_latest_issues_%'" );
+    if ( $keys ) {
+        foreach ( $keys as $key ) {
+            $name = str_replace( '_transient_', '', $key );
+            delete_transient( $name );
+        }
+    }
 } );
 
 /** Helper accessor. */
