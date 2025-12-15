@@ -83,6 +83,7 @@
 .bn-hero-title a:focus {
   text-decoration: none;
   opacity: 0.8;
+  color: inherit;
 }
 
 .bn-hero-excerpt {
