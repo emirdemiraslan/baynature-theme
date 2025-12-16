@@ -556,7 +556,7 @@ cite i {
 .wpnbha .type-article.post-has-image .post-thumbnail,
 .wp-block-newspack-blocks-carousel
   .type-article.post-has-image
-  .post-thumbnail {
+  .post-thumbnail, .swp-result-item--img {
   position: relative;
 }
 
@@ -564,7 +564,7 @@ cite i {
 .wp-block-newspack-blocks-carousel
   .type-article.post-has-image
   .post-thumbnail
-  a::before {
+  a::before, .type-article .swp-result-item--img:before {
   content: "";
   position: absolute;
   top: 0;
@@ -575,6 +575,9 @@ cite i {
   border-width: 80px 80px 0 0;
   border-color: var(--bn-orange, #f5821f) transparent transparent transparent;
   z-index: 10;
+}
+.type-article .swp-result-item--img:before{
+  border-width:5vw 5vw 0 0;
 }
 
 @media (min-width: 782px) {
