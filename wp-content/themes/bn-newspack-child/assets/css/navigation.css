@@ -432,8 +432,8 @@ a.bn-header-menu-link,
     "ff-tisa-sans-web-pro",
     sans-serif;
 }
-.bn-header-buttons .bn-btn{
-  box-shadow:0 1px 3px rgba(0,0,0,0.2);
+.bn-header-buttons .bn-btn, .bn-header-actions button{
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
 }
 .bn-header-menu-link:hover,
 .bn-header-menu-link:focus-visible,
