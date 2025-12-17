@@ -8,6 +8,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Restrict REST API to authenticated users only.
+ * This keeps REST available for logged-in users (admin, editors, etc.)
+ * while blocking public access to all endpoints.
+ */
+add_filter( 'rest_authentication_errors', function( $result ) {
+    // Respect any existing authentication errors.
+    if ( ! empty( $result ) ) {
+        return $result;
+    }
+
+    // Allow REST API access for logged-in users (and in admin context).
+    if ( is_user_logged_in() || is_admin() ) {
+        return $result;
+    }
+
+    // Block unauthenticated requests.
+    return new WP_Error(
+        'rest_forbidden',
+        __( 'REST API restricted to authenticated users.', 'bn-newspack-child' ),
+        array( 'status' => 401 )
+    );
+} );
+
+/**
  * Force featured image to be hidden for "No Banner" paywall template.
  * Overrides the per-post featured image position meta to 'hidden'.
  */
