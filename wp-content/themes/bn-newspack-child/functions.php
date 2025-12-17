@@ -1099,3 +1099,31 @@ function bn_filter_newspack_blocks_categories( $category_html ) {
     return $category_html;
 }
 add_filter( 'newspack_blocks_categories', 'bn_filter_newspack_blocks_categories', 10, 1 );
+
+/**
+ * Rewrite rule for /current-issue redirect.
+ * Redirects to the latest magazine issue page.
+ */
+add_action( 'init', function() {
+    add_rewrite_rule( '^current-issue/?$', 'index.php?bn_latest_issue_redirect=1', 'top' );
+} );
+
+add_filter( 'query_vars', function( $query_vars ) {
+    $query_vars[] = 'bn_latest_issue_redirect';
+    return $query_vars;
+} );
+
+add_action( 'template_redirect', function() {
+    if ( get_query_var( 'bn_latest_issue_redirect' ) ) {
+        if ( function_exists( 'bn_get_latest_magazine_issue_page' ) ) {
+            $latest_issue = bn_get_latest_magazine_issue_page();
+            if ( $latest_issue ) {
+                wp_safe_redirect( get_permalink( $latest_issue ) );
+                exit;
+            }
+        }
+        // Fallback if no issue found
+        wp_safe_redirect( home_url( '/magazine/' ) );
+        exit;
+    }
+} );
