@@ -46,9 +46,10 @@ $date        = get_the_date( '', $issue_id );
 
 $overlay_color   = isset( $args['overlay_color'] ) ? $args['overlay_color'] : '#000000';
 $overlay_opacity = isset( $args['overlay_opacity'] ) ? (int) $args['overlay_opacity'] : 55;
+$is_article      = 'article' === get_post_type( $issue_id );
 
 ?>
-<section class="issue-hero layout-<?php echo esc_attr( $layout ); ?>" aria-label="Featured issue">
+<section class="issue-hero layout-<?php echo esc_attr( $layout ); ?> <?php echo $is_article ? 'issue-hero--article' : 'issue-hero--post'; ?>" aria-label="Featured issue">
     <div class="issue-hero__bg" style="<?php echo $bg_url ? 'background-image:url(' . esc_url( $bg_url ) . ');' : ''; ?>"></div>
     <div class="issue-hero__overlay" style="--overlay-color: <?php echo esc_attr( $overlay_color ); ?>; --overlay-opacity: <?php echo esc_attr( $overlay_opacity ); ?>;"></div>
     <div class="issue-hero__inner">
