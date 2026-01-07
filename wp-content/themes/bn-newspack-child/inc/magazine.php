@@ -118,28 +118,7 @@ function currentIssueRenderPosts( $key ) {
 function render_current_issue_content( $querystr, $show_title, $key ) {
 	global $wpdb;
 	global $post;
-	?>
-	<style type="text/css">
-	.issue-content { grid-template-columns: repeat(2,1fr); grid-gap:40px 30px; display: grid;}
-	.featured-date-grid { margin-right: 10px; }
-	.featured-grid p small { font-size: 12px; line-height: 12px; color: #afafaf; }
-	.featured-title-grid h4 { margin: 0px; font-style: normal; }
-	.featured-title-grid { font-style: normal; }
-	.featured-author-grid { margin: 0 0 8px 0; color: #afafaf;}
-	.featured-author-grid .author { color: #7a7a7a;}
-	.featured-image-grid { margin: 0; padding: 0 0 1em 0; }
-	.section-three { padding: 0; }
-	.section-three-area-one { overflow: scroll; }
 
-	@media (min-width: 650px) {
-	  .woocommerce.single-product main.container .issue-content {
-		-ms-grid-columns:(1fr)[3];
-		grid-template-columns: repeat(2,1fr);
-		grid-gap: 40px 30px
-	  }
-	}
-	</style>
-	<?php
 	$pageposts          = $wpdb->get_results( $querystr, OBJECT ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 	$count              = 0;
 	$percent_similarity = 0;
@@ -171,11 +150,23 @@ function render_current_issue_content( $querystr, $show_title, $key ) {
 				</div>';
 			}
 			echo '<div class="featured-title-grid"><h4>' . $article . '</h4></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo '<div class="featured-title-grid">' . ( $percent_similarity >= $threshold ? '' : wp_kses_post( $subtitle ) ) . '</div>';
+			echo '<div class="featured-title-grid">' . ( $percent_similarity >= $threshold ? '' : esc_html( $subtitle ) ) . '</div>';
 			echo '<div class="featured-author-grid"><small>by ';
 			echo '<span class="author">';
-			if ( function_exists( 'coauthors_posts_links' ) ) {
-				coauthors_posts_links();
+			if ( function_exists( 'get_coauthors' ) ) {
+				$coauthors    = get_coauthors( $post->ID );
+				$author_count = count( $coauthors );
+				$i            = 0;
+				foreach ( $coauthors as $coauthor ) {
+					$i++;
+					$author_url = get_author_posts_url( $coauthor->ID, $coauthor->user_nicename );
+					echo '<a href="' . esc_url( $author_url ) . '">' . esc_html( $coauthor->display_name ) . '</a>';
+					if ( $i < $author_count - 1 ) {
+						echo ', ';
+					} elseif ( $i === $author_count - 1 && $author_count > 1 ) {
+						echo ' and ';
+					}
+				}
 			} else {
 				the_author_posts_link();
 			}
@@ -194,26 +185,6 @@ function render_current_issue_content( $querystr, $show_title, $key ) {
  */
 function render_issue_archive_issues() {
 	?>
-	<style type="text/css">
-	.issue-content { grid-template-columns: repeat(3,1fr); grid-gap:40px 30px; display: grid;}
-	.featured-date-grid { margin-right: 10px; }
-	.featured-grid p small { font-size: 10px; line-height: 12px; color: #afafaf; }
-	.featured-title-grid h4 { margin: 0px; font-style: normal; }
-	.featured-title-grid { font-style: normal; }
-	.featured-author-grid { margin: 0 0 8px 0; color: #afafaf;}
-	.featured-author-grid .author { color: #7a7a7a;}
-	.featured-image-grid { margin: 0; padding: 0 0 1em 0; }
-	.section-three { padding: 0; }
-	.section-three-area-one { overflow: scroll; }
-
-	@media (min-width: 650px) {
-	  .woocommerce.single-product main.container .issue-content {
-		-ms-grid-columns:(1fr)[3];
-		grid-template-columns: repeat(2,1fr);
-		grid-gap: 40px 30px
-	  }
-	}
-	</style>
 	<div class="issue-content">
 	<?php
 	global $post;
@@ -223,7 +194,7 @@ function render_issue_archive_issues() {
 		array(
 			'post_type'      => 'page',
 			'posts_per_page' => 200,
-			'post_parent'    => bn_get_magazine_parent_page_id(),
+			'post_parent'    => 222465, // Parent page ID for magazine issues
 			'paged'          => $paged,
 			'orderby'        => 'menu_order',
 			'order'          => 'DESC',
@@ -242,7 +213,7 @@ function render_issue_archive_issues() {
 				</div>';
 			}
 			echo '<div class="featured-title-grid"><h4><a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a></h4></div>';
-			echo '<div class="featured-title-grid">' . wp_kses_post( get_the_excerpt() ) . '</div>';
+			echo '<div class="featured-title-grid">' . esc_html( get_the_excerpt() ) . '</div>';
 			echo '</div>';
 		endwhile;
 	endif;
@@ -267,47 +238,11 @@ function bn_get_magazine_parent_page_id() {
 		return $parent_id;
 	}
 
-	$parent_id = 0;
+	$parent_id    = 0;
+	$magazine_page = get_page_by_path( 'magazine' );
 
-	// Prefer whichever page is currently assigned the magazine archive template.
-	$archive_page_ids = get_posts(
-		array(
-			'post_type'              => 'page',
-			'post_status'            => 'publish',
-			'posts_per_page'         => 1,
-			'meta_key'               => '_wp_page_template',
-			'meta_value'             => 'magazine_archive_page.php',
-			'orderby'                => array(
-				'menu_order' => 'DESC',
-				'date'       => 'DESC',
-			),
-			'fields'                 => 'ids',
-			'no_found_rows'          => true,
-			'suppress_filters'       => false,
-			'ignore_sticky_posts'    => true,
-			'update_post_meta_cache' => false,
-			'update_post_term_cache' => false,
-		)
-	);
-
-	if ( ! empty( $archive_page_ids ) ) {
-		$parent_id = (int) $archive_page_ids[0];
-	}
-
-	// Fall back to a page slug if no template match was found.
-	if ( ! $parent_id ) {
-		$archive_page = get_page_by_path( 'magazine-archive' );
-		if ( $archive_page instanceof WP_Post ) {
-			$parent_id = (int) $archive_page->ID;
-		}
-	}
-
-	// As a last resort, try the main Magazine landing page.
-	if ( ! $parent_id ) {
-		$magazine_page = get_page_by_path( 'magazine' );
-		if ( $magazine_page instanceof WP_Post ) {
-			$parent_id = (int) $magazine_page->ID;
-		}
+	if ( $magazine_page instanceof WP_Post ) {
+		$parent_id = (int) $magazine_page->ID;
 	}
 
 	$parent_id = (int) apply_filters( 'bn_magazine_parent_page_id', $parent_id );
@@ -381,44 +316,6 @@ function bn_get_latest_magazine_issue_page() {
 }
 
 /**
- * Extract the first inline image from a block of post content.
- *
- * @param string $content Post content.
- * @return array|null {
- *     @type string $src Image source URL.
- *     @type string $alt Alt text if provided.
- * }
- */
-function bn_get_first_issue_image_from_content( $content ) {
-	if ( empty( $content ) ) {
-		return null;
-	}
-
-	if ( preg_match( '/<img[^>]+>/i', $content, $image_tag_matches ) ) {
-		$image_tag = $image_tag_matches[0];
-		$image_src = '';
-		$image_alt = '';
-
-		if ( preg_match( '/src=["\']([^"\']+)["\']/', $image_tag, $src_matches ) ) {
-			$image_src = $src_matches[1];
-		}
-
-		if ( preg_match( '/alt=["\']([^"\']*)["\']/', $image_tag, $alt_matches ) ) {
-			$image_alt = $alt_matches[1];
-		}
-
-		if ( $image_src ) {
-			return array(
-				'src' => $image_src,
-				'alt' => $image_alt,
-			);
-		}
-	}
-
-	return null;
-}
-
-/**
  * Fetch cover image data for the latest magazine issue.
  *
  * @param string $size Image size handle to request.
@@ -448,23 +345,12 @@ function bn_get_latest_magazine_cover_data( $size = 'medium' ) {
 	}
 
 	$thumbnail_id = get_post_thumbnail_id( $latest_issue->ID );
-	$cover_url    = '';
-	$cover_alt    = '';
 
-	if ( $thumbnail_id ) {
-		$cover_url = wp_get_attachment_image_url( $thumbnail_id, $size );
-		$cover_alt = trim( get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', true ) );
+	if ( ! $thumbnail_id ) {
+		return null;
 	}
 
-	if ( ! $cover_url ) {
-		$inline_image = bn_get_first_issue_image_from_content( $latest_issue->post_content );
-		if ( $inline_image && ! empty( $inline_image['src'] ) ) {
-			$cover_url = $inline_image['src'];
-			if ( ! empty( $inline_image['alt'] ) ) {
-				$cover_alt = $inline_image['alt'];
-			}
-		}
-	}
+	$cover_url = wp_get_attachment_image_url( $thumbnail_id, $size );
 
 	if ( ! $cover_url ) {
 		return null;
@@ -472,11 +358,10 @@ function bn_get_latest_magazine_cover_data( $size = 'medium' ) {
 
 	$cover_data = array(
 		'url'         => $cover_url,
-		'image_id'    => $thumbnail_id ? (int) $thumbnail_id : 0,
+		'image_id'    => (int) $thumbnail_id,
 		'issue_id'    => (int) $latest_issue->ID,
 		'issue_url'   => get_permalink( $latest_issue ),
 		'issue_title' => get_the_title( $latest_issue ),
-		'image_alt'   => $cover_alt,
 	);
 
 	$cover_data   = apply_filters( 'bn_latest_magazine_cover_data', $cover_data, $latest_issue, $size );

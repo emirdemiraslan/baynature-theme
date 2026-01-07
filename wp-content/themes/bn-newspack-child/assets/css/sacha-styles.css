@@ -2148,3 +2148,70 @@ div.dfw-unit + br {
 .wp-block-newspack-blocks-carousel article .entry-title a {
   display: inline !important;
 }
+
+/**
+ * Magazine Issue Page Styles
+ */
+.issue-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 40px 30px;
+}
+
+.featured-date-grid {
+  margin-right: 10px;
+}
+
+.featured-grid p small {
+  font-size: 12px;
+  line-height: 12px;
+  color: #afafaf;
+}
+
+.featured-title-grid {
+  font-style: italic;
+}
+
+.featured-title-grid h4 {
+  margin: 0;
+  font-style: normal;
+}
+
+.featured-author-grid {
+  margin: 0 0 8px 0;
+  color: #afafaf;
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
+}
+
+.featured-author-grid .author {
+  color: #7a7a7a;
+}
+
+.featured-image-grid {
+  margin: 0;
+  padding: 0 0 1em 0;
+}
+
+.section-three {
+  padding: 0;
+}
+
+.section-three-area-one {
+  overflow: scroll;
+}
+
+/* Magazine Archive - 3 columns */
+.page-template-magazine_archive_page .issue-content {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.page-template-magazine_archive_page .featured-grid p small {
+  font-size: 10px;
+}
+
+@media (min-width: 650px) {
+  .woocommerce.single-product main.container .issue-content {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 40px 30px;
+  }
+}
