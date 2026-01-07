@@ -1258,8 +1258,28 @@ function bn_render_archive_article( $post, $article_classes = array(), $categori
 
 		<div class="entry-wrapper">
 			<?php
-			// Display category (skip on category archives to avoid redundancy)
-			if ( ! is_category() ) :
+			// Display category or issue name for articles
+			$category_displayed = false;
+			
+			// For article post type, show issue name instead of category
+			if ( 'article' === get_post_type( $post_id ) ) {
+				$issue_key = get_post_meta( $post_id, 'issue_key', true );
+				$issue_name = function_exists( 'bn_get_issue_name' ) ? bn_get_issue_name( $issue_key ) : null;
+				if ( $issue_name ) {
+					$issue_url = function_exists( 'bn_get_issue_url' ) ? bn_get_issue_url( $issue_key ) : home_url( '/magazine/' );
+					?>
+					<div class="cat-links">
+						<a href="<?php echo esc_url( $issue_url ); ?>">
+							<?php echo esc_html( $issue_name ); ?>
+						</a>
+					</div>
+					<?php
+					$category_displayed = true;
+				}
+			}
+			
+			// Fall back to standard category display
+			if ( ! $category_displayed ) {
 				$primary_category = null;
 				
 				// Try to get Yoast primary category first
@@ -1284,7 +1304,7 @@ function bn_render_archive_article( $post, $article_classes = array(), $categori
 						</a>
 					</div>
 				<?php endif;
-			endif;
+			}
 			?>
 			
 			<h2 class="entry-title">

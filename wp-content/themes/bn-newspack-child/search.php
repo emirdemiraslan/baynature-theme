@@ -252,31 +252,54 @@ function bn_render_search_result_article( $post, $article_classes, $categories )
 
 		<div class="entry-wrapper">
 			<?php
-			// Display category
-			$primary_category = null;
+			// Display category or issue name for articles
+			$category_displayed = false;
 			
-			// Try to get Yoast primary category first
-			if ( class_exists( 'WPSEO_Primary_Term' ) ) {
-				$primary_term = new WPSEO_Primary_Term( 'category', $post_id );
-				$category_id  = $primary_term->get_primary_term();
-				if ( $category_id ) {
-					$primary_category = get_term( $category_id );
+			// For article post type, show issue name instead of category
+			if ( 'article' === get_post_type( $post_id ) ) {
+				$issue_key = get_post_meta( $post_id, 'issue_key', true );
+				$issue_name = function_exists( 'bn_get_issue_name' ) ? bn_get_issue_name( $issue_key ) : null;
+				if ( $issue_name ) {
+					$issue_url = function_exists( 'bn_get_issue_url' ) ? bn_get_issue_url( $issue_key ) : home_url( '/magazine/' );
+					?>
+					<div class="cat-links">
+						<a href="<?php echo esc_url( $issue_url ); ?>">
+							<?php echo esc_html( $issue_name ); ?>
+						</a>
+					</div>
+					<?php
+					$category_displayed = true;
 				}
 			}
 			
-			// Fall back to first category
-			if ( ! $primary_category && ! empty( $categories ) ) {
-				$primary_category = $categories[0];
+			// Fall back to standard category display
+			if ( ! $category_displayed ) {
+				$primary_category = null;
+				
+				// Try to get Yoast primary category first
+				if ( class_exists( 'WPSEO_Primary_Term' ) ) {
+					$primary_term = new WPSEO_Primary_Term( 'category', $post_id );
+					$category_id  = $primary_term->get_primary_term();
+					if ( $category_id ) {
+						$primary_category = get_term( $category_id );
+					}
+				}
+				
+				// Fall back to first category
+				if ( ! $primary_category && ! empty( $categories ) ) {
+					$primary_category = $categories[0];
+				}
+				
+				if ( $primary_category && is_a( $primary_category, 'WP_Term' ) ) :
+				?>
+					<div class="cat-links">
+						<a href="<?php echo esc_url( get_category_link( $primary_category->term_id ) ); ?>">
+							<?php echo esc_html( $primary_category->name ); ?>
+						</a>
+					</div>
+				<?php endif;
 			}
-			
-			if ( $primary_category && is_a( $primary_category, 'WP_Term' ) ) :
 			?>
-				<div class="cat-links">
-					<a href="<?php echo esc_url( get_category_link( $primary_category->term_id ) ); ?>">
-						<?php echo esc_html( $primary_category->name ); ?>
-					</a>
-				</div>
-			<?php endif; ?>
 			
 			<h2 class="entry-title">
 				<a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" rel="bookmark">
