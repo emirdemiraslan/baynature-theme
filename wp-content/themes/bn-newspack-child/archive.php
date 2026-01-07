@@ -196,28 +196,56 @@ if ( class_exists( '\Newspack\Optional_Modules\Collections' ) &&
 
 		<?php
 		if ( have_posts() ) :
-			$post_count = 0;
+		?>
+			<!-- Archive results styled like wpnbha Homepage Articles block -->
+			<div class="wp-block-newspack-blocks-homepage-articles wpnbha archive-results-wpnbha is-style-borders show-image image-alignleft ts-3 is-1 mobile-stack show-category">
+				<div data-posts>
+				<?php
+				// Start the Loop.
+				while ( have_posts() ) :
+					the_post();
+					
+					$post_id   = get_the_ID();
+					$post_type = get_post_type();
+					
+					// Build article classes
+					$article_classes   = array( 'archive-result-item' );
+					$article_classes[] = 'type-' . $post_type;
+					
+					if ( has_post_thumbnail() ) {
+						$article_classes[] = 'post-has-image';
+					}
+					
+					// Add term classes (categories/tags)
+					$categories = get_the_category( $post_id );
+					if ( ! empty( $categories ) ) {
+						foreach ( $categories as $category ) {
+							$article_classes[] = 'category-' . $category->slug;
+						}
+					}
+					
+					// Check if this is a "From the Magazine" category post
+					if ( ! empty( $categories ) ) {
+						foreach ( $categories as $cat ) {
+							if ( stripos( $cat->slug, 'magazine' ) !== false || stripos( $cat->name, 'magazine' ) !== false ) {
+								$article_classes[] = 'category-from-the-magazine';
+								break;
+							}
+						}
+					}
+					
+					bn_render_archive_article( get_post(), $article_classes, $categories );
+					
+				endwhile;
+				?>
+				</div>
+			</div><!-- .wpnbha -->
 
-			// Start the Loop.
-			while ( have_posts() ) :
-				$post_count++;
-				the_post();
-
-				// Check if you're on the first post of the first page and if it should be styled differently, or if excerpts are enabled.
-				if ( ( 1 === $post_count && 0 === get_query_var( 'paged' ) && true === $feature_latest_post ) || true === $show_excerpt ) {
-					get_template_part( 'template-parts/content/content', 'excerpt' );
-				} else {
-					get_template_part( 'template-parts/content/content', 'archive' );
-				}
-
-				do_action( 'after_archive_post', $post_count );
-				// End the loop.
-			endwhile;
-
+			<?php
 			// Previous/next page navigation.
 			newspack_the_posts_navigation();
 
-			// If no content, include the "No posts found" template.
+		// If no content, include the "No posts found" template.
 		else :
 			get_template_part( 'template-parts/content/content', 'none' );
 

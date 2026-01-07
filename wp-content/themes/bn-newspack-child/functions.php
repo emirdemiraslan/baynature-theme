@@ -1218,3 +1218,133 @@ add_action( 'template_redirect', function() {
         exit;
     }
 } );
+
+/**
+ * Render an article in wpnbha style for search/archive pages.
+ *
+ * @param WP_Post $post            The post object.
+ * @param array   $article_classes Article CSS classes.
+ * @param array   $categories      Post categories.
+ */
+function bn_render_archive_article( $post, $article_classes = array(), $categories = array() ) {
+	$post_id = $post->ID;
+	
+	// Build default classes if not provided
+	if ( empty( $article_classes ) ) {
+		$article_classes = array( 'archive-result-item' );
+		$article_classes[] = 'type-' . get_post_type( $post_id );
+		
+		if ( has_post_thumbnail( $post_id ) ) {
+			$article_classes[] = 'post-has-image';
+		}
+	}
+	
+	// Get categories if not provided
+	if ( empty( $categories ) ) {
+		$categories = get_the_category( $post_id );
+	}
+	?>
+	<article id="post-<?php echo esc_attr( $post_id ); ?>" class="<?php echo esc_attr( implode( ' ', $article_classes ) ); ?>" data-post-id="<?php echo esc_attr( $post_id ); ?>">
+		
+		<?php if ( has_post_thumbnail( $post_id ) ) : ?>
+			<figure class="post-thumbnail">
+				<a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" rel="bookmark" tabindex="-1" aria-hidden="true">
+					<?php echo get_the_post_thumbnail( $post_id, 'newspack-article-block-landscape-small', array(
+						'alt' => trim( wp_strip_all_tags( get_the_title( $post_id ) ) ),
+					) ); ?>
+				</a>
+			</figure>
+		<?php endif; ?>
+
+		<div class="entry-wrapper">
+			<?php
+			// Display category (skip on category archives to avoid redundancy)
+			if ( ! is_category() ) :
+				$primary_category = null;
+				
+				// Try to get Yoast primary category first
+				if ( class_exists( 'WPSEO_Primary_Term' ) ) {
+					$primary_term = new WPSEO_Primary_Term( 'category', $post_id );
+					$category_id  = $primary_term->get_primary_term();
+					if ( $category_id ) {
+						$primary_category = get_term( $category_id );
+					}
+				}
+				
+				// Fall back to first category
+				if ( ! $primary_category && ! empty( $categories ) ) {
+					$primary_category = $categories[0];
+				}
+				
+				if ( $primary_category && is_a( $primary_category, 'WP_Term' ) ) :
+				?>
+					<div class="cat-links">
+						<a href="<?php echo esc_url( get_category_link( $primary_category->term_id ) ); ?>">
+							<?php echo esc_html( $primary_category->name ); ?>
+						</a>
+					</div>
+				<?php endif;
+			endif;
+			?>
+			
+			<h2 class="entry-title">
+				<a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" rel="bookmark">
+					<?php echo esc_html( get_the_title( $post_id ) ); ?>
+				</a>
+			</h2>
+			
+			<p class="entry-excerpt"><?php echo esc_html( wp_trim_words( get_the_excerpt( $post_id ), 30, '...' ) ); ?></p>
+			
+			<div class="entry-meta">
+				<?php
+				// Author display
+				if ( function_exists( 'get_coauthors' ) ) :
+					$coauthors    = get_coauthors( $post_id );
+					$author_count = count( $coauthors );
+					if ( $author_count > 0 ) :
+					?>
+					<span class="byline">
+						<span class="author-prefix"><?php esc_html_e( 'by', 'bn-newspack-child' ); ?></span>
+						<?php
+						$i = 0;
+						foreach ( $coauthors as $coauthor ) :
+							$i++;
+							$author_url = get_author_posts_url( $coauthor->ID, $coauthor->user_nicename );
+							?>
+							<span class="author vcard">
+								<a class="url fn n" href="<?php echo esc_url( $author_url ); ?>">
+									<?php echo esc_html( $coauthor->display_name ); ?>
+								</a>
+							</span><?php
+							if ( $i < $author_count - 1 ) {
+								echo ', ';
+							} elseif ( $i === $author_count - 1 ) {
+								esc_html_e( ' and ', 'bn-newspack-child' );
+							}
+						endforeach;
+						?>
+					</span>
+					<?php
+					endif;
+				else :
+					$author_id = get_post_field( 'post_author', $post_id );
+					?>
+					<span class="byline">
+						<span class="author-prefix"><?php esc_html_e( 'by', 'bn-newspack-child' ); ?></span>
+						<span class="author vcard">
+							<a class="url fn n" href="<?php echo esc_url( get_author_posts_url( $author_id ) ); ?>">
+								<?php echo esc_html( get_the_author_meta( 'display_name', $author_id ) ); ?>
+							</a>
+						</span>
+					</span>
+				<?php endif; ?>
+				
+				<time class="entry-date published" datetime="<?php echo esc_attr( get_the_date( DATE_W3C, $post_id ) ); ?>">
+					<?php echo esc_html( get_the_date( '', $post_id ) ); ?>
+				</time>
+			</div>
+		</div><!-- .entry-wrapper -->
+		
+	</article>
+	<?php
+}
