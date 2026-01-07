@@ -112,7 +112,7 @@
                         </div>
                         <nav class="bn-overlay-print-edition-nav">
                             <ul class="bn-overlay-print-edition-menu">
-                                <li><a href="/magazine"><?php esc_html_e( 'Current Issue', 'bn-newspack-child' ); ?></a></li>
+                                <li><a href="/current-issue"><?php esc_html_e( 'Current Issue', 'bn-newspack-child' ); ?></a></li>
                                 <li><a href="/magazine-archive"><?php esc_html_e( 'Past Issues', 'bn-newspack-child' ); ?></a></li>
                             </ul>
                         </nav>
