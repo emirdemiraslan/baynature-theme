@@ -8,6 +8,97 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Disable SearchWP's built-in Results Page template and use theme's search.php.
+ * 
+ * SearchWP adds a filter at PHP_INT_MAX that echoes HTML directly.
+ * We must remove it on 'template_redirect' (before template_include runs).
+ */
+add_action( 'template_redirect', function() {
+    if ( ! isset( $_GET['swps'] ) ) {
+        return;
+    }
+    
+    global $wp_filter;
+    
+    // Safety check
+    if ( ! isset( $wp_filter['template_include'] ) ) {
+        return;
+    }
+    
+    // Get the WP_Hook object's callbacks
+    $hook = $wp_filter['template_include'];
+    
+    // Remove all filters at very high priorities that could be SearchWP
+    // SearchWP uses PHP_INT_MAX which is 9223372036854775807 on 64-bit systems
+    foreach ( $hook->callbacks as $priority => $callbacks ) {
+        // Target very high priority filters (above 1000000)
+        if ( $priority > 1000000 ) {
+            foreach ( $callbacks as $key => $callback ) {
+                // Look for SearchWP's Frontend::render
+                if ( is_array( $callback['function'] ) && count( $callback['function'] ) >= 2 ) {
+                    $class = $callback['function'][0];
+                    $method = $callback['function'][1];
+                    
+                    $class_str = is_object( $class ) ? get_class( $class ) : (string) $class;
+                    
+                    if ( strpos( $class_str, 'SearchWP' ) !== false && $method === 'render' ) {
+                        remove_filter( 'template_include', $callback['function'], $priority );
+                    }
+                }
+            }
+        }
+    }
+}, 5 );
+
+/**
+ * Force search.php template for SearchWP queries.
+ */
+add_filter( 'template_include', function( $template ) {
+    if ( ! isset( $_GET['swps'] ) ) {
+        return $template;
+    }
+    
+    $search_template = locate_template( 'search.php' );
+    if ( $search_template ) {
+        return $search_template;
+    }
+    
+    return $template;
+}, 999999 );
+
+/**
+ * Dequeue SearchWP's results page CSS since we use our own template.
+ */
+add_action( 'wp_enqueue_scripts', function() {
+    if ( isset( $_GET['swps'] ) ) {
+        wp_dequeue_style( 'searchwp-results-page' );
+    }
+}, 20 );
+
+/**
+ * Add 'search' body class for SearchWP queries so our CSS applies.
+ */
+add_filter( 'body_class', function( $classes ) {
+    if ( isset( $_GET['swps'] ) ) {
+        // Add search class
+        $classes[] = 'search';
+        $classes[] = 'search-results';
+        
+        // Remove classes that might conflict with search display
+        $remove = array( 
+            'home', 
+            'newspack-front-page', 
+            'page-template-template-home-hero',
+            'page-template-template-home-hero-php',
+            'has-hero-issue',
+            'hide-page-title',
+        );
+        $classes = array_diff( $classes, $remove );
+    }
+    return $classes;
+} );
+
+/**
  * Restrict REST API to authenticated users only.
  * This keeps REST available for logged-in users (admin, editors, etc.)
  * while blocking public access to all endpoints.
