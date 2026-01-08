@@ -151,7 +151,7 @@ function render_current_issue_content( $querystr, $show_title, $key ) {
 			}
 			echo '<div class="featured-title-grid"><h4>' . $article . '</h4></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo '<div class="featured-title-grid">' . ( $percent_similarity >= $threshold ? '' : esc_html( $subtitle ) ) . '</div>';
-			echo '<div class="featured-author-grid"><small>by ';
+			echo '<div class="featured-author-grid"><small>By ';
 			echo '<span class="author">';
 			if ( function_exists( 'get_coauthors' ) ) {
 				$coauthors    = get_coauthors( $post->ID );
