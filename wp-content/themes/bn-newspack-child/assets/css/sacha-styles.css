@@ -1187,6 +1187,9 @@ div.dfw-unit + br {
 }
 
 /* Individual search/archive result articles */
+.archive #main {
+  padding: 0 1.25rem;
+}
 .search-results-wpnbha article.search-result-item,
 .archive-results-wpnbha article.archive-result-item {
   display: flex;
@@ -2217,6 +2220,12 @@ div.dfw-unit + br {
 
 .featured-author-grid .author {
   color: #7a7a7a;
+}
+.featured-author-grid a {
+  color: var(--bn-home-author-color);
+}
+.featured-author-grid a:hover {
+  color: var(--bn-home-author-hover-color);
 }
 
 .featured-image-grid {
