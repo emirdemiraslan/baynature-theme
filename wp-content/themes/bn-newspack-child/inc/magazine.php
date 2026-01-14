@@ -207,13 +207,13 @@ function render_issue_archive_issues() {
 			$child_pages->the_post();
 			$count++;
 			echo '<div class="featured-grid">';
+			echo '<div class="featured-title-grid"><h4><a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a></h4></div>';
 			if ( has_post_thumbnail() ) {
 				echo '<div class="featured-image-grid">
 				<a href="' . esc_url( get_permalink() ) . '"><img src="' . esc_url( get_the_post_thumbnail_url( $post->ID ) ) . '" alt="' . esc_attr( get_the_title() ) . '" /></a>
 				</div>';
 			}
-			echo '<div class="featured-title-grid"><h4><a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a></h4></div>';
-			echo '<div class="featured-title-grid">' . esc_html( get_the_excerpt() ) . '</div>';
+			
 			echo '</div>';
 		endwhile;
 	endif;

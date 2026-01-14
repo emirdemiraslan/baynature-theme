@@ -11,51 +11,40 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Check if the current visitor has subscriber/member access.
  *
  * Priority order:
- * 1. Filter override (for plugin integration)
- * 2. User role check (logged-in users with subscriber/member/administrator roles)
- * 3. Cookie-based free views for anonymous users
+ * 1. WordPress admins and editors bypass paywall
+ * 2. PW_KEY cookie with master key
+ * 3. Master key in utm_campaign URL parameter
+ * 4. Staff share key (with valid expiration)
+ * 5. Cookie-based free views for all users
  *
  * @return bool True if user has access, false otherwise.
  */
 function bn_is_subscriber() {
-    // Allow plugins to override (e.g., WooCommerce Subscriptions, Paid Memberships Pro).
-    $override = apply_filters( 'bn_is_subscriber_override', null );
-    if ( null !== $override ) {
-        return (bool) $override;
-    }
-
-    // Check if user is logged in with appropriate role.
+    // Allow admins and editors to bypass paywall.
     if ( is_user_logged_in() ) {
         $user = wp_get_current_user();
-        $allowed_roles = apply_filters( 'bn_subscriber_roles', array( 'subscriber', 'member', 'administrator', 'editor', 'author' ) );
+        $bypass_roles = apply_filters( 'bn_paywall_bypass_roles', array( 'administrator', 'editor' ) );
         
-        foreach ( $allowed_roles as $role ) {
+        foreach ( $bypass_roles as $role ) {
             if ( in_array( $role, (array) $user->roles, true ) ) {
                 return true;
             }
         }
-        
-        // Logged-in user without required role should be denied.
-        return false;
     }
 
-    // Anonymous users: check cookie-based free views.
+    // Check unlock methods (cookie, master key, staff share key).
+    // This matches the legacy crate theme unlock_paywall() behavior.
+    if ( bn_paywall_has_unlock() ) {
+        return true;
+    }
+
+    // For all users: check cookie-based free views.
     return bn_has_free_views_remaining();
 }
 
 /**
- * Optional override via master/staff share keys and cookie.
- * If a valid unlock is present, we treat the visitor as having access.
- */
-add_filter( 'bn_is_subscriber_override', function ( $current ) {
-    if ( null !== $current ) {
-        return $current;
-    }
-    return bn_paywall_has_unlock() ? true : null;
-}, 5 );
-
-/**
  * Check if the request has a valid unlock (cookie, master key, or non-expired staff share key).
+ * Matches legacy crate theme unlock_paywall() function.
  */
 function bn_paywall_has_unlock() {
     // Cookie takes precedence once set.
@@ -185,13 +174,14 @@ function bn_paywall_staff_key_is_valid() {
 }
 
 /**
- * On init, if master key is present in request, set the cookie for subsequent visits.
+ * On wp_loaded, if master key is present in request, set the cookie for subsequent visits.
+ * Using wp_loaded instead of init to ensure ACF is fully loaded and get_field() works.
  */
-add_action( 'init', function () {
+add_action( 'wp_loaded', function () {
     if ( bn_paywall_master_key_in_request() ) {
         bn_paywall_set_cookie();
     }
-}, 0 );
+} );
 
 /**
  * Check if anonymous user has free views remaining.
