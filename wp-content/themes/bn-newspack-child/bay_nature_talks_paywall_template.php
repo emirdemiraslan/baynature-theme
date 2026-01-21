@@ -63,6 +63,8 @@ get_header();
 						// Not a member - show paywall message
 						$join_url = function_exists('get_field') ? get_field('paywall_become_a_member_link', 'option') : '';
 						$join_url = $join_url ? $join_url : '/join';
+						$login_url = function_exists('get_field') ? get_field('paywall_login_link', 'option') : '';
+						$login_url = $login_url ? $login_url : 'https://baynature.app.neoncrm.com/np/clients/baynature/neonPage.jsp?pageId=38&';
 						?>
 						<div class="bn-paywall-message talks-paywall">
 							<div class="bn-paywall-content">
@@ -72,7 +74,7 @@ get_header();
 									<a href="<?php echo esc_url( $join_url ); ?>" class="button button-primary">
 										<?php esc_html_e( 'Become a Member', 'bn-newspack-child' ); ?>
 									</a>
-									<a href="<?php echo esc_url( wp_login_url( get_permalink() ) ); ?>" class="button button-secondary">
+									<a href="<?php echo esc_url( $login_url ); ?>" class="button button-secondary">
 										<?php esc_html_e( 'Sign In', 'bn-newspack-child' ); ?>
 									</a>
 								</div>
