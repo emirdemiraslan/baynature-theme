@@ -1143,6 +1143,92 @@ div.dfw-unit + br {
   text-decoration: none;
 }
 
+/* Jetpack Related Posts typography (label/meta) */
+#jp-relatedposts.jp-relatedposts .jp-relatedposts-headline em {
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
+  font-style: normal; /* Jetpack wraps label in <em> */
+  font-weight: 700;
+  font-size: 1rem; /* make "Related" readable */
+  letter-spacing: 0.04em;
+}
+
+/* Match wpnbha card typography: category + title + date */
+#jp-relatedposts.jp-relatedposts .jp-relatedposts-post-context {
+  display: block;
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 1 !important;
+  letter-spacing: 0em;
+  line-height: 1.2;
+  margin: 0.75rem 0 0.75rem 0;
+}
+
+#jp-relatedposts.jp-relatedposts .jp-relatedposts-post-context a,
+#jp-relatedposts.jp-relatedposts .jp-relatedposts-post-context a:visited {
+  color: var(--bn-header-link-color);
+  text-decoration: none;
+}
+
+#jp-relatedposts.jp-relatedposts .jp-relatedposts-post-context a:hover {
+  color: var(--bn-header-link-hover-color);
+}
+
+#jp-relatedposts.jp-relatedposts .jp-relatedposts-post-title {
+  font-family: "utopia-std", Georgia, serif;
+  font-weight: 400;
+  font-size: 1.25em;
+  line-height: 1.3;
+  margin: 0 0 0.5rem 0;
+}
+
+#jp-relatedposts.jp-relatedposts .jp-relatedposts-post-date {
+  font-family: "ff-tisa-sans-web-pro", sans-serif; /* date should be sans */
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--bn-home-author-color);
+}
+
+/* Optional: align Jetpack "visual" layout to: image → category → headline → date */
+#jp-relatedposts.jp-relatedposts
+  .jp-relatedposts-items-visual
+  .jp-relatedposts-post {
+  display: flex;
+  flex-direction: column;
+}
+
+#jp-relatedposts.jp-relatedposts
+  .jp-relatedposts-items-visual
+  .jp-relatedposts-post-img {
+  order: 0;
+}
+#jp-relatedposts.jp-relatedposts
+  .jp-relatedposts-items-visual.jp-relatedposts-items
+  .jp-relatedposts-post
+  .jp-relatedposts-post-img {
+  margin: 0;
+}
+
+#jp-relatedposts.jp-relatedposts
+  .jp-relatedposts-items-visual
+  .jp-relatedposts-post-context {
+  order: 1;
+  /* margins handled above to match wpnbha */
+}
+
+#jp-relatedposts.jp-relatedposts
+  .jp-relatedposts-items-visual
+  .jp-relatedposts-post-title {
+  order: 2;
+}
+
+#jp-relatedposts.jp-relatedposts
+  .jp-relatedposts-items-visual
+  .jp-relatedposts-post-date {
+  order: 3;
+  margin-top: 0rem;
+}
+
 /*Search Results Page - wpnbha style layout */
 .search .site-content {
   margin-top: 0;
@@ -1251,7 +1337,7 @@ div.dfw-unit + br {
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0em;
   margin-bottom: 0.5rem;
 }
 

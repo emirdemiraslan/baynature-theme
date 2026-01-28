@@ -191,3 +191,63 @@ add_filter(
 	}
 );
 
+/**
+ * Jetpack Related Posts: show primary category/issue only (no "In …").
+ *
+ * This normalizes the context line under each related post to match other
+ * card layouts (category between image and headline).
+ */
+add_filter(
+	'jetpack_relatedposts_filter_post_context',
+	function( $context, $post_id ) {
+		// Articles: show Issue name (site convention).
+		if ( 'article' === get_post_type( $post_id ) ) {
+			$issue_key  = get_post_meta( $post_id, 'issue_key', true );
+			$issue_name = function_exists( 'bn_get_issue_name' ) ? bn_get_issue_name( $issue_key ) : '';
+
+			if ( $issue_name ) {
+				$issue_url = function_exists( 'bn_get_issue_url' ) ? bn_get_issue_url( $issue_key ) : home_url( '/magazine/' );
+				return sprintf(
+					'<a class="jp-relatedposts-post-category" href="%s">%s</a>',
+					esc_url( $issue_url ),
+					esc_html( $issue_name )
+				);
+			}
+		}
+
+		// Posts: prefer Yoast primary category; fallback to first category.
+		$term = null;
+
+		if ( class_exists( 'WPSEO_Primary_Term' ) ) {
+			$primary = new WPSEO_Primary_Term( 'category', $post_id );
+			$term_id = $primary->get_primary_term();
+			if ( $term_id ) {
+				$maybe = get_term( $term_id );
+				if ( $maybe && ! is_wp_error( $maybe ) ) {
+					$term = $maybe;
+				}
+			}
+		}
+
+		if ( ! $term ) {
+			$cats = get_the_category( $post_id );
+			if ( ! empty( $cats ) ) {
+				$term = $cats[0];
+			}
+		}
+
+		if ( $term && isset( $term->term_id ) ) {
+			return sprintf(
+				'<a class="jp-relatedposts-post-category" href="%s">%s</a>',
+				esc_url( get_category_link( $term->term_id ) ),
+				esc_html( $term->name )
+			);
+		}
+
+		// No category found: hide context line.
+		return '';
+	},
+	10,
+	2
+);
+
