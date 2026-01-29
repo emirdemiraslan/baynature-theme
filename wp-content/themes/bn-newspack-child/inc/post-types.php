@@ -138,7 +138,7 @@ function bn_register_article_post_type() {
 		'singular_label' => 'Article',
 		'public'        => true,
 		'show_ui'       => true,
-		'has_archive'   => true,
+		'has_archive'   => 'magazine',
 		'capability_type' => 'post',
 		'hierarchical'  => false,
 		'rewrite'       => array( 'slug' => 'magazine/%issue_slug%' ),
