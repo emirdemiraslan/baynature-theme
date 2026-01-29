@@ -386,6 +386,7 @@ figcaption,
 }
 .wpnbha article.post-has-image figure {
   overflow: hidden;
+  margin-bottom: 1rem;
 }
 
 /* Blockquotes */
