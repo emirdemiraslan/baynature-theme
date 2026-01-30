@@ -396,13 +396,6 @@ cite {
   font-style: italic;
 }
 
-blockquote em,
-blockquote i,
-cite em,
-cite i {
-  font-style: normal;
-}
-
 /* Drop caps */
 .has-drop-cap:not(:focus)::first-letter {
   float: left;
