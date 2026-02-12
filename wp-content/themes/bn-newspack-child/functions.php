@@ -998,6 +998,90 @@ function bn_get_issue_slug( $issue_key ) {
 }
 
 /**
+ * Convert a URL issue slug into an issue key.
+ * Format: {season}{year} -> v{year_short}n{season_num}
+ * Example: winter2026 -> v26n1
+ *
+ * @param string $issue_slug URL issue slug.
+ * @return string|null Issue key or null when slug is invalid.
+ */
+function bn_issue_slug_to_issue_key( $issue_slug ) {
+	if ( ! is_string( $issue_slug ) || '' === $issue_slug ) {
+		return null;
+	}
+
+	if ( ! preg_match( '/^(winter|spring|summer|fall)(20\d{2})$/i', $issue_slug, $matches ) ) {
+		return null;
+	}
+
+	$season_to_num = array(
+		'winter' => '1',
+		'spring' => '2',
+		'summer' => '3',
+		'fall'   => '4',
+	);
+
+	$season = strtolower( $matches[1] );
+	$year   = $matches[2];
+
+	if ( ! isset( $season_to_num[ $season ] ) ) {
+		return null;
+	}
+
+	return 'v' . substr( $year, -2 ) . 'n' . $season_to_num[ $season ];
+}
+
+/**
+ * Redirect /magazine/{issue}/ to the matching issue page.
+ *
+ * Keeps /magazine/{issue}/{article-slug}/ intact for Article CPT single URLs.
+ */
+add_action( 'template_redirect', 'bn_redirect_issue_slug_landing', 1 );
+function bn_redirect_issue_slug_landing() {
+	if ( is_admin() || wp_doing_ajax() ) {
+		return;
+	}
+
+	$path = wp_parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
+	$path = trim( (string) $path, '/' );
+
+	// Match exactly one segment after /magazine/.
+	if ( ! preg_match( '#^magazine/([^/]+)$#i', $path, $matches ) ) {
+		return;
+	}
+
+	$issue_slug = sanitize_title( $matches[1] );
+	$issue_key  = bn_issue_slug_to_issue_key( $issue_slug );
+
+	if ( ! $issue_key ) {
+		return;
+	}
+
+	$target_url = bn_get_issue_url( $issue_key );
+	$home_magazine_url = home_url( '/magazine/' );
+
+	// bn_get_issue_url falls back to /magazine/ when no issue page exists.
+	if ( ! $target_url || untrailingslashit( $target_url ) === untrailingslashit( $home_magazine_url ) ) {
+		$fallback_page = get_page_by_path( 'magazine-archive/bay-nature-' . $issue_slug );
+		if ( $fallback_page instanceof WP_Post ) {
+			$target_url = get_permalink( $fallback_page );
+		}
+	}
+
+	if ( ! $target_url ) {
+		return;
+	}
+
+	$current_url = home_url( '/' . $path . '/' );
+	if ( untrailingslashit( $target_url ) === untrailingslashit( $current_url ) ) {
+		return;
+	}
+
+	wp_safe_redirect( $target_url, 301 );
+	exit;
+}
+
+/**
  * Redirect old /articles/{slug}/ URLs to new /magazine/{issue}/ structure.
  * This preserves SEO value from old links.
  */
