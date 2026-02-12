@@ -173,7 +173,7 @@
   "customTemplates": [
     {
       "name": "member-only-content-default-template",
-      "title": "Member Only Content Default Template",
+      "title": "Article: Member Only",
       "postTypes": ["post", "article"]
     }
   ]
