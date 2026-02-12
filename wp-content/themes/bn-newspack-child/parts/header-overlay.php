@@ -50,7 +50,7 @@
                                 </svg>
                             </span>
                             <input type="search" class="bn-overlay-search-input" placeholder="<?php esc_attr_e( 'Search', 'bn-newspack-child' ); ?>" value="<?php echo get_search_query(); ?>" name="s" />
-                            <button type="submit" class="bn-overlay-search-submit" aria-label="<?php esc_attr_e( 'Submit search', 'bn-newspack-child' ); ?>">
+                            <button type="submit" class="bn-overlay-search-submit gtmt-search-submit-popup-menu" aria-label="<?php esc_attr_e( 'Submit search', 'bn-newspack-child' ); ?>">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                     <path d="M5 12h14M12 5l7 7-7 7"/>
                                 </svg>
@@ -106,14 +106,14 @@
                     <div class="bn-overlay-print-edition-separator"></div>
                     <div class="bn-overlay-print-edition-content">
                         <div class="bn-overlay-print-edition-cover">
-                            <a href="<?php echo esc_url( $magazine_cover_link ); ?>">
+                            <a class="gtmt-cover-image-popup-menu" href="<?php echo esc_url( $magazine_cover_link ); ?>">
                                 <img src="<?php echo esc_url( $magazine_cover_url ); ?>" alt="<?php echo esc_attr( $magazine_cover_alt ); ?>" />
                             </a>
                         </div>
                         <nav class="bn-overlay-print-edition-nav">
                             <ul class="bn-overlay-print-edition-menu">
-                                <li><a href="/current-issue"><?php esc_html_e( 'Current Issue', 'bn-newspack-child' ); ?></a></li>
-                                <li><a href="/magazine-archive"><?php esc_html_e( 'Past Issues', 'bn-newspack-child' ); ?></a></li>
+                                <li><a class="gtmt-current-issue-popup-menu" href="/current-issue"><?php esc_html_e( 'Current Issue', 'bn-newspack-child' ); ?></a></li>
+                                <li><a class="gtmt-past-issues-popup-menu" href="/magazine-archive"><?php esc_html_e( 'Past Issues', 'bn-newspack-child' ); ?></a></li>
                             </ul>
                         </nav>
                     </div>
@@ -166,8 +166,31 @@
                             if ( $topics_menu && is_array( $topics_menu ) ) {
                                 foreach ( $topics_menu as $item ) {
                                     if ( ! $item->menu_item_parent ) {
+                                        $raw_classes = array_filter( (array) $item->classes );
+                                        $li_classes  = array_map( 'sanitize_html_class', $raw_classes );
+
+                                        // Put user-entered custom classes on the <a> too (useful for tracking),
+                                        // while keeping the full WordPress class list on the <li>.
+                                        $custom_link_classes = array_values( array_filter(
+                                            $li_classes,
+                                            function ( $c ) {
+                                                return ! preg_match(
+                                                    '/^(menu-item($|-)|current[-_]|current_page_|page_item|menu-item-type-|menu-item-object-)/',
+                                                    (string) $c
+                                                );
+                                            }
+                                        ) );
+                                        $link_classes = array_merge( array( 'bn-overlay-topics-link' ), $custom_link_classes );
                                         ?>
-                                        <li><a href="<?php echo esc_url( $item->url ); ?>"><?php echo esc_html( $item->title ); ?></a></li>
+                                        <li
+                                            id="<?php echo esc_attr( 'menu-item-' . $item->ID ); ?>"
+                                            class="<?php echo esc_attr( implode( ' ', $li_classes ) ); ?>"
+                                        >
+                                            <a
+                                                href="<?php echo esc_url( $item->url ); ?>"
+                                                class="<?php echo esc_attr( implode( ' ', $link_classes ) ); ?>"
+                                            ><?php echo esc_html( $item->title ); ?></a>
+                                        </li>
                                         <?php
                                     }
                                 }
@@ -175,7 +198,7 @@
                         }
                         // Append "All Topics" link
                         ?>
-                        <li><a href="/topics"><?php esc_html_e( 'All Topics', 'bn-newspack-child' ); ?></a></li>
+                        <li><a class ="gtmt-all-topics-topics-menu" href="/topics"><?php esc_html_e( 'All Topics', 'bn-newspack-child' ); ?></a></li>
                     </ul>
                 </nav>
             </div>

@@ -182,3 +182,57 @@ add_filter( 'nav_menu_css_class', function ( $classes, $item, $args ) {
     return $classes;
 }, 10, 3 );
 
+/**
+ * Copy custom menu item CSS classes onto <a> tags for the popup overlay menu.
+ *
+ * Note: WordPress stores "CSS Classes" on the menu item (<li>) by default; this
+ * mirrors user-entered classes onto the link itself for tracking hooks (GTM).
+ */
+add_filter( 'nav_menu_link_attributes', function ( $atts, $item, $args ) {
+    if ( ! isset( $args->theme_location ) ) {
+        return $atts;
+    }
+
+    $theme_location = $args->theme_location;
+
+    if ( 'popup' === $theme_location ) {
+        $base_class = 'bn-overlay-goto-link';
+    } elseif ( 'header-utility' === $theme_location ) {
+        // This is already added above, but including here keeps the behavior consistent
+        // if that filter changes order or is removed later.
+        $base_class = 'bn-header-menu-link';
+    } else {
+        return $atts;
+    }
+
+    $raw_classes = array_filter( (array) $item->classes );
+    $classes     = array_map( 'sanitize_html_class', $raw_classes );
+
+    // Keep only user-entered classes (exclude WP-generated ones like menu-item-123, current-menu-item, etc).
+    $custom_classes = array_values( array_filter(
+        $classes,
+        function ( $c ) {
+            return ! preg_match(
+                '/^(menu-item($|-)|current[-_]|current_page_|page_item|menu-item-type-|menu-item-object-)/',
+                (string) $c
+            );
+        }
+    ) );
+
+    $existing = array();
+    if ( isset( $atts['class'] ) && is_string( $atts['class'] ) ) {
+        $existing = preg_split( '/\s+/', trim( $atts['class'] ) );
+        $existing = array_filter( array_map( 'sanitize_html_class', (array) $existing ) );
+    }
+
+    $merged = array_values( array_unique( array_filter( array_merge(
+        $existing,
+        array( $base_class ),
+        $custom_classes
+    ) ) ) );
+
+    $atts['class'] = implode( ' ', $merged );
+
+    return $atts;
+}, 10, 3 );
+

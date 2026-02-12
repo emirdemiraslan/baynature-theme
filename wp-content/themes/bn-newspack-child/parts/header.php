@@ -56,10 +56,10 @@
                 <?php if ( 'static' === $header_type ) : ?>
                     <?php // Static header: render buttons instead of menu ?>
                     <div class="bn-header-buttons">
-                        <a href="<?php echo esc_url( $join_url ); ?>" class="bn-btn bn-btn--join">
+                        <a href="<?php echo esc_url( $join_url ); ?>" class="bn-btn bn-btn--join gtmt-join-button">
                            <span class="bn-btn-inner"><?php esc_html_e( 'Join', 'bn-newspack-child' ); ?></span>
                         </a>
-                        <a href="<?php echo esc_url( $donate_url ); ?>" class="bn-btn bn-btn--donate">
+                        <a href="<?php echo esc_url( $donate_url ); ?>" class="bn-btn bn-btn--donate gtmt-donate-button">
                             <span class="bn-btn-inner"><?php esc_html_e( 'Donate', 'bn-newspack-child' ); ?></span>
                         </a>
                     </div>
@@ -81,12 +81,12 @@
                         <nav class="bn-header-nav" aria-label="<?php esc_attr_e( 'Header utility menu', 'bn-newspack-child' ); ?>">
                             <ul class="bn-header-menu">
                                 <li class="bn-header-menu-item">
-                                    <a class="bn-header-menu-link" href="<?php echo esc_url( $join_url ); ?>">
+                                    <a class="bn-header-menu-link gtmt-join-button" href="<?php echo esc_url( $join_url ); ?>">
                                         <?php esc_html_e( 'Join', 'bn-newspack-child' ); ?>
                                     </a>
                                 </li>
                                 <li class="bn-header-menu-item">
-                                    <a class="bn-header-menu-link" href="<?php echo esc_url( $donate_url ); ?>">
+                                    <a class="bn-header-menu-link gtmt-donate-button" href="<?php echo esc_url( $donate_url ); ?>">
                                         <?php esc_html_e( 'Donate', 'bn-newspack-child' ); ?>
                                     </a>
                                 </li>
@@ -97,7 +97,7 @@
             </div>
 
             <div class="bn-header-actions">
-                <button class="bn-header-icon bn-header-search" aria-label="<?php esc_attr_e( 'Search', 'bn-newspack-child' ); ?>" aria-expanded="false" aria-controls="bn-overlay-menu">
+                <button class="bn-header-icon bn-header-search gtmt-search-button" aria-label="<?php esc_attr_e( 'Search', 'bn-newspack-child' ); ?>" aria-expanded="false" aria-controls="bn-overlay-menu">
                     <span class="bn-header-icon-inner" aria-hidden="true">
                         <svg viewBox="0 0 24 24" focusable="false" role="img">
                             <path d="M15.5 14h-.79l-.28-.27a6 6 0 1 0-.71.71l.27.28v.79l5 5a1 1 0 0 0 1.41-1.41zm-5.5 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" fill="currentColor" />
