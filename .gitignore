@@ -15,6 +15,9 @@ wp-content/themes/*
 # Keep .gitignore itself
 !.gitignore
 
+# Keep AGENTS.md for development guidance
+!AGENTS.md
+
 # Exclude large reference files
 _project/reference/*.zip
 
