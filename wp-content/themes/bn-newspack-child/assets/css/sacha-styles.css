@@ -342,7 +342,7 @@ div.wpnbha .article-section-title,
   background-color: transparent;
 }
 .wpnbha .cat-links {
-	align-items:baseline;
+  align-items: baseline;
 }
 
 .featured-image-behind .entry-header .cat-links a,
@@ -1346,6 +1346,131 @@ div.dfw-unit + br {
   .jp-relatedposts-post-context
   a.issue-cat-link:visited {
   color: var(--bn-orange);
+}
+
+/* =============================================
+   SearchWP Related Posts — match Jetpack RP look
+   ============================================= */
+
+/* Strip container chrome */
+.searchwp-related .searchwp-related-results {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin-bottom: 0;
+  border-radius: 0;
+  grid-gap: 20px;
+}
+.searchwp-related .searchwp-related-item--info-container {
+  gap: 10px;
+}
+/* Remove vertical dividers between grid items */
+.searchwp-related-grid .searchwp-related-item::after {
+  display: none !important;
+}
+
+/* Item opacity — matches Jetpack RP */
+.searchwp-related-grid .searchwp-related-item {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.searchwp-related-grid .searchwp-related-item:hover {
+  opacity: 1;
+}
+
+/* Hide excerpts */
+.searchwp-related-item--desc {
+  display: none !important;
+}
+
+/* Heading: match Jetpack "Related" label */
+.searchwp-related > h4 {
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+}
+
+/* Title typography */
+h5.searchwp-related-item--title {
+  font-family: "utopia-std", Georgia, serif !important;
+  font-weight: 400 !important;
+  font-size: 1em;
+  line-height: 1.2;
+  margin: 0.25rem 0 0.25rem 0;
+}
+
+/* Title link color */
+.searchwp-related-item--info-container .searchwp-related-item--title a,
+.searchwp-related-item--info-container .searchwp-related-item--title a:visited {
+  color: var(--bn-general-link-color) !important;
+  text-decoration: none;
+  font-weight: 400 !important;
+}
+
+.searchwp-related-item--info-container .searchwp-related-item--title a:hover {
+  color: var(--bn-general-link-hover-color) !important;
+  text-decoration: none;
+}
+
+/* Injected category context (between image and title) */
+.searchwp-related-post-context {
+  display: block;
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.searchwp-related-post-context a,
+.searchwp-related-post-context a:visited {
+  color: var(--bn-header-link-color);
+  text-decoration: none;
+}
+
+.searchwp-related-post-context a:hover {
+  color: var(--bn-header-link-hover-color);
+}
+
+.searchwp-related-post-context a.issue-cat-link,
+.searchwp-related-post-context a.issue-cat-link:visited {
+  color: var(--bn-orange);
+}
+
+.searchwp-related-post-context span.cat-sep {
+  display: inline;
+}
+
+/* Injected date */
+.searchwp-related-post-date {
+  display: block;
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--bn-home-author-color);
+  margin-top: 0;
+}
+
+/* Image: 7:4 aspect ratio, consistent height, linked */
+.searchwp-related-grid .searchwp-related-item--img {
+  margin-bottom: 0;
+  width: 100% !important;
+}
+
+.searchwp-related-item--img img {
+  aspect-ratio: 7 / 4;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
+.searchwp-related-item--img a {
+  display: block;
+  line-height: 0;
 }
 
 /*Search Results Page - wpnbha style layout */

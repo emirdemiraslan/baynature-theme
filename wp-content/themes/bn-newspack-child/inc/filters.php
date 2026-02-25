@@ -192,6 +192,134 @@ add_filter(
 );
 
 /**
+ * SearchWP Related Posts: inject category, date, and image links.
+ *
+ * SearchWP Related only outputs image, title, and excerpt. This filter
+ * adds a category context line, publish date, and wraps the thumbnail
+ * in a permalink so the block matches the Jetpack Related Posts look.
+ */
+add_filter(
+	'the_content',
+	function ( $content ) {
+		if ( strpos( $content, 'searchwp-related-item--title' ) === false ) {
+			return $content;
+		}
+
+		// 1. Inject category + date around each title.
+		$content = preg_replace_callback(
+			'#(<h5\s+class="searchwp-related-item--title">\s*<a\s+href="([^"]+)"[^>]*>)(.*?)(</a>\s*</h5>)#s',
+			function ( $m ) {
+				$title_open  = $m[1];
+				$url         = $m[2];
+				$title_text  = $m[3];
+				$title_close = $m[4];
+
+				$post_id = url_to_postid( $url );
+				if ( ! $post_id ) {
+					return $m[0];
+				}
+
+				$cat_html = bn_searchwp_related_category_html( $post_id );
+
+				$date_html = sprintf(
+					'<span class="searchwp-related-post-date">%s</span>',
+					esc_html( get_the_date( '', $post_id ) )
+				);
+
+				return $cat_html . $title_open . $title_text . $title_close . $date_html;
+			},
+			$content
+		);
+
+		// 2. Wrap each thumbnail <img> in a permalink <a>.
+		//    Match from the <img> inside its container to the title <a> to extract the URL.
+		$content = preg_replace_callback(
+			'#(<div\s+class="searchwp-related-item--img">)\s*(<img\s[^>]*>)\s*(</div>.*?<h5\s+class="searchwp-related-item--title">\s*<a\s+href="([^"]+)")#s',
+			function ( $m ) {
+				$div_open = $m[1];
+				$img_tag  = $m[2];
+				$rest     = $m[3];
+				$url      = $m[4];
+
+				return $div_open
+					. '<a href="' . esc_url( $url ) . '" tabindex="-1" aria-hidden="true">'
+					. $img_tag
+					. '</a>'
+					. $rest;
+			},
+			$content
+		);
+
+		return $content;
+	},
+	20
+);
+
+/**
+ * Build the category context HTML for a SearchWP Related item.
+ *
+ * Mirrors the Jetpack Related Posts category/issue logic.
+ *
+ * @param int $post_id Post ID.
+ * @return string HTML string (may be empty).
+ */
+function bn_searchwp_related_category_html( $post_id ) {
+	if ( 'article' === get_post_type( $post_id ) ) {
+		$issue_key  = get_post_meta( $post_id, 'issue_key', true );
+		$issue_name = function_exists( 'bn_get_issue_name' ) ? bn_get_issue_name( $issue_key ) : '';
+
+		if ( $issue_name ) {
+			$issue_url = function_exists( 'bn_get_issue_url' ) ? bn_get_issue_url( $issue_key ) : home_url( '/magazine/' );
+			$html      = sprintf(
+				'<span class="searchwp-related-post-context"><a class="issue-cat-link" href="%s">%s</a>',
+				esc_url( $issue_url ),
+				esc_html( $issue_name )
+			);
+			$primary_cat = function_exists( 'bn_get_primary_category' ) ? bn_get_primary_category( $post_id ) : null;
+			if ( $primary_cat ) {
+				$html .= sprintf(
+					' <span class="cat-sep">|</span> <a href="%s">%s</a>',
+					esc_url( get_category_link( $primary_cat->term_id ) ),
+					esc_html( $primary_cat->name )
+				);
+			}
+			$html .= '</span>';
+			return $html;
+		}
+	}
+
+	$term = null;
+
+	if ( class_exists( 'WPSEO_Primary_Term' ) ) {
+		$primary = new WPSEO_Primary_Term( 'category', $post_id );
+		$term_id = $primary->get_primary_term();
+		if ( $term_id ) {
+			$maybe = get_term( $term_id );
+			if ( $maybe && ! is_wp_error( $maybe ) ) {
+				$term = $maybe;
+			}
+		}
+	}
+
+	if ( ! $term ) {
+		$cats = get_the_category( $post_id );
+		if ( ! empty( $cats ) ) {
+			$term = $cats[0];
+		}
+	}
+
+	if ( $term ) {
+		return sprintf(
+			'<span class="searchwp-related-post-context"><a href="%s">%s</a></span>',
+			esc_url( get_category_link( $term->term_id ) ),
+			esc_html( $term->name )
+		);
+	}
+
+	return '';
+}
+
+/**
  * Jetpack Related Posts: show primary category/issue only (no "In …").
  *
  * This normalizes the context line under each related post to match other
