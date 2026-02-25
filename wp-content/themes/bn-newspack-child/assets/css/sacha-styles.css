@@ -341,6 +341,9 @@ div.wpnbha .article-section-title,
   color: var(--bn-orange);
   background-color: transparent;
 }
+.wpnbha .cat-links {
+	align-items:baseline;
+}
 
 .featured-image-behind .entry-header .cat-links a,
 .featured-image-behind .entry-header .byline .author a {
@@ -357,6 +360,35 @@ div.wpnbha .article-section-title,
 }
 .single-article .featured-image-behind .entry-header .cat-links a:hover {
   color: var(--bn-orange-hover-color);
+}
+
+/* Stacked primary category below issue link in single post headers */
+.entry-header .cat-links--primary {
+  display: block;
+  margin-top: -1.5rem;
+}
+.single-article .entry-header .cat-links--primary {
+  color: inherit;
+}
+.single-article .entry-header .cat-links--primary a {
+  color: inherit;
+}
+.single-article .entry-header .cat-links a.issue-cat-link {
+  color: inherit;
+  font-size: 1rem;
+}
+.single-article .entry-header .cat-links--primary a:hover {
+  color: var(--bn-header-link-hover-color);
+}
+.single-article .featured-image-behind .entry-header .cat-links--primary a {
+  color: var(--bn-header-hero-link-color);
+}
+.single-article
+  .featured-image-behind
+  .entry-header
+  .cat-links--primary
+  a:hover {
+  color: var(--bn-header-hero-link-hover-color);
 }
 .blog .cat-links,
 .search .cat-links,
@@ -382,6 +414,38 @@ figcaption,
 }
 .wpnbha.wp-block-newspack-blocks-homepage-articles .post-thumbnail figcaption {
   margin-bottom: 1.5rem;
+}
+
+/* ========================================
+   Image Credits
+   ======================================== */
+.image-credit {
+  display: block;
+  font-size: 0.8em;
+  color: #8a8a8a;
+  text-decoration: none;
+}
+
+.image-credit a,
+.image-credit a:visited {
+  text-decoration: none;
+}
+
+.image-credit a:hover {
+  opacity: 80%;
+  text-decoration: none;
+}
+
+.featured-image-beside figcaption .image-credit,
+.featured-image-beside figcaption a,
+.featured-image-beside figcaption a:visited {
+  color: var(--bn-general-link-color);
+  text-decoration: none;
+}
+
+.featured-image-beside figcaption .image-credit a:hover {
+  opacity: 80%;
+  text-decoration: none;
 }
 
 /* Homepage Thumbnails*/
@@ -552,6 +616,16 @@ cite {
 .single-article .entry-header .cat-links a:hover {
   color: var(--bn-orange-hover-color);
 }
+.single-article .entry-header .cat-links--primary {
+  color: inherit;
+}
+.single-article .entry-header .cat-links--primary a,
+.single-article .entry-header .cat-links--primary a:visited {
+  color: inherit;
+}
+.single-article .entry-header .cat-links--primary a:hover {
+  color: var(--bn-orange);
+}
 
 .single:not(.has-large-featured-image) .entry-header {
   border-bottom: 0;
@@ -591,8 +665,37 @@ cite {
   text-transform: capitalize;
 }
 .wpnbha .category-from-the-magazine .cat-links a,
-.wpnbha .type-article .cat-links a {
+.wpnbha .type-article .cat-links a,
+.wp-block-newspack-blocks-carousel
+  article
+  .entry-wrapper
+  .cat-links
+  a.issue-cat-link,
+.wp-block-newspack-blocks-carousel
+  article
+  .entry-wrapper
+  .cat-links
+  a.issue-cat-link:visited {
   color: var(--bn-orange);
+}
+
+/* Pipe separator between issue link and primary category */
+.cat-links .cat-sep {
+  margin: 0 0.5em;
+  opacity: 0.6;
+  color: initial;
+  font-weight: 400;
+}
+
+/* When issue link + primary category are shown together,
+   reset the primary cat link to the default (non-orange) color */
+.wpnbha .type-article .cat-links a:not(.issue-cat-link),
+.wpnbha .category-from-the-magazine .cat-links a:not(.issue-cat-link) {
+  color: var(--bn-header-link-color);
+}
+.wpnbha .type-article .cat-links a:not(.issue-cat-link):hover,
+.wpnbha .category-from-the-magazine .cat-links a:not(.issue-cat-link):hover {
+  color: var(--bn-header-link-hover-color);
 }
 
 /* Article post type indicator - orange triangle */
@@ -1232,6 +1335,18 @@ div.dfw-unit + br {
   order: 3;
   margin-top: 0rem;
 }
+#jp-relatedposts.jp-relatedposts
+  .jp-relatedposts-items-visual.jp-relatedposts-items
+  .jp-relatedposts-post
+  span.cat-sep {
+  display: inline;
+}
+#jp-relatedposts.jp-relatedposts .jp-relatedposts-post-context a.issue-cat-link,
+#jp-relatedposts.jp-relatedposts
+  .jp-relatedposts-post-context
+  a.issue-cat-link:visited {
+  color: var(--bn-orange);
+}
 
 /*Search Results Page - wpnbha style layout */
 .search .site-content {
@@ -1370,6 +1485,32 @@ div.dfw-unit + br {
 .archive-results-wpnbha .type-article .cat-links a:hover,
 .archive-results-wpnbha .category-from-the-magazine .cat-links a:hover {
   color: var(--bn-orange-hover-color);
+}
+
+/* Reset primary cat link to default color in archive/search article cards */
+.search-results-wpnbha .type-article .cat-links a:not(.issue-cat-link),
+.search-results-wpnbha
+  .category-from-the-magazine
+  .cat-links
+  a:not(.issue-cat-link),
+.archive-results-wpnbha .type-article .cat-links a:not(.issue-cat-link),
+.archive-results-wpnbha
+  .category-from-the-magazine
+  .cat-links
+  a:not(.issue-cat-link) {
+  color: var(--bn-header-link-color);
+}
+.search-results-wpnbha .type-article .cat-links a:not(.issue-cat-link):hover,
+.search-results-wpnbha
+  .category-from-the-magazine
+  .cat-links
+  a:not(.issue-cat-link):hover,
+.archive-results-wpnbha .type-article .cat-links a:not(.issue-cat-link):hover,
+.archive-results-wpnbha
+  .category-from-the-magazine
+  .cat-links
+  a:not(.issue-cat-link):hover {
+  color: var(--bn-header-link-hover-color);
 }
 
 /* Entry title */

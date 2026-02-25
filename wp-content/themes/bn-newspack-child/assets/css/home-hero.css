@@ -94,6 +94,18 @@
 .issue-hero--article .issue-hero__kicker a:focus {
   color: var(--bn-orange-hover-color);
 }
+
+/* Primary category below issue kicker – keep default (white) color, not orange */
+.issue-hero--article .issue-hero__primary-cat a {
+  color: var(--bn-header-hero-link-color);
+}
+.issue-hero--article .issue-hero__primary-cat a:hover,
+.issue-hero--article .issue-hero__primary-cat a:focus {
+  color: var(--bn-header-hero-link-hover-color);
+}
+.issue-hero__primary-cat {
+  margin-top: -0.6rem;
+}
 .issue-hero__title {
   font-size: clamp(2rem, 6vw, 2.5rem);
   line-height: 1.05;

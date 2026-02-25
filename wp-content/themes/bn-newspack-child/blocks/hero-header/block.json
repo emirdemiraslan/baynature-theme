@@ -100,6 +100,14 @@
       "type": "string",
       "default": ""
     },
+    "primaryCatColor": {
+      "type": "string",
+      "default": ""
+    },
+    "primaryCatBackgroundColor": {
+      "type": "string",
+      "default": ""
+    },
     "subheadingFontSize": {
       "type": "string",
       "default": ""

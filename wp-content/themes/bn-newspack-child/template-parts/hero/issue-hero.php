@@ -59,10 +59,16 @@ $is_article      = 'article' === get_post_type( $issue_id );
         if ( 'article' === get_post_type( $issue_id ) ) :
             $issue_key = get_post_meta( $issue_id, 'issue_key', true );
             $magazine_url = function_exists( 'bn_get_issue_url' ) ? bn_get_issue_url( $issue_key ) : home_url( '/magazine/' );
+            $primary_cat = function_exists( 'bn_get_primary_category' ) ? bn_get_primary_category( $issue_id ) : null;
             ?>
             <div class="issue-hero__kicker">
                 <a href="<?php echo esc_url( $magazine_url ); ?>"><?php esc_html_e( 'From the Magazine', 'bn-newspack-child' ); ?></a>
             </div>
+            <?php if ( $primary_cat ) : ?>
+                <div class="issue-hero__kicker issue-hero__primary-cat">
+                    <a href="<?php echo esc_url( get_category_link( $primary_cat->term_id ) ); ?>"><?php echo esc_html( $primary_cat->name ); ?></a>
+                </div>
+            <?php endif; ?>
             <?php
         elseif ( $cat_name ) :
             ?>

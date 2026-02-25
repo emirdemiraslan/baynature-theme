@@ -108,6 +108,8 @@ export default function Edit({ attributes, setAttributes }) {
     categoryFontSize,
     categoryColor,
     categoryBackgroundColor,
+    primaryCatColor,
+    primaryCatBackgroundColor,
     subheadingFontSize,
     subheadingColor,
     subheadingBackgroundColor,
@@ -143,12 +145,12 @@ export default function Edit({ attributes, setAttributes }) {
         .flat();
 
       const resolving = postTypes.some((type) =>
-        dataStore.isResolving("getEntityRecords", ["postType", type, query])
+        dataStore.isResolving("getEntityRecords", ["postType", type, query]),
       );
 
       return { posts: fetched, isResolving: resolving };
     },
-    [search]
+    [search],
   );
 
   const postOptions = useMemo(() => {
@@ -265,7 +267,7 @@ export default function Edit({ attributes, setAttributes }) {
               onChange={(val) => setAttributes({ besideBackgroundColor: val })}
               help={__(
                 "CSS color value (e.g. #333333) for the text column.",
-                "bn-newspack-child"
+                "bn-newspack-child",
               )}
             />
           )}
@@ -291,7 +293,7 @@ export default function Edit({ attributes, setAttributes }) {
             step={0.05}
             help={__(
               "Scales all text sizes in this hero from 0.3× to 2×.",
-              "bn-newspack-child"
+              "bn-newspack-child",
             )}
           />
 
@@ -307,14 +309,30 @@ export default function Edit({ attributes, setAttributes }) {
           />
 
           <InlineColorControl
-            label={__("Category color", "bn-newspack-child")}
+            label={__("Category/Issue Name color", "bn-newspack-child")}
             value={categoryColor}
             onChange={(val) => setAttributes({ categoryColor: val })}
           />
           <InlineColorControl
-            label={__("Category background color", "bn-newspack-child")}
+            label={__(
+              "Category/Issue Name background color",
+              "bn-newspack-child",
+            )}
             value={categoryBackgroundColor}
             onChange={(val) => setAttributes({ categoryBackgroundColor: val })}
+          />
+
+          <InlineColorControl
+            label={__("Primary category color", "bn-newspack-child")}
+            value={primaryCatColor}
+            onChange={(val) => setAttributes({ primaryCatColor: val })}
+          />
+          <InlineColorControl
+            label={__("Primary category background color", "bn-newspack-child")}
+            value={primaryCatBackgroundColor}
+            onChange={(val) =>
+              setAttributes({ primaryCatBackgroundColor: val })
+            }
           />
 
           <InlineColorControl

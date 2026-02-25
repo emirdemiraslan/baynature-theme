@@ -207,11 +207,20 @@ add_filter(
 
 			if ( $issue_name ) {
 				$issue_url = function_exists( 'bn_get_issue_url' ) ? bn_get_issue_url( $issue_key ) : home_url( '/magazine/' );
-				return sprintf(
-					'<a class="jp-relatedposts-post-category" href="%s">%s</a>',
+				$output = sprintf(
+					'<a class="jp-relatedposts-post-category issue-cat-link" href="%s">%s</a>',
 					esc_url( $issue_url ),
 					esc_html( $issue_name )
 				);
+				$primary_cat = function_exists( 'bn_get_primary_category' ) ? bn_get_primary_category( $post_id ) : null;
+				if ( $primary_cat ) {
+					$output .= sprintf(
+						' <span class="cat-sep">|</span> <a class="jp-relatedposts-post-category" href="%s">%s</a>',
+						esc_url( get_category_link( $primary_cat->term_id ) ),
+						esc_html( $primary_cat->name )
+					);
+				}
+				return $output;
 			}
 		}
 

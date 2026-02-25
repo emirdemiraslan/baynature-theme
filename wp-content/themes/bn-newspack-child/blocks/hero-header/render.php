@@ -55,6 +55,8 @@ $terms        = get_the_terms( $post_id, $taxonomy );
 $topic_output = '';
 $topic_term   = null;
 $topic_link   = '';
+$primary_cat_output = '';
+$primary_cat_link   = '';
 
 // Issue Key Logic for Article post type
 if ( 'article' === get_post_type( $post_id ) ) {
@@ -64,6 +66,18 @@ if ( 'article' === get_post_type( $post_id ) ) {
         if ( $issue_name ) {
             $topic_output = $issue_name;
             $topic_link   = function_exists( 'bn_get_issue_url' ) ? bn_get_issue_url( $issue_key ) : home_url( '/magazine/' );
+
+            // Also get primary category to display below the issue link.
+            if ( function_exists( 'bn_get_primary_category' ) ) {
+                $primary_cat = bn_get_primary_category( $post_id );
+                if ( $primary_cat ) {
+                    $primary_cat_output = $primary_cat->name;
+                    $primary_cat_link   = get_category_link( $primary_cat->term_id );
+                    if ( is_wp_error( $primary_cat_link ) ) {
+                        $primary_cat_link = '';
+                    }
+                }
+            }
         }
     }
 }
@@ -124,6 +138,9 @@ $maybe_add_var( 'titleBackgroundColor', '--bn-hero-title-bg' );
 $maybe_add_var( 'categoryColor', '--bn-hero-category-color' );
 $maybe_add_var( 'categoryBackgroundColor', '--bn-hero-category-bg' );
 
+$maybe_add_var( 'primaryCatColor', '--bn-hero-primary-cat-color' );
+$maybe_add_var( 'primaryCatBackgroundColor', '--bn-hero-primary-cat-bg' );
+
 $maybe_add_var( 'subheadingColor', '--bn-hero-subheading-color' );
 $maybe_add_var( 'subheadingBackgroundColor', '--bn-hero-subheading-bg' );
 
@@ -150,6 +167,11 @@ $wrapper_attributes = get_block_wrapper_attributes(
                             <div class="issue-hero__kicker bn-hero-topic">
                                 <a href="<?php echo esc_url( $topic_link ); ?>"><?php echo esc_html( $topic_output ); ?></a>
                             </div>
+                            <?php if ( $primary_cat_output && $primary_cat_link ) : ?>
+                                <div class="issue-hero__kicker bn-hero-topic issue-hero__primary-cat">
+                                    <a href="<?php echo esc_url( $primary_cat_link ); ?>"><?php echo esc_html( $primary_cat_output ); ?></a>
+                                </div>
+                            <?php endif; ?>
                     <?php endif; ?>
 
                     <h1 class="bn-hero-title">
@@ -226,6 +248,11 @@ $wrapper_attributes = get_block_wrapper_attributes(
                     <div class="issue-hero__kicker bn-hero-topic">
                         <a href="<?php echo esc_url( $topic_link ); ?>"><?php echo esc_html( $topic_output ); ?></a>
                     </div>
+                    <?php if ( $primary_cat_output && $primary_cat_link ) : ?>
+                        <div class="issue-hero__kicker bn-hero-topic issue-hero__primary-cat">
+                            <a href="<?php echo esc_url( $primary_cat_link ); ?>"><?php echo esc_html( $primary_cat_output ); ?></a>
+                        </div>
+                    <?php endif; ?>
             <?php endif; ?>
 
             <h1 class="bn-hero-title">

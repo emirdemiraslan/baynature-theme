@@ -255,17 +255,24 @@ function bn_render_search_result_article( $post, $article_classes, $categories )
 			// Display category or issue name for articles
 			$category_displayed = false;
 			
-			// For article post type, show issue name instead of category
+			// For article post type, show issue name + primary category
 			if ( 'article' === get_post_type( $post_id ) ) {
 				$issue_key = get_post_meta( $post_id, 'issue_key', true );
 				$issue_name = function_exists( 'bn_get_issue_name' ) ? bn_get_issue_name( $issue_key ) : null;
 				if ( $issue_name ) {
 					$issue_url = function_exists( 'bn_get_issue_url' ) ? bn_get_issue_url( $issue_key ) : home_url( '/magazine/' );
+					$primary_cat = function_exists( 'bn_get_primary_category' ) ? bn_get_primary_category( $post_id ) : null;
 					?>
 					<div class="cat-links">
-						<a href="<?php echo esc_url( $issue_url ); ?>">
+						<a class="issue-cat-link" href="<?php echo esc_url( $issue_url ); ?>">
 							<?php echo esc_html( $issue_name ); ?>
 						</a>
+						<?php if ( $primary_cat ) : ?>
+							<span class="cat-sep">|</span>
+							<a href="<?php echo esc_url( get_category_link( $primary_cat->term_id ) ); ?>">
+								<?php echo esc_html( $primary_cat->name ); ?>
+							</a>
+						<?php endif; ?>
 					</div>
 					<?php
 					$category_displayed = true;

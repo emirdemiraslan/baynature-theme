@@ -1189,6 +1189,31 @@ function bn_get_issue_url( $issue_key = null ) {
     return home_url( '/magazine/' );
 }
 
+/**
+ * Get the primary category for a post.
+ * Uses Yoast SEO primary term if available, falls back to the first category.
+ *
+ * @param int $post_id Post ID. Defaults to current post.
+ * @return WP_Term|null Primary category term object or null.
+ */
+function bn_get_primary_category( $post_id = 0 ) {
+    if ( ! $post_id ) {
+        $post_id = get_the_ID();
+    }
+    if ( class_exists( 'WPSEO_Primary_Term' ) ) {
+        $primary_term = new WPSEO_Primary_Term( 'category', $post_id );
+        $category_id  = $primary_term->get_primary_term();
+        if ( $category_id ) {
+            $term = get_term( $category_id );
+            if ( $term && ! is_wp_error( $term ) ) {
+                return $term;
+            }
+        }
+    }
+    $cats = get_the_category( $post_id );
+    return ! empty( $cats ) ? $cats[0] : null;
+}
+
 if ( ! function_exists( 'newspack_categories' ) ) {
     function newspack_categories() {
         // Check for Issue Key on Articles
@@ -1198,7 +1223,11 @@ if ( ! function_exists( 'newspack_categories' ) ) {
             
             if ( $issue_name ) {
                 $issue_url = bn_get_issue_url( $issue_key );
-                echo '<span class="cat-links"><a href="' . esc_url( $issue_url ) . '">' . esc_html( $issue_name ) . '</a></span>';
+                echo '<span class="cat-links"><a class="issue-cat-link" href="' . esc_url( $issue_url ) . '">' . esc_html( $issue_name ) . '</a></span>';
+                $primary_cat = bn_get_primary_category( get_the_ID() );
+                if ( $primary_cat ) {
+                    echo '<span class="cat-links cat-links--primary"><a href="' . esc_url( get_category_link( $primary_cat->term_id ) ) . '">' . esc_html( $primary_cat->name ) . '</a></span>';
+                }
                 return;
             }
         }
@@ -1245,8 +1274,12 @@ function bn_filter_issue_category_list( $html, $post_id = 0 ) {
         
         if ( $issue_name ) {
             $issue_url = bn_get_issue_url( $issue_key );
-            // Return link format matching standard category output (anchors)
-            return '<a href="' . esc_url( $issue_url ) . '" rel="category tag">' . esc_html( $issue_name ) . '</a>';
+            $output = '<a class="issue-cat-link" href="' . esc_url( $issue_url ) . '" rel="category tag">' . esc_html( $issue_name ) . '</a>';
+            $primary_cat = bn_get_primary_category( $post_id );
+            if ( $primary_cat ) {
+                $output .= ' <span class="cat-sep">|</span> <a href="' . esc_url( get_category_link( $primary_cat->term_id ) ) . '" rel="category tag">' . esc_html( $primary_cat->name ) . '</a>';
+            }
+            return $output;
         }
     }
     
@@ -1267,7 +1300,12 @@ function bn_filter_newspack_blocks_categories( $category_html ) {
         
         if ( $issue_name ) {
             $issue_url = bn_get_issue_url( $issue_key );
-            return '<a href="' . esc_url( $issue_url ) . '">' . esc_html( $issue_name ) . '</a>';
+            $output = '<a class="issue-cat-link" href="' . esc_url( $issue_url ) . '">' . esc_html( $issue_name ) . '</a>';
+            $primary_cat = bn_get_primary_category( $post_id );
+            if ( $primary_cat ) {
+                $output .= ' <span class="cat-sep">|</span> <a href="' . esc_url( get_category_link( $primary_cat->term_id ) ) . '">' . esc_html( $primary_cat->name ) . '</a>';
+            }
+            return $output;
         }
     }
     
@@ -1345,17 +1383,24 @@ function bn_render_archive_article( $post, $article_classes = array(), $categori
 			// Display category or issue name for articles
 			$category_displayed = false;
 			
-			// For article post type, show issue name instead of category
+			// For article post type, show issue name + primary category
 			if ( 'article' === get_post_type( $post_id ) ) {
 				$issue_key = get_post_meta( $post_id, 'issue_key', true );
 				$issue_name = function_exists( 'bn_get_issue_name' ) ? bn_get_issue_name( $issue_key ) : null;
 				if ( $issue_name ) {
 					$issue_url = function_exists( 'bn_get_issue_url' ) ? bn_get_issue_url( $issue_key ) : home_url( '/magazine/' );
+					$primary_cat = function_exists( 'bn_get_primary_category' ) ? bn_get_primary_category( $post_id ) : null;
 					?>
 					<div class="cat-links">
-						<a href="<?php echo esc_url( $issue_url ); ?>">
+						<a class="issue-cat-link" href="<?php echo esc_url( $issue_url ); ?>">
 							<?php echo esc_html( $issue_name ); ?>
 						</a>
+						<?php if ( $primary_cat ) : ?>
+							<span class="cat-sep">|</span>
+							<a href="<?php echo esc_url( get_category_link( $primary_cat->term_id ) ); ?>">
+								<?php echo esc_html( $primary_cat->name ); ?>
+							</a>
+						<?php endif; ?>
 					</div>
 					<?php
 					$category_displayed = true;

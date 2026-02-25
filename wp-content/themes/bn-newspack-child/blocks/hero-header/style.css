@@ -45,7 +45,6 @@
 }
 
 .bn-hero-topic {
-  display: inline-block;
   margin-bottom: 0.5rem;
   padding: 0.25rem 0.75rem;
   font-size: 0.875rem;
@@ -122,7 +121,6 @@
   justify-content: flex-end;
 }
 
-
 .bn-hero-content .byline-container {
   display: flex;
   align-items: center;
@@ -152,7 +150,7 @@
   margin-right: 5px;
 }
 .wp-block-bn-hero-header .byline .author a {
-    color: #fff;
+  color: #fff;
 }
 .bn-hero-content .author {
   font-weight: 700;
@@ -208,7 +206,16 @@
 .issue-hero__kicker.bn-hero-topic a:hover {
   opacity: 0.8;
   text-decoration: none;
-} 
+}
+
+/* Primary category shown below issue kicker */
+.issue-hero__primary-cat.bn-hero-topic {
+  margin-top: -0.25rem;
+}
+.issue-hero__primary-cat.bn-hero-topic a {
+  color: var(--bn-hero-primary-cat-color, inherit);
+  background-color: var(--bn-hero-primary-cat-bg, transparent);
+}
 
 /* Desktop enhancements */
 @media (min-width: 768px) {
