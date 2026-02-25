@@ -1,0 +1,201 @@
+/**
+ * Editor overrides for Bay Nature
+ *
+ * Adapts content-level styles from sacha-styles.css for the block editor.
+ * Selectors like .entry .entry-content don't exist in the editor DOM,
+ * so this file rewrites them as plain element selectors. WordPress's
+ * add_editor_style() automatically scopes everything under
+ * .editor-styles-wrapper.
+ */
+
+/* ----------------------------------------
+   CSS Custom Properties
+   ---------------------------------------- */
+:root {
+  --newspack-theme-font-size-base: 22px;
+  --bn-link-color: #009ad9;
+  --bn-link-hover-color: #40b3e3;
+  --bn-header-link-color: #111111;
+  --bn-header-link-hover-color: #595959;
+  --bn-header-hero-link-color: #fff;
+  --bn-header-hero-link-hover-color: #c7c7c7;
+  --bn-home-link-color: #111111;
+  --bn-home-link-hover-color: #595959;
+  --bn-orange-hover-color: #f8a160;
+  --bn-home-author-color: #595959;
+  --bn-home-author-hover-color: #8a8a8a;
+  --bn-general-link-color: #009ad9;
+  --bn-general-link-hover-color: #40b3e3;
+}
+
+/* ----------------------------------------
+   Content Spacing
+   (was: .entry .entry-content > *)
+   ---------------------------------------- */
+> * {
+  margin: 0 0 1rem 0;
+}
+
+/* ----------------------------------------
+   Headings
+   ---------------------------------------- */
+
+/* H3: italic, light weight (was: .entry .entry-content h3) */
+h3 {
+  margin: 2rem 0 1.5rem 0;
+  font-weight: 300;
+  font-style: italic;
+}
+
+h3 strong {
+  font-weight: bold;
+}
+
+/* H6 (was: .entry .entry-content h6) */
+h6 {
+  margin-bottom: 0.825rem;
+  font-weight: 700;
+  font-size: 0.825rem;
+}
+
+/* Entry title */
+.wp-block-post-title {
+  font-weight: normal;
+}
+
+/* ----------------------------------------
+   Lists
+   (was: .entry .entry-content ul li)
+   ---------------------------------------- */
+ul li {
+  margin: 0.25rem;
+  font-size: 0.8rem;
+}
+
+/* ----------------------------------------
+   Separators / Horizontal Rules
+   (was: .entry .entry-content > .wp-block-separator)
+   ---------------------------------------- */
+.wp-block-separator,
+hr {
+  margin: 1rem 0;
+}
+
+.wp-block-spacer {
+  margin: 0 !important;
+}
+
+/* ----------------------------------------
+   Links
+   (was: .entry-content a, .entry-content h* a)
+   ---------------------------------------- */
+a {
+  color: var(--bn-general-link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--bn-general-link-hover-color);
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+a:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+/* ----------------------------------------
+   Buttons
+   (was: .entry-content .wp-block-button__link)
+   ---------------------------------------- */
+.wp-block-button__link {
+  background: var(--bn-orange);
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.825rem;
+  line-height: 1rem;
+}
+
+/* ----------------------------------------
+   Blockquotes & Citations
+   ---------------------------------------- */
+blockquote,
+cite {
+  font-family: "utopia-std", Georgia, serif;
+  font-style: italic;
+}
+
+/* ----------------------------------------
+   Drop Caps
+   ---------------------------------------- */
+.has-drop-cap:not(:focus)::first-letter {
+  float: left;
+  margin: 0.05em 0.1em 0 0;
+  color: #447223;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 5rem;
+  line-height: 0.68;
+}
+
+/* ----------------------------------------
+   Pullquotes
+   ---------------------------------------- */
+.wp-block-pullquote {
+  border-width: 2px 0;
+  text-align: center;
+}
+
+@media (min-width: 782px) {
+  .wp-block-pullquote blockquote p,
+  .wp-block-pullquote.is-style-solid-color blockquote p {
+    font-size: var(--newspack-theme-font-size-xl);
+  }
+}
+
+.wp-block-pullquote.is-style-solid-color blockquote cite,
+.wp-block-pullquote cite {
+  font-style: italic;
+}
+
+/* ----------------------------------------
+   Captions
+   ---------------------------------------- */
+figcaption,
+.wp-caption-text {
+  font-weight: normal;
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
+  text-align: center;
+  font-style: normal;
+}
+
+/* ----------------------------------------
+   Images
+   ---------------------------------------- */
+.wp-block-image:not(.alignleft):not(.alignright):not(.aligncenter):not(
+    .alignwide
+  ):not(.alignfull)
+  img {
+  display: block;
+  margin: auto;
+}
+
+.wp-block-image.alignleft img,
+.wp-block-image.alignright img,
+.wp-block-image.aligncenter img,
+.wp-block-image.alignwide img,
+.wp-block-image.alignfull img {
+  margin: 0;
+}
+
+/* ----------------------------------------
+   Paragraph margin reset
+   ---------------------------------------- */
+p {
+  margin-block-start: 0;
+}

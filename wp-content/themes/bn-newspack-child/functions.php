@@ -220,10 +220,9 @@ require_once __DIR__ . '/inc/site-options.php';
 // Add Sacha-style setup actions
 add_action( 'after_setup_theme', 'bn_sacha_setup', 12 );
 function bn_sacha_setup() {
-    // Remove the default editor styles
-    remove_editor_styles();
-    // Add our Sacha-inspired editor styles
+    add_editor_style( 'https://use.typekit.net/hiz3obw.css' );
     add_editor_style( 'assets/css/sacha-styles.css' );
+    add_editor_style( 'assets/css/editor-overrides.css' );
 }
 
 // Load Sacha-style customization functions
