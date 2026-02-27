@@ -1389,7 +1389,7 @@ div.dfw-unit + br {
 .searchwp-related > h4 {
   font-family: "ff-tisa-sans-web-pro", sans-serif;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.25rem;
   letter-spacing: 0.04em;
   margin-bottom: 1rem;
 }
@@ -1420,8 +1420,8 @@ h5.searchwp-related-item--title {
 .searchwp-related-post-context {
   display: block;
   font-family: "ff-tisa-sans-web-pro", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.6em;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.2;
   margin: 0;
@@ -1450,8 +1450,8 @@ h5.searchwp-related-item--title {
 .searchwp-related-post-date {
   display: block;
   font-family: "ff-tisa-sans-web-pro", sans-serif;
-  font-size: 0.8rem;
-  line-height: 1.35;
+  font-size: 0.7rem;
+  line-height: 1.2;
   color: var(--bn-home-author-color);
   margin-top: 0;
 }
