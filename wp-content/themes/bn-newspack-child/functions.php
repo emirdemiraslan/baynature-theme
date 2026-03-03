@@ -1145,6 +1145,37 @@ function bn_redirect_old_post_urls() {
 }
 
 /**
+ * Redirect old /magazine/archive/{slug}/ URLs to the correct permalink.
+ * These are articles that previously had no issue_key and defaulted to "archive".
+ */
+add_action( 'template_redirect', 'bn_redirect_old_magazine_archive_urls' );
+function bn_redirect_old_magazine_archive_urls() {
+    if ( ! is_404() ) {
+        return;
+    }
+
+    $request_uri = trim( $_SERVER['REQUEST_URI'], '/' );
+
+    if ( ! preg_match( '#^magazine/archive/([^/]+)/?$#i', $request_uri, $matches ) ) {
+        return;
+    }
+
+    $post_slug = sanitize_title( $matches[1] );
+
+    $article = get_page_by_path( $post_slug, OBJECT, 'article' );
+    if ( $article ) {
+        wp_redirect( get_permalink( $article->ID ), 301 );
+        exit;
+    }
+
+    $post = get_page_by_path( $post_slug, OBJECT, 'post' );
+    if ( $post ) {
+        wp_redirect( get_permalink( $post->ID ), 301 );
+        exit;
+    }
+}
+
+/**
  * Get the URL for a specific issue or the main magazine page.
  * 
  * @param string $issue_key The issue key code (e.g. v25n4)

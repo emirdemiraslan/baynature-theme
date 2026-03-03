@@ -168,11 +168,18 @@ aside#secondary {
 .article-section-title,
 .cat-links {
   color: #000;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   text-align: center;
   border: none;
 }
-
+@media (max-width: 782px) {
+  .accent-header,
+  #secondary .widgettitle,
+  .article-section-title,
+  .cat-links {
+    margin-bottom: 2rem;
+  }
+}
 .accent-header,
 div.wpnbha .article-section-title,
 .cat-links {
