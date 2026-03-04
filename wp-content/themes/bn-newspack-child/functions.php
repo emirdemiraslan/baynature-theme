@@ -459,47 +459,51 @@ add_action( 'wp_body_open', function () {
 }, 5 );
 
 /**
- * Force all single posts (including CPTs) to use the one-column wide template,
- * UNLESS a custom page template has been explicitly assigned.
+ * Resolve the single-post template.
+ *
+ * Priority: per-post assignment > Customizer default > single-feature.php (One Column).
+ * Biodiversity keeps its own template (single-biodiversity.php).
  */
 add_filter( 'single_template', function( $template ) {
-    // Check if we're on a single post page (any post type)
-    if ( is_single() ) {
-        // Exclude biodiversity post type - it has its own template (single-biodiversity.php)
-        if ( get_post_type() === 'biodiversity' ) {
-            return $template;
-        }
-        
-        // Check if a custom page template has been assigned
-        $page_template = get_page_template_slug();
-        
-        // If a custom template is assigned, respect it and don't override
-        if ( ! empty( $page_template ) ) {
-            return $template;
-        }
-        
-        // Only apply single-wide.php if no custom template is assigned
-        $one_column_template = locate_template( 'single-wide.php' );
-        
-        // If found, use it; otherwise fall back to default
-        if ( $one_column_template ) {
-            return $one_column_template;
-        }
-    }
-    
-    return $template;
+	if ( ! is_single() || 'biodiversity' === get_post_type() ) {
+		return $template;
+	}
+
+	$per_post = get_page_template_slug();
+	if ( ! empty( $per_post ) ) {
+		return $template;
+	}
+
+	$customizer_default = get_theme_mod( 'post_template_default', '' );
+	if ( ! empty( $customizer_default ) && 'default' !== $customizer_default ) {
+		$resolved = locate_template( $customizer_default );
+		if ( $resolved ) {
+			return $resolved;
+		}
+	}
+
+	$fallback = locate_template( 'single-feature.php' );
+	return $fallback ? $fallback : $template;
 }, 99 );
 
 /**
- * Add body class for one-column template so Newspack's CSS applies correctly.
+ * Add the correct body class for whichever single-post template is active.
  */
 add_filter( 'body_class', function( $classes ) {
-    if ( is_single() ) {
-        // Add the class that Newspack uses for one-column layout
-        $classes[] = 'post-template-single-wide';
-        // Remove any sidebar-related classes
-        $classes = array_diff( $classes, array( 'has-sidebar' ) );
-    }
+	if ( is_single() && 'biodiversity' !== get_post_type() ) {
+		$slug = get_page_template_slug();
+
+		if ( empty( $slug ) ) {
+			$customizer_default = get_theme_mod( 'post_template_default', '' );
+			$slug = ( ! empty( $customizer_default ) && 'default' !== $customizer_default )
+				? $customizer_default
+				: 'single-feature.php';
+		}
+
+		$class = 'post-template-' . sanitize_html_class( basename( $slug, '.php' ) );
+		$classes[] = $class;
+		$classes = array_diff( $classes, array( 'has-sidebar' ) );
+	}
     
     // Add full-width class for search results pages
     if ( is_search() || ( ! empty( $_GET['swps'] ) ) ) {
