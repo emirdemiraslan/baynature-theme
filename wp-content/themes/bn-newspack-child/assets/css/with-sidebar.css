@@ -1,0 +1,64 @@
+/**
+ * With Sidebar template — 750 px main + 350 px sidebar (Option A)
+ * Total inner width: 1130 px (750 + 30 gap + 350)
+ */
+
+/* Prevent Newspack's default flex that reserves sidebar space */
+.with-sidebar-layout #main {
+  display: block !important;
+}
+
+/* Two-column wrapper */
+.with-sidebar-container {
+  display: flex;
+  gap: 30px;
+  max-width: 1130px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.with-sidebar-container .main-content {
+  flex: 0 1 65%;
+  min-width: 0;
+}
+
+.with-sidebar-container .sidebar-right {
+  flex: 0 0 35%;
+  margin: 2rem 0 0 2rem;
+}
+
+.with-sidebar-container .sidebar-right .widget {
+  margin-bottom: 2rem;
+}
+
+/* Entry header spans full container width */
+.with-sidebar-layout .entry-header {
+  max-width: 1130px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* Don't let nested entry-content max-width fight the column */
+.with-sidebar-layout .main-content .entry-content {
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* ----------------------------------------
+   Mobile: stack sidebar below main content
+   ---------------------------------------- */
+@media (max-width: 782px) {
+  .with-sidebar-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .with-sidebar-container .main-content,
+  .with-sidebar-container .sidebar-right {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+}

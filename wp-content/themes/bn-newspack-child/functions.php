@@ -141,6 +141,19 @@ add_action( 'wp', function() {
     }
 } );
 
+// Register widget area for the "With Sidebar" template.
+add_action( 'widgets_init', function () {
+    register_sidebar( array(
+        'name'          => __( 'With Sidebar — Right', 'bn-newspack-child' ),
+        'id'            => 'sidebar-with-sidebar',
+        'description'   => __( 'Widgets displayed on the right side of the "With Sidebar" template.', 'bn-newspack-child' ),
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="widget-title">',
+        'after_title'   => '</h3>',
+    ) );
+} );
+
 // Enqueue parent stylesheet after parent has registered it.
 add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style( 'bn-parent-style', get_template_directory_uri() . '/style.css', array(), null );
@@ -176,6 +189,16 @@ add_action( 'wp_enqueue_scripts', function () {
             array(),
             '1.0.0',
             true
+        );
+    }
+
+    // Enqueue With Sidebar layout styles when template is active
+    if ( is_page_template( 'single-with-sidebar.php' ) ) {
+        wp_enqueue_style(
+            'bn-with-sidebar',
+            get_stylesheet_directory_uri() . '/assets/css/with-sidebar.css',
+            array( 'bn-parent-style' ),
+            '1.0.0'
         );
     }
 }, 20 );
