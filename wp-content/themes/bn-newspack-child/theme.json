@@ -22,6 +22,7 @@
     },
     "typography": {
       "fluid": true,
+      "fontLibrary": false,
       "fontFamilies": [
         {
           "slug": "body",
