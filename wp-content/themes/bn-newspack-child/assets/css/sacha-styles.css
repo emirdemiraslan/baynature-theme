@@ -422,6 +422,10 @@ figcaption,
 .wpnbha.wp-block-newspack-blocks-homepage-articles .post-thumbnail figcaption {
   margin-bottom: 1.5rem;
 }
+.post-template-single-wide .alignwide > figcaption {
+  width: 100%;
+  text-align: center;
+}
 
 /* ========================================
    Image Credits
