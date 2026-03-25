@@ -7,6 +7,23 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+// Allow core/query block and its inner FSE blocks to bypass Newspack's removal script.
+// Newspack parent theme actively unregisters FSE blocks via JS unless explicitly allowed here.
+if ( ! defined( 'NEWSPACK_FSE_BLOCKS_ALLOWED' ) ) {
+    define( 'NEWSPACK_FSE_BLOCKS_ALLOWED', array( 
+        'core/query', 
+        'core/post-featured-image', 
+        'core/post-excerpt', 
+        'core/post-content', 
+        'core/post-date', 
+        'core/post-terms', 
+        'core/post-author', 
+        'core/post-author-name',
+        'core/query-title',
+        'core/read-more'
+    ) );
+}
+
 /**
  * Disable SearchWP's built-in Results Page template and use theme's search.php.
  * 
@@ -243,6 +260,7 @@ require_once __DIR__ . '/inc/site-options.php';
 // Add Sacha-style setup actions
 add_action( 'after_setup_theme', 'bn_sacha_setup', 12 );
 function bn_sacha_setup() {
+    add_theme_support( 'block-templates' );
     add_editor_style( 'https://use.typekit.net/hiz3obw.css' );
     add_editor_style( 'assets/css/sacha-styles.css' );
     add_editor_style( 'assets/css/editor-overrides.css' );
