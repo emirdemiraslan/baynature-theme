@@ -387,3 +387,44 @@ add_filter(
 	10,
 	2
 );
+
+/**
+ * Restrict block editor fonts to the approved theme.json fonts.
+ */
+add_filter(
+	'block_editor_settings_all',
+	function( $settings ) {
+		// Define the 3 approved fonts
+		$approved_fonts = array(
+			array(
+				'slug'       => 'body',
+				'name'       => 'Body (Utopia)',
+				'fontFamily' => '"utopia-std", Georgia, serif',
+			),
+			array(
+				'slug'       => 'heading',
+				'name'       => 'Heading (FF Tisa Sans)',
+				'fontFamily' => '"ff-tisa-sans-web-pro", -apple-system, BlinkMacSystemFont, sans-serif',
+			),
+			array(
+				'slug'       => 'alternate',
+				'name'       => 'Alternate (Adobe Caslon)',
+				'fontFamily' => '"adobe-caslon-pro", Georgia, serif',
+			),
+		);
+
+		// Override the font families in the older editor settings array
+		$settings['fontFamilies'] = $approved_fonts;
+
+		// Override the theme.json merged arrays
+		if ( isset( $settings['__experimentalFeatures']['typography']['fontFamilies'] ) ) {
+			$settings['__experimentalFeatures']['typography']['fontFamilies']['theme']   = $approved_fonts;
+			$settings['__experimentalFeatures']['typography']['fontFamilies']['default'] = array();
+			$settings['__experimentalFeatures']['typography']['fontFamilies']['custom']  = array();
+		}
+
+		return $settings;
+	},
+	999
+);
+
