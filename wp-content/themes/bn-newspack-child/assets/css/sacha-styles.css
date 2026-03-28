@@ -1359,6 +1359,27 @@ div.dfw-unit + br {
   a.issue-cat-link:visited {
   color: var(--bn-orange);
 }
+@media only screen and (max-width: 781px) {
+  #jp-relatedposts.jp-relatedposts
+    .jp-relatedposts-items-minimal.jp-relatedposts-items
+    .jp-relatedposts-post,
+  #jp-relatedposts.jp-relatedposts
+    .jp-relatedposts-items-visual.jp-relatedposts-items
+    .jp-relatedposts-post {
+    width: 33%;
+    clear: none;
+  }
+  #jp-relatedposts.jp-relatedposts
+    .jp-relatedposts-items-minimal.jp-relatedposts-grid
+    .jp-relatedposts-post-thumbs
+    > .jp-relatedposts-post-a:first-child,
+  #jp-relatedposts.jp-relatedposts
+    .jp-relatedposts-items-visual.jp-relatedposts-grid
+    .jp-relatedposts-post-thumbs
+    > .jp-relatedposts-post-a:first-child {
+    width: 90%;
+  }
+}
 
 /* =============================================
    SearchWP Related Posts — match Jetpack RP look
