@@ -266,6 +266,17 @@ function bn_sacha_setup() {
     add_editor_style( 'assets/css/editor-overrides.css' );
 }
 
+// Show font family selector by default in the block editor Typography panel.
+add_filter( 'register_block_type_args', function( $args, $name ) {
+    if ( isset( $args['supports']['typography'] ) ) {
+        if ( ! isset( $args['supports']['typography']['__experimentalDefaultControls'] ) ) {
+            $args['supports']['typography']['__experimentalDefaultControls'] = array();
+        }
+        $args['supports']['typography']['__experimentalDefaultControls']['fontFamily'] = true;
+    }
+    return $args;
+}, 10, 2 );
+
 // Load Sacha-style customization functions
 if ( file_exists( __DIR__ . '/inc/sacha/child-color-patterns.php' ) ) {
     require_once __DIR__ . '/inc/sacha/child-color-patterns.php';
