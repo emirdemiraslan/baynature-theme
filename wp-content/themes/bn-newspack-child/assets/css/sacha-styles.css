@@ -22,6 +22,9 @@ a:focus {
 .main-content {
   margin-top: 2rem;
 }
+.single .main-content {
+  width: 100%;
+}
 .entry .entry-content > *,
 .newspack-inline-popup > *,
 [id="pico"] > * {
