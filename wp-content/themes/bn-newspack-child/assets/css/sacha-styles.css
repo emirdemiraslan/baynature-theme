@@ -24,6 +24,7 @@ a:focus {
 }
 .single .main-content {
   width: 100%;
+  padding: 0 1.25rem;
 }
 .entry .entry-content > *,
 .newspack-inline-popup > *,

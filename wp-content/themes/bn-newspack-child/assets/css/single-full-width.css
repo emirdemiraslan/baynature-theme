@@ -67,7 +67,7 @@
   .page-template-no-header-footer .main-content,
   .page-template-single-feature .main-content,
   .post-template-single-feature .main-content {
-    max-width: 750px;
+    max-width: 780px;
     width: 100%;
   }
 }
