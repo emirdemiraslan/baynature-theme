@@ -423,6 +423,10 @@ figcaption,
   text-align: center;
   font-style: normal;
 }
+.entry-content figcaption {
+  font-size: var(--newspack-theme-font-size-xs);
+  color: var(--newspack-theme-color-text-light);
+}
 .wpnbha.wp-block-newspack-blocks-homepage-articles .post-thumbnail figcaption {
   margin-bottom: 1.5rem;
 }
