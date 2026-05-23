@@ -436,8 +436,8 @@ figcaption,
 }
 
 /* ========================================
-   Image Credits
-   ======================================== */
+    Image Credits
+    ======================================== */
 .image-credit {
   display: block;
   font-size: 0.8em;
@@ -708,7 +708,7 @@ cite {
 }
 
 /* When issue link + primary category are shown together,
-   reset the primary cat link to the default (non-orange) color */
+    reset the primary cat link to the default (non-orange) color */
 .wpnbha .type-article .cat-links a:not(.issue-cat-link),
 .wpnbha .category-from-the-magazine .cat-links a:not(.issue-cat-link) {
   color: var(--bn-header-link-color);
@@ -1316,7 +1316,7 @@ div.dfw-unit + br {
   color: var(--bn-home-author-color);
 }
 
-/* Optional: align Jetpack "visual" layout to: image → category → headline → date */
+/* Optional: align Jetpack "visual" layout to: image â†’ category â†’ headline â†’ date */
 #jp-relatedposts.jp-relatedposts
   .jp-relatedposts-items-visual
   .jp-relatedposts-post {
@@ -1374,7 +1374,7 @@ div.dfw-unit + br {
   #jp-relatedposts.jp-relatedposts
     .jp-relatedposts-items-visual.jp-relatedposts-items
     .jp-relatedposts-post {
-    width: 33%;
+    width: 100%;
     clear: none;
   }
   #jp-relatedposts.jp-relatedposts
@@ -1385,13 +1385,23 @@ div.dfw-unit + br {
     .jp-relatedposts-items-visual.jp-relatedposts-grid
     .jp-relatedposts-post-thumbs
     > .jp-relatedposts-post-a:first-child {
-    width: 90%;
+    width: 100%;
+  }
+  #jp-relatedposts.jp-relatedposts
+    .jp-relatedposts-items-minimal.jp-relatedposts-grid
+    .jp-relatedposts-post-thumbs
+    > *,
+  #jp-relatedposts.jp-relatedposts
+    .jp-relatedposts-items-visual.jp-relatedposts-grid
+    .jp-relatedposts-post-thumbs
+    > * {
+    width: 100%;
   }
 }
 
 /* =============================================
-   SearchWP Related Posts — match Jetpack RP look
-   ============================================= */
+    SearchWP Related Posts â€” match Jetpack RP look
+    ============================================= */
 
 /* Strip container chrome */
 .searchwp-related .searchwp-related-results {
@@ -1410,7 +1420,7 @@ div.dfw-unit + br {
   display: none !important;
 }
 
-/* Item opacity — matches Jetpack RP */
+/* Item opacity â€” matches Jetpack RP */
 .searchwp-related-grid .searchwp-related-item {
   opacity: 0.8;
   transition: opacity 0.2s ease;
@@ -2486,8 +2496,8 @@ h5.searchwp-related-item--title {
 }
 
 /**
- * Hide all comment-related elements from frontend visitors
- */
+  * Hide all comment-related elements from frontend visitors
+  */
 .comments-area,
 .comment-form,
 .comment-form-comment,
@@ -2510,9 +2520,9 @@ h5.searchwp-related-item--title {
 }
 
 /**
- * 404 Page Styles
- * One-column layout with SearchWP styled search form
- */
+  * 404 Page Styles
+  * One-column layout with SearchWP styled search form
+  */
 .error404 .site-main {
   padding: 3rem 1.5rem;
 }
@@ -2582,8 +2592,8 @@ h5.searchwp-related-item--title {
 }
 
 /**
- * Magazine Issue Page Styles
- */
+  * Magazine Issue Page Styles
+  */
 .issue-content {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
