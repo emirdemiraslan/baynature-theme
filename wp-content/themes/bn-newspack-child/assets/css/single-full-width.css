@@ -66,12 +66,10 @@
   .newspack-front-page.page-template-single-feature .site-main,
   .page-template-no-header-footer .main-content,
   .page-template-single-feature .main-content,
-  .post-template-single-feature .main-content {
+  .post-template-single-feature .main-content,
+  .single.article-template-member_only_content_default_template .main-content {
     max-width: 780px;
     width: 100%;
-  }
-  .single.article-template-member_only_content_default_template .main-content {
-    width: 780px;
     margin: 2rem auto 0 auto;
   }
 }

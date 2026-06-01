@@ -554,6 +554,17 @@ add_filter( 'body_class', function( $classes ) {
 
 		$class = 'post-template-' . sanitize_html_class( basename( $slug, '.php' ) );
 		$classes[] = $class;
+
+		// Member-only templates use single-feature layout; add the body class so
+		// Newspack's built-in alignwide / alignfull breakout rules apply.
+		$member_only_layout_templates = array(
+			'member_only_content_default_template.php',
+			'member_only_content_no_banner_template.php',
+		);
+		if ( in_array( $slug, $member_only_layout_templates, true ) ) {
+			$classes[] = 'post-template-single-feature';
+		}
+
 		$classes = array_diff( $classes, array( 'has-sidebar' ) );
 	}
     
