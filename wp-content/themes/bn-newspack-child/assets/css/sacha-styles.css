@@ -565,6 +565,7 @@ cite {
 .single .entry-header .entry-title {
   margin-bottom: 2.25rem;
   margin-top: 1.5rem;
+  width: 90%;
 }
 
 @media (min-width: 782px) {
