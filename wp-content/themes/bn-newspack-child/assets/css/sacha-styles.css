@@ -33,7 +33,9 @@ a:focus {
 }
 .entry .entry-content ul li {
   margin: 0.25rem;
-  font-size: 0.8rem;
+}
+li.block-editor-block-list__block {
+  font-size: inherit;
 }
 .entry .entry-content h3 {
   margin: 2rem 0 1.5rem 0;
