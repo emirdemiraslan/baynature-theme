@@ -1623,3 +1623,12 @@ add_filter( 'wp_content_img_tag', function( $filtered_image, $context, $attachme
 
 }, 10, 3 );
 
+/**
+ * Output a JS variable on 404 pages for OptinMonster to check.
+ * Prevents popups from firing on 404 error pages.
+ */
+add_action( 'wp_head', function() {
+    if ( is_404() ) {
+        echo '<script>var omIs404 = true;</script>';
+    }
+});
