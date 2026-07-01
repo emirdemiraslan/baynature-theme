@@ -130,6 +130,9 @@ function bn_paywall_staff_key_is_valid() {
     }
 
     $year  = intval( bn_pw_opt( 'sharing_key_expiration_year', 0 ) );
+    if ( $year < 100 ) {
+        $year += 2000;
+    }
     $month = max( 1, min( 12, intval( bn_pw_opt( 'sharing_key_expiration_month', 0 ) ) ) );
 
     // Compute max day for the given month (non-leap: match original logic)
