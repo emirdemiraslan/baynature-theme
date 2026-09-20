@@ -31,7 +31,7 @@ get_header();
 
 					if ( $subheading ) :
 						?>
-						<h2 class="entry-subtitle"><?php echo esc_html( $subheading ); ?></h2>
+						<h2 class="entry-subtitle"><?php echo $subheading; ?></h2>
 					<?php endif; ?>
 				</header><!-- .entry-header -->
 

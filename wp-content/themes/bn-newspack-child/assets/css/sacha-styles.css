@@ -2674,3 +2674,6 @@ h5.searchwp-related-item--title {
     grid-template-columns: repeat(1, 1fr);
   }
 }
+.newspack-post-subtitle em, .newspack-post-subtitle i{
+  font-style: italic;
+}

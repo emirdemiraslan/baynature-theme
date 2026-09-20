@@ -314,7 +314,7 @@ function bn_render_search_result_article( $post, $article_classes, $categories )
 				</a>
 			</h2>
 			
-			<p class="entry-excerpt"><?php echo esc_html( wp_trim_words( get_the_excerpt( $post_id ), 30, '...' ) ); ?></p>
+			<p class="entry-excerpt"><?php echo get_the_excerpt( $post_id ); ?></p>
 			
 			<div class="entry-meta">
 				<?php

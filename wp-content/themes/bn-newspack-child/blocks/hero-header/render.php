@@ -179,7 +179,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
                     </h1>
 
                     <?php if ( $show_excerpt && $subheading ) : ?>
-                        <div class="bn-hero-excerpt"><?php echo esc_html( $subheading ); ?></div>
+                        <div class="bn-hero-excerpt"><?php echo $subheading; ?></div>
                     <?php endif; ?>
 
                     <?php if ( ( $show_author ) || $date_display ) : ?>
@@ -260,7 +260,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
             </h1>
 
             <?php if ( $show_excerpt && $subheading ) : ?>
-                <div class="bn-hero-excerpt"><?php echo esc_html( $subheading ); ?></div>
+                <div class="bn-hero-excerpt"><?php echo $subheading; ?></div>
             <?php endif; ?>
 
             <?php if ( ( $show_author ) || $date_display ) : ?>

@@ -438,7 +438,63 @@ add_action( 'acf/init', function () {
         'instruction_placement' => 'label',
         'active' => true,
     ) );
+    
+    // Register "Article Subtitle" for both post and article (ACF)
+    acf_add_local_field_group( array(
+        'key' => 'group_bn_article_subtitle',
+        'title' => 'Article Subtitle',
+        'fields' => array(
+            array(
+                'key' => 'field_bn_newspack_post_subtitle',
+                'label' => 'Article Subtitle',
+                'name' => 'newspack_post_subtitle',
+                'type' => 'textarea',
+                'instructions' => 'Add an optional subtitle to appear below the headline.',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'maxlength' => '',
+                'rows' => 3,
+                'new_lines' => 'br',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'post',
+                ),
+            ),
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'article',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'side',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => true,
+        'description' => '',
+    ) );
 } );
+
+// Dequeue Newspack's native post subtitle script so we can use our custom ACF field above categories
+add_action( 'enqueue_block_editor_assets', function() {
+    wp_dequeue_script( 'newspack-post-subtitle' );
+}, 20 );
 
 // Add body class to signal hero-issue template being used (front page shim or direct template)
 add_filter( 'body_class', function ( $classes ) {
@@ -881,13 +937,21 @@ function bn_map_subheading_to_newspack_subtitle( $value, $object_id, $meta_key, 
         // Remove the filter to avoid infinite loop
         remove_filter( 'get_post_metadata', 'bn_map_subheading_to_newspack_subtitle', 10 );
         
+        // Get the real newspack_post_subtitle
+        $native_subtitle = get_post_meta( $object_id, 'newspack_post_subtitle', true );
+        
         // Get the custom subheading value
         $subheading = get_post_meta( $object_id, 'subheading', true );
         
         // Re-add the filter
         add_filter( 'get_post_metadata', 'bn_map_subheading_to_newspack_subtitle', 10, 4 );
         
-        // Return the subheading if it exists
+        // Return the native subtitle if it exists (prioritize ACF new field)
+        if ( ! empty( $native_subtitle ) ) {
+            return $single ? $native_subtitle : array( $native_subtitle );
+        }
+
+        // Fallback to old subheading if it exists
         if ( ! empty( $subheading ) ) {
             return $single ? $subheading : array( $subheading );
         }
@@ -1538,8 +1602,7 @@ function bn_render_archive_article( $post, $article_classes = array(), $categori
 					<?php echo esc_html( get_the_title( $post_id ) ); ?>
 				</a>
 			</h2>
-			
-			<p class="entry-excerpt"><?php echo esc_html( wp_trim_words( get_the_excerpt( $post_id ), 30, '...' ) ); ?></p>
+			<p class="entry-excerpt"><?php echo get_the_excerpt( $post_id ); ?></p>
 			
 			<div class="entry-meta">
 				<?php
@@ -1632,3 +1695,15 @@ add_action( 'wp_head', function() {
         echo '<script>var omIs404 = true;</script>';
     }
 });
+
+if ( ! function_exists( 'newspack_post_subtitle' ) ) {
+    /**
+     * Override Newspack's native post subtitle to allow HTML tags.
+     */
+    function newspack_post_subtitle() {
+        $subtitle = get_post_meta( get_the_ID(), 'newspack_post_subtitle', true );
+        if ( $subtitle ) {
+            return $subtitle;
+        }
+    }
+}

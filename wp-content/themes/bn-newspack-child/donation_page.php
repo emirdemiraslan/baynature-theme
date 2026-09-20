@@ -106,7 +106,7 @@ get_header('donate'); ?>
 		<?php if ( is_singular() ) { ?>
 			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 			<?php if ( get_post_meta( get_the_ID(), 'subheading', true ) ) { ?>
-				<h2 class="entry-subtitle"><?php echo esc_html( get_post_meta( get_the_ID(), 'subheading', true ) ); ?></h2>
+				<h2 class="entry-subtitle"><?php echo get_post_meta( get_the_ID(), 'subheading', true ); ?></h2>
 			<?php } ?>
 		<?php } else { ?>
 			<?php the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' ); ?>

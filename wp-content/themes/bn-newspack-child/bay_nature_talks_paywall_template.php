@@ -28,7 +28,7 @@ get_header();
 							<div class="hero-content">
 								<h1 class="entry-title"><?php the_title(); ?></h1>
 								<?php if ( get_post_meta( get_the_ID(), 'subheading', true ) ) : ?>
-									<p class="entry-subtitle"><?php echo esc_html( get_post_meta( get_the_ID(), 'subheading', true ) ); ?></p>
+									<p class="entry-subtitle"><?php echo get_post_meta( get_the_ID(), 'subheading', true ); ?></p>
 								<?php endif; ?>
 							</div>
 						</div>
@@ -42,7 +42,7 @@ get_header();
 					<header class="entry-header">
 						<h1 class="entry-title"><?php the_title(); ?></h1>
 						<?php if ( get_post_meta( get_the_ID(), 'subheading', true ) ) : ?>
-							<p class="entry-subtitle"><?php echo esc_html( get_post_meta( get_the_ID(), 'subheading', true ) ); ?></p>
+							<p class="entry-subtitle"><?php echo get_post_meta( get_the_ID(), 'subheading', true ); ?></p>
 						<?php endif; ?>
 					</header>
 				<?php endif; ?>
