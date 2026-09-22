@@ -489,6 +489,51 @@ add_action( 'acf/init', function () {
         'active' => true,
         'description' => '',
     ) );
+
+    // Register "Article Hero Settings" for both post and article
+    acf_add_local_field_group( array(
+        'key' => 'group_bn_article_hero_settings',
+        'title' => 'Article Hero Settings',
+        'fields' => array(
+            array(
+                'key' => 'field_bn_article_hero_overlay_color',
+                'label' => 'Hero Overlay Color',
+                'name' => 'bn_article_hero_overlay_color',
+                'type' => 'color_picker',
+                'default_value' => '#000000',
+            ),
+            array(
+                'key' => 'field_bn_article_hero_overlay_opacity',
+                'label' => 'Hero Overlay Opacity (%)',
+                'name' => 'bn_article_hero_overlay_opacity',
+                'type' => 'number',
+                'default_value' => 50,
+                'min' => 0,
+                'max' => 100,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'post',
+                ),
+            ),
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'article',
+                ),
+            ),
+        ),
+        'position' => 'side',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'active' => true,
+    ) );
 } );
 
 // Dequeue Newspack's native post subtitle script so we can use our custom ACF field above categories
@@ -1707,3 +1752,32 @@ if ( ! function_exists( 'newspack_post_subtitle' ) ) {
         }
     }
 }
+
+/**
+ * Output dynamic CSS for article hero overlay opacity and color.
+ */
+add_action( 'wp_head', function() {
+    if ( is_singular( array( 'post', 'article' ) ) ) {
+        if ( ! has_post_thumbnail() ) {
+            return;
+        }
+
+        $color   = get_field( 'bn_article_hero_overlay_color' );
+        $opacity = get_field( 'bn_article_hero_overlay_opacity' );
+        
+        if ( ! empty( $color ) || ( $opacity !== null && $opacity !== '' ) ) {
+            $color   = $color ? $color : '#000000';
+            $opacity = ( $opacity !== null && $opacity !== '' ) ? (int) $opacity : 50;
+            $opacity_decimal = $opacity / 100;
+
+            ?>
+            <style>
+                body.single .featured-image-behind::before {
+                    background: <?php echo esc_html( $color ); ?> !important;
+                    opacity: <?php echo esc_html( $opacity_decimal ); ?> !important;
+                }
+            </style>
+            <?php
+        }
+    }
+} );
