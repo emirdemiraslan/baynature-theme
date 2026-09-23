@@ -1768,14 +1768,26 @@ add_action( 'wp_head', function() {
         
         if ( ! empty( $color ) || ( $opacity !== null && $opacity !== '' ) || ! empty( $text_color ) ) {
             $color   = $color ? $color : '#000000';
-            $opacity = ( $opacity !== null && $opacity !== '' ) ? (int) $opacity : 50;
+            $opacity = ( $opacity !== null && $opacity !== '' ) ? (int) $opacity : 70;
             $opacity_decimal = $opacity / 100;
             $text_color_css = $text_color ? $text_color : '#ffffff';
+
+            $hex = ltrim( $color, '#' );
+            if ( strlen( $hex ) === 3 ) {
+                $r = hexdec( substr( $hex, 0, 1 ) . substr( $hex, 0, 1 ) );
+                $g = hexdec( substr( $hex, 1, 1 ) . substr( $hex, 1, 1 ) );
+                $b = hexdec( substr( $hex, 2, 1 ) . substr( $hex, 2, 1 ) );
+            } else {
+                $r = hexdec( substr( $hex, 0, 2 ) );
+                $g = hexdec( substr( $hex, 2, 2 ) );
+                $b = hexdec( substr( $hex, 4, 2 ) );
+            }
+            $rgb = $r . ', ' . $g . ', ' . $b;
 
             ?>
             <style>
                 body.single .featured-image-behind::before {
-                    background: <?php echo esc_html( $color ); ?> !important;
+                    background: linear-gradient(to bottom, rgba(<?php echo esc_html( $rgb ); ?>, 0), rgba(<?php echo esc_html( $rgb ); ?>, 1)) !important;
                     opacity: <?php echo esc_html( $opacity_decimal ); ?> !important;
                 }
                 body.single .featured-image-behind .entry-title,

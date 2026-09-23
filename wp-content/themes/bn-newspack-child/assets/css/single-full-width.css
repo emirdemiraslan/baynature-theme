@@ -189,7 +189,7 @@ body.has-hero-header.page-template-magazine_archive_page .page-hero .hero-wrap,
 .featured-image-behind::before {
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0),
+    rgba(0, 0, 0, 0),
     rgba(0, 0, 0, 0.5)
   );
   opacity: 0.7;
