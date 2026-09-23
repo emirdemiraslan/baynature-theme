@@ -511,6 +511,13 @@ add_action( 'acf/init', function () {
                 'min' => 0,
                 'max' => 100,
             ),
+            array(
+                'key' => 'field_bn_article_hero_text_color',
+                'label' => 'Hero Text Color',
+                'name' => 'bn_article_hero_text_color',
+                'type' => 'color_picker',
+                'default_value' => '#ffffff',
+            ),
         ),
         'location' => array(
             array(
@@ -1755,19 +1762,28 @@ add_action( 'wp_head', function() {
             return;
         }
 
-        $color   = get_field( 'bn_article_hero_overlay_color' );
-        $opacity = get_field( 'bn_article_hero_overlay_opacity' );
+        $color      = get_field( 'bn_article_hero_overlay_color' );
+        $opacity    = get_field( 'bn_article_hero_overlay_opacity' );
+        $text_color = get_field( 'bn_article_hero_text_color' );
         
-        if ( ! empty( $color ) || ( $opacity !== null && $opacity !== '' ) ) {
+        if ( ! empty( $color ) || ( $opacity !== null && $opacity !== '' ) || ! empty( $text_color ) ) {
             $color   = $color ? $color : '#000000';
             $opacity = ( $opacity !== null && $opacity !== '' ) ? (int) $opacity : 50;
             $opacity_decimal = $opacity / 100;
+            $text_color_css = $text_color ? $text_color : '#ffffff';
 
             ?>
             <style>
                 body.single .featured-image-behind::before {
                     background: <?php echo esc_html( $color ); ?> !important;
                     opacity: <?php echo esc_html( $opacity_decimal ); ?> !important;
+                }
+                body.single .featured-image-behind .entry-title,
+                body.single .featured-image-behind .newspack-post-subtitle,
+                body.single .featured-image-behind .entry-subhead,
+                body.single .featured-image-behind .entry-subhead *,
+                body.single .featured-image-behind .bn-reading-time {
+                    color: <?php echo esc_html( $text_color_css ); ?> !important;
                 }
             </style>
             <?php
