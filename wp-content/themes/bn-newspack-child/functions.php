@@ -1704,20 +1704,13 @@ function bn_render_archive_article( $post, $article_classes = array(), $categori
 }
 
 /*
-Issue: alignfull/alignwide article images render upscaled
-Full/wide body images on the single-feature article layout are upscaled from the 780px srcset candidate into the ~1280px column. Sitewide on that template (e.g. Summer 2026 climbing story, Spring 2026 "Seaside Subterfuge"). Heroes and in-column images are fine.
+Issue: article images render upscaled on large monitors
+Images on article layouts are upscaled from a lower srcset candidate (like 780px) when displayed on wider containers on high-res monitors.
 
 Cause: sizes is capped at the legacy single-feature width: sizes="(max-width: 780px) 100vw, 780px"
+Fix: Broaden the sizes attribute for all content images so high-res monitors can fetch larger srcset candidates.
 */
 add_filter( 'wp_content_img_tag', function( $filtered_image, $context, $attachment_id ) {
-
-    if ( false === strpos( $filtered_image, 'alignfull' )
-
-        && false === strpos( $filtered_image, 'alignwide' ) ) {
-
-        return $filtered_image;
-
-    }
 
     return preg_replace(
 
